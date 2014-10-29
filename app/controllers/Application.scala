@@ -24,5 +24,11 @@ object Application extends Controller {
     
     Ok("observation: " + format + ": '" + req + ": " + qs)
   }
-
+  
+  def hello_world = Action {
+    req =>
+      
+      Ok("Hello World")
+      
+  }
 }
