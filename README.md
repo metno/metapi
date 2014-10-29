@@ -32,13 +32,14 @@ Copy the zip file to where to deploy the met-api and unzip the file.
 
 The layout of the archive is:
 
+```
 bora-prototype-1.0-SNAPSHOT/lib/
 bora-prototype-1.0-SNAPSHOT/bin/
-bora-prototype-1.0-SNAPSHOT/conf//application.conf
+bora-prototype-1.0-SNAPSHOT/conf/application.conf
 bora-prototype-1.0-SNAPSHOT/share/
 bora-prototype-1.0-SNAPSHOT/README.md
 bora-prototype-1.0-SNAPSHOT/README
-
+```
 To start the met-api application
 
 bora-prototype-1.0-SNAPSHOT/bin/bora-prototype
