@@ -6,7 +6,7 @@ The met-api is an jvm application and at least version 7 is required.
 sbt is used to build the application. sbt use the zip-archive format
 so unzip must be installed to deploy met-api. 
 
-###Install instruction for ubuntu 14:04
+###Install instruction for ubuntu 14.04
 
 Install java and unzip.  'apt-get install  openjdk-7-jdk unzip'
 
