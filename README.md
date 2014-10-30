@@ -3,11 +3,12 @@
 ##Prerequisite
 
 The met-api is an jvm application and at least version 7 is required.
-sbt is used to build the application. 
+sbt is used to build the application. sbt use the zip-archive format
+so unzip must be installed to deploy met-api. 
 
 ###Install instruction for ubuntu 14:04
 
-Install java.  'apt-get install  openjdk-7-jdk'
+Install java and unzip.  'apt-get install  openjdk-7-jdk unzip'
 
 Install sbt.
 Download a debian package with wget http://dl.bintray.com/sbt/debian/sbt-0.13.5.deb and 
@@ -20,7 +21,7 @@ Clone met-api at github
 
 git clone https://github.com/metno/met-api.git
 
-Change directory too met-api.
+Change directory to met-api.
 
 The following command should build met-api.
 The command will download all dependencies  
@@ -40,7 +41,7 @@ bora-prototype-1.0-SNAPSHOT/share/
 bora-prototype-1.0-SNAPSHOT/README.md
 bora-prototype-1.0-SNAPSHOT/README
 ```
-To start the met-api application
+Start the met-api application with:
 
 bora-prototype-1.0-SNAPSHOT/bin/bora-prototype
 
