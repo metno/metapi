@@ -8,6 +8,8 @@ pip install behave
 
 pip install PyHamcrest
 
-To test run 
+To test, edit features/product_info.feature and replace API_HOST_HERE with host where the java hello world app is currently running
+
+Then run the following command
 
 "behave" in this directory or "behave features/[feature_file]"
