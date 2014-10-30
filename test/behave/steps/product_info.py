@@ -5,15 +5,20 @@ from product import Product
 # ----------------------------------------------------------------------------
 # STEPS:
 # ----------------------------------------------------------------------------
-@given(u'I specify the "{product}" product name')
+@given(u'I ask for the current version of "{product}"')
 def step_request_information_about_product(context, product):
     context.product = Product()
     context.product.add(product)
 
-@when(u'I ask for latest version')
-def step_ask_for_latest_version(context):
-    context.product.get_current_version()
-
-@then(u'It should tell me that "{current_version}" is the current version')
+@then(u'It should reply with "{current_version}"')
 def step_tell_me_version(context, current_version):
-    assert_that(context.product.result, equal_to(current_version))
+    assert_that(context.product.result, equal_to(context.product.get_current_version()))
+
+@given(u'I request the "{path}" path')
+def step_request_path(context, path):
+    context.product = Product()
+    context.product.add(path)
+
+@then(u'It should respond with "{response}"')
+def step_return_result(context, response):
+    assert_that(context.product.result, equal_to(context.product.get_response_string()))
