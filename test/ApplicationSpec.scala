@@ -27,11 +27,11 @@ class ApplicationSpec extends Specification {
       contentAsString(home) must contain ("BORA prototype is ready.")
     }
     
-      "render the hello world" in new WithApplication{
+      "render 'Hello World'" in new WithApplication{
       val home = route(FakeRequest(GET, "/v1/hello_world")).get
 
       status(home) must equalTo(OK)
-      //contentType(home) must beSome.which(_ == "text/html")
+      contentType(home) must beSome.which(_ == "text/plain")
       contentAsString(home) must contain ("Hello World")
     }
   }
