@@ -8,6 +8,7 @@ addSbtPlugin("org.scoverage" % "sbt-scoverage" % "0.99.7.1")
 
 //Scalastyle Plugin
 addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "0.6.0")
+
 resolvers += "sonatype-releases" at "https://oss.sonatype.org/content/repositories/releases/"
 
 // web plugins
