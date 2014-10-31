@@ -50,5 +50,3 @@ http://hostname:9000/v1/hello_world in a browser or
 try 'wget http://hostname:9000/v1/hello_world'
 
 The result should be "hello world".
-
- 
