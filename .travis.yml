@@ -1,0 +1,7 @@
+language: scala
+scala:
+- 2.11.0
+script:
+- sbt clean stage dist
+notifications:
+  irc: "chat.freenode.net#metno"
