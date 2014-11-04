@@ -1,29 +1,39 @@
-import urllib2
+import time
+from urllib2 import Request, urlopen, URLError
 
 # -----------------------------------------------------------------------------
 # DOMAIN-MODEL:
 # -----------------------------------------------------------------------------
 class Product(object):
-    VERSION_MAP = {
-        "helloworld":"1.0"
-    }
-    def __init__(self):
-        self.thing  = None
-        self.result = None
+    def __init__(self, host, version, function):
+        self.host                   = host
+        self.version                = version
+        self.function               = function
+        self.url                    = None
+        self.the_response_string    = None
+        self.timer                  = time.time()        
+        self.the_response_time      = None       
 
-    @classmethod
-    def select_version_for(cls, thing):
-        return cls.VERSION_MAP.get(thing)
+        if self.host != ".":
+            self.url = self.host
+        if self.version != ".":
+            self.url += "/" + self.version
+        if self.function != ".":
+            self.url += "/" + self.function
+        
+    def get_response_string(self):  
+        if self.url != None:           
+            req = Request(self.url)
+            try:
+                response = urlopen(req)
+            except URLError as e:
+                if hasattr(e, 'reason'):
+                    return e.reason
+                elif hasattr(e, 'code'):
+                    return e.code
+            else:
+                return response.read()
 
-    def add(self, thing):
-        self.thing = thing
-
-    def get_current_version(self):
-        self.result = self.select_version_for(self.thing)
-        #Replace this with the get request to eventual rest api "function getProductInfo for example"
-
-    def get_response_string(self):
-        response = urllib2.urlopen(self.thing)
-        html = response.read()
-        self.result = html
-        #Replace this with the get request to eventual rest api "function getProductInfo for example"
+    def get_response_time(self):
+        self.the_response_time = time.time() - self.timer;
+        return self.the_response_time*1000

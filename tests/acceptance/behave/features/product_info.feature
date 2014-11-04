@@ -1,17 +1,11 @@
 Feature: Product Information
 
-  Scenario Outline: Products
-    Given I ask for the current version of "<product>"
-    Then It should reply with "<current version>"
-
-    Examples: Weather API Products
-        | product               | current version |
-        | helloworld            | 1.0 |
-
   Scenario Outline: Application is running
-    Given I request the "<path>" path
-    Then It should respond with "<response>"
-
+    Given I make a get request to "<host>" with version "<version>" and function "<function>" 
+    Then It should respond with "<response_string>", in less than "<response_time>" milliseconds
+    
     Examples: Products
-        | path                                      | response |
-        | http://API_HOST_HERE/v1/hello_world       | Hello World |
+        | host                         | version   | function      |response_string               | response_time   |
+        | http://localhost:9000        | .         | .             |METAPI: Needs Version         | 200             |
+        | http://localhost:9000        | v1        | .             |Not Found                     | 200             |
+        | http://localhost:9000        | v1        | HelloWorld    |Hello World                   | 200             |
