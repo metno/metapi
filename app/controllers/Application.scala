@@ -5,11 +5,11 @@ import play.api.mvc._
 
 object Application extends Controller {
 
-  def index = Action {
-    Ok(views.html.index("BORA prototype is ready."))
+  def Index = Action {
+    Ok("METAPI: Needs Version")
   }
   
-  def observation( format : String ) = Action { req =>  
+  def Observation( format : String ) = Action { req =>  
     val q = req.queryString
     val qs = for( s <- q  ) yield {
       val k = s._1 
@@ -25,7 +25,7 @@ object Application extends Controller {
     Ok("observation: " + format + ": '" + req + ": " + qs)
   }
   
-  def hello_world = Action {
+  def HelloWorld = Action {
     req =>
       
       Ok("Hello World")
