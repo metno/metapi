@@ -36,4 +36,4 @@ class Product(object):
 
     def get_response_time(self):
         self.the_response_time = time.time() - self.timer;
-        return self.the_response_time*1000
+        return int(self.the_response_time*1000)
