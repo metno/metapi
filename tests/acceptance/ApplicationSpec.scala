@@ -18,21 +18,30 @@ class ApplicationSpec extends Specification {
     "send 404 on a bad request" in new WithApplication{
       route(FakeRequest(GET, "/boom")) must beNone
     }
-
+    
     "render the index page" in new WithApplication{
       val home = route(FakeRequest(GET, "/")).get
 
       status(home) must equalTo(OK)
-      contentType(home) must beSome.which(_ == "text/html")
-      contentAsString(home) must contain ("BORA prototype is ready.")
+      contentType(home) must beSome.which(_ == "text/plain")
+      contentAsString(home) must contain ("METAPI: Needs Version")
     }
     
-      "render 'Hello World'" in new WithApplication{
-      val home = route(FakeRequest(GET, "/v1/hello_world")).get
+    "render 'Hello World'" in new WithApplication{
+      val home = route(FakeRequest(GET, "/v1/helloWorld")).get
 
       status(home) must equalTo(OK)
       contentType(home) must beSome.which(_ == "text/plain")
       contentAsString(home) must contain ("Hello World")
     }
+    
+    "Detect output format 'json'" in new WithApplication{
+      val home = route(FakeRequest(GET, "/v1/observation.json")).get
+
+      status(home) must equalTo(OK)
+      contentType(home) must beSome.which(_ == "text/plain")
+      contentAsString(home) must contain ("json")
+    }
+   
   }
 }

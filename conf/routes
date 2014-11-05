@@ -3,9 +3,9 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.Index
-GET     /v1/Observation.:format     controllers.Application.Observation( format :String )
-GET     /v1/HelloWorld              controllers.Application.HelloWorld
+GET     /                           controllers.Application.index
+GET     /v1/observation.:format     controllers.Application.observation( format :String )
+GET     /v1/helloWorld              controllers.Application.helloWorld
 
 # Map static resources from the /public folder to the /assets URL path
 #
