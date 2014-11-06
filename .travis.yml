@@ -3,7 +3,8 @@ scala:
 - 2.11.2
 script:
 - sbt scalastyle
-- sbt clean stage dist
+- sbt clean scoverage:test
+- sbt stage dist
 notifications:
   irc: "chat.freenode.net#metno"
 
