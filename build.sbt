@@ -18,7 +18,9 @@ instrumentSettings
 parallelExecution in ScoverageTest := false
 
 ScoverageKeys.highlighting := true
+
 ScoverageKeys.minimumCoverage := 100
+
 ScoverageKeys.failOnMinimumCoverage := true
 
 ScoverageKeys.excludedPackages in ScoverageCompile := "<empty>;ReverseApplication;ReverseAssets;Routes"
