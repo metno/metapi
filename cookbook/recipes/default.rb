@@ -4,7 +4,8 @@
 #
 # Copyright (C) 2014 MET Norway
 #
-# All rights reserved - Do Not Redistribute
+# Licensed under the Apache License, Version 2.0.
+# See the LICENSE file for further information.
 #
 
 include_recipe 'java'
