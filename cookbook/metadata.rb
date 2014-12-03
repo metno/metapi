@@ -4,7 +4,7 @@ maintainer_email    'kimtj@met.no'
 license             'All rights reserved'
 description         'Installs/Configures met-api'
 long_description    'Installs/Configures met-api'
-version             '0.1.0'
+version             '0.2.0'
 
 depends             'nginx', '~> 2.7'
 depends             'java', '~> 1.29'
