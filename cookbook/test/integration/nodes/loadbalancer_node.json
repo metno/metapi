@@ -1,9 +1,0 @@
-{
-    "id": "loadbalancer_node",
-    "run_list": ["recipe[met-api::default]"],
-    "automatic": {
-        "ipaddress": "127.0.0.1",
-        "fqdn": "localhost",
-        "recipes": ["met-api::default"]  
-    }
-}

@@ -13,8 +13,3 @@ suites:
     run_list:
     - recipe[met-api]
     attributes:
-  - name: loadbalancer
-    run_list:
-    - recipe[met-api]
-    - recipe[met-api::loadbalancer]
-    attributes:
