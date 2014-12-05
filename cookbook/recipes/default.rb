@@ -9,3 +9,16 @@
 #
 
 include_recipe 'java'
+
+template '/etc/init/met-api.conf' do
+    source 'upstart/met-api.conf.erb'
+    owner 'root'
+    group 'root'
+    mode '0644'
+end
+
+service 'met-api' do
+    supports :status => true, :restart => true, :start => true, :stop => true
+    provider Chef::Provider::Service::Upstart
+    action :nothing
+end

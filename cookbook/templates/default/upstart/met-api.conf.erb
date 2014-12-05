@@ -1,0 +1,9 @@
+description     "Meteorological API"
+author          "MET Norway <post@met.no>"
+
+start on runlevel [2345]
+exec <%= node['met-api']['server_binary'] %> \
+    -Dhttp.port=<%= node['met-api']['listen_port'] %> \
+    -Dhttp.address=<%= node['met-api']['listen_address'] %> \
+    -Djava.net.preferIPv4Stack=true
+respawn

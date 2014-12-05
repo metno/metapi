@@ -14,3 +14,13 @@
         [ $status -eq 0 ]
     }
 }
+
+@test "Upstart job for met-api starts on runlevels 2-5" {
+    run grep "start on runlevel \[2345\]" /etc/init/met-api.conf
+    [ $status -eq 0 ]
+}
+
+@test "Upstart job for met-api respawns the server when dead" {
+    run grep "respawn" /etc/init/met-api.conf
+    [ $status -eq 0 ]
+}
