@@ -47,7 +47,7 @@ bora-prototype-1.0-SNAPSHOT/bin/bora-prototype
 
 To test that the application is running type
 http://hostname:9000/v1/hello_world in a browser or
-try `wget http://hostname:9000/v1/hello_world`
+try `wget http://hostname:9000/v1/helloWorld`
 
 The result should be "hello world".
 
