@@ -8,6 +8,7 @@
 # See the LICENSE file for further information.
 #
 
+include_recipe 'apt'
 include_recipe 'java'
 
 template '/etc/init/met-api.conf' do
