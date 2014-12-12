@@ -1,4 +1,4 @@
-name := """bora-prototype"""
+name := """met-api"""
 
 version := "1.0-SNAPSHOT"
 
