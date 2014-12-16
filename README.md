@@ -34,16 +34,16 @@ Copy the zip file to where to deploy the met-api and unzip the file.
 The layout of the archive is:
 
 ```
-bora-prototype-1.0-SNAPSHOT/lib/
-bora-prototype-1.0-SNAPSHOT/bin/
-bora-prototype-1.0-SNAPSHOT/conf/application.conf
-bora-prototype-1.0-SNAPSHOT/share/
-bora-prototype-1.0-SNAPSHOT/README.md
-bora-prototype-1.0-SNAPSHOT/README
+met-api-1.0-SNAPSHOT/lib/
+met-api-1.0-SNAPSHOT/bin/
+met-api-1.0-SNAPSHOT/conf/application.conf
+met-api-1.0-SNAPSHOT/share/
+met-api-1.0-SNAPSHOT/README.md
+met-api-1.0-SNAPSHOT/README
 ```
 Start the met-api application with:
 
-bora-prototype-1.0-SNAPSHOT/bin/bora-prototype
+met-api-1.0-SNAPSHOT/bin/met-api
 
 To test that the application is running type
 http://hostname:9000/v1/hello_world in a browser or
@@ -91,7 +91,7 @@ eclipse project use sbt:
 
 Now you can import the met-api into eclipse. In eclipse select menu "file->import".
 In the dialog that pop up expand "General" and select "Existing Projects into Workspace". 
-Browse to the met-api dierctory and push the ok button. Select the "bora-prototype"
+Browse to the met-api dierctory and push the ok button. Select the "met-api"
 prosject and pus the ok button. 
 
 Every time the build.sbt or any of the files in the directory project/changes we
@@ -100,7 +100,7 @@ must rerun `sbt eclipse` and reimport the project.
 ###Style guide
 As an help to comply to the style guide you can import the file
 
->bora_style-eclipse_formatterPreferences.properties
+>met-api_style-eclipse_formatterPreferences.properties
 
 To import it select menu item "window->preferences". In the dialog that pop up expand
 "Scala->Editor->Formatter" and import the file.

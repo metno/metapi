@@ -1,4 +1,4 @@
-name := """bora-prototype"""
+name := """met-api"""
 
 version := "1.0-SNAPSHOT"
 
@@ -12,6 +12,7 @@ scalaSource in Test := new File(baseDirectory.value, "tests")
 
 javaSource in Test := new File(baseDirectory.value, "tests")
 
+javaOptions += "-Djunit.outdir=target/test-report"
 
 instrumentSettings
 

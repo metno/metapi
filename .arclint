@@ -1,0 +1,9 @@
+{
+	"linters": {
+		"scalastyle": {
+		   "type": "scalastyle",
+		   "jar": "scalastyle_2.11-0.6.0-batch.jar",
+		   "config": "scalastyle-config.xml"
+		   }
+		}
+}
