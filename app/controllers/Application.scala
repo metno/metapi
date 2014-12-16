@@ -41,6 +41,6 @@ object Application extends Controller {
 
   def helloWorld = Action {
     req =>
-      Ok("Hello World")
+      Ok("Goodbye, cruel world")
   }
 }
