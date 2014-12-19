@@ -1,5 +1,11 @@
 resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
 
+resolvers += "jgit-repo" at "http://download.eclipse.org/jgit/maven"
+
+// Git plugin
+
+addSbtPlugin("com.typesafe.sbt" % "sbt-git" % "0.6.4")
+
 // The Play plugin
 addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.3.6")
 
