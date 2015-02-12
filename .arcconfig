@@ -1,5 +1,5 @@
 {
     "phabricator.uri": "https://phab.met.no",
-    "load": ["/home/espenm/space/projects/arcanist-support/src/"],
+    "load": ["arcanist-support/src/"],
     "unit.engine": "SBTTestEngine"
 }
