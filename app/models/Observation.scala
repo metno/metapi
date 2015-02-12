@@ -23,27 +23,20 @@
     MA 02110-1301, USA
 */
 
-package controllers
-
-import play.api._
-import play.api.mvc._
+package models
 import com.wordnik.swagger.annotations._
 
-@Api(value = "/v0/helloWorld", description = "The \"Hello World\" API ")
-object Application extends Controller {
-
-  def index = Action {
-   	Ok("METAPI: Needs Version")
-  }
-  
-  @ApiOperation(
-    nickname = "helloWorld",
-    value = "Get a nice greeting",
-    notes = "Returns a greeting",
-    response = classOf[String],
-    httpMethod = "GET" )
-  def helloWorld = Action {
-    req =>
-      Ok("Hello World and all you colleagues!")
-  }
-}
+import scala.annotation.meta.field
+import java.util.Date
+// scalastyle:off magic.number
+@ApiModel("Observation")
+case class Observation(
+  @(ApiModelProperty @field)(position = 1, value = "id") id: Long,
+  @(ApiModelProperty @field)(position = 2) source: String,
+  @(ApiModelProperty @field)(position = 4) place: String,
+  @(ApiModelProperty @field)(position = 5) reftime: Date,
+  @(ApiModelProperty @field)(position = 6) validtime: Date,
+  @(ApiModelProperty @field)(position = 7) parameter: String,
+  @(ApiModelProperty @field)(position = 8) value: Float,
+  @(ApiModelProperty @field)(position = 9) quality: Float,
+  @(ApiModelProperty @field)(position = 10) version: Int)

@@ -3,9 +3,18 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
-GET     /v1/observation.:format     controllers.Application.observation( format :String )
-GET     /v1/helloWorld              controllers.Application.helloWorld
+GET     /                             controllers.Application.index
+
+# Swagger - Root Resources Listing
+GET     /v1/api-docs                  controllers.ApiHelpController.getResources
+
+GET     /v1/helloWorld                controllers.Application.helloWorld
+GET     /v1/api-docs/helloWorld       controllers.ApiHelpController.getResource(path = "/v0/helloWorld")
+
+GET     /v1/api-docs/observations     controllers.ApiHelpController.getResource(path = "/v0/observations")
+POST    /v1/observations              @controllers.ObservationController.addObservation
+#PUT    /v1/observations              @controllers.ObservationController.updateObservation
+GET     /v1/observations/:id          @controllers.ObservationController.getObservationById(id)
 
 # Map static resources from the /public folder to the /assets URL path
 #

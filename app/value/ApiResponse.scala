@@ -22,28 +22,33 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
     MA 02110-1301, USA
 */
+package value
+import javax.xml.bind.annotation._
 
-package controllers
+object ApiResponse {
+  val ERROR = 1
+  val WARNING = 2
+  val INFO = 3
+  val OK = 4
+  val TOO_BUSY = 5
+}
 
-import play.api._
-import play.api.mvc._
-import com.wordnik.swagger.annotations._
+@XmlRootElement
+class ApiResponse(@XmlElement var code: Int, @XmlElement var message: String) {
+ 
+  @XmlTransient
+  def getCode(): Int = code
+  def setCode(code: Int):Unit = this.code = code
 
-@Api(value = "/v0/helloWorld", description = "The \"Hello World\" API ")
-object Application extends Controller {
-
-  def index = Action {
-   	Ok("METAPI: Needs Version")
+  def getType(): String = code match {
+    case ApiResponse.ERROR => "error"
+    case ApiResponse.WARNING => "warning"
+    case ApiResponse.INFO => "info"
+    case ApiResponse.OK => "ok"
+    case ApiResponse.TOO_BUSY => "too busy"
+    case _ => "unknown"
   }
-  
-  @ApiOperation(
-    nickname = "helloWorld",
-    value = "Get a nice greeting",
-    notes = "Returns a greeting",
-    response = classOf[String],
-    httpMethod = "GET" )
-  def helloWorld = Action {
-    req =>
-      Ok("Hello World and all you colleagues!")
-  }
+
+  def getMessage(): String = message
+  def setMessage(message: String):Unit = this.message = message
 }

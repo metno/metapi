@@ -47,5 +47,7 @@ libraryDependencies ++= Seq(
   jdbc,
   anorm,
   cache,
+ "com.wordnik" %% "swagger-play2" % "1.3.12",
+ "com.wordnik" %% "swagger-play2-utils" % "1.3.12",
   ws
 )

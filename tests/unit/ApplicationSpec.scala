@@ -36,11 +36,11 @@ class ApplicationSpec extends Specification {
     }
     
     "Detect output format 'json'" in new WithApplication{
-      val home = route(FakeRequest(GET, "/v1/observation.json")).get
+      val home = route(FakeRequest(GET, "/v1/observations/1")).get
 
       status(home) must equalTo(OK)
-      contentType(home) must beSome.which(_ == "text/plain")
-      contentAsString(home) must contain ("json")
+      contentType(home) must beSome.which(_ == "application/json")
+
     }
    
   }
