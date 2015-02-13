@@ -33,9 +33,9 @@ import com.wordnik.swagger.annotations._
 object Application extends Controller {
 
   def index = Action {
-   	Ok("METAPI: Needs Version")
+    Ok("METAPI: Needs Version")
   }
-  
+
   @ApiOperation(
     nickname = "helloWorld",
     value = "Get a nice greeting",

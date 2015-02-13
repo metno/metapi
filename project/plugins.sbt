@@ -9,7 +9,7 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-git" % "0.6.4")
 // The Play plugin
 addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.3.6")
 
-//Test plugins 
+//Test plugins
 addSbtPlugin("org.scoverage" % "sbt-scoverage" % "0.99.7.1")
 
 //Scalastyle Plugin

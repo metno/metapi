@@ -1,9 +1,43 @@
 {
-	"linters": {
-		"scalastyle": {
-		   "type": "scalastyle",
-		   "jar": "scalastyle_2.11-0.6.0-batch.jar",
-		   "config": "scalastyle-config.xml"
-		   }
-		}
+  "exclude": [
+    "(^legacy/)",
+    "(\\.project$)",
+    "(\\.phutil_module_cache$)"
+  ],
+  "linters": {
+    "chmod": {
+      "type": "chmod"
+    },
+    "filename": {
+      "type": "filename"
+    },
+    "generated": {
+      "type": "generated"
+    },
+    "json": {
+      "type": "json",
+      "include": [
+        "(^\\.arcconfig$)",
+        "(^\\.arclint$)",
+        "(\\.json$)"
+      ]
+    },
+    "nolint": {
+      "type": "nolint"
+    },
+    "scalastyle": {
+      "type": "scalastyle",
+      "jar": "scalastyle_2.11-0.6.0-batch.jar",
+      "config": "scalastyle-config.xml"
+    },
+    "spelling": {
+      "type": "spelling"
+    },
+    "text": {
+      "type": "text",
+      "severity": {
+        "3": "disabled"
+      }
+    }
+  }
 }

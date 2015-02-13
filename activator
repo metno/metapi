@@ -231,7 +231,7 @@ run() {
     -jar "$app_launcher" \
     "${app_commands[@]}" \
     "${residual_args[@]}"
-    
+
   local exit_code=$?
   if is_cygwin; then
     stty icanon echo > /dev/null 2>&1

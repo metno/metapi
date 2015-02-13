@@ -7,4 +7,3 @@ script:
 - sbt stage dist
 notifications:
   irc: "chat.freenode.net#metno"
-

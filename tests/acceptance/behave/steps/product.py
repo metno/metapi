@@ -11,8 +11,8 @@ class Product(object):
         self.function               = function
         self.url                    = None
         self.the_response_string    = None
-        self.timer                  = time.time()        
-        self.the_response_time      = None       
+        self.timer                  = time.time()
+        self.the_response_time      = None
 
         if self.host != ".":
             self.url = self.host
@@ -20,9 +20,9 @@ class Product(object):
             self.url += "/" + self.version
         if self.function != ".":
             self.url += "/" + self.function
-        
-    def get_response_string(self):  
-        if self.url != None:           
+
+    def get_response_string(self):
+        if self.url != None:
             req = Request(self.url)
             try:
                 response = urlopen(req)
