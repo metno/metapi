@@ -1,5 +1,4 @@
 {
     "phabricator.uri": "https://phab.met.no",
-    "load": ["arcanist-support/src/"],
     "unit.engine": "SBTTestEngine"
 }
