@@ -35,7 +35,7 @@ import javax.ws.rs.core.Response.Status
 import util.HttpStatus
 import api.ObservationData
 
-@Api(value = "/v0/observations", description = "API for observations")
+@Api(value = "/observations", description = "API for observations")
 class ObservationController extends BaseApiController {
   var observationData = new ObservationData
 

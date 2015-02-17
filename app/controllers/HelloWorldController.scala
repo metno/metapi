@@ -27,14 +27,23 @@ package controllers
 
 import play.api._
 import play.api.mvc._
-object Application extends Controller {
+import com.wordnik.swagger.annotations._
+
+@Api(value = "/helloWorld", description = "The \"Hello World\" API ")
+object HelloWorldController extends Controller {
 
   def index = Action {
     Ok("METAPI: Needs Version")
   }
 
- def swaggerUi = Action {
-    request =>
-    Ok(views.html.swaggerUi())
+  @ApiOperation(
+    nickname = "helloWorld",
+    value = "Get a nice greeting",
+    notes = "Returns a greeting",
+    response = classOf[String],
+    httpMethod = "GET" )
+  def helloWorld = Action {
+    req =>
+      Ok("Hello World and all you colleagues!")
   }
 }

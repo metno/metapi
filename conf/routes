@@ -6,15 +6,23 @@
 GET     /                             controllers.Application.index
 
 # Swagger - Root Resources Listing
-GET     /v1/api-docs                  controllers.ApiHelpController.getResources
+GET     /v0/api-docs                  controllers.ApiHelpController.getResources
 
-GET     /v1/helloWorld                controllers.Application.helloWorld
-GET     /v1/api-docs/helloWorld       controllers.ApiHelpController.getResource(path = "/v0/helloWorld")
+GET     /v0/helloWorld                controllers.HelloWorldController.helloWorld
+GET     /v0/api-docs/helloWorld       controllers.ApiHelpController.getResource(path = "/helloWorld")
 
-GET     /v1/api-docs/observations     controllers.ApiHelpController.getResource(path = "/v0/observations")
-POST    /v1/observations              @controllers.ObservationController.addObservation
-#PUT    /v1/observations              @controllers.ObservationController.updateObservation
-GET     /v1/observations/:id          @controllers.ObservationController.getObservationById(id)
+GET     /v0/api-docs/observations     controllers.ApiHelpController.getResource(path = "/observations")
+POST    /v0/observations              @controllers.ObservationController.addObservation
+#PUT    /v0/observations              @controllers.ObservationController.updateObservation
+GET     /v0/observations/:id          @controllers.ObservationController.getObservationById(id)
+
+
+
+# Map static resources from the /app/public folder to the /public path
+
+GET     /swagger-2.1.0-M1/*file       controllers.Assets.at(path="/public/swagger-2.1.0-M1", file)
+GET     /v0/swagger-ui                  controllers.Application.swaggerUi
+
 
 # Map static resources from the /public folder to the /assets URL path
 #

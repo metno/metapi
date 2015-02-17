@@ -28,7 +28,7 @@ class ApplicationSpec extends Specification {
     }
 
     "render 'Hello World'" in new WithApplication{
-      val home = route(FakeRequest(GET, "/v1/helloWorld")).get
+      val home = route(FakeRequest(GET, "/v0/helloWorld")).get
 
       status(home) must equalTo(OK)
       contentType(home) must beSome.which(_ == "text/plain")
@@ -36,7 +36,7 @@ class ApplicationSpec extends Specification {
     }
 
     "Detect output format 'json'" in new WithApplication{
-      val home = route(FakeRequest(GET, "/v1/observations/1")).get
+      val home = route(FakeRequest(GET, "/v0/observations/1")).get
 
       status(home) must equalTo(OK)
       contentType(home) must beSome.which(_ == "application/json")
