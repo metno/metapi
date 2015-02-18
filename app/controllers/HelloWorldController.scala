@@ -31,8 +31,8 @@ import com.wordnik.swagger.annotations._
 
 @Api(value = "/helloWorld", description = "The \"Hello World\" API ")
 object HelloWorldController extends Controller {
-
   @ApiOperation(
+    produces = "text/plain",
     nickname = "helloWorld",
     value = "Get a nice greeting",
     notes = "Returns a greeting",
