@@ -120,6 +120,10 @@ To run the met-api in development mode, start it with:
 
 `sbt run`
 
+To run in developer mode with swagger-ui on localhost, start it with:
+
+`sbt run -Dswagger.api.basepath="http://localhost:9000"`
+
 The met-api starts up and print an url to the console. Paste this url into a web-wbrowser.
 Each time you save some code change in eclipse and reload the page in the browser the
 result of the code change will show up immediately in the browser.
