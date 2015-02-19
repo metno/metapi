@@ -55,7 +55,7 @@ The result should be "hello world".
 To run unit, code coverage and style check.
 
   * **_Unit test_**:   `sbt clean  test`
-  * **_code coverage_**:  `sbt clean scoverage:test`
+  * **_code coverage_**:  `sbt clean coverage test` and to create the reports `sbt coverageReport`
   * **_style check_**: `sbt scalastyle`
 
 ##Setting up a development environment

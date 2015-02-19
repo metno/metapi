@@ -6,7 +6,7 @@ apiVersion := "0.1"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
-scalaVersion := "2.11.4"
+scalaVersion := "2.11.5"
 
 version <<= (apiVersion, git.gitHeadCommit) { (ver, commit) =>
   val commitVer = commit map( v => "+" + v ) getOrElse ""
@@ -31,17 +31,15 @@ javaSource in Test := new File(baseDirectory.value, "tests")
 
 javaOptions += "-Djunit.outdir=target/test-report"
 
-instrumentSettings
+parallelExecution in Test := false
 
-parallelExecution in ScoverageTest := false
+ScoverageSbtPlugin.ScoverageKeys.coverageHighlighting := true
 
-ScoverageKeys.highlighting := true
+ScoverageSbtPlugin.ScoverageKeys.coverageMinimum := 100
 
-ScoverageKeys.minimumCoverage := 100
+ScoverageSbtPlugin.ScoverageKeys.coverageFailOnMinimum := true
 
-ScoverageKeys.failOnMinimumCoverage := true
-
-ScoverageKeys.excludedPackages in ScoverageCompile := "<empty>;ReverseApplication;ReverseAssets;Routes"
+ScoverageSbtPlugin.ScoverageKeys.coverageExcludedPackages := "<empty>;util.HttpStatus;views.html.swaggerUi.*;value.ApiResponse;ReverseApplication;ReverseAssets;Routes"
 
 libraryDependencies ++= Seq(
   jdbc,
