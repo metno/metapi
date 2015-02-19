@@ -1,142 +1,130 @@
-#met-api
+# met-api
 
-##Prerequisite
+The met-api is the implementation of a REST-based Application Programmer's
+Interface (API) that can be used to search, browse and retrieve climate and
+weather data.
 
-The met-api is an jvm application and at least version 7 is required.
-sbt is used to build the application. sbt use the zip-archive format
-so unzip must be installed to deploy met-api.
-
-###Install instruction for ubuntu 14.04
-
-Install java and unzip.  `apt-get install  openjdk-7-jdk unzip`
-
-Install sbt.
-Download a debian package with wget http://dl.bintray.com/sbt/debian/sbt-0.13.6.deb and
-install with `dpkg -i sbt-0.13.6.deb`
+The met-api is implemented in Scala using the
+[Play Framework](https://playframework.com). The API is documented using
+[Swagger](http://swagger.io).
 
 
-##Build met-api
+## Licensing
 
-Clone met-api at github
+Please see the LICENSE file.
+
+
+## Installation
+
+Clone the repository from Github:
 
 `git clone https://github.com/metno/met-api.git`
 
-Change directory to met-api.
 
-The following command should build met-api.
-The command will download all dependencies
+### Dependencies
 
-`sbt clean stage dist`
+Install the Java 7 JDK and Unzip (required for packaging/deployment). On
+Ubuntu, this can be done using apt-get:
 
-This will create a zip archive in the directory target/universal.
-Copy the zip file to where to deploy the met-api and unzip the file.
+`apt-get install  openjdk-7-jdk unzip`
 
-The layout of the archive is:
+Download and install the Play Framework (2.3.x at the time of writing).
 
-```
-met-api-0.1-SNAPSHOT/lib/
-met-api-0.1-SNAPSHOT/bin/
-met-api-0.1-SNAPSHOT/conf/application.conf
-met-api-0.1-SNAPSHOT/share/
-met-api-0.1-SNAPSHOT/README.md
-met-api-0.1-SNAPSHOT/README
-```
-Start the met-api application with:
+[https://www.playframework.com/download](https://www.playframework.com/download)
 
-met-api-0.1-SNAPSHOT/bin/met-api
-
-To test that the application is running type
-http://hostname:9000/v0/helloWorld in a browser or
-try `wget http://hostname:9000/v0/helloWorld`
-
-The result should be "hello world".
-
-###Runnig unit tests.
-To run unit, code coverage and style check.
-
-  * **_Unit test_**:   `sbt clean  test`
-  * **_code coverage_**:  `sbt clean coverage test` and to create the reports `sbt coverageReport`
-  * **_style check_**: `sbt scalastyle`
-
-##Setting up a development environment
-We follow the [scala styleguide](http://docs.scala-lang.org/style/ "scala-lang Homepage").
-scala support exist for eclipse, netbean, intelliJ, emacs, TextMate, etc.
-
-###Setting up Eclipse
-The version of scala-ide we use is 4.0.0.
-
-The easiest way to install a development enviromnemt for scala is to download
-a eclipse bundle http://scala-ide.org/download/sdk.html. This is the
-recomended way to install eclipse if you are not familiar with eclipse.
-
-If you allready have eclipse installed. Add scala-ide to the sites eclipse look
-for new plugins. Choose the update site according to your installation of eclipse.
-
-  * Luna: http://download.scala-ide.org/sdk/lithium/e44/scala211/stable/site
-  * Kepler: http://download.scala-ide.org/sdk/lithium/e38/scala211/stable/site
-
-To add the update site to "known sites" select the menu item "help->install new software".
-In the dialog box that pop up push the add button. Copy the url into the "Location"
-field and give it a name in the "Name" field, ex scala-ide 4.0.
-
-Now you can install "Scala IDE for eclipse" and "Scala IDE plugins (incubation)".
-After a restart, scala-ide is ready.
+Make sure to [install activator](https://www.playframework.com/documentation/2.3.x/Installing).
 
 
-Change the directory to where you cecked out the met-api from github. To create a
-eclipse project use sbt:
+### Building
 
-   `sbt eclipse`
+In your working directory, run:
 
-Now you can import the met-api into eclipse. In eclipse select menu "file->import".
-In the dialog that pop up expand "General" and select "Existing Projects into Workspace".
-Browse to the met-api dierctory and push the ok button. Select the "met-api"
-project and push the ok button.
+`activator clean stage dist`
 
-Every time the build.sbt or any of the files in the directory project/changes we
-must rerun `sbt eclipse` and reimport the project.
+This should build the API and download any Play dependencies you may be
+missing. It will also create a zip archive of the met-api under
+`target/universal/met-api-#.#-SNAPSHOT.zip` that can be copied to a
+production machine and deployed.
 
-###Style guide
-As an help to comply to the style guide you can import the file
+Unzip the distribution file at your preferred location, and run `bin/met-api`
+to start the application. You can test the API by running
+`wget http://hostname/v0/helloWorld`.
 
->met-api_style-eclipse_formatterPreferences.properties
 
-To import it select menu item "window->preferences". In the dialog that pop up expand
-"Scala->Editor->Formatter" and import the file.
+### Testing
 
-To reformat a scala file to comply with the style guide: press Shift-Ctrl-F.
+To run the met-api in developer mode with swagger-ui on localhost, start it
+with:
 
-###Running tests
-It is best to run the test on the command line with sbt as sbt is not so well integrated
-in eclipe yet.
+`activator run -Dswagger.api.basepath="http://localhost:9000"`
 
-  * `sbt test` runs the unit testes.
-  * `sbt scoverage:test` runs the code coverage.
-  * `sbt scalastyle` checks if you comply with the style guide and do a few static checks.
+To run unit tests: `activator clean test`
 
-###Running the met-api in development mode
-To run the met-api in development mode, start it with:
+To measure code coverage of the tests; `activator clean coverage test` and
+to create the reports, `activator coverageReport`
 
-`sbt run`
+To do basic style checking (without arcanist): `activator scalastyle`
 
-To run in developer mode with swagger-ui on localhost, start it with:
 
-`sbt run -Dswagger.api.basepath="http://localhost:9000"`
+## Documentation
 
-The met-api starts up and print an url to the console. Paste this url into a web-wbrowser.
-Each time you save some code change in eclipse and reload the page in the browser the
-result of the code change will show up immediately in the browser.
+The met-api is documented using Swagger UI. On a working instance of the API,
+go to `http://hostname/v0/swagger-ui` or in a machine-readable form,
+`http://hostname/v0/api-docs`
 
-##Scala and play tutorials
-The met-api is implemented in [scala](http://scala-lang.org/ "scala homepage").
-We use the [play framework](https://playframework.com/ "play homepage").
+Developer documentation for the project can be found on MET Norway's developer
+platform: [https://phab.met.no/tag/met_api/](https://phab.met.no/tag/met_api/).
 
-If you are not familiar with scala and play you can find tutorials at this links
 
-  * scala: [scala tutorial](http://docs.scala-lang.org/tutorials/?_ga=1.146110064.575812132.1320647231)
-  * play: [play tutorials](https://playframework.com/documentation/2.3.x/Tutorials)
+## Contributing
 
-A tip, as a help in learnig scala, is to use worksheet in eclipse.
-See https://github.com/scala-ide/scala-worksheet/wiki/Getting-Started.
-(The person who wrote the tutorial uses obviously mac. If you are using Unix
-(Linux, frebsd etc) or  Windows Substitute all use of CMD with Ctl :-) )
+We welcome contributions, and will help you get involved, if you're
+interested.
+
+
+### Comment on Issues
+
+If you find a feature request particularly exciting or important, or you're
+experiencing a particular bug, the best way to be heard by the #met_api team
+is to comment on the task.
+
+The list of current issues for the MET API are [here](https://phab.met.no/maniphest/?statuses=open&allProjects=PHID-PROJ-cf5xpz6j3jijthgt2lpr#R).
+
+
+### Submit a Task(bug report/feature request)
+
+Obviously, submitting a bug report is very helpful for us if you have
+encountered a problem. Please [review the list of current issues](https://phab.met.no/maniphest/?statuses=open&allProjects=PHID-PROJ-cf5xpz6j3jijthgt2lpr#R)
+first, however, to see if a similar or the same bug has already been reported.
+
+You can also suggest to us what we can do to improve the MET API in future by
+submitting a feature request. As above, please check that a similar feature
+request has not already been submitted by another user. When submitting a
+feature request, please be as descriptive as possible when creating the task,
+and ideally describe a few use cases to show how useful this feature would be.
+
+Issues are [submitted as Tasks using Maniphest](https://phab.met.no/maniphest/task/create/).
+A tasks should contain enough information to be understandable and should be
+tagged with the relevant Projects (you must add #met_api, otherwise we won't
+see the task).
+
+
+### Submitting patches
+
+If you can code and want to directly help with the development of the MET API,
+you are very welcome to contribute code. The following is important, if you
+would like to contribute code:
+
+- File a task with a bug report or feature request before you write code. This
+will allows us to help you get started on the right foot, and we are much more
+likely to accept a patch if we have discussed it first.
+- Follow the [coding conventions of the project](https://phab.met.no/w/methodologies/development_workflow/#coding-conventions)
+and try to submit your patch through arcanist or diffusion. Submitting through
+our standard code review tools saves us a lot of work and significantly speeds
+up our ability to respond to submitted patches.
+
+The following documents may be helpful in setting up your development
+environment:
+
+- [MET API Developer Handbook](https://phab.met.no/w/methodologies/developer_handbook/)
+- [Development Environment for Scala](https://phab.met.no/w/methodologies/developer_handbook/scala/)
