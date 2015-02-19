@@ -11,8 +11,8 @@ so unzip must be installed to deploy met-api.
 Install java and unzip.  `apt-get install  openjdk-7-jdk unzip`
 
 Install sbt.
-Download a debian package with wget http://dl.bintray.com/sbt/debian/sbt-0.13.5.deb and
-install with `dpkg -i  sbt-0.13.5.deb`
+Download a debian package with wget http://dl.bintray.com/sbt/debian/sbt-0.13.6.deb and
+install with `dpkg -i sbt-0.13.6.deb`
 
 
 ##Build met-api
@@ -34,20 +34,20 @@ Copy the zip file to where to deploy the met-api and unzip the file.
 The layout of the archive is:
 
 ```
-met-api-1.0-SNAPSHOT/lib/
-met-api-1.0-SNAPSHOT/bin/
-met-api-1.0-SNAPSHOT/conf/application.conf
-met-api-1.0-SNAPSHOT/share/
-met-api-1.0-SNAPSHOT/README.md
-met-api-1.0-SNAPSHOT/README
+met-api-0.1-SNAPSHOT/lib/
+met-api-0.1-SNAPSHOT/bin/
+met-api-0.1-SNAPSHOT/conf/application.conf
+met-api-0.1-SNAPSHOT/share/
+met-api-0.1-SNAPSHOT/README.md
+met-api-0.1-SNAPSHOT/README
 ```
 Start the met-api application with:
 
-met-api-1.0-SNAPSHOT/bin/met-api
+met-api-0.1-SNAPSHOT/bin/met-api
 
 To test that the application is running type
-http://hostname:9000/v1/hello_world in a browser or
-try `wget http://hostname:9000/v1/helloWorld`
+http://hostname:9000/v0/helloWorld in a browser or
+try `wget http://hostname:9000/v0/helloWorld`
 
 The result should be "hello world".
 
@@ -63,18 +63,17 @@ We follow the [scala styleguide](http://docs.scala-lang.org/style/ "scala-lang H
 scala support exist for eclipse, netbean, intelliJ, emacs, TextMate, etc.
 
 ###Setting up Eclipse
-The version of scala-ide we use is 4.0.0-rc2. This version has better support for
-stylechecks.
+The version of scala-ide we use is 4.0.0.
 
 The easiest way to install a development enviromnemt for scala is to download
-a eclipse bundle from http://scala-ide.org/download/milestone.html. This is the
-recomended way to install eclipse if you ar not familiar with eclipse.
+a eclipse bundle http://scala-ide.org/download/sdk.html. This is the
+recomended way to install eclipse if you are not familiar with eclipse.
 
 If you allready have eclipse installed. Add scala-ide to the sites eclipse look
 for new plugins. Choose the update site according to your installation of eclipse.
 
-  * Luna: http://download.scala-ide.org/sdk/lithium/e44/scala211/dev/site
-  * Kepler: http://download.scala-ide.org/sdk/lithium/e38/scala211/dev/site
+  * Luna: http://download.scala-ide.org/sdk/lithium/e44/scala211/stable/site
+  * Kepler: http://download.scala-ide.org/sdk/lithium/e38/scala211/stable/site
 
 To add the update site to "known sites" select the menu item "help->install new software".
 In the dialog box that pop up push the add button. Copy the url into the "Location"
@@ -92,7 +91,7 @@ eclipse project use sbt:
 Now you can import the met-api into eclipse. In eclipse select menu "file->import".
 In the dialog that pop up expand "General" and select "Existing Projects into Workspace".
 Browse to the met-api dierctory and push the ok button. Select the "met-api"
-prosject and pus the ok button.
+project and push the ok button.
 
 Every time the build.sbt or any of the files in the directory project/changes we
 must rerun `sbt eclipse` and reimport the project.
