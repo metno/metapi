@@ -71,7 +71,7 @@ class ObservationController extends BaseApiController {
     new ApiResponse(code = HttpStatus.METHOD_NOT_ALLOWED, message = "Invalid input")))
   @ApiImplicitParams(Array(
     new ApiImplicitParam(value = "Observation object that needs to be added to the store",
-      required = true, dataType = "Observation", paramType = "body")))
+      required = true, dataType = "Observation", paramType = "path")))
   def addObservation() = Action {
       request =>
       request.body.asJson match {

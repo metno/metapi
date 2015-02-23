@@ -16,7 +16,9 @@ POST    /v0/observations              @controllers.ObservationController.addObse
 #PUT    /v0/observations              @controllers.ObservationController.updateObservation
 GET     /v0/observations/:id          @controllers.ObservationController.getObservationById(id)
 
-
+GET     /v0/api-docs/fileservice     controllers.ApiHelpController.getResource(path = "/fileservice")
+POST    /v0/fileservice              @controllers.FileServiceController.upload
+POST    /v0/fileservice/uploadMultipart              @controllers.FileServiceController.uploadMultipart
 
 # Map static resources from the /app/public folder to the /public path
 
