@@ -118,7 +118,7 @@ would like to contribute code:
 - File a task with a bug report or feature request before you write code. This
 will allows us to help you get started on the right foot, and we are much more
 likely to accept a patch if we have discussed it first.
-- Follow the [coding conventions of the project](https://phab.met.no/w/methodologies/development_workflow/#coding-conventions)
+- Follow the [coding conventions of the project/language](https://phab.met.no/w/methodologies/developer_handbook/#development-environments)
 and try to submit your patch through arcanist or diffusion. Submitting through
 our standard code review tools saves us a lot of work and significantly speeds
 up our ability to respond to submitted patches.
