@@ -11,12 +11,8 @@ GET     /v0/api-docs                  controllers.ApiHelpController.getResources
 GET     /v0/helloWorld                controllers.HelloWorldController.helloWorld
 GET     /v0/api-docs/helloWorld       controllers.ApiHelpController.getResource(path = "/helloWorld")
 
-GET     /v0/api-docs/observations     controllers.ApiHelpController.getResource(path = "/observations")
-POST    /v0/observations              @controllers.ObservationController.addObservation
-#PUT    /v0/observations              @controllers.ObservationController.updateObservation
-GET     /v0/observations/:id          @controllers.ObservationController.getObservationById(id)
-
-
+GET     /v0/api-docs/points           controllers.ApiHelpController.getResource(path = "/points")
+GET     /v0/points                    @controllers.PointController.getPoints(sources, places : Option[String], reftime : Option[String], validtime : Option[String], parameters : Option[String], fields : Option[String], limit : Option[String], offset : Option[String], namespace : Option[String])
 
 # Map static resources from the /app/public folder to the /public path
 

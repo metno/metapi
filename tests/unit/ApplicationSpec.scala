@@ -27,6 +27,13 @@ class ApplicationSpec extends Specification {
       contentAsString(home) must contain ("METAPI: Needs Version")
     }
 
+    "render swagger-UI" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/swagger-ui")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
     "render 'Hello World'" in new WithApplication{
       val home = route(FakeRequest(GET, "/v0/helloWorld")).get
 
@@ -35,12 +42,38 @@ class ApplicationSpec extends Specification {
       contentAsString(home) must contain ("Hello World")
     }
 
-    "Detect output format 'json'" in new WithApplication{
-      val home = route(FakeRequest(GET, "/v0/observations/1")).get
+    "returns 'bad request' if no source is defined in points API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/points")).get
 
-      status(home) must equalTo(OK)
-      contentType(home) must beSome.which(_ == "application/json")
+      status(ret) must equalTo(BAD_REQUEST)
+    }
 
+    "returns 'not found' when an unavailable numerical source is defined in points API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/points?sources=999")).get
+
+      status(ret) must equalTo(NOT_FOUND)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "returns 'not found' when an invalid string source is defined in points API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/points?sources=mock")).get
+
+      status(ret) must equalTo(NOT_FOUND)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "returns valid json when a valid source is defined in points API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/points?sources=1")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "returns valid json with many parameters defined in points API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/points?sources=1&places=oslo&reftime=2015-01-01T00:00")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "application/json")
     }
 
   }

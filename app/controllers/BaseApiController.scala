@@ -53,14 +53,10 @@ class BaseApiController extends Controller {
         ("Access-Control-Allow-Headers", "Content-Type, api_key, Authorization"))
   }
 
-  def toJsonString(data: Any): String = {
-    if (data.getClass.equals(classOf[String])) {
-      data.asInstanceOf[String]
-    } else {
-      //ScalaJsonUtil.mapper.writeValueAsString(data)
-      val m = ScalaJsonUtil.mapper
-      m.setSerializationInclusion(JsonInclude.Include.NON_EMPTY)
-      m.writeValueAsString(data)
-    }
+  def toJsonString[A](data: A): String = {
+    val m = ScalaJsonUtil.mapper
+    m.setSerializationInclusion(JsonInclude.Include.NON_EMPTY)
+    m.writeValueAsString(data)
   }
+
 }

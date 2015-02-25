@@ -14,5 +14,6 @@ dist
 /RUNNING_PID
 /.settings
 /bin
+/.tmpBin
 /.cache
 /activator.bat

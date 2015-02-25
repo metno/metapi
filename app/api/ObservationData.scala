@@ -43,23 +43,19 @@ class ObservationData {
   observations += Observation(4, "KS18700", "Flesland", refTime, refTime, "air_temperature", 0.5f, 1, 1)
   // scalastyle:on magic.number
 
-  def findObservationByPlace(place: String): Option[Observation] = {
-    observations.filter(observation => observation.place == place) match {
-      case observation if (observation.size) > 0 => Some(observation.head)
-      case _ => None
+  def getPoints(source: String): Option[Observation] = {
+    try {
+      observations.filter(observation => observation.id == source.toLong) match {
+        case observations if (observations.size) > 0 => Some(observations.head)
+        case _ => None
+      }
+    }
+    catch {
+      case e: NumberFormatException => {
+        None 
+      }
     }
   }
-
-  def addObservation(observation: Observation): Unit = {
-    observations --= observations.filter(o => o.place == observation.place)
-    observations += observation
-  }
-
-  def getObservationbyId(obsId: Long): Option[Observation] = {
-    observations.filter(observation => observation.id == obsId) match {
-      case observations if (observations.size) > 0 => Some(observations.head)
-      case _ => None
-    }
-  }
+  
 }
 
