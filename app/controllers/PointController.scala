@@ -1,7 +1,7 @@
 /*
     MET-API
 
-    Copyright (C) 2014 met.no
+    Copyright (C) 2015 met.no
     Contact information:
     Norwegian Meteorological Institute
     Box 43 Blindern
@@ -29,32 +29,34 @@ import play.api.Logger
 import javax.ws.rs.{ QueryParam, PathParam }
 import com.wordnik.swagger.annotations._
 import com.wordnik.swagger.core.util.ScalaJsonUtil
-import javax.ws.rs.{ QueryParam, PathParam }
-import models.Observation
+import javax.ws.rs.{QueryParam, PathParam}
+import models.Point
 import play.api.Logger
 import javax.ws.rs.core.Response.Status
 import util.HttpStatus
-import api.ObservationData
+import api.PointData
 import scala.concurrent.impl.Future
+
+// scalastyle:off public.methods.have.type
 
 @Api(value = "/points", description = "API for retrieval of point data")
 class PointController extends BaseApiController {
-  var observationData = new ObservationData
+  var observationData = new PointData
 
   @ApiOperation(
     nickname = "getPoints",
     value = "Retrieve point data",
     notes = "Retrieves point data from the API in JSON format.",
-    response = classOf[models.Observation],
-    httpMethod = "GET")
+    response = classOf[models.Point],
+    httpMethod = "GET" )
   @ApiResponses(Array(
     new ApiResponse(code = HttpStatus.OK, message = "OK: The request was successful."),
     new ApiResponse(code = HttpStatus.BAD_REQUEST, message = "Bad Request: The request could not be understood or was missing required parameters."),
     new ApiResponse(code = HttpStatus.UNAUTHORIZED, message = "Unauthorized:  authentication failed or user doesn't have permissions for requested operation."),
     new ApiResponse(code = HttpStatus.NOT_FOUND, message = "Not Found: The data that the user requested could not be found."),
     new ApiResponse(code = HttpStatus.SERVICE_UNAVAILABLE, message = "Service Unavailable: The service is temporarily unavailable (e.g., due to scheduled platform maintenance). Try again later.")))
-  def getPoints(
-    @ApiParam(value = "ID(s) of the data source. Use source '1' to '4' to return data", allowMultiple = true, required = true)@QueryParam("sources") sources: String,
+    def getPoints(
+    @ApiParam(value = "ID(s) of the data source. Use source 'KS18700' and 'KS18800' to return data", allowMultiple = true, required = true)@QueryParam("sources") sources: String,
     @ApiParam(value = "Spatial location in WKT")@QueryParam("places") places: Option[String],
     @ApiParam(value = "<a href='http://data.met.no/reference_time.html'>Reference time</a>")@QueryParam("reftime") reftime: Option[String],
     @ApiParam(value = "Valid time")@QueryParam("validtime") validtime: Option[String],
@@ -62,11 +64,8 @@ class PointController extends BaseApiController {
     @ApiParam(value = "Specify attribute fields in the response", allowMultiple = true)@QueryParam("fields") fields: Option[String],
     @ApiParam(value = "Limit the number of points returned")@QueryParam("limit") limit: Option[String],
     @ApiParam(value = "Offset in the response set")@QueryParam("offset") offset: Option[String],
-    @ApiParam(value = "Namespace of the response")@QueryParam("namespace") namespace: Option[String]) = Action {
-    request =>
-      observationData.getPoints(sources) match {
-        case Some(observation) => jsonResponse(observation)
-        case _                 => jsonResponse(new value.ApiResponse(HttpStatus.NOT_FOUND, "Observation not found"), HttpStatus.NOT_FOUND)
-      }
+    @ApiParam(value = "Namespace of the response")@QueryParam("namespace") namespace:  Option[String]) = Action {
+      implicit request => var points = observationData.getPoints(sources)
+      if (points.size > 0) jsonResponse(points) else jsonResponse(new value.ApiResponse(HttpStatus.NOT_FOUND, "Observation not found"), HttpStatus.NOT_FOUND)
   }
 }
