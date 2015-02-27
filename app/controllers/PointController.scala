@@ -1,7 +1,7 @@
 /*
     MET-API
 
-    Copyright (c) 2015 met.no
+    Copyright (C) 2014 met.no
     Contact information:
     Norwegian Meteorological Institute
     Box 43 Blindern
@@ -26,10 +26,10 @@ package controllers
 import play.api.mvc._
 import play.mvc.Http
 import play.api.Logger
-import javax.ws.rs.{QueryParam, PathParam}
+import javax.ws.rs.{ QueryParam, PathParam }
 import com.wordnik.swagger.annotations._
 import com.wordnik.swagger.core.util.ScalaJsonUtil
-import javax.ws.rs.{QueryParam, PathParam}
+import javax.ws.rs.{ QueryParam, PathParam }
 import models.Observation
 import play.api.Logger
 import javax.ws.rs.core.Response.Status
@@ -46,7 +46,7 @@ class PointController extends BaseApiController {
     value = "Retrieve point data",
     notes = "Retrieves point data from the API in JSON format.",
     response = classOf[models.Observation],
-    httpMethod = "GET" )
+    httpMethod = "GET")
   @ApiResponses(Array(
     new ApiResponse(code = HttpStatus.OK, message = "OK: The request was successful."),
     new ApiResponse(code = HttpStatus.BAD_REQUEST, message = "Bad Request: The request could not be understood or was missing required parameters."),
@@ -62,11 +62,11 @@ class PointController extends BaseApiController {
     @ApiParam(value = "Specify attribute fields in the response", allowMultiple = true)@QueryParam("fields") fields: Option[String],
     @ApiParam(value = "Limit the number of points returned")@QueryParam("limit") limit: Option[String],
     @ApiParam(value = "Offset in the response set")@QueryParam("offset") offset: Option[String],
-    @ApiParam(value = "Namespace of the response")@QueryParam("namespace") namespace:  Option[String]) = Action {
-      request =>
+    @ApiParam(value = "Namespace of the response")@QueryParam("namespace") namespace: Option[String]) = Action {
+    request =>
       observationData.getPoints(sources) match {
         case Some(observation) => jsonResponse(observation)
-        case _ => jsonResponse(new value.ApiResponse(HttpStatus.NOT_FOUND, "Observation not found"), HttpStatus.NOT_FOUND)
+        case _                 => jsonResponse(new value.ApiResponse(HttpStatus.NOT_FOUND, "Observation not found"), HttpStatus.NOT_FOUND)
       }
   }
 }

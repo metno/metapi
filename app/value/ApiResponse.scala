@@ -35,20 +35,20 @@ object ApiResponse {
 
 @XmlRootElement
 class ApiResponse(@XmlElement var code: Int, @XmlElement var message: String) {
- 
+
   @XmlTransient
   def getCode(): Int = code
-  def setCode(code: Int):Unit = this.code = code
+  def setCode(code: Int): Unit = this.code = code
 
   def getType(): String = code match {
-    case ApiResponse.ERROR => "error"
-    case ApiResponse.WARNING => "warning"
-    case ApiResponse.INFO => "info"
-    case ApiResponse.OK => "ok"
+    case ApiResponse.ERROR    => "error"
+    case ApiResponse.WARNING  => "warning"
+    case ApiResponse.INFO     => "info"
+    case ApiResponse.OK       => "ok"
     case ApiResponse.TOO_BUSY => "too busy"
-    case _ => "unknown"
+    case _                    => "unknown"
   }
 
   def getMessage(): String = message
-  def setMessage(message: String):Unit = this.message = message
+  def setMessage(message: String): Unit = this.message = message
 }

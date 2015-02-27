@@ -47,15 +47,14 @@ class ObservationData {
     try {
       observations.filter(observation => observation.id == source.toLong) match {
         case observations if (observations.size) > 0 => Some(observations.head)
-        case _ => None
+        case _                                       => None
       }
-    }
-    catch {
+    } catch {
       case e: NumberFormatException => {
-        None 
+        None
       }
     }
   }
-  
+
 }
 
