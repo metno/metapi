@@ -14,6 +14,10 @@ GET     /v0/api-docs/helloWorld       controllers.ApiHelpController.getResource(
 GET     /v0/api-docs/points           controllers.ApiHelpController.getResource(path = "/points")
 GET     /v0/points                    @controllers.PointController.getPoints(sources, places : Option[String], reftime : Option[String], validtime : Option[String], parameters : Option[String], fields : Option[String], limit : Option[String], offset : Option[String], namespace : Option[String])
 
+GET     /v0/api-docs/sourceStations   controllers.ApiHelpController.getResource(path = "/sourceStations")
+GET     /v0/sourceStations            @controllers.StationController.getStations(sources : Option[String], places : Option[String], validtime : Option[String], parameters : Option[String], timeSeriesTypes : Option[String], fields : Option[String], limit : Option[String], offset : Option[String], namespace : Option[String])
+GET     /v0/sourceStations/:id        @controllers.StationController.getStationsById(id)
+
 # Map static resources from the /app/public folder to the /public path
 
 GET     /swagger-2.1.0-M1/*file       controllers.Assets.at(path="/public/swagger-2.1.0-M1", file)

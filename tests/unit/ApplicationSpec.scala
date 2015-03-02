@@ -66,40 +66,90 @@ class ApplicationSpec extends Specification {
       contentAsString(home) must contain ("Hello World")
     }
 
-    "returns 'bad request' if no source is defined in points API" in new WithApplication{
+    "return 'bad request' if no source is defined in points API" in new WithApplication{
       val ret = route(FakeRequest(GET, "/v0/points")).get
 
       status(ret) must equalTo(BAD_REQUEST)
     }
 
-    "returns 'not found' when no data can be returned points API" in new WithApplication{
-      val ret = route(FakeRequest(GET, "/v0/points?sources=mock")).get
+    "return 'not found' when no data can be returned points API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/points?sources=abcdef")).get
 
       status(ret) must equalTo(NOT_FOUND)
       contentType(ret) must beSome.which(_ == "application/json")
     }
 
-    "returns valid json when a valid source is defined in points API" in new WithApplication{
+    "return valid json when a valid source is defined in points API" in new WithApplication{
       val ret = route(FakeRequest(GET, "/v0/points?sources=KS18700")).get
 
       status(ret) must equalTo(OK)
       contentType(ret) must beSome.which(_ == "application/json")
     }
 
-    "returns valid json when a valid list of sources is defined in points API" in new WithApplication{
+    "return valid json when a valid list of sources is defined in points API" in new WithApplication{
       val ret = route(FakeRequest(GET, "/v0/points?sources=KS18700,KS18800")).get
 
       status(ret) must equalTo(OK)
       contentType(ret) must beSome.which(_ == "application/json")
     }
 
-    "returns valid json with many parameters defined in points API" in new WithApplication{
+    "return valid json with many parameters defined in points API" in new WithApplication{
       val ret = route(FakeRequest(GET, "/v0/points?sources=KS18700&places=oslo&reftime=2015-01-01T00:00")).get
 
       status(ret) must equalTo(OK)
       contentType(ret) must beSome.which(_ == "application/json")
     }
 
-  }
+    "return valid json if no source is defined in sourceStations API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/sourceStations")).get
 
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "return 'not found' when no data can be returned sourceStations API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/sourceStations?sources=abcdef")).get
+
+      status(ret) must equalTo(NOT_FOUND)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "return valid json when a valid source is defined in sourceStations API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/sourceStations?sources=KS18700")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "return valid json when a valid list of sources is defined in sourceStations API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/sourceStations?sources=KS18700,KS18800")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "return valid json with many parameters defined in sourceStations API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/sourceStations?sources=KS18700&places=oslo&parameters=2015-01-01T00:00")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "return valid 'json' when fetching a specific sourceStation by ID" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/sourceStations/KS18700")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "application/json")
+
+    }
+
+    "return 'not found' if specified sourceStation by ID does not exist" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/sourceStations/AB1234")).get
+
+      status(ret) must equalTo(NOT_FOUND)
+      contentType(ret) must beSome.which(_ == "application/json")
+
+    }
+
+  }
 }
