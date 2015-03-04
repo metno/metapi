@@ -26,7 +26,10 @@ PUT     /v0/parameters                @controllers.ParameterController.updatePar
 
 
 # Map static resources from the /app/public folder to the /public path
+GET     /v0/api-docs/fileservice     controllers.ApiHelpController.getResource(path = "/fileservice")
+POST    /v0/fileservice              @controllers.FileServiceController.uploadMultipart
 
+# Map static resources from the /app/public folder to the /public path
 GET     /swagger-2.1.0-M1/*file       controllers.Assets.at(path="/public/swagger-2.1.0-M1", file)
 GET     /v0/swagger-ui                  controllers.Application.swaggerUi
 

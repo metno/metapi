@@ -29,6 +29,8 @@ import play.api._
 import play.api.mvc._
 import com.wordnik.swagger.annotations._
 
+//scalastyle:off public.methods.have.type
+
 @Api(value = "/helloWorld", description = "The \"Hello World\" API ")
 object HelloWorldController extends Controller {
   @ApiOperation(

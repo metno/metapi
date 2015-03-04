@@ -39,7 +39,15 @@ ScoverageSbtPlugin.ScoverageKeys.coverageMinimum := 100
 
 ScoverageSbtPlugin.ScoverageKeys.coverageFailOnMinimum := true
 
-ScoverageSbtPlugin.ScoverageKeys.coverageExcludedPackages := "<empty>;util.HttpStatus;views.html.swaggerUi.*;value.ApiResponse;ReverseApplication;ReverseAssets;Routes"
+ScoverageSbtPlugin.ScoverageKeys.coverageExcludedPackages := """
+    <empty>;
+    util.HttpStatus;
+    views.html.swaggerUi.*;
+    value.ApiResponse;
+    ReverseApplication;
+    ReverseAssets;
+    Routes
+"""
 
 libraryDependencies ++= Seq(
   jdbc,

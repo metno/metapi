@@ -7,7 +7,7 @@ resolvers += "jgit-repo" at "http://download.eclipse.org/jgit/maven"
 addSbtPlugin("com.typesafe.sbt" % "sbt-git" % "0.6.4")
 
 // The Play plugin
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.3.6")
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.3.8")
 
 //Test plugins
 addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.0.4")
