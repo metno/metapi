@@ -18,3 +18,4 @@ dist
 /.cache
 /activator.bat
 *~
+development.conf
