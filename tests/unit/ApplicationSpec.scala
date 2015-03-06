@@ -28,6 +28,7 @@ import org.junit.runner._
 
 import play.api.test._
 import play.api.test.Helpers._
+import play.api.libs.json._
 
 /**
  * Add your spec here.
@@ -107,7 +108,7 @@ class ApplicationSpec extends Specification {
       contentType(ret) must beSome.which(_ == "application/json")
     }
 
-    "return 'not found' when no data can be returned sourceStations API" in new WithApplication{
+    "return 'not found' when no data can be returned by sourceStations API" in new WithApplication{
       val ret = route(FakeRequest(GET, "/v0/sourceStations?sources=abcdef")).get
 
       status(ret) must equalTo(NOT_FOUND)
@@ -150,6 +151,185 @@ class ApplicationSpec extends Specification {
       contentType(ret) must beSome.which(_ == "application/json")
 
     }
+
+    "return valid json if no source is defined in parameters API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/parameters")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "return 'not found' when no data can be returned parameters API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/parameters?parameters=abcdef")).get
+
+      status(ret) must equalTo(NOT_FOUND)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "return valid json when a valid parameter is defined in parameters API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/parameters?parameters=air_temperature")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "return valid json when a valid list of sources is defined in parameters API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/parameters?parameters=air_temperature,precipitation_amount")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "return valid 'json' when fetching a specific parameter by ID" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/parameters/air_temperature")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "return 'not found' if specified parameter by ID does not exist" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/parameters/AB1234")).get
+
+      status(ret) must equalTo(NOT_FOUND)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "return 'ok' when adding a new parameter" in new WithApplication{
+      val json : JsValue = Json.parse("""{"id": "air_temperature_max", "name": "Max Air Temperature", "unit": "K", "description": "A description"}""")
+      val Some(ret) = route(FakeRequest(POST, "/v0/parameters").withJsonBody(json))
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome("application/json")
+    }
+
+    "return 'bad request' when adding a parameter that already exists" in new WithApplication{
+      val json : JsValue = Json.parse("""{"id": "air_temperature", "name": "Air Temperature", "unit": "K", "description": "A description"}""")
+      val Some(ret) = route(FakeRequest(POST, "/v0/parameters").withJsonBody(json))
+
+      status(ret) must equalTo(BAD_REQUEST)
+      contentType(ret) must beSome("application/json")
+    }
+
+    "return 'bad request' when adding a parameter without a body" in new WithApplication{
+      val Some(ret) = route(FakeRequest(POST, "/v0/parameters"))
+
+      status(ret) must equalTo(BAD_REQUEST)
+      contentType(ret) must beSome("application/json")
+    }
+
+    "return 'ok' when updating a parameter" in new WithApplication{
+      val json : JsValue = Json.parse("""{"id": "air_temperature", "name": "Air Temperature", "unit": "K", "description": "A description"}""")
+      val Some(ret) = route(FakeRequest(PUT, "/v0/parameters").withJsonBody(json))
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome("application/json")
+    }
+
+    "return 'bad_request' when updating a parameter that does not exist" in new WithApplication{
+      val json : JsValue = Json.parse("""{"id": "air_temperature_min", "name": "Min Air Temperature", "unit": "K", "description": "A description"}""")
+      val Some(ret) = route(FakeRequest(PUT, "/v0/parameters").withJsonBody(json))
+
+      status(ret) must equalTo(BAD_REQUEST)
+      contentType(ret) must beSome("application/json")
+    }
+
+    "return 'bad request' when updating a parameter without a body" in new WithApplication{
+      val Some(ret) = route(FakeRequest(PUT, "/v0/parameters"))
+
+      status(ret) must equalTo(BAD_REQUEST)
+      contentType(ret) must beSome("application/json")
+    }
+
+    "return valid json if no source is defined in places API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/places")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "return 'not found' when no data can be returned places API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/places?places=abcdef")).get
+
+      status(ret) must equalTo(NOT_FOUND)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "return valid json when a valid place is defined in places API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/places?places=norway_oslo_oslo_blindern")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "return valid json when a valid list of sources is defined in places API" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/places?places=norway_oslo_oslo_blindern,norway_sør-trøndelag_trondheim_trondheim")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "return valid 'json' when fetching a specific place by ID" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/places/norway_oslo_oslo_blindern")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "return 'not found' if specified place by ID does not exist" in new WithApplication{
+      val ret = route(FakeRequest(GET, "/v0/places/AB1234")).get
+
+      status(ret) must equalTo(NOT_FOUND)
+      contentType(ret) must beSome.which(_ == "application/json")
+    }
+
+    "return 'ok' when adding a new place" in new WithApplication{
+      val json : JsValue = Json.parse("""{"id":"norway_oslo_oslo_ciens","name":"Ciens","place":"POINT(10.72307 59.94062)","municipalityId":"Oslo","countyId":"Oslo","countryId":"NO","featureId":"Part of a city"}""")
+      val Some(ret) = route(FakeRequest(POST, "/v0/places").withJsonBody(json))
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome("application/json")
+    }
+
+    "return 'bad request' when adding a place that already exists" in new WithApplication{
+      val json : JsValue = Json.parse("""{"id":"norway_oslo_oslo_blindern","name":"Blindern","place":"POINT(10.72307 59.94063)","municipalityId":"Oslo","countyId":"Oslo","countryId":"NO","featureId":"Part of a city"}""")
+      val Some(ret) = route(FakeRequest(POST, "/v0/places").withJsonBody(json))
+
+      status(ret) must equalTo(BAD_REQUEST)
+      contentType(ret) must beSome("application/json")
+    }
+
+    "return 'bad request' when adding a place without a body" in new WithApplication{
+      val Some(ret) = route(FakeRequest(POST, "/v0/places"))
+
+      status(ret) must equalTo(BAD_REQUEST)
+      contentType(ret) must beSome("application/json")
+    }
+
+    "return 'ok' when updating a place" in new WithApplication{
+      val json : JsValue = Json.parse("""{"id":"norway_oslo_oslo_blindern","name":"Oslo - Blindern","place":"POINT(10.72307 59.94063)","municipalityId":"Oslo","countyId":"Oslo","countryId":"NO","featureId":"Part of a city"}""")
+      val Some(ret) = route(FakeRequest(PUT, "/v0/places").withJsonBody(json))
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome("application/json")
+    }
+
+    "return 'bad_request' when updating a place that does not exist" in new WithApplication{
+      val json : JsValue = Json.parse("""{"id":"norway_oslo_oslo_oslo-blindern","name":"Blindern","place":"POINT(10.72307 59.94063)","municipalityId":"Oslo","countyId":"Oslo","countryId":"NO","featureId":"Part of a city"}""")
+      val Some(ret) = route(FakeRequest(PUT, "/v0/places").withJsonBody(json))
+
+      status(ret) must equalTo(BAD_REQUEST)
+      contentType(ret) must beSome("application/json")
+    }
+
+    "return 'bad request' when updating a place without a body" in new WithApplication{
+      val Some(ret) = route(FakeRequest(PUT, "/v0/places"))
+
+      status(ret) must equalTo(BAD_REQUEST)
+      contentType(ret) must beSome("application/json")
+    }
+
+
+
 
   }
 }

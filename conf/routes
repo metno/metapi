@@ -24,6 +24,11 @@ GET     /v0/parameters/:id            @controllers.ParameterController.getParame
 POST    /v0/parameters                @controllers.ParameterController.addParameter
 PUT     /v0/parameters                @controllers.ParameterController.updateParameter
 
+GET     /v0/api-docs/places           controllers.ApiHelpController.getResource(path = "/places")
+GET     /v0/places                    @controllers.PlaceController.getPlaces(places : Option[String], fields : Option[String], limit : Option[String], offset : Option[String], namespace : Option[String])
+GET     /v0/places/:id                @controllers.PlaceController.getPlaceById(id)
+POST    /v0/places                    @controllers.PlaceController.addPlace
+PUT     /v0/places                    @controllers.PlaceController.updatePlace
 
 # Map static resources from the /app/public folder to the /public path
 GET     /v0/api-docs/fileservice     controllers.ApiHelpController.getResource(path = "/fileservice")

@@ -1,7 +1,7 @@
 /*
     MET-API
 
-    Copyright (C) 2014 met.no
+    Copyright (C) 2015 met.no
     Contact information:
     Norwegian Meteorological Institute
     Box 43 Blindern
@@ -25,7 +25,7 @@
 
 package controllers
 
-import com.wordnik.swagger.core.util.ScalaJsonUtil
+import util.JsonUtil
 import com.fasterxml.jackson.annotation.JsonInclude
 import play.api.mvc._
 import java.io.StringWriter
@@ -55,7 +55,7 @@ class BaseApiController extends Controller {
   }
 
   def toJsonString[A](data: A): String = {
-    val m = ScalaJsonUtil.mapper
+    val m = JsonUtil.mapper
     m.setSerializationInclusion(JsonInclude.Include.NON_EMPTY)
     m.writeValueAsString(data)
   }

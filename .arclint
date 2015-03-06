@@ -38,7 +38,7 @@
       "type": "text",
       "severity": {
         "3": "disabled",
-        "5": "advice"
+        "5": "disabled"
       }
     }
   }

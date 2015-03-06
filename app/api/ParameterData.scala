@@ -63,21 +63,23 @@ class ParameterData {
 
   def addParameter(param: Parameter): Option[Parameter] = {
     parameters.filter(parameter => parameter.id == param.id) match {
-      case parameters if (parameters.size) > 0 => return None 
-      case _ => None
+      case parameters if (parameters.size) > 0 => None
+      case _ => {
+        parameters += param
+        Some(param)
+      }
     }
-    parameters += param
-    Some(param)
   }  
 
   def updateParameter(param: Parameter): Option[Parameter] = {
     parameters.filter(parameter => parameter.id == param.id) match {
-      case parameters if (parameters.size) > 0 => None 
-      case _ => return None
+      case parameters if (parameters.size) > 0 => {
+        parameters --= parameters.filter(existing => existing.id == param.id)
+        parameters += param
+        Some(param)
+      }
+      case _ => None
     }
-    parameters --= parameters.filter(existing => existing.id == param.id)
-    parameters += param
-    Some(param)
   }  
   
 }
