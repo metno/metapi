@@ -57,3 +57,21 @@ libraryDependencies ++= Seq(
  "com.wordnik" %% "swagger-play2-utils" % "1.3.12",
   ws
 )
+
+// Plugin configuration - test this:
+
+//lazy val admin = (project in file("modules/admin")).enablePlugins(PlayScala)
+//lazy val main = (project in file("."))
+//    .enablePlugins(PlayScala).dependsOn(admin).aggregate(admin)
+
+// following does not work as it overrides the main routes file
+//PlayKeys.devSettings += ("application.router", "test.Routes")
+
+// from kdvh - delete when fixed
+
+resolvers += "metno repo" at "http://maven.met.no/content/groups/public"
+
+libraryDependencies ++= Seq(
+ "com.github.nscala-time" %% "nscala-time" % "1.8.0",
+ "com.oracle" % "ojdbc14" % "10.2.0.1.0"
+)

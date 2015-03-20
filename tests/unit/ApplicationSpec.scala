@@ -35,31 +35,39 @@ class ApplicationSpec extends Specification {
 
   "Application" should {
 
-    "send 404 on a bad request" in new WithApplication{
+    "send 404 on a bad request" in new WithApplication {
       route(FakeRequest(GET, "/boom")) must beNone
     }
 
-    "render the index page" in new WithApplication{
+    "render the index page" in new WithApplication {
       val home = route(FakeRequest(GET, "/")).get
 
       status(home) must equalTo(OK)
       contentType(home) must beSome.which(_ == "text/plain")
-      contentAsString(home) must contain ("METAPI: Needs Version")
+      contentAsString(home) must contain("METAPI: Needs Version")
     }
 
-    "render swagger-UI" in new WithApplication{
-      val ret = route(FakeRequest(GET, "/v0/swagger-ui")).get
+    "render swagger JSON" in new WithApplication {
+      val ret = route(FakeRequest(GET, "/api-docs")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "application/json")
+      contentAsString(ret) must contain("swaggerVersion")
+    }
+
+    "render swagger-UI" in new WithApplication {
+      val ret = route(FakeRequest(GET, "/swagger-ui")).get
 
       status(ret) must equalTo(OK)
       contentType(ret) must beSome.which(_ == "text/html")
     }
 
-    "render 'Hello World'" in new WithApplication{
-      val home = route(FakeRequest(GET, "/v0/helloWorld")).get
+    "render 'Hello World'" in new WithApplication {
+      val home = route(FakeRequest(GET, "/v1/helloWorld")).get
 
       status(home) must equalTo(OK)
       contentType(home) must beSome.which(_ == "text/plain")
-      contentAsString(home) must contain ("Hello World")
+      contentAsString(home) must contain("Hello World")
     }
 
   }

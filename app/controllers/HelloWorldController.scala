@@ -31,17 +31,32 @@ import com.wordnik.swagger.annotations._
 
 //scalastyle:off public.methods.have.type
 
-@Api(value = "/helloWorld", description = "The \"Hello World\" API ")
+@Api(value = "/v1/helloWorld", description = "The \"Hello World\" API 1.0")
 object HelloWorldController extends Controller {
   @ApiOperation(
     produces = "text/plain",
     nickname = "helloWorld",
     value = "Get a nice greeting",
-    notes = "Returns a greeting",
+    notes = "Version 1",
     response = classOf[String],
     httpMethod = "GET")
   def helloWorld = Action {
     req =>
       Ok("Hello World and all you colleagues!")
+  }
+}
+
+@Api(value = "/v2/helloWorld", description = "The \"Hello World\" API 2.0")
+object HelloWorldController_v2 extends Controller {
+  @ApiOperation(
+    produces = "text/plain",
+    nickname = "helloWorld",
+    value = "Get a nice greeting",
+    notes = "Version 2",
+    response = classOf[String],
+    httpMethod = "GET")
+  def helloWorld = Action {
+    req =>
+      Ok("Hello World!")
   }
 }
