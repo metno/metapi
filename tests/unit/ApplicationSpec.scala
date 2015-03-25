@@ -62,8 +62,16 @@ class ApplicationSpec extends Specification {
       contentType(ret) must beSome.which(_ == "text/html")
     }
 
-    "render 'Hello World'" in new WithApplication {
+    "render 'Hello World' v1" in new WithApplication {
       val home = route(FakeRequest(GET, "/v1/helloWorld")).get
+
+      status(home) must equalTo(OK)
+      contentType(home) must beSome.which(_ == "text/plain")
+      contentAsString(home) must contain("Hello World")
+    }
+
+    "render 'Hello World' v2" in new WithApplication {
+      val home = route(FakeRequest(GET, "/v2/helloWorld")).get
 
       status(home) must equalTo(OK)
       contentType(home) must beSome.which(_ == "text/plain")
