@@ -53,6 +53,9 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 # Note that the plugin libraries must be installed in /lib (or via Maven) or you will get a compilation error
 ########################
 
+# Authorization
+#->       /auth                       authorization.Routes
+
 # KDVH plugin
 #->      /kdvh                       kdvh.Routes
 #GET     /api-docs/kdvh              controllers.ApiHelpController.getResource(path = "/kdvh")
