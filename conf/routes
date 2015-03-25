@@ -34,8 +34,9 @@ POST    /v0/places                  @controllers.PlaceController.addPlace
 PUT     /v0/places                  @controllers.PlaceController.updatePlace
 
 # Map static resources from the /app/public folder to the /public path
-GET     /api-docs/fileservice     controllers.ApiHelpController.getResource(path = "/fileservice")
+GET     /api-docs/fileservice       controllers.ApiHelpController.getResource(path = "/fileservice")
 POST    /v0/fileservice             @controllers.FileServiceController.uploadMultipart
+GET     /v0/fileservice             @controllers.FileServiceController.download( refid: String )
 
 # Map static resources from the /app/public folder to the /public path
 GET     /swagger-2.1.0-M1/*file     controllers.Assets.at(path="/public/swagger-2.1.0-M1", file)

@@ -22,17 +22,23 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
     MA 02110-1301, USA
 */
-
 package controllers
 
+import scala.util.Try
+import javax.ws.rs.QueryParam
+import java.nio.file.Path
+import java.nio.file.Files
+import java.nio.charset.StandardCharsets
+import java.nio.file.FileSystems
+import java.io.BufferedWriter
+import java.io.File
 import play.api._
 import play.api.mvc._
-import com.wordnik.swagger.annotations._
+import play.api.libs.Files.TemporaryFile
 import play.api.mvc.MultipartFormData._
 import play.api.mvc.BodyParsers.parse
-import java.io.File
+import com.wordnik.swagger.annotations._
 import util.HttpStatus
-import play.api.libs.Files.TemporaryFile
 
 //scalastyle:off public.methods.have.type
 
@@ -54,14 +60,37 @@ class FileServiceController extends BaseApiController {
   def uploadMultipart = Action(parse.multipartFormData) { request =>
     FileServiceController.saveFile( request.body )
   }
+
+  @ApiOperation(nickname = "download",
+    value = "Download a file.",
+    notes = "This is just a proof of conept API.",
+    response = classOf[Void], httpMethod = "GET")
+  @ApiResponses(Array(
+    new ApiResponse(code = HttpStatus.OK, message = "OK: The request was successful."),
+    new ApiResponse(code = HttpStatus.NOT_FOUND, message = "The referenced file was not found."),
+    new ApiResponse( code= HttpStatus.UNAUTHORIZED, message= "Not authorized")))
+  def download(
+       @ApiParam(value = "ID of the file to download. Use an id returned by upload", allowMultiple = false)@QueryParam("refid")
+       refid: String ) = Action {
+    implicit request =>
+      FileServiceController.getFile( refid )
+        .map { f =>
+          Ok.sendFile( f , inline=true)
+            .withHeaders( CONTENT_DISPOSITION->("attachment; filename=" + f.toPath().getFileName()),
+                          CONTENT_TYPE->"application/octet-stream",
+                          CACHE_CONTROL->"private, no-cache, no-store, must-revalidate");
+        }
+        .getOrElse { NotFound(s"No files matching refid '${refid}' was found.") }
+  }
   //$COVERAGE-ON$
 }
+
+
 
 object FileServiceController extends BaseApiController {
 
   def saveFile( multiPart: MultipartFormData[TemporaryFile] ):Result = {
     val files = multiPart.files.map { filepart =>
-      import java.io.File
       val filename = filepart.filename
       val contentType = filepart.contentType
       val key = filepart.key
@@ -75,4 +104,26 @@ object FileServiceController extends BaseApiController {
     if( files.length() > 0 ) Ok( "Uploaded file(s) " + files )
     else BadRequest("Missing file")
   }
+
+  def getFile( ref: String ): Option[File] = {
+      ref match {
+          case "dummyref" => refidToFile( ref )
+          case _ => None
+      }
+   }
+
+   def refidToFile( file: String ): Option[File] = {
+      val path: Path = FileSystems.getDefault().getPath( "/tmp", file + "123")
+      if( Files.exists( path ) ) Option( path.toFile() )
+      else createDummyFile( path )
+   }
+
+   def createDummyFile( path: Path ) : Option[File] = {
+     Try {
+       var f: BufferedWriter = Files.newBufferedWriter( path,  StandardCharsets.UTF_8 )
+       for( b <- 0 until 10000000) f.write( 'b' )
+       f.close()
+       Option( path.toFile() )
+     } getOrElse None
+   }
 }

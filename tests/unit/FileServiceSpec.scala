@@ -31,6 +31,8 @@ import play.api.mvc.MultipartFormData
 import java.nio.file.FileSystems
 import java.nio.file.Path
 import java.nio.file.Files
+import scala.util.Try
+import controllers._
 
 import play.api.test._
 import play.api.test.Helpers._
@@ -38,7 +40,7 @@ import play.api.test.Helpers._
 @RunWith(classOf[JUnitRunner])
 class FileServiceSpec extends Specification {
 
-  "Application" should {
+  "Fileservice" should {
 
     "return 'ok' when uploading a valid file using the fileservice" in new WithApplication {
       val f = TemporaryFile("to_upload","tmp")
@@ -58,5 +60,28 @@ class FileServiceSpec extends Specification {
       result.header.status must equalTo( BAD_REQUEST )
     }
 
+    "return 'not found' if an unknown refid is requested from the fileservice" in new WithApplication{
+      val home = route(FakeRequest(GET, "/v0/fileservice?refid=no_file_ref")).get
+      status(home) must equalTo(NOT_FOUND)
+      contentType(home) must beSome.which(_ == "text/plain")
+    }
+
+    "return 'ok' if refid refs a file and the file is downloaded from the fileservice (create dummy file)" in new WithApplication{
+      Try { Files.deleteIfExists( FileSystems.getDefault().getPath( "/tmp", "dummyref123") ); } //Ignore exceptions
+      val home = route(FakeRequest(GET, "/v0/fileservice?refid=dummyref")).get
+      status(home) must equalTo(OK)
+      contentType(home) must beSome.which(_ == "application/octet-stream")
+    }
+
+    "return 'ok' if refid refs a file and the file is downloaded from the fileservice" in new WithApplication{
+      val home = route(FakeRequest(GET, "/v0/fileservice?refid=dummyref")).get
+      status(home) must equalTo(OK)
+      contentType(home) must beSome.which(_ == "application/octet-stream")
+    }
+
+    "Directory do not exist" in new WithApplication{
+      val res = controllers.FileServiceController.createDummyFile( FileSystems.getDefault().getPath( "path","do", "not", "exist", "dummyref123") )
+      res must equalTo( None )
+    }
   }
 }
