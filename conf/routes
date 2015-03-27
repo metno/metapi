@@ -54,11 +54,11 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 ########################
 
 # Authorization
-#->       /auth                       authorization.Routes
+->       /auth                       authorization.Routes
 
 # KDVH plugin
-#->      /kdvh                       kdvh.Routes
-#GET     /api-docs/kdvh              controllers.ApiHelpController.getResource(path = "/kdvh")
+->      /kdvh                       kdvh.Routes
+GET     /api-docs/kdvh              controllers.ApiHelpController.getResource(path = "/kdvh")
 
 # test plugin - ignore or use your own
 #->      /test                       test.Routes

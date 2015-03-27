@@ -55,7 +55,9 @@ libraryDependencies ++= Seq(
   cache,
  "com.wordnik" %% "swagger-play2" % "1.3.12",
  "com.wordnik" %% "swagger-play2-utils" % "1.3.12",
-  ws
+  ws,
+ "no.met.data" %% "authorization" % "0.1-SNAPSHOT",
+ "no.met.data" %% "kdvh" % "0.1-SNAPSHOT"
 )
 
 // Plugin configuration - test this:
