@@ -64,7 +64,7 @@
     // Note that window.location has compatibility limitations;
     // see: https://developer.mozilla.org/en-US/docs/Web/API/Window.location
     window.swaggerUi = new SwaggerUi({
-      url : window.location.origin + "/" + api_version + "/api-docs",
+      url : window.location.origin +  "/api-docs",
       dom_id : "swagger-ui-container",
       supportedSubmitMethods : [ 'get', 'post', 'put', 'delete' ],
       onComplete : function(swaggerApi, swaggerUi) {
