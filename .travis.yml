@@ -2,7 +2,6 @@ language: scala
 scala:
 - 2.11.2
 script:
-- sbt scalastyle
 - sbt clean coverage test
 - sbt stage dist
 notifications:
