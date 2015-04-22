@@ -4,7 +4,7 @@ maintainer_email    'kimtj@met.no'
 license             'All rights reserved'
 description         'Installs/Configures met-api'
 long_description    'Installs/Configures met-api'
-version             '1.2.0'
+version             '1.2.1'
 
 supports            'ubuntu',       '= 14.04'
 

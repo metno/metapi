@@ -6,5 +6,6 @@ exec <%= node['met-api']['server_binary'] %> \
     -Dhttp.port=<%= node['met-api']['listen_port'] %> \
     -Dhttp.address=<%= node['met-api']['listen_address'] %> \
     -Djava.net.preferIPv4Stack=true \
+    -Dpidfile.path=/var/run/met-api.pid \
     -Dconfig.file=/etc/met-api/application.conf
 respawn
