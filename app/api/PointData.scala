@@ -39,10 +39,13 @@ class PointData {
   val refTime2 = format.parse("2015-02-12T00:00:00")
   
   // scalastyle:off magic.number
-  points += Point(-4.5f, "KS18700", "Blindern", refTime0, refTime0, "air_temperature", 0, 1, 1, refTime0)
-  points += Point(-1.5f, "KS18700", "Blindern", refTime1, refTime1, "air_temperature", 0,  1, 1, refTime1)
-  points += Point(3.5f, "KS18700", "Blindern", refTime2, refTime2, "air_temperature", 0, 1, 1, refTime2)
-  points += Point(0.5f, "KS18800", "Solihøgda", refTime0, refTime0, "air_temperature", 0, 1, 1, refTime0)
+  points += Point(12.5f, "KS18700", "Blindern", refTime0, refTime0, "air_temperature", 0, 0, 1, refTime0)
+  points += Point(-1.5f, "KS18700", "Blindern", refTime1, refTime1, "air_temperature", 0,  0, 1, refTime1)
+  points += Point(3.5f, "KS18700", "Blindern", refTime2, refTime2, "air_temperature", 0, 0, 1, refTime2)
+  points += Point(5.7f, "KS18701", "Bergen", refTime0, refTime0, "air_temperature", 0, 2, 1, refTime0)
+  points += Point(13.0f, "KS18702", "Smestad", refTime0, refTime0, "air_temperature", 0, 0, 1, refTime0)
+  points += Point(11.2f, "KS18703", "Skien", refTime0, refTime0, "air_temperature", 0, 1, 1, refTime0)
+  points += Point(6.0f, "KS18800", "Sollihogda", refTime0, refTime0, "air_temperature", 0, 1, 1, refTime0)
   // scalastyle:on magic.number
 
   def getPoints(source: String): java.util.List[Point] = {
