@@ -1,0 +1,70 @@
+@import play.api.Play.current
+<!DOCTYPE html>
+<html>
+<head>
+<title>data.met.no</title>
+</head>
+
+<body>
+
+<h1>data.met.no</h1>
+
+<p>The data.met.no API provides free access to the MET Norway's archive of
+historical weather and climate data, in addition to station history
+information. These data include quality controlled daily, monthly, and yearly
+measurements of temperature, precipitation, and wind data.</p>
+
+<p><b>NOTE:</b> The data.met.no API is currently in the early stages of
+development, so expect rapid changes to any and all services made available
+on these pages.</p>
+
+<h2>Quick Links</h2>
+
+<ul>
+<li><a href="#Getting Started">Getting Started</a></li>
+<li><a href="#API Overview">API Overview</a></li>
+<li><a href="/swagger-ui">API Documentation</a></li>
+<li><a href="http://met.no/English/Data_Policy_and_Data_Services/">Licensing and Data Policy</a></li>
+</ul>
+
+<h3><a name="Getting Started">Getting Started</a></h3>
+
+<p>This API is primarily for developers who need to develop scripts or applications
+that use MET Norway's archive of historical weather and climate data. An API
+key is required to use the API. There are currently no hard data retrieval
+limits on API keys, but any API keys which place undue strain on the server
+infrastructure during this period will be deleted without prior warning.</p>
+
+<p>To get started using the data.met.no API:</p>
+
+<ol>
+<li><a href="http://localhost:9000/auth/requestToken.html">Request an API-Key</a>.</li>
+<li>Play with and learn more about the resources available in <a href="/swagger-ui">Swagger</a> (use the API-Key).</li>
+<li>Begin developing your application. All calls must be <a href="#Authentication">authenticated</a> with your Api-Key.</li>
+</ol>
+
+<h3><a name="API Overview">API Overview</a></h3>
+
+This section should contain documentation on:
+
+<ul>
+<li>API Version</li>
+<li>Authentication</li>
+<li>Authorization</li>
+<li>Resources, Schema, Parameters, Verbs</li>
+<li>Hypermedia</li>
+<li>CORS</li>
+<li>Localization</li>
+</ul>
+
+
+<h2>Other Data APIs at MET</h2>
+
+<ul>
+<li><a href="http://api.met.no">api.met.no</a></li>
+<li><a href="http://eklima.met.no">eKlima</a></li>
+<li><a href="http://wsKlima.met.no">wsKlima</a></li>
+</ul>
+
+</body>
+</html>

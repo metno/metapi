@@ -42,6 +42,7 @@ ScoverageSbtPlugin.ScoverageKeys.coverageFailOnMinimum := true
 ScoverageSbtPlugin.ScoverageKeys.coverageExcludedPackages := """
     <empty>;
     util.HttpStatus;
+    views.html.index.*;
     views.html.swaggerUi.*;
     value.ApiResponse;
     ReverseApplication;

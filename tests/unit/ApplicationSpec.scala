@@ -43,8 +43,8 @@ class ApplicationSpec extends Specification {
       val home = route(FakeRequest(GET, "/")).get
 
       status(home) must equalTo(OK)
-      contentType(home) must beSome.which(_ == "text/plain")
-      contentAsString(home) must contain("METAPI: Needs Version")
+      contentType(home) must beSome.which(_ == "text/html")
+      contentAsString(home) must contain("data.met.no")
     }
 
     "render swagger JSON" in new WithApplication {

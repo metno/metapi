@@ -42,7 +42,7 @@ class IntegrationSpec extends Specification {
 
       browser.goTo("http://localhost:" + port)
 
-      browser.pageSource must contain("METAPI: Needs Version")
+      browser.pageSource must contain("data.met.no")
     }
   }
 }

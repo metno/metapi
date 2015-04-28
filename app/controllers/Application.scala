@@ -30,7 +30,8 @@ import play.api.mvc._
 object Application extends Controller {
 
   val index = Action {
-    Ok("METAPI: Needs Version")
+    request =>
+      Ok(views.html.index())
   }
 
   val swaggerUi = Action {
