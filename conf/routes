@@ -3,7 +3,8 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET     /                           controllers.Default.redirect(to = "/index.html")
+GET     /index.html                 controllers.Application.index
 
 # Swagger - Root Resources Listing
 GET     /api-docs                   controllers.ApiHelpController.getResources

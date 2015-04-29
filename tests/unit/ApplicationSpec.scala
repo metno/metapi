@@ -39,12 +39,19 @@ class ApplicationSpec extends Specification {
       route(FakeRequest(GET, "/boom")) must beNone
     }
 
-    "render the index page" in new WithApplication {
-      val home = route(FakeRequest(GET, "/")).get
+    "reroute to index.html from root" in new WithApplication {
+      val ret = route(FakeRequest(GET, "/")).get
 
-      status(home) must equalTo(OK)
-      contentType(home) must beSome.which(_ == "text/html")
-      contentAsString(home) must contain("data.met.no")
+      status(ret) must equalTo(SEE_OTHER)
+      redirectLocation(ret) must beSome.which(_ == "/index.html")
+    }
+
+    "render the index page" in new WithApplication {
+      val ret = route(FakeRequest(GET, "/index.html")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+      contentAsString(ret) must contain("data.met.no")
     }
 
     "render swagger JSON" in new WithApplication {
