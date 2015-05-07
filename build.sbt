@@ -57,7 +57,7 @@ libraryDependencies ++= Seq(
  "com.wordnik" %% "swagger-play2" % "1.3.12",
  "com.wordnik" %% "swagger-play2-utils" % "1.3.12",
   ws,
- "no.met.data" %% "authorization" % "0.1-SNAPSHOT",
+ "no.met.data" %% "metapi-auth" % "0.1-SNAPSHOT",
  "no.met.data" %% "kdvh" % "0.1-SNAPSHOT"
 )
 

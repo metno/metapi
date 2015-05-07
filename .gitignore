@@ -13,10 +13,10 @@ dist
 /.project
 /RUNNING_PID
 /.settings
-/bin
 /lib
 /.tmpBin
 /.cache
 /activator.bat
 *~
 development.conf
+/bin/

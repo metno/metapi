@@ -1,0 +1,105 @@
+#!/bin/bash
+
+usage()
+{
+    cat << EOF
+usage: $0 [-p <prefix>] -d <email>
+usage: $0 -r <key>
+usage: $0 [-p <prefix>] <data_URL>
+
+Request metapi data using OAUTH2 credentials
+
+OPTIONS:
+  -h    show this message
+  -d    create new developer key
+  -r    register new developer key manually into ~/.metapi/developer.key
+  -p    URL prefix for auth plugin (not needed when running standalone)
+  -v    verbose mode
+EOF
+exit 1
+}
+
+get_credentials()
+{
+    email="$1"
+    cookies="/tmp/$$.cookies"
+    [[ "$verbose" ]] && echo "Using cookie file $cookies" >&2
+    reg_url="http://localhost:9000/${prefix}requestToken.html"
+    [[ "$verbose" ]] && echo "Contacting $reg_url..."
+    key=$(curl --silent -L --data "email=$email" -b $cookies -c $cookies $reg_url  | sed -n -e '/<code id=.key.>/ s/ *<\/\?code[^>]*>//gp' )
+    [[ "$verbose" ]] && echo "Key: '$key'"
+    if [ "$key" ]
+    then
+        register_key "$key"
+    else
+        echo "Could not parse key" >&2
+        exit 22
+    fi
+    exit
+}
+
+register_key()
+{
+    mkdir -p "$HOME/.metapi"
+    key="$1"
+    [[ "$verbose" ]] && echo "Registering key $key" >&2
+    echo "$key" > "$HOME/.metapi/developer.key"
+    exit
+}
+
+#
+# main
+#
+
+verbose=
+prefix=
+email=
+key=
+
+while getopts "d:p:r:hv" opt
+do
+    case $opt in
+    v)  verbose=1
+        ;;
+    p)  prefix="${OPTARG}/"
+        [[ "$verbose" ]] && echo "Using prefix $prefix" >&2
+        ;;
+    d)  email=$OPTARG
+        ;;
+    r)  key=$OPTARG
+        ;;
+    h)  usage
+        ;;
+    esac
+done
+
+shift $((OPTIND - 1))   # remove options from arguments
+
+[[ "$email" ]] && get_credentials $email
+[[ "$key" ]] && register_key $key
+
+
+URL="$1"
+[[ "$URL" ]] || usage
+
+
+KEY=$(<$HOME/.metapi/developer.key)
+[[ "$verbose" ]] && echo "Using key $KEY" >&2
+
+TOKEN=$(curl --silent --data "grant_type=client_credentials&client_id=$KEY&client_secret="  http://localhost:9000/${prefix}requestAccessToken | sed 's/{"access_token":"\(.*\)"}/\1/')
+[[ "$verbose" ]] && echo "Using token $TOKEN" >&2
+
+outfile="/tmp/$$.out"
+status=$(curl --fail --silent --output $outfile --write-out "%{http_code}" -H "Authorization: Bearer $TOKEN" "$URL")
+error=$?
+
+[[ "$verbose" ]] && echo "Status code: $status" >&2
+[[ "$verbose" ]] && echo "Exit code: $error" >&2
+
+if [ "$error" -gt 0 ]
+then
+    echo "Failed with status code: $status" >&2
+else
+    cat $outfile
+    rm $outfile
+fi
