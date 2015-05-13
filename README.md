@@ -48,7 +48,7 @@ production machine and deployed.
 
 Unzip the distribution file at your preferred location, and run `bin/met-api`
 to start the application. You can test the API by running
-`wget http://hostname/v0/helloWorld`.
+`wget http://hostname/tests/hello`.
 
 
 ### Testing
@@ -69,8 +69,8 @@ To do basic style checking (without arcanist): `activator scalastyle`
 ## Documentation
 
 The met-api is documented using Swagger UI. On a working instance of the API,
-go to `http://hostname/v0/swagger-ui` or in a machine-readable form,
-`http://hostname/v0/api-docs`
+go to `http://hostname/docs` or in a machine-readable form,
+`http://hostname/api-docs`
 
 Developer documentation for the project can be found on MET Norway's developer
 platform: [https://phab.met.no/tag/met_api/](https://phab.met.no/tag/met_api/).

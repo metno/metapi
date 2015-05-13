@@ -1,6 +1,6 @@
 lazy val apiVersion = SettingKey[String]("api-version", "The base version of the api.")
 
-name := """met-api"""
+name := """metapi"""
 
 apiVersion := "0.1"
 
@@ -23,14 +23,6 @@ resourceGenerators in Compile += Def.task {
   Seq( file )
 }.taskValue
 
-sourceDirectory in Test := new File(baseDirectory.value, "tests")
-
-scalaSource in Test := new File(baseDirectory.value, "tests")
-
-javaSource in Test := new File(baseDirectory.value, "tests")
-
-javaOptions += "-Djunit.outdir=target/test-report"
-
 parallelExecution in Test := false
 
 ScoverageSbtPlugin.ScoverageKeys.coverageHighlighting := true
@@ -40,14 +32,14 @@ ScoverageSbtPlugin.ScoverageKeys.coverageMinimum := 100
 ScoverageSbtPlugin.ScoverageKeys.coverageFailOnMinimum := true
 
 ScoverageSbtPlugin.ScoverageKeys.coverageExcludedPackages := """
-    <empty>;
-    util.HttpStatus;
-    views.html.index.*;
-    views.html.swaggerUi.*;
-    value.ApiResponse;
-    ReverseApplication;
-    ReverseAssets;
-    Routes
+  <empty>;
+  util.HttpStatus;
+  views.html.index.*;
+  views.html.docs.*;
+  value.ApiResponse;
+  ReverseApplication;
+  ReverseAssets;
+  Routes
 """
 
 libraryDependencies ++= Seq(

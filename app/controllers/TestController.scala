@@ -27,17 +27,22 @@ package controllers
 
 import play.api._
 import play.api.mvc._
+import com.wordnik.swagger.annotations._
 
-object Application extends Controller {
+//scalastyle:off public.methods.have.type
+// Using val for "hello" messes up swagger-ui
 
-  val index = Action {
-    request =>
-      Ok(views.html.index())
-  }
-
-  val docs = Action {
-    request =>
-      Ok(views.html.docs())
+@Api(value = "/tests", description = "Test Resources")
+object TestController extends Controller {
+  @ApiOperation(
+    produces = "text/plain",
+    nickname = "hello",
+    value = "Say hello to the API",
+    response = classOf[String],
+    httpMethod = "GET")
+  def hello = Action {
+    req =>
+      Ok("Hello to you too!")
   }
 
 }

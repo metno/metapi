@@ -1,5 +1,5 @@
 {
-    "project.name" : "met-api",
+    "project.name" : "metapi",
     "phabricator.uri": "https://phab.met.no",
     "unit.engine": "SBTTestEngine"
 }
