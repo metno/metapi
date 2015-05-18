@@ -6,7 +6,7 @@ apiVersion := "0.1"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
-scalaVersion := "2.11.5"
+scalaVersion := "2.11.6"
 
 version <<= (apiVersion, git.gitHeadCommit) { (ver, commit) =>
   val commitVer = commit map( v => "+" + v ) getOrElse ""
@@ -49,8 +49,8 @@ libraryDependencies ++= Seq(
  "com.wordnik" %% "swagger-play2" % "1.3.12",
  "com.wordnik" %% "swagger-play2-utils" % "1.3.12",
   ws,
- "no.met.data" %% "metapi-auth" % "0.1-SNAPSHOT",
- "no.met.data" %% "kdvh" % "0.1-SNAPSHOT"
+ "no.met.data" %% "auth" % "0.1-SNAPSHOT",
+ "no.met.data" %% "observations" % "0.1-SNAPSHOT"
 )
 
 // Plugin configuration - test this:

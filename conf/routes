@@ -30,8 +30,8 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 ->       /auth                      authorization.Routes
 
 # Observations
-->      /kdvh                       kdvh.Routes
-GET     /api-docs/kdvh              controllers.ApiHelpController.getResource(path = "/kdvh")
+->      /observations               observations.Routes
+GET     /api-docs/observations      controllers.ApiHelpController.getResource(path = "/observations")
 
 # test plugin - ignore or use your own
 #->      /test                       test.Routes
