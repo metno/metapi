@@ -23,37 +23,16 @@
     MA 02110-1301, USA
 */
 
-package controllers
+import play.api.test.FakeApplication
+import play.api.test.Helpers
 
-import play.api._
-import play.api.mvc._
-import com.wordnik.swagger.annotations._
+object TestUtil {
 
-//scalastyle:off public.methods.have.type
-// Using val for "hello" messes up swagger-ui
+  def app: FakeApplication = FakeApplication(additionalConfiguration = Helpers.inMemoryDatabase("authorization"))
 
-@Api(value = "/tests", description = "Test Resources")
-object TestController extends Controller {
-  @ApiOperation(
-    produces = "text/plain",
-    nickname = "hello",
-    value = "Say hello to the API",
-    response = classOf[String],
-    httpMethod = "GET")
-  def hello = Action {
-    req =>
-      Ok("Hello to you too!\n")
-  }
+  def app(additionalConfig: (String, Any)): FakeApplication =
+    FakeApplication(additionalConfiguration = Helpers.inMemoryDatabase("authorization") + additionalConfig)
 
-  @ApiOperation(
-    produces = "text/plain",
-    nickname = "secureHello",
-    value = "Say hello to the API, securely",
-    response = classOf[String],
-    httpMethod = "GET")
-  def secureHello = no.met.security.AuthorizedAction {
-    req =>
-      Ok("Hello to you too, securely!\n")
-  }
-
+  def app(additionalConfig: Seq[(String, Any)]): FakeApplication =
+    FakeApplication(additionalConfiguration = Helpers.inMemoryDatabase("authorization") ++ additionalConfig)
 }

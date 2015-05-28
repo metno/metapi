@@ -25,9 +25,10 @@
 import org.specs2.mutable._
 import org.specs2.runner._
 import org.junit.runner._
-
 import play.api.test._
 import play.api.test.Helpers._
+import com.google.common.io.BaseEncoding
+import no.met.security.Authorization
 
 /**
  * Add your spec here.
@@ -81,6 +82,16 @@ class ApplicationSpec extends Specification {
       contentAsString(home) must contain("Hello")
     }
 
+    "return 'secureHello' response" in running(TestUtil.app) {
+        val credentials = Authorization.newClient("someone@met.no")
+        val clientId = credentials.id
+        val encoded = BaseEncoding.base64Url().encode(s"$clientId:".getBytes("UTF-8"))
+        val headers = FakeHeaders(List("Authorization" -> List(s"Basic $encoded")))
+        val secret = route(FakeRequest(GET, "/tests/secureHello", headers, "")).get
+        status(secret) must equalTo(OK)
+        contentType(secret) must beSome.which(_ == "text/plain")
+        contentAsString(secret) must contain("Hello to you too, securely!")
+      }
 
 
   }

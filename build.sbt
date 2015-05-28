@@ -27,7 +27,7 @@ parallelExecution in Test := false
 
 ScoverageSbtPlugin.ScoverageKeys.coverageHighlighting := true
 
-ScoverageSbtPlugin.ScoverageKeys.coverageMinimum := 100
+ScoverageSbtPlugin.ScoverageKeys.coverageMinimum := 95
 
 ScoverageSbtPlugin.ScoverageKeys.coverageFailOnMinimum := true
 
