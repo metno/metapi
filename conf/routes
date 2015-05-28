@@ -11,7 +11,9 @@ GET     /api-docs                   controllers.ApiHelpController.getResources
 
 # Tests
 GET     /tests/hello                controllers.TestController.hello
+GET     /tests/secureHello          controllers.TestController.secureHello
 GET     /api-docs/tests             controllers.ApiHelpController.getResource(path = "/tests")
+
 
 # Map static resources from the /app/public folder to the /public path
 GET     /docs/*file                 controllers.Assets.at(path="/public/swagger-ui", file)
