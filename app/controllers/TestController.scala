@@ -56,4 +56,15 @@ object TestController extends Controller {
       Ok("Hello to you too, securely!\n")
   }
 
+  @ApiOperation(
+    produces = "text/plain",
+    nickname = "secureHello",
+    value = "Say hello to the API, securely",
+    response = classOf[String],
+    httpMethod = "GET")
+  def secureHello = no.met.security.AuthorizedAction {
+    req =>
+      Ok("Hello to you too, securely!")
+  }
+
 }
