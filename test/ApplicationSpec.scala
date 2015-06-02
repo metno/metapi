@@ -27,6 +27,7 @@ import org.specs2.runner._
 import org.junit.runner._
 import play.api.test._
 import play.api.test.Helpers._
+import play.api.mvc.AnyContentAsFormUrlEncoded
 import com.google.common.io.BaseEncoding
 import no.met.security.Authorization
 
@@ -82,17 +83,39 @@ class ApplicationSpec extends Specification {
       contentAsString(home) must contain("Hello")
     }
 
-    "return 'secureHello' response" in running(TestUtil.app) {
-        val credentials = Authorization.newClient("someone@met.no")
-        val clientId = credentials.id
-        val encoded = BaseEncoding.base64Url().encode(s"$clientId:".getBytes("UTF-8"))
-        val headers = FakeHeaders(List("Authorization" -> List(s"Basic $encoded")))
-        val secret = route(FakeRequest(GET, "/tests/secureHello", headers, "")).get
-        status(secret) must equalTo(OK)
-        contentType(secret) must beSome.which(_ == "text/plain")
-        contentAsString(secret) must contain("Hello to you too, securely!")
-      }
+    "return 'secureHello' response for basic auth" in running(TestUtil.app) {
+      val credentials = Authorization.newClient("someone@met.no")
+      val clientId = credentials.id
+      val encoded = BaseEncoding.base64Url().encode(s"$clientId:".getBytes("UTF-8"))
+      val headers = FakeHeaders(List("Authorization" -> List(s"Basic $encoded")))
+      val secret = route(FakeRequest(GET, "/tests/secureHello", headers, "")).get
+      status(secret) must equalTo(OK)
+      contentType(secret) must beSome.which(_ == "text/plain")
+      contentAsString(secret) must contain("Hello to you too, securely!")
+    }
 
+    "return 'secureHello' response for oauth2" in running(TestUtil.app) {
+      val userToken = getAccessToken()
+      val headers = FakeHeaders(List("Authorization" -> List(s"Bearer $userToken")))
+      val secret = route(FakeRequest(GET, "/tests/secureHello", headers, "")).get
+      status(secret) must equalTo(OK)
+      contentType(secret) must beSome.which(_ == "text/plain")
+      contentAsString(secret) must contain("Hello to you too, very securely!")
+    }
+
+    def getAccessToken(user: String = "someone@met.no"): String = {
+      val client = Authorization.newClient(user)
+      val body = AnyContentAsFormUrlEncoded(
+        Map("grant_type" -> List("client_credentials"),
+          "client_id" -> List(client.id),
+          "client_secret" -> List(client.secret)))
+
+      val result = route(FakeRequest(POST, "/auth/requestAccessToken").withBody(body)).get
+      status(result) must equalTo(OK)
+      val contents = contentAsJson(result)
+      val accessToken = contents \ "access_token"
+      accessToken.as[String]
+    }
 
   }
 

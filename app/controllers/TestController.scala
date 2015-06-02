@@ -53,7 +53,14 @@ object TestController extends Controller {
     httpMethod = "GET")
   def secureHello = no.met.security.AuthorizedAction {
     req =>
-      Ok("Hello to you too, securely!\n")
+      {
+        val authHeader = req.headers.get("Authorization")
+        if (authHeader.get.startsWith("Bearer ")) {
+          Ok("Hello to you too, very securely!\n")
+        } else {
+          Ok("Hello to you too, securely!\n")
+        }
+      }
   }
 
 }
