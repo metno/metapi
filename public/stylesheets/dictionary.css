@@ -1,0 +1,49 @@
+.abbr {
+  border-bottom: 2px dotted #c6e0dd;
+  } 
+
+.abbr:hover {
+  cursor: help;
+  }
+
+div.popup-mini h3, .popup-mini h4 {
+  font-size:1.4em;
+  }
+
+div.popup-mini  p {
+  font-size: 1em; 
+  }
+
+div.popup-mini {
+  background:#fff;
+  padding:10px;
+  border:1px solid #c6e0dd;
+  position: absolute; 
+  top: 95px; 
+  left: 80px; 
+  width: 376px; 
+  z-index: 999; 
+}
+
+dl.dictionary { 
+  padding: 0 0 0 10px;
+  font-size: 1.4em; 
+  line-height: 1.2em; 
+  width: 600px;
+  }
+
+dl.dictionary dt { 
+  background: #c6e0dd; 
+  color: #000; 
+  float:left;  
+  clear:left;
+  padding: 3px 8px;
+  margin: 0 0 10px 0; 
+  }
+
+dl.dictionary dd {
+  clear: right; 
+  display: block; 
+  margin: 0 0 10px 0; 
+  padding: 3px 0 3px 35px; 
+  }

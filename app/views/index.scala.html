@@ -3,180 +3,214 @@
 <html>
 <head>
 <title>data.met.no</title>
+<link type="image/x-icon" rel="icon" href="/images/met_favicon.png">
+<link type="image/x-icon" rel="shortcut icon" href="/images/met_favicon.ico">
+<link href="/stylesheets/style_default_2013.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/style_layout_2013.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/style_menu_2013.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/paginator.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/dictionary.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
+ <div id="wrapper" class="frontpage">
+  <div id="header" class="clearfix">
+   <div id="logo">
+    <a href="http://met.no"><img src="/images/logo_2013_no.png" alt="met.no"></img></a>
+   </div>
+   <div id="help-links">
+    <ul>
+     <li><a href="#getting_started">Getting Started</a> |</li>
+     <li><a href="#api_overview">API Overview</a> |</li>
+     <li><a href="/docs">API Documentation</a> |</li>
+     <li><a href="http://met.no/English/Data_Policy_and_Data_Services/">Licensing and Data Policy</a> |</li>
+     <li><a href="#other_apis">Other MET Norway APIs</a></li>
+    </ul>
+   </div>
+  </div>
+  <div id="top-line">
+   <div class="top-menu">
+    <h1>data.met.no</h1>
+   </div>
+  </div>
+  <div id="main-content" class="frontpage clearfix">
 
-<h1>data.met.no</h1>
+   <p>The data.met.no API is intended to provide free access to MET Norway's archive of historical weather and climate data, in addition to station history
+    information. These data include quality controlled daily, monthly, and yearly measurements of temperature, precipitation, and wind data.</p>
 
-<p>The data.met.no API is intended to provide free access to MET Norway's
-archive of historical weather and climate data, in addition to station history
-information. These data include quality controlled daily, monthly, and yearly
-measurements of temperature, precipitation, and wind data.</p>
+   <p>
+    <strong>NOTE:</strong> The data.met.no API is currently in the early stages of development, so expect rapid and significant changes to any and all resources
+    made available on this service.
+   </p>
 
-<p><strong>NOTE:</strong> The data.met.no API is currently in the early stages of
-development, so expect rapid and significant changes to any and all resources
-made available on this service.</p>
+   <h2>
+    <a id="getting_started" class="anchor">Getting Started</a>
+   </h2>
 
-<h2>Quick Links</h2>
+   <p>This API is primarily for developers who need to develop scripts or applications that use MET Norway's archive of historical weather and climate data.
+    The API is easy to use; all you need is an e-mail address.</p>
 
-<ul>
-<li><a href="#getting_started">Getting Started</a></li>
-<li><a href="#api_overview">API Overview</a></li>
-<li><a href="/docs">API Documentation</a></li>
-<li><a href="http://met.no/English/Data_Policy_and_Data_Services/">Licensing and Data Policy</a></li>
-<li><a href="#other_apis">Other MET Norway APIs</a></li>
-</ul>
+   <p>To get started using the data.met.no API:</p>
 
-<h3><a id="getting_started" class="anchor">Getting Started</a></h3>
+   <ol>
+    <li><a href="/auth/requestCredentials.html">Request your client credentials</a>.</li>
+    <li>Play with and learn more about the resources available in <a href="/docs">API documentation</a> (copy your client_id into the appropriate form).
+    </li>
+    <li>Begin developing your application. All calls must be <a href="#authentication">authenticated</a> with your client_id. To <a href="#authorization">authorize</a>
+     access to confidential resources and data, you require an access token acquired through the OAuth2 client credentials grant (as well as permission to
+     access those resources). Note that the vast majority of data on this service is open, so the authorization flow is only rarely required.
+    </li>
+   </ol>
 
-<p>This API is primarily for developers who need to develop scripts or
-applications that use MET Norway's archive of historical weather and climate
-data. The API is easy to use; all you need is an e-mail address.</p>
-
-<p>To get started using the data.met.no API:</p>
-
-<ol>
-<li><a href="/auth/requestCredentials.html">Request your client credentials</a>.</li>
-<li>Play with and learn more about the resources available in
-<a href="/docs">API documentation</a> (copy your client_id into the appropriate form).</li>
-<li>Begin developing your application. All calls must be
-<a href="#authentication">authenticated</a> with your client_id. To
-<a href="#authorization">authorize</a> access to confidential resources and data,
-you require an access token acquired through the OAuth2 client credentials grant
-(as   well as permission to access those resources). Note that the vast majority
-of data on this service is open, so the authorization flow is only rarely required.</li>
-</ol>
-
-<p>Store your client_id and client_secret securely. The client_id is used to
-identify your application. There are currently no hard data retrieval limits on use
-of the API (these may come later), but client_ids which place undue strain on the
-server infrastructure during this period will be deleted without prior warning.</p>
-
-
-
-<h3><a id="api_overview" class="anchor">API Overview</a></h3>
-
-This section should contain documentation on:
-
-<ul>
-<li><a href="#api_version">API Version</a></li>
-<li><a href="#authentication">Authentication</a></li>
-<li><a href="#authorization">Authorization</a></li>
-<li><a href="#resources">Resources, Schema, Parameters, Verbs</a></li>
-<li><a href="#hypermedia">Hypermedia</a></li>
-<li><a href="#cors">CORS</a></li>
-<li><a href="#localization">Localization</a></li>
-</ul>
-
-<h4><a id="api_version" class="anchor">API Version</a></h4>
-
-The data.met.no API is currently in alpha. As such, it should not be used for
-production tasks.
+   <p>Store your client_id and client_secret securely. The client_id is used to identify your application. There are currently no hard data retrieval limits
+    on use of the API (these may come later), but client_ids which place undue strain on the server infrastructure during this period will be deleted without
+    prior warning.</p>
 
 
-<h4><a id="authentication" class="anchor">Authentication</a></h4>
+   <h2>
+    <a id="api_overview" class="anchor">API Overview</a>
+   </h2>
 
-The data.met.no API requires all requests to include a client_id to authenticate.
-You pass the client_id to the API using basic authentication. Using curl, this
-can be done as follows:
+   <p>This section should contain documentation on:</p>
 
-<pre>
+   <ul>
+    <li><a href="#api_version">API Version</a></li>
+    <li><a href="#authentication">Authentication</a></li>
+    <li><a href="#authorization">Authorization</a></li>
+    <li><a href="#resources">Resources, Schema, Parameters, Verbs</a></li>
+    <li><a href="#hypermedia">Hypermedia</a></li>
+    <li><a href="#cors">CORS</a></li>
+    <li><a href="#localization">Localization</a></li>
+   </ul>
+
+   <h3>
+    <a id="api_version" class="anchor">API Version</a>
+   </h3>
+
+   <p>The data.met.no API is currently in alpha. As such, it should not be used for production tasks.</p>
+
+
+   <h3>
+    <a id="authentication" class="anchor">Authentication</a>
+   </h3>
+
+   The data.met.no API requires all requests to include a client_id to authenticate. You pass the client_id to the API using basic authentication. Using curl,
+   this can be done as follows:
+
+   <pre>
 <code>
 curl -i --user YOUR-CLIENT-ID: "https://data.met.no/tests/secureHello"
 </code>
-</pre>
+   </pre>
 
-<p>Note the punctuation after the client_id, to indicate an empty password field.</p>
+   <p>Note the punctuation after the client_id, to indicate an empty password field.</p>
 
-<p>In the <a href="/docs">API documentation</a>, you can paste the client_id into
-the form, in order to authenticate calls. Alternatively, if you try to access a
-resource call without authenticating, the browser will usually pop-up a credentials
-dialog where you can enter the client_id.</p>
+   <p>
+    In the <a href="/docs">API documentation</a>, you can paste the client_id into the form, in order to authenticate calls. Alternatively, if you try to access
+    a resource call without authenticating, the browser will usually pop-up a credentials dialog where you can enter the client_id.
+   </p>
 
 
-<h4><a id="authorization" class="anchor">Authorization</a></h4>
+   <h3>
+    <a id="authorization" class="anchor">Authorization</a>
+   </h3>
 
-<p>Some of the resources on the data.met.no API are confidential and can only be
-accessed by authorized users (this could be, e.g., data that MET Norway does
-not have permission to distribute to the public or data private to your client_id).
-In order to access such data, the user must request an access token following
-the OAuth2 <a href="http://tools.ietf.org/html/rfc6749#section-4.4">client credentials
-grant</a>.</p>
+   <p>
+    Some of the resources on the data.met.no API are confidential and can only be accessed by authorized users (this could be, e.g., data that MET Norway does
+    not have permission to distribute to the public or data private to your client_id). In order to access such data, the user must request an access token
+    following the OAuth2 <a href="http://tools.ietf.org/html/rfc6749#section-4.4">client credentials grant</a>.
+   </p>
 
-<p>First, use your client credentials to get an access token. This can be done using
-curl as follows:</p>
+   <p>First, use your client credentials to get an access token. This can be done using curl as follows:</p>
 
-<pre>
+   <pre>
 <code>
 curl -d'grant_type=client_credentials&client_id=YOUR-CLIENT-ID&client_secret=YOUR-CLIENT-SECRET' https://data.met.no/auth/requestAccessToken
 </code>
-</pre>
+   </pre>
 
-<p>Use the access token to make requests.</p>
+   <p>Use the access token to make requests.</p>
 
-<pre>
+   <pre>
 <code>
 curl -H "Authorization: Bearer YOUR-ACCESS-TOKEN" "https://data.met.no/tests/secureHello"
 </code>
-</pre>
+   </pre>
 
-<p>As mentioned above, if you are only interested in accessing free data, you should never
-need to use OAuth2 flow.</p>
-
-
-<h4><a id="resources" class="anchor">Resources</a></h4>
-
-<p>The data.met.no API provides a RESTful API centered around resources. These resources can
-be acted upon using the standard <a href="#http_verbs">HTTP verbs</a>. Descriptions of the
-available resources can be found in the <a href="/docs">API Documentation</a>.</p>
-
-<h5><a id="http_verbs" class="anchor">HTTP Verbs</a></h5>
-
-<p>The data.met.no API attempts to use appropriate HTTP verbs to perform actions on resources.</p>
-
-<table><thead>
-<tr>
-<th>verb</th>
-<th>description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>GET</td>
-<td>use to retrieve data</td>
-</tr>
-<tr>
-<td>POST</td>
-<td>use to load data to the API (requires <a href="#authorization">Authorization</a>)</td>
-</tr>
-<tr>
-<td>PUT</td>
-<td>use to update data in the API (requires <a href="#authorization">Authorization</a>)</td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td><em>not permitted at this time</em></td>
-</tr>
-</tbody></table>
+   <p>As mentioned above, if you are only interested in accessing free data, you should never need to use OAuth2 flow.</p>
 
 
-<h4><a id="hypermedia" class="anchor">Hypermedia</a></h4>
+   <h3>
+    <a id="resources" class="anchor">Resources</a>
+   </h3>
 
-<p>The API currently supports Hypermedia through swagger, via the api-docs endpoint.</p>
+   <p>
+    The data.met.no API provides a RESTful API centered around resources. These resources can be acted upon using the standard <a href="#http_verbs">HTTP
+     verbs</a>. Descriptions of the available resources can be found in the <a href="/docs">API Documentation</a>.
+   </p>
 
-<a href="https://data.met.no/api-docs">https://data.met.no/api-docs</a>
+   <h4>
+    <a id="http_verbs" class="anchor">HTTP Verbs</a>
+   </h4>
 
-<h4><a id="cors" class="anchor">Cross Origin Resource Sharing</a></h4>
+   <p>The data.met.no API attempts to use appropriate HTTP verbs to perform actions on resources.</p>
 
-<p>Currently not enabled.</p>
+   <table>
+    <thead>
+     <tr>
+      <th>verb</th>
+      <th>description</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>GET</td>
+      <td>use to retrieve data</td>
+     </tr>
+     <tr>
+      <td>POST</td>
+      <td>use to load data to the API (requires <a href="#authorization">Authorization</a>)
+      </td>
+     </tr>
+     <tr>
+      <td>PUT</td>
+      <td>use to update data in the API (requires <a href="#authorization">Authorization</a>)
+      </td>
+     </tr>
+     <tr>
+      <td>DELETE</td>
+      <td><em>not permitted at this time</em></td>
+     </tr>
+    </tbody>
+   </table>
 
-<h2><a id="other_apis" class="anchor">Other Data APIs at MET Norway</a></h2>
 
-<ul>
-<li><a href="http://api.met.no">api.met.no</a></li>
-<li><a href="http://eklima.met.no">eKlima</a></li>
-<li><a href="http://wsKlima.met.no">wsKlima</a></li>
-</ul>
+   <h3>
+    <a id="hypermedia" class="anchor">Hypermedia</a>
+   </h3>
+
+   <p>The API currently supports Hypermedia through swagger, via the api-docs endpoint.</p>
+
+   <a href="https://data.met.no/api-docs">https://data.met.no/api-docs</a>
+
+   <h3>
+    <a id="cors" class="anchor">Cross Origin Resource Sharing</a>
+   </h3>
+
+   <p>Currently not enabled.</p>
+
+   <h2>
+    <a id="other_apis" class="anchor">Other Data APIs at MET Norway</a>
+   </h2>
+
+   <ul>
+    <li><a href="http://api.met.no">api.met.no</a></li>
+    <li><a href="http://eklima.met.no">eKlima</a></li>
+    <li><a href="http://wsKlima.met.no">wsKlima</a></li>
+   </ul>
+
+  </div>
+ </div>
 
 </body>
 </html>

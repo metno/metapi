@@ -1,6 +1,7 @@
 {
   "exclude": [
     "(^public/swagger.*/)",
+    "(^public/stylesheets/)",
     "(^legacy/)",
     "(\\.project$)",
     "(\\.phutil_module_cache$)"
