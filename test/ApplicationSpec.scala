@@ -39,6 +39,21 @@ import no.met.security.Authorization
 @RunWith(classOf[JUnitRunner])
 class ApplicationSpec extends Specification {
 
+    def getAccessToken(user: String = "someone@met.no"): String = {
+      val client = Authorization.newClient(user)
+      val body = AnyContentAsFormUrlEncoded(
+        Map("grant_type" -> List("client_credentials"),
+          "client_id" -> List(client.id),
+          "client_secret" -> List(client.secret)))
+
+      val result = route(FakeRequest(POST, "/auth/requestAccessToken").withBody(body)).get
+      status(result) must equalTo(OK)
+      val contents = contentAsJson(result)
+      val accessToken = contents \ "access_token"
+      accessToken.as[String]
+    }
+
+
   "Application" should {
 
     "send 404 on a bad request" in new WithApplication {
@@ -102,21 +117,6 @@ class ApplicationSpec extends Specification {
       contentType(secret) must beSome.which(_ == "text/plain")
       contentAsString(secret) must contain("Hello to you too, very securely!")
     }
-
-    def getAccessToken(user: String = "someone@met.no"): String = {
-      val client = Authorization.newClient(user)
-      val body = AnyContentAsFormUrlEncoded(
-        Map("grant_type" -> List("client_credentials"),
-          "client_id" -> List(client.id),
-          "client_secret" -> List(client.secret)))
-
-      val result = route(FakeRequest(POST, "/auth/requestAccessToken").withBody(body)).get
-      status(result) must equalTo(OK)
-      val contents = contentAsJson(result)
-      val accessToken = contents \ "access_token"
-      accessToken.as[String]
-    }
-
   }
 
 }
