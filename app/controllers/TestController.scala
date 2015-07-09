@@ -22,7 +22,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
     MA 02110-1301, USA
 */
-
 package controllers
 
 import play.api._
@@ -33,7 +32,7 @@ import com.wordnik.swagger.annotations._
 // Using val for "hello" messes up swagger-ui
 
 @Api(value = "/tests", description = "Test Resources")
-object TestController extends Controller {
+class TestController extends Controller {
   @ApiOperation(
     produces = "text/plain",
     nickname = "hello",

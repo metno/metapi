@@ -1,29 +1,16 @@
-lazy val apiVersion = SettingKey[String]("api-version", "The base version of the api.")
-
 name := """metapi"""
 
-apiVersion := "0.1"
+version := "0"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.11.6"
 
-version <<= (apiVersion, git.gitHeadCommit) { (ver, commit) =>
-  val commitVer = commit map( v => "+" + v ) getOrElse ""
-  sys.props.get("buildnumber" ) match {
-    case None => ver + "-SNAPSHOT"
-      case Some(build) => ver + "-" + build + commitVer
-  }
-}
 
-resourceGenerators in Compile += Def.task {
-  val file = new File( (resourceManaged in Compile).value, "version.properties")
-  val prop = "version=%s" format ( version.value )
-  IO.write( file, prop )
-  Seq( file )
-}.taskValue
-
+// Test Settings
 parallelExecution in Test := false
+
+javaOptions += "-Djunit.outdir=target/test-report"
 
 ScoverageSbtPlugin.ScoverageKeys.coverageHighlighting := true
 
@@ -39,34 +26,30 @@ ScoverageSbtPlugin.ScoverageKeys.coverageExcludedPackages := """
   value.ApiResponse;
   ReverseApplication;
   ReverseAssets;
-  Routes
+  router.*;
 """
 
+
+// Dependencies
 libraryDependencies ++= Seq(
   jdbc,
-  anorm,
   cache,
- "com.wordnik" %% "swagger-play2" % "1.3.12",
- "com.wordnik" %% "swagger-play2-utils" % "1.3.12",
+  evolutions,
   ws,
- "no.met.data" %% "auth" % "0.1-SNAPSHOT",
- "no.met.data" %% "observations" % "0.1-SNAPSHOT"
+ "com.typesafe.play" %% "anorm" % "2.4.0",
+ "pl.matisoft" %% "swagger-play24" % "1.4",
+ "com.github.nscala-time" %% "nscala-time" % "2.0.0",
+ "com.oracle" % "ojdbc14" % "10.2.0.1.0",
+ "no.met.data" %% "util" % "0.2-SNAPSHOT",
+ "no.met.data" %% "auth" % "0.2-SNAPSHOT",
+ //"no.met.data" %% "elements" % "0.2-SNAPSHOT",
+ "no.met.data" %% "observations" % "0.2-SNAPSHOT",
+  specs2 % Test
 )
 
-// Plugin configuration - test this:
+resolvers ++= Seq( "metno repo" at "http://maven.met.no/content/groups/public",
+                   "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases" )
 
-//lazy val admin = (project in file("modules/admin")).enablePlugins(PlayScala)
-//lazy val main = (project in file("."))
-//    .enablePlugins(PlayScala).dependsOn(admin).aggregate(admin)
-
-// following does not work as it overrides the main routes file
-//PlayKeys.devSettings += ("application.router", "test.Routes")
-
-// from kdvh - delete when fixed
-
-resolvers += "metno repo" at "http://maven.met.no/content/groups/public"
-
-libraryDependencies ++= Seq(
- "com.github.nscala-time" %% "nscala-time" % "1.8.0",
- "com.oracle" % "ojdbc14" % "10.2.0.1.0"
-)
+// Play provides two styles of routers, one expects its actions to be injected, the
+// other, legacy style, accesses its actions statically.
+routesGenerator := InjectedRoutesGenerator

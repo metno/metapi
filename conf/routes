@@ -7,13 +7,12 @@ GET     /                           controllers.Default.redirect(to = "/index.ht
 GET     /index.html                 controllers.Application.index
 
 # Swagger - Root Resources Listing
-GET     /api-docs                   controllers.ApiHelpController.getResources
+GET     /api-docs                   pl.matisoft.swagger.ApiHelpController.getResources
 
 # Tests
 GET     /tests/hello                controllers.TestController.hello
 GET     /tests/secureHello          controllers.TestController.secureHello
-GET     /api-docs/tests             controllers.ApiHelpController.getResource(path = "/tests")
-
+GET     /api-docs/tests             pl.matisoft.swagger.ApiHelpController.getResource(path = "/tests")
 
 # Map static resources from the /app/public folder to the /public path
 GET     /docs/*file                 controllers.Assets.at(path="/public/swagger-ui", file)
@@ -21,12 +20,12 @@ GET     /docs                       controllers.Application.docs
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /images/*file               controllers.Assets.at(path="/public/images", file)
-GET     /stylesheets/*file               controllers.Assets.at(path="/public/stylesheets", file)
+GET     /stylesheets/*file          controllers.Assets.at(path="/public/stylesheets", file)
 
 ########################
 # Define plugins here
 #
-# Note that the plugin libraries must be installed in /lib (or via Maven) or you will get a compilation error
+# Note that the plugin libraries must be installed in /lib (or dependencies) or you will get a compilation error
 ########################
 
 # Authorization
@@ -34,8 +33,12 @@ GET     /stylesheets/*file               controllers.Assets.at(path="/public/sty
 
 # Observations
 ->      /observations               observations.Routes
-GET     /api-docs/observations      controllers.ApiHelpController.getResource(path = "/observations")
+GET     /api-docs/observations      pl.matisoft.swagger.ApiHelpController.getResource(path = "/observations")
 
-# test plugin - ignore or use your own
-#->      /test                       test.Routes
-#GET     /api-docs/test              controllers.ApiHelpController.getResource(path = "/test")
+# Elements
+#->      /elements                   elements.Routes
+#GET     /api-docs/elements          pl.matisoft.swagger.ApiHelpController.getResource(path = "/elements")
+
+# example plugin
+#->      /example                    example.Routes
+#GET     /api-docs/exmaple           pl.matisoft.swagger.ApiHelpController.getResource(path = "/example")
