@@ -1,6 +1,17 @@
+lazy val apiVersion = SettingKey[String]("api-version", "The base version of the api.")
+
 name := """metapi"""
 
-version := "0"
+// This code is used by the deployment pipeline to generate the
+// version number. Only the apiVersion should be changed.
+apiVersion := "0.2"
+version <<= (apiVersion, git.gitHeadCommit) { (ver, commit) =>
+  val commitVer = commit map( v => "+" + v ) getOrElse ""
+  sys.props.get("buildnumber" ) match {
+    case None => ver + "-SNAPSHOT"
+     case Some(build) => ver + "-" + build + commitVer
+  }
+}
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
