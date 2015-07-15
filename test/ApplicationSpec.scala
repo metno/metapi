@@ -60,14 +60,14 @@ class ApplicationSpec extends Specification {
     //  route(FakeRequest(GET, "/boom")) must beNone
     //}
 
-    "reroute to index.html from root" in new WithApplication {
+    "reroute to index.html from root" in running(TestUtil.app) {
       val ret = route(FakeRequest(GET, "/")).get
 
       status(ret) must equalTo(SEE_OTHER)
       redirectLocation(ret) must beSome.which(_ == "/index.html")
     }
 
-    "render the index page" in new WithApplication {
+    "render the index page" in running(TestUtil.app) {
       val ret = route(FakeRequest(GET, "/index.html")).get
 
       status(ret) must equalTo(OK)
@@ -75,7 +75,7 @@ class ApplicationSpec extends Specification {
       contentAsString(ret) must contain("data.met.no")
     }
 
-    "render swagger JSON" in new WithApplication {
+    "render swagger JSON" in running(TestUtil.app) {
       val ret = route(FakeRequest(GET, "/api-docs")).get
 
       status(ret) must equalTo(OK)
@@ -83,14 +83,14 @@ class ApplicationSpec extends Specification {
       contentAsString(ret) must contain("swaggerVersion")
     }
 
-    "render swagger-UI" in new WithApplication {
+    "render swagger-UI" in running(TestUtil.app) {
       val ret = route(FakeRequest(GET, "/docs")).get
 
       status(ret) must equalTo(OK)
       contentType(ret) must beSome.which(_ == "text/html")
     }
 
-    "return 'hello' response" in new WithApplication {
+    "return 'hello' response" in running(TestUtil.app) {
       val home = route(FakeRequest(GET, "/tests/hello")).get
 
       status(home) must equalTo(OK)
@@ -117,6 +117,7 @@ class ApplicationSpec extends Specification {
       contentType(secret) must beSome.which(_ == "text/plain")
       contentAsString(secret) must contain("Hello to you too, very securely!")
     }
+
   }
 
 }

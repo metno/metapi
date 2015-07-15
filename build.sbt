@@ -42,7 +42,7 @@ libraryDependencies ++= Seq(
  "com.oracle" % "ojdbc14" % "10.2.0.1.0",
  "no.met.data" %% "util" % "0.2-SNAPSHOT",
  "no.met.data" %% "auth" % "0.2-SNAPSHOT",
- //"no.met.data" %% "elements" % "0.2-SNAPSHOT",
+ "no.met.data" %% "elements" % "0.2-SNAPSHOT",
  "no.met.data" %% "observations" % "0.2-SNAPSHOT",
   specs2 % Test
 )

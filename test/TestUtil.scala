@@ -22,16 +22,28 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
     MA 02110-1301, USA
 */
+import play.api.inject.guice.GuiceApplicationBuilder
+import play.api.inject.bind
+import play.api.Application
+import controllers._
+import modules._
 import play.api.test.FakeApplication
 import play.api.test.Helpers
 
 object TestUtil {
 
-  def app: FakeApplication = FakeApplication(additionalConfiguration = Helpers.inMemoryDatabase("authorization"))
+  private def defaultConfig = {
+    Map(("play.application.loader" -> "modules.MetApplicationLoader"),
+        ("db.authorization.driver" -> "org.h2.Driver"),
+        ("db.authorization.url" -> "jdbc:h2:mem:play"),
+        ("db.authorization.username" -> "sa"),
+        ("db.authorization.password" -> ""),
+        ("auth.active" -> "true"))
+  }
 
-  def app(additionalConfig: (String, Any)): FakeApplication =
-    FakeApplication(additionalConfiguration = Helpers.inMemoryDatabase("authorization") + additionalConfig)
+  def app : Application = new GuiceApplicationBuilder()
+    .configure(defaultConfig)
+    .bindings(new DevModule)
+    .build
 
-  def app(additionalConfig: Seq[(String, Any)]): FakeApplication =
-    FakeApplication(additionalConfiguration = Helpers.inMemoryDatabase("authorization") ++ additionalConfig)
 }
