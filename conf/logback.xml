@@ -14,6 +14,7 @@
   -->
   <logger name="play" level="INFO" />
   <logger name="application" level="DEBUG" />
+  <logger name="play.api.libs.concurrent.ActorSystemProvider" level="WARN"/> <!-- Skip Akka starting/stopping -->
 
   <root level="ERROR">
     <appender-ref ref="STDOUT" />

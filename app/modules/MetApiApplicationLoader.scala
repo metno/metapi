@@ -47,6 +47,8 @@ class ProdModule extends AbstractModule {
     // observations
     bind(classOf[ElementTranslator]).to(classOf[KdvhElementTranslator])
     bind(classOf[DatabaseAccess]).to(classOf[KdvhDatabaseAccess])
+    // sources
+    bind(classOf[no.met.sources.StationDatabaseAccess]).to(classOf[no.met.stinfosys.StinfosysDatabaseAccess])
   }
 
 }
@@ -61,6 +63,8 @@ class DevModule extends AbstractModule {
     // observations
     bind(classOf[ElementTranslator]).to(classOf[MockElementTranslator])
     bind(classOf[DatabaseAccess]).to(classOf[MockDatabaseAccess])
+    // sources
+    bind(classOf[no.met.sources.StationDatabaseAccess]).to(classOf[no.met.sources.MockStationDatabaseAccess])
   }
 
 }

@@ -30,6 +30,8 @@
         url : window.location.origin +  "/api-docs",
         dom_id : "swagger-ui-container",
         supportedSubmitMethods : [ 'get', 'post', 'put', 'delete' ],
+        supportHeaderParams:true,
+        headers:{"Accept":"application/json"},
         onComplete : function(swaggerApi, swaggerUi) {
           if (typeof initOAuth == "function") {
             /*

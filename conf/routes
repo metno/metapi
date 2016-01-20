@@ -39,6 +39,11 @@ GET     /api-docs/observations      pl.matisoft.swagger.ApiHelpController.getRes
 ->      /elements                   elements.Routes
 GET     /api-docs/elements          pl.matisoft.swagger.ApiHelpController.getResource(path = "/elements")
 
+# Sources
+# * * * uncomment this for testing the plugin * * *
+->      /sources                    sources.Routes
+GET     /api-docs/sources           pl.matisoft.swagger.ApiHelpController.getResource(path = "/sources")
+
 # example plugin
 #->      /example                    example.Routes
 #GET     /api-docs/exmaple           pl.matisoft.swagger.ApiHelpController.getResource(path = "/example")

@@ -55,11 +55,14 @@ libraryDependencies ++= Seq(
  "no.met.data" %% "auth" % "0.2-SNAPSHOT",
  "no.met.data" %% "elements" % "0.2-SNAPSHOT",
  "no.met.data" %% "observations" % "0.2-SNAPSHOT",
+ "no.met.data" %% "sources" % "0.2-SNAPSHOT",
   specs2 % Test
 )
 
 resolvers ++= Seq( "metno repo" at "http://maven.met.no/content/groups/public",
-                   "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases" )
+                   "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases",
+                   "amateras-repo" at "http://amateras.sourceforge.jp/mvn/"
+                    )
 
 // Play provides two styles of routers, one expects its actions to be injected, the
 // other, legacy style, accesses its actions statically.
