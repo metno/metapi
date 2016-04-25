@@ -28,10 +28,10 @@ import play.api._
 import play.api.inject.guice._
 import com.google.inject.AbstractModule
 import com.typesafe.config.ConfigFactory
-import modules.elements._
-import modules.observations._
-import services._
-import no.met.kdvh._
+//import modules.elements._
+//import modules.observations._
+//import no.met.kdvh._
+//import services._
 
 
 /*
@@ -42,13 +42,13 @@ import no.met.kdvh._
 class ProdModule extends AbstractModule {
 
   def configure() {
-    // elements
-    bind(classOf[ElementAccess]).to(classOf[MockElementAccess])
-    // observations
-    bind(classOf[ElementTranslator]).to(classOf[KdvhElementTranslator])
-    bind(classOf[DatabaseAccess]).to(classOf[KdvhDatabaseAccess])
     // sources
-    bind(classOf[no.met.sources.StationDatabaseAccess]).to(classOf[no.met.stinfosys.StinfosysDatabaseAccess])
+    //bind(classOf[no.met.sources.StationDatabaseAccess]).to(classOf[no.met.stinfosys.StinfosysDatabaseAccess])
+    // elements
+    //bind(classOf[ElementAccess]).to(classOf[MockElementAccess])
+    // observations
+    //bind(classOf[ElementTranslator]).to(classOf[KdvhElementTranslator])
+    //bind(classOf[DatabaseAccess]).to(classOf[KdvhDatabaseAccess])
   }
 
 }
@@ -58,13 +58,13 @@ class ProdModule extends AbstractModule {
 class DevModule extends AbstractModule {
 
   def configure() {
-    // elements
-    bind(classOf[ElementAccess]).to(classOf[MockElementAccess])
-    // observations
-    bind(classOf[ElementTranslator]).to(classOf[MockElementTranslator])
-    bind(classOf[DatabaseAccess]).to(classOf[MockDatabaseAccess])
     // sources
-    bind(classOf[no.met.sources.StationDatabaseAccess]).to(classOf[no.met.sources.MockStationDatabaseAccess])
+    //bind(classOf[no.met.sources.StationDatabaseAccess]).to(classOf[no.met.sources.MockStationDatabaseAccess])
+    // elements
+    //bind(classOf[ElementAccess]).to(classOf[MockElementAccess])
+    // observations
+    //bind(classOf[ElementTranslator]).to(classOf[MockElementTranslator])
+    //bind(classOf[DatabaseAccess]).to(classOf[MockDatabaseAccess])
   }
 
 }

@@ -1,9 +1,6 @@
-lazy val apiVersion = SettingKey[String]("api-version", "The base version of the api.")
-
+organization := "no.met.data"
 name := """metapi"""
-
-// This code is used by the deployment pipeline to generate the
-// version number. Only the apiVersion should be changed.
+lazy val apiVersion = SettingKey[String]("api-version", "The base version of the api.")
 apiVersion := "0.2"
 version <<= (apiVersion, git.gitHeadCommit) { (ver, commit) =>
   val commitVer = commit map( v => "+" + v ) getOrElse ""
@@ -12,24 +9,76 @@ version <<= (apiVersion, git.gitHeadCommit) { (ver, commit) =>
      case Some(build) => ver + "-" + build + commitVer
   }
 }
+description := "The metapi master application."
+homepage :=  Some(url(s"https://github.com/metno"))
+licenses += "GPL-2.0" -> url("https://www.gnu.org/licenses/gpl-2.0.html")
 
+// Scala settings
+// ----------------------------------------------------------------------
+scalaVersion := "2.11.8"
+scalacOptions ++= Seq("-deprecation", "-feature")
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
-scalaVersion := "2.11.6"
+// Play settings
+// ----------------------------------------------------------------------
 
+// Dependencies
+// ----------------------------------------------------------------------
+libraryDependencies ++= Seq(
+  jdbc,
+  cache,
+  evolutions,
+  ws,
+ "com.typesafe.play" %% "anorm" % "2.4.0",
+ "pl.matisoft" %% "swagger-play24" % "1.4",
+ "com.github.nscala-time" %% "nscala-time" % "2.0.0",
+ "org.postgresql" % "postgresql" % "9.4-1201-jdbc41",
+ "com.github.nscala-time" %% "nscala-time" % "2.0.0",
+ "com.google.guava" % "guava" % "18.0",
+ "no.met.data" %% "util" % "0.2-SNAPSHOT",
+ "no.met.data" %% "auth" % "0.2-SNAPSHOT",
+  specs2 % Test
+)
 
-// Test Settings
-parallelExecution in Test := false
+resolvers ++= Seq(
+  "OJO Artifactory" at "http://oss.jfrog.org/artifactory/oss-snapshot-local",
+  "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases",
+  "amateras-repo" at "http://amateras.sourceforge.jp/mvn/"
+)
 
+// Publish Settings
+// ----------------------------------------------------------------------
+publishTo := {
+  val jfrog = "https://oss.jfrog.org/artifactory/"
+  if (isSnapshot.value)
+    Some("Artifactory Realm" at jfrog + "oss-snapshot-local;build.timestamp=" + new java.util.Date().getTime)
+  else
+    Some("Artifactory Realm" at jfrog + "oss-release-local")
+}
+pomExtra := (
+  <scm>
+    <url>https://github.com/metno/metapi-{name.value}.git</url>
+    <connection>scm:git:git@github.com:metno/metapi-{name.value}.git</connection>
+  </scm>
+  <developers>
+    <developer>
+      <id>metno</id>
+      <name>Meteorological Institute, Norway</name>
+      <url>http://www.github.com/metno</url>
+    </developer>
+  </developers>)
+publishMavenStyle := false
+bintrayReleaseOnPublish := false
+publishArtifact in Test := false
+
+// Testing
+// ----------------------------------------------------------------------
 javaOptions += "-Djunit.outdir=target/test-report"
-
-ScoverageSbtPlugin.ScoverageKeys.coverageHighlighting := true
-
-ScoverageSbtPlugin.ScoverageKeys.coverageMinimum := 95
-
-ScoverageSbtPlugin.ScoverageKeys.coverageFailOnMinimum := true
-
-ScoverageSbtPlugin.ScoverageKeys.coverageExcludedPackages := """
+parallelExecution in Test := false
+coverageHighlighting := true
+coverageMinimum := 95
+coverageFailOnMinimum := true
+coverageExcludedPackages := """
   <empty>;
   util.HttpStatus;
   views.html.index.*;
@@ -39,30 +88,6 @@ ScoverageSbtPlugin.ScoverageKeys.coverageExcludedPackages := """
   ReverseAssets;
   router.*;
 """
-
-
-// Dependencies
-libraryDependencies ++= Seq(
-  jdbc,
-  cache,
-  evolutions,
-  ws,
- "com.typesafe.play" %% "anorm" % "2.4.0",
- "pl.matisoft" %% "swagger-play24" % "1.4",
- "com.github.nscala-time" %% "nscala-time" % "2.0.0",
- "com.oracle" % "ojdbc14" % "10.2.0.1.0",
- "no.met.data" %% "util" % "0.2-SNAPSHOT",
- "no.met.data" %% "auth" % "0.2-SNAPSHOT",
- "no.met.data" %% "elements" % "0.2-SNAPSHOT",
- "no.met.data" %% "observations" % "0.2-SNAPSHOT",
- "no.met.data" %% "sources" % "0.2-SNAPSHOT",
-  specs2 % Test
-)
-
-resolvers ++= Seq( "metno repo" at "http://maven.met.no/content/groups/public",
-                   "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases",
-                   "amateras-repo" at "http://amateras.sourceforge.jp/mvn/"
-                    )
 
 // Play provides two styles of routers, one expects its actions to be injected, the
 // other, legacy style, accesses its actions statically.
