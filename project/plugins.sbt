@@ -20,5 +20,3 @@ resolvers ++= Seq(
   Resolver.jcenterRepo,
   "sonatype-releases" at "https://oss.sonatype.org/content/repositories/releases/"
 )
-
-//                   "jgit-repo" at "http://download.eclipse.org/jgit/maven" )

@@ -37,6 +37,7 @@ libraryDependencies ++= Seq(
  "com.google.guava" % "guava" % "18.0",
  "no.met.data" %% "util" % "0.2-SNAPSHOT",
  "no.met.data" %% "auth" % "0.2-SNAPSHOT",
+ "no.met.data" %% "observations" % "0.2-SNAPSHOT",
   specs2 % Test
 )
 

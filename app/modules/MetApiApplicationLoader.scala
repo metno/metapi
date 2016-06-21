@@ -29,9 +29,9 @@ import play.api.inject.guice._
 import com.google.inject.AbstractModule
 import com.typesafe.config.ConfigFactory
 //import modules.elements._
-//import modules.observations._
-//import no.met.kdvh._
-//import services._
+import modules.observations._
+import no.met.kdvh._
+import services._
 
 
 /*
@@ -47,8 +47,8 @@ class ProdModule extends AbstractModule {
     // elements
     //bind(classOf[ElementAccess]).to(classOf[MockElementAccess])
     // observations
-    //bind(classOf[ElementTranslator]).to(classOf[KdvhElementTranslator])
-    //bind(classOf[DatabaseAccess]).to(classOf[KdvhDatabaseAccess])
+    bind(classOf[ElementTranslator]).to(classOf[MockElementTranslator])
+    bind(classOf[DatabaseAccess]).to(classOf[KdvhDatabaseAccess])
   }
 
 }
@@ -63,8 +63,8 @@ class DevModule extends AbstractModule {
     // elements
     //bind(classOf[ElementAccess]).to(classOf[MockElementAccess])
     // observations
-    //bind(classOf[ElementTranslator]).to(classOf[MockElementTranslator])
-    //bind(classOf[DatabaseAccess]).to(classOf[MockDatabaseAccess])
+    bind(classOf[ElementTranslator]).to(classOf[MockElementTranslator])
+    bind(classOf[DatabaseAccess]).to(classOf[MockDatabaseAccess])
   }
 
 }

@@ -32,8 +32,8 @@ GET     /stylesheets/*file          controllers.Assets.at(path="/public/styleshe
 ->       /auth                      authorization.Routes
 
 # Observations
-#->      /observations               observations.Routes
-#GET     /api-docs/observations      pl.matisoft.swagger.ApiHelpController.getResource(path = "/observations")
+->      /observations               observations.Routes
+GET     /api-docs/observations      pl.matisoft.swagger.ApiHelpController.getResource(path = "/observations")
 
 # Elements
 #->      /elements                   elements.Routes
