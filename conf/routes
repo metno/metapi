@@ -36,8 +36,8 @@ GET     /stylesheets/*file          controllers.Assets.at(path="/public/styleshe
 GET     /api-docs/observations      pl.matisoft.swagger.ApiHelpController.getResource(path = "/observations")
 
 # Elements
-#->      /elements                   elements.Routes
-#GET     /api-docs/elements          pl.matisoft.swagger.ApiHelpController.getResource(path = "/elements")
+->      /elements                   elements.Routes
+GET     /api-docs/elements          pl.matisoft.swagger.ApiHelpController.getResource(path = "/elements")
 
 # Sources
 # * * * uncomment this for testing the plugin * * *
