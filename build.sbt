@@ -38,6 +38,7 @@ libraryDependencies ++= Seq(
  "no.met.data" %% "util" % "0.2-SNAPSHOT",
  "no.met.data" %% "auth" % "0.2-SNAPSHOT",
  "no.met.data" %% "observations" % "0.2-SNAPSHOT",
+ "no.met.data" %% "sources" % "0.2-SNAPSHOT",
  "no.met.data" %% "elements" % "0.2-SNAPSHOT",
   specs2 % Test
 )
