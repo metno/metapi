@@ -43,7 +43,7 @@ class ProdModule extends AbstractModule {
 
   def configure() {
     // sources
-    //bind(classOf[no.met.sources.StationDatabaseAccess]).to(classOf[no.met.stinfosys.StinfosysDatabaseAccess])
+    bind(classOf[no.met.sources.StationDatabaseAccess]).to(classOf[no.met.stinfosys.StinfosysDatabaseAccess])
     // elements
     bind(classOf[ElementAccess]).to(classOf[DbElementAccess])
     // observations
@@ -59,7 +59,7 @@ class DevModule extends AbstractModule {
 
   def configure() {
     // sources
-    //bind(classOf[no.met.sources.StationDatabaseAccess]).to(classOf[no.met.sources.MockStationDatabaseAccess])
+    bind(classOf[no.met.sources.StationDatabaseAccess]).to(classOf[no.met.sources.MockStationDatabaseAccess])
     // elements
     bind(classOf[ElementAccess]).to(classOf[MockElementAccess])
     // observations
