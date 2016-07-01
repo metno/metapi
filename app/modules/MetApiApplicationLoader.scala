@@ -33,21 +33,18 @@ import modules.observations._
 import no.met.kdvh._
 import services._
 
-
-/*
- * We bind production to the Mock element module, because the tables in KDVH
- * are not yet specified correctly.
- */
 // $COVERAGE-OFF$ Can't test the production binding in Test mode
 class ProdModule extends AbstractModule {
 
   def configure() {
     // sources
     bind(classOf[no.met.sources.StationDatabaseAccess]).to(classOf[no.met.stinfosys.StinfosysDatabaseAccess])
+    // locations
+    bind(classOf[LocationAccess]).to(classOf[DbLocationAccess])
     // elements
     bind(classOf[ElementAccess]).to(classOf[DbElementAccess])
     // observations
-    bind(classOf[ElementTranslator]).to(classOf[MockElementTranslator])
+    bind(classOf[ElementTranslator]).to(classOf[KdvhElementTranslator])
     bind(classOf[DatabaseAccess]).to(classOf[KdvhDatabaseAccess])
   }
 
@@ -60,6 +57,8 @@ class DevModule extends AbstractModule {
   def configure() {
     // sources
     bind(classOf[no.met.sources.StationDatabaseAccess]).to(classOf[no.met.sources.MockStationDatabaseAccess])
+    // locations
+    bind(classOf[LocationAccess]).to(classOf[DbLocationAccess])
     // elements
     bind(classOf[ElementAccess]).to(classOf[MockElementAccess])
     // observations

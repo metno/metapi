@@ -39,6 +39,10 @@ GET     /api-docs/observations      pl.matisoft.swagger.ApiHelpController.getRes
 ->      /sources                    sources.Routes
 GET     /api-docs/sources           pl.matisoft.swagger.ApiHelpController.getResource(path = "/sources")
 
+# Locations
+->      /locations                  locations.Routes
+GET     /api-docs/locations          pl.matisoft.swagger.ApiHelpController.getResource(path = "/locations")
+
 # Elements
 ->      /elements                   elements.Routes
 GET     /api-docs/elements          pl.matisoft.swagger.ApiHelpController.getResource(path = "/elements")
