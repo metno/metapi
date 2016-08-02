@@ -28,10 +28,10 @@ import play.api._
 import play.api.inject.guice._
 import com.google.inject.AbstractModule
 import com.typesafe.config.ConfigFactory
-import modules.elements._
-import modules.observations._
-import no.met.kdvh._
-import services._
+import services.observations._
+import services.elements._
+import services.elements._
+import services.locations._
 
 // $COVERAGE-OFF$ Can't test the production binding in Test mode
 class ProdModule extends AbstractModule {
