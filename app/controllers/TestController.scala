@@ -31,25 +31,29 @@ import com.wordnik.swagger.annotations._
 //scalastyle:off public.methods.have.type
 // Using val for "hello" messes up swagger-ui
 
-@Api(value = "/tests", description = "Test Resources")
+//@Api(value = "/tests", description = "Test Resources")
 class TestController extends Controller {
+  /*
   @ApiOperation(
     produces = "text/plain",
     nickname = "hello",
     value = "Say hello to the API",
     response = classOf[String],
     httpMethod = "GET")
+    */
   def hello = Action {
     req =>
       Ok("Hello to you too!\n")
   }
 
+  /*
   @ApiOperation(
     produces = "text/plain",
     nickname = "secureHello",
     value = "Say hello to the API, securely",
     response = classOf[String],
     httpMethod = "GET")
+    */
   def secureHello = no.met.security.AuthorizedAction {
     req =>
       {
