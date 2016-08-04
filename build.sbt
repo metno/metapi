@@ -1,7 +1,7 @@
 organization := "no.met.data"
 name := """metapi"""
 lazy val apiVersion = SettingKey[String]("api-version", "The base version of the api.")
-apiVersion := "0.2"
+apiVersion := "0.3"
 version <<= (apiVersion, git.gitHeadCommit) { (ver, commit) =>
   val commitVer = commit map( v => "+" + v ) getOrElse ""
   sys.props.get("buildnumber" ) match {
