@@ -76,11 +76,11 @@ class ApplicationSpec extends Specification {
     }
 
     "render swagger JSON" in running(TestUtil.app) {
-      val ret = route(FakeRequest(GET, "/api-docs")).get
+      val ret = route(FakeRequest(GET, "/swagger.json")).get
 
       status(ret) must equalTo(OK)
       contentType(ret) must beSome.which(_ == "application/json")
-      contentAsString(ret) must contain("swaggerVersion")
+      contentAsString(ret) must contain("swagger")
     }
 
     "render swagger-UI" in running(TestUtil.app) {

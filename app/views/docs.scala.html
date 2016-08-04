@@ -3,91 +3,102 @@
 <html>
 <head>
 <title>data.met.no</title>
-<link type="image/x-icon" rel="icon" href="/images/met_favicon.png">
-<link type="image/x-icon" rel="shortcut icon" href="/images/met_favicon.ico">
+<link rel="icon" type="image/png" href="/images/met_favicon.png" sizes="32x32" />
 <link href='/@current.configuration.getString("swagger.dir")/css/typography.css' media='screen' rel='stylesheet' type='text/css' />
 <link href='/@current.configuration.getString("swagger.dir")/css/reset.css' media='screen' rel='stylesheet' type='text/css' />
 <link href='/@current.configuration.getString("swagger.dir")/css/screen.css' media='screen' rel='stylesheet' type='text/css' />
 <link href='/@current.configuration.getString("swagger.dir")/css/reset.css' media='print' rel='stylesheet' type='text/css' />
 <link href='/@current.configuration.getString("swagger.dir")/css/print.css' media='print' rel='stylesheet' type='text/css' />
+
+<script src='/@current.configuration.getString("swagger.dir")/lib/object-assign-pollyfill.js' type='text/javascript'></script>
 <script src='/@current.configuration.getString("swagger.dir")/lib/jquery-1.8.0.min.js' type='text/javascript'></script>
 <script src='/@current.configuration.getString("swagger.dir")/lib/jquery.slideto.min.js' type='text/javascript'></script>
 <script src='/@current.configuration.getString("swagger.dir")/lib/jquery.wiggle.min.js' type='text/javascript'></script>
 <script src='/@current.configuration.getString("swagger.dir")/lib/jquery.ba-bbq.min.js' type='text/javascript'></script>
 <script src='/@current.configuration.getString("swagger.dir")/lib/handlebars-2.0.0.js' type='text/javascript'></script>
-<script src='/@current.configuration.getString("swagger.dir")/lib/underscore-min.js' type='text/javascript'></script>
+<script src='/@current.configuration.getString("swagger.dir")/lib/lodash.min.js' type='text/javascript'></script>
 <script src='/@current.configuration.getString("swagger.dir")/lib/backbone-min.js' type='text/javascript'></script>
 <script src='/@current.configuration.getString("swagger.dir")/swagger-ui.js' type='text/javascript'></script>
-<script src='/@current.configuration.getString("swagger.dir")/lib/highlight.7.3.pack.js' type='text/javascript'></script>
+<script src='/@current.configuration.getString("swagger.dir")/lib/highlight.9.1.0.pack.js' type='text/javascript'></script>
+<script src='/@current.configuration.getString("swagger.dir")/lib/highlight.9.1.0.pack_extended.js' type='text/javascript'></script>
+<script src='/@current.configuration.getString("swagger.dir")/lib/jsoneditor.min.js' type='text/javascript'></script>
 <script src='/@current.configuration.getString("swagger.dir")/lib/marked.js' type='text/javascript'></script>
+<script src='/@current.configuration.getString("swagger.dir")/lib/swagger-oauth.js' type='text/javascript'></script>
+<!-- MetNo Style -->
 <link href="/stylesheets/style_default_2013.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/style_layout_2013.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/style_menu_2013.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/style_forms.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/paginator.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/dictionary.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/swagger_mod.css" rel="stylesheet" type="text/css">
 
+
 <script type="text/javascript">
-    $(function() {
-        var api_version = '@{s"${current.configuration.getString("api.version").getOrElse("v0")}"}';
-        // Note that window.location has compatibility limitations;
-        // see: https://developer.mozilla.org/en-US/docs/Web/API/Window.location
-        window.swaggerUi = new SwaggerUi({
-            url : window.location.origin + "/api-docs",
-            dom_id : "swagger-ui-container",
-            supportedSubmitMethods : [ 'get', 'post', 'put', 'delete' ],
-            supportHeaderParams : true,
-            headers : {
-                "Accept" : "application/json"
-            },
-            onComplete : function(swaggerApi, swaggerUi) {
-                if (typeof initOAuth == "function") {
-                    /*
-                    initOAuth({
-                    clientId: "your-client-id",
-                    realm: "your-realms",
-                    appName: "your-app-name"
-                    });
-                     */
-                }
-                $('pre code').each(function(i, e) {
-                    hljs.highlightBlock(e)
-                });
-            },
-            onFailure : function(data) {
-                log("Unable to Load SwaggerUI");
-            },
-            docExpansion : "none",
-            sorter : "alpha"
-        });
+	$(function() {
+		var api_version = '@{s"${current.configuration.getString("api.version").getOrElse("v0")}"}';
+		// Note that window.location has compatibility limitations;
+		// see: https://developer.mozilla.org/en-US/docs/Web/API/Window.location    	
+		var url = window.location.origin + "/swagger.json"
+		hljs.configure({
+			highlightSizeThreshold : 5000
+		});
 
-        function addApiKeyAuthorization() {
-            var key = encodeURIComponent($('#input_apiKey')[0].value);
-            if (key && key.trim() != "") {
-                log("added key " + key);
-                window.swaggerUi.api.clientAuthorizations.add("api_key",
-                        new SwaggerClient.ApiKeyAuthorization("Authorization",
-                                "Basic " + btoa(key + ":"), "header"));
-            }
-        }
+		// Pre load translate...
+		if (window.SwaggerTranslator) {
+			window.SwaggerTranslator.translate();
+		}
+		window.swaggerUi = new SwaggerUi(
+				{
+					url : url,
+					dom_id : "swagger-ui-container",
+					supportedSubmitMethods : [ 'get', 'post', 'put', 'delete',
+							'patch' ],
+					onComplete : function(swaggerApi, swaggerUi) {
+						if (typeof initOAuth == "function") {
+							initOAuth({
+								clientId : "your-client-id",
+								clientSecret : "your-client-secret-if-required",
+								realm : "your-realms",
+								appName : "your-app-name",
+								scopeSeparator : ",",
+								additionalQueryStringParams : {}
+							});
+						}
 
-        $('#input_apiKey').change(addApiKeyAuthorization);
+						if (window.SwaggerTranslator) {
+							window.SwaggerTranslator.translate();
+						}
+					},
+					onFailure : function(data) {
+						log("Unable to Load SwaggerUI");
+					},
+					docExpansion : "none",
+					jsonEditor : false,
+					defaultModelRendering : 'schema',
+					showRequestHeaders : false
+				});
 
-        // if you have an apiKey you would like to pre-populate on the page for demonstration purposes...
-        /*
-          var apiKey = "myApiKeyXXXX123456789";
-          $('#input_apiKey').val(apiKey);
-          addApiKeyAuthorization();
-         */
+		function addApiKeyAuthorization() {
+			var key = encodeURIComponent($('#input_apiKey')[0].value);
+			if (key && key.trim() != "") {
+				log("added key " + key);
+				window.swaggerUi.api.clientAuthorizations.add("api_key",
+						new SwaggerClient.ApiKeyAuthorization("Authorization",
+								"Basic " + btoa(key + ":"), "header"));
+			}
+		}
 
-        window.swaggerUi.load();
+		$('#input_apiKey').change(addApiKeyAuthorization);
 
-        function log() {
-            if ('console' in window) {
-                console.log.apply(console, arguments);
-            }
-        }
-    });
+    window.swaggerUi.load();
+
+		function log() {
+			if ('console' in window) {
+				console.log.apply(console, arguments);
+			}
+		}
+	});
 </script>
 </head>
 
@@ -108,7 +119,7 @@
    </div>
    <div id="swagger-form">
     <form id='api_selector'>
-     <div class='input'>
+    <div class='input'>
       <input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl" type="text" />
      </div>
      <div class='input'>
@@ -117,9 +128,10 @@
      <div class='input'>
       <a id="newuser" href="/auth/requestCredentials.html">New User</a>
      </div>
-    </form>
+     </form>
    </div>
   </div>
+  
   <div id="top-line">
    <div class="top-menu">
     <ul>

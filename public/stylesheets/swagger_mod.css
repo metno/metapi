@@ -1,20 +1,18 @@
-#header {
- height: 219px;
+.swagger-section #header {
  position: relative;
+ height: 219px;
+ background-color: #ffffff;
+ padding: 0px;
 }
 
-#header #swagger-form {
+.swagger-section #header #swagger-form {
  position: absolute;
  top: 220px;
  right: 0px;
  color: #0090A8;
 }
-/* This removes background color and top padding in the swagger css */
-.swagger-section #header {
- background-color: #ffffff;
- padding: 0px;
-}
-/* Overwrites the form at the top */
+
+* Overwrites the form at the top */
 .swagger-section #header form#api_selector .input {
  margin: 0 5px 0 5px;
 }

@@ -23,14 +23,15 @@
     MA 02110-1301, USA
 */
 
-import javax.inject._
 import play.api._
 import play.api.mvc._
 import play.api.mvc.Results._
 import play.api.routing.Router
 import play.api.http.DefaultHttpErrorHandler
 import play.api.http.Status._
+import javax.inject._
 import scala.concurrent._
+import scala.language.postfixOps
 import no.met.data._
 import no.met.data.format.json._
 

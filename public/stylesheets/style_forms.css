@@ -1,0 +1,24 @@
+#content form{margin:15px 0px;width:99%;}
+#content form fieldset{border:1px solid #E9E8E8;padding:10px;}
+#content form p{font-size:100%;margin:5px 0px 8px 0px;}
+#content form legend{font-weight:bold;color:#000000;padding:0px 8px;}
+#content form label span.star{font-weight:bold;color:#BE0000;padding-left:5px;}
+#content label.block,
+#content label .block{margin-bottom:2px;margin-right:20px;display:block;}
+#content form input.block{margin-bottom:8px;margin-right:20px;display:block;}
+#content form select,
+#content form .default{width:390px;}
+#content form textarea{width:390px;height:60px;}
+#content form input.small{width:80px;}
+#content form input.wide{width:320px;}
+#content form select{margin-bottom:8px;}
+#content form input.file{margin-left:0px;margin-bottom:8px;}
+#content form input.checkbox{margin-left:0px;}
+#content form input.button.submit{margin-right:10px;cursor:pointer;}
+#content form input.button.reset{cursor:pointer;}
+#content h3.error-messages{font-size:100%;color:#BE0000;margin-top:10px;}
+#content ul.error-messages{padding:0px;margin:0px;list-style-type:none;}
+#content ul.error-messages li{color:#BE0000;padding:4px 0px;}
+#content ul.error-messages li a:link,
+#content ul.error-messages li a:visited{color:#BE0000;}
+#content span.error-item{font-weight:normal;color:#BE0000;padding-left:4px;}

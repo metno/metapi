@@ -30,24 +30,21 @@ libraryDependencies ++= Seq(
   evolutions,
   ws,
  "com.typesafe.play" %% "anorm" % "2.4.0",
- "pl.matisoft" %% "swagger-play24" % "1.4",
- "com.github.nscala-time" %% "nscala-time" % "2.0.0",
  "org.postgresql" % "postgresql" % "9.4-1201-jdbc41",
- "com.github.nscala-time" %% "nscala-time" % "2.0.0",
- "com.google.guava" % "guava" % "18.0",
- "no.met.data" %% "util" % "0.2-SNAPSHOT",
- "no.met.data" %% "auth" % "0.2-SNAPSHOT",
- "no.met.data" %% "observations" % "0.2-SNAPSHOT",
- "no.met.data" %% "sources" % "0.2-SNAPSHOT",
- "no.met.data" %% "locations" % "0.2-SNAPSHOT",
- "no.met.data" %% "elements" % "0.2-SNAPSHOT",
+ "io.swagger" %% "swagger-play2" % "1.5.2",
+ "com.github.nscala-time" %% "nscala-time" % "2.12.0",
+ "no.met.data" %% "util" % "0.3-SNAPSHOT",
+ "no.met.data" %% "auth" % "0.3-SNAPSHOT",
+ "no.met.data" %% "observations" % "0.3-SNAPSHOT",
+ "no.met.data" %% "sources" % "0.3-SNAPSHOT",
+ "no.met.data" %% "locations" % "0.3-SNAPSHOT",
+ "no.met.data" %% "elements" % "0.3-SNAPSHOT",
   specs2 % Test
 )
 
 resolvers ++= Seq(
   "OJO Artifactory" at "http://oss.jfrog.org/artifactory/oss-snapshot-local",
-  "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases",
-  "amateras-repo" at "http://amateras.sourceforge.jp/mvn/"
+  "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 )
 
 // Publish Settings

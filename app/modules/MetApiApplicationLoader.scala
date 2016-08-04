@@ -28,17 +28,17 @@ import play.api._
 import play.api.inject.guice._
 import com.google.inject.AbstractModule
 import com.typesafe.config.ConfigFactory
-import services.observations._
-import services.elements._
 import services.elements._
 import services.locations._
+import services.observations._
+import services.sources._
 
 // $COVERAGE-OFF$ Can't test the production binding in Test mode
 class ProdModule extends AbstractModule {
 
   def configure() {
     // sources
-    bind(classOf[no.met.sources.StationDatabaseAccess]).to(classOf[no.met.stinfosys.StinfosysDatabaseAccess])
+    bind(classOf[StationDatabaseAccess]).to(classOf[StinfosysDatabaseAccess])
     // locations
     bind(classOf[LocationAccess]).to(classOf[DbLocationAccess])
     // elements
@@ -56,7 +56,7 @@ class DevModule extends AbstractModule {
 
   def configure() {
     // sources
-    bind(classOf[no.met.sources.StationDatabaseAccess]).to(classOf[no.met.sources.MockStationDatabaseAccess])
+    bind(classOf[StationDatabaseAccess]).to(classOf[MockStationDatabaseAccess])
     // locations
     bind(classOf[LocationAccess]).to(classOf[DbLocationAccess])
     // elements

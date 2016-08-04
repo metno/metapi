@@ -1,39 +1,9 @@
-#paginator {
-  font-family: "Trebuchet MS","Courier New",Courier,monospace,sans-serif;
-  text-align: center;
-  color: #7E7E7E;
-  text-transform: uppercase;
-  padding: 10px;
-}
-
+#paginator{font-family:"Trebuchet MS","Courier New",Courier,monospace,sans-serif;text-align:center;color:#7E7E7E;text-transform:uppercase;padding:10px;}
 #paginator .digits a,
-#paginator .digits span {
-  padding: 1px 5px 1px 5px;
-  margin: 0px 1px;
-  color: #7E7E7E;
-  background: #f1f1f1;
-}
-
-#paginator .digits span.active {
-  color: #7E7E7E;
-  background: #C6E0DD;
-}
-
+#paginator .digits span{padding:1px 5px 1px 5px;margin:0px 1px;color:#7E7E7E;background:#f1f1f1;}
+#paginator .digits span.active{color:#7E7E7E;background:#C6E0DD;}
 #paginator .prev,
-#paginator .next {
-  color: #7E7E7E;
-/*  font-weight: bold;*/
-  font-size: 85%;
-  padding: 0px 10px;
-}
-
+#paginator .next{color:#7E7E7E;font-size:85%;padding:0px 10px;}
 #paginator span.prev,
-#paginator span.next {
-  color: #e5e5e5;
-}
-
-#paginator p {
-  text-transform: lowercase;
-  padding: 10px;
-  font-size: 85%;
-}
+#paginator span.next{color:#e5e5e5;}
+#paginator p{text-transform:lowercase;padding:10px;font-size:85%;}
