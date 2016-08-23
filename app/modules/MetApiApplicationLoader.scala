@@ -38,7 +38,7 @@ class ProdModule extends AbstractModule {
 
   def configure() {
     // sources
-    bind(classOf[StationDatabaseAccess]).to(classOf[StinfosysDatabaseAccess])
+    bind(classOf[SourceAccess]).to(classOf[StinfosysAccess])
     // locations
     bind(classOf[LocationAccess]).to(classOf[DbLocationAccess])
     // elements
@@ -56,7 +56,7 @@ class DevModule extends AbstractModule {
 
   def configure() {
     // sources
-    bind(classOf[StationDatabaseAccess]).to(classOf[MockStationDatabaseAccess])
+    bind(classOf[SourceAccess]).to(classOf[MockSourceAccess])
     // locations
     bind(classOf[LocationAccess]).to(classOf[DbLocationAccess])
     // elements

@@ -18,9 +18,14 @@ GET     /docs                       controllers.Application.docs
 GET     /docs/index.html            controllers.Application.docs
 GET     /docs/*file                 controllers.Assets.at(path="/public/swagger-ui", file)
 
+# API Reference
+GET     /reference                  controllers.Application.reference
+GET     /reference/index.html       controllers.Application.reference
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /images/*file               controllers.Assets.at(path="/public/images", file)
 GET     /stylesheets/*file          controllers.Assets.at(path="/public/stylesheets", file)
+
 
 # Modules
 # ~~~~

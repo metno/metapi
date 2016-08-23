@@ -39,4 +39,9 @@ class Application extends Controller {
       Ok(views.html.docs())
   }
 
+  val reference = Action {
+    request =>
+      Ok(views.html.reference())
+  }
+  
 }

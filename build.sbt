@@ -74,7 +74,6 @@ publishArtifact in Test := false
 
 // Testing
 // ----------------------------------------------------------------------
-javaOptions += "-Djunit.outdir=target/test-report"
 parallelExecution in Test := false
 coverageHighlighting := true
 coverageMinimum := 95
