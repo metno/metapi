@@ -83,6 +83,7 @@ coverageExcludedPackages := """
   util.HttpStatus;
   views.html.index.*;
   views.html.docs.*;
+  views.html.reference.*;
   value.ApiResponse;
   ReverseApplication;
   ReverseAssets;

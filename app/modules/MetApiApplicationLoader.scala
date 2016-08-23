@@ -58,7 +58,7 @@ class DevModule extends AbstractModule {
     // sources
     bind(classOf[SourceAccess]).to(classOf[MockSourceAccess])
     // locations
-    bind(classOf[LocationAccess]).to(classOf[DbLocationAccess])
+    bind(classOf[LocationAccess]).to(classOf[MockLocationAccess])
     // elements
     bind(classOf[ElementAccess]).to(classOf[MockElementAccess])
     // observations
