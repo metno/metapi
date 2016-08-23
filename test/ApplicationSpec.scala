@@ -90,6 +90,20 @@ class ApplicationSpec extends Specification {
       contentType(ret) must beSome.which(_ == "text/html")
     }
 
+    "render reference" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/reference")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
+    "render reference/index.html" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/reference/index.html")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+    
     "return 'hello' response" in running(TestUtil.app) {
       val home = route(FakeRequest(GET, "/tests/hello")).get
 
