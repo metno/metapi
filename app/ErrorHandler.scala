@@ -23,17 +23,18 @@
     MA 02110-1301, USA
 */
 
+import javax.inject._
 import play.api._
 import play.api.mvc._
 import play.api.mvc.Results._
 import play.api.routing.Router
 import play.api.http.DefaultHttpErrorHandler
 import play.api.http.Status._
-import javax.inject._
+import com.github.nscala_time.time.Imports._
 import scala.concurrent._
 import scala.language.postfixOps
 import no.met.data._
-import no.met.data.format.json._
+import no.met.json._
 
 // $COVERAGE-OFF$ Legacy: Global object seems to not be available in tests
 //scalastyle:off public.methods.have.type
@@ -49,7 +50,7 @@ class ErrorHandler @Inject() (env: Environment, config: Configuration, sourceMap
 
   private def showError(code: Int, msg: String, help: Option[String], request: RequestHeader): Result = {
     val output = formatOf(request) match {
-      case "jsonld" => new ErrorJsonFormat().error(code, msg, help)(request)
+      case "jsonld" => new ErrorJsonFormat().error(DateTime.now(DateTimeZone.UTC), code, Some(msg), help)(request)
       case "csv" => msg
       case _ => msg
     }
