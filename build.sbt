@@ -84,6 +84,7 @@ coverageExcludedPackages := """
   views.html.index.*;
   views.html.docs.*;
   views.html.reference.*;
+  views.html.schema.*;
   value.ApiResponse;
   ReverseApplication;
   ReverseAssets;
