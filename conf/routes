@@ -22,6 +22,11 @@ GET     /docs/*file                 controllers.Assets.at(path="/public/swagger-
 GET     /reference                  controllers.Application.reference
 GET     /reference/index.html       controllers.Application.reference
 
+# API Schema
+GET     /schema                     controllers.Application.schema
+GET     /schema/index.html          controllers.Application.schema
+GET     /schema/*file               controllers.Assets.at(path="/public/schema", file)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /images/*file               controllers.Assets.at(path="/public/images", file)
 GET     /stylesheets/*file          controllers.Assets.at(path="/public/stylesheets", file)

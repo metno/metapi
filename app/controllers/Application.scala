@@ -43,5 +43,10 @@ class Application extends Controller {
     request =>
       Ok(views.html.reference())
   }
+
+  val schema = Action {
+    request =>
+      Ok(views.html.schema())
+  }
   
 }

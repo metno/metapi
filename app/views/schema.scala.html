@@ -1,0 +1,7058 @@
+@import play.api.Play.current
+<!-- 
+  The document here is a copy of the dump from Parrot from the header to the footer.
+  All " are replaced with ', except for the "schema.dir" play codes.
+  http://ontorule-project.eu/parrot/parrot?# are replaced with /@current.configuration.getString("schema.dir")#
+ -->
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML+RDFa 1.0//EN' 'http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd'>
+<!-- saved from url=(0041)http://ontorule-project.eu/parrot/parrot? -->
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:parrot='http://vocab.ctic.es/parrot#' xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#' xmlns:owl='http://www.w3.org/2002/07/owl#' xmlns:foaf='http://xmlns.com/foaf/0.1/' xmlns:dct='http://purl.org/dc/terms/' version='XHTML+RDFa 1.0' style='height: 100%;'><head typeof='parrot:Project'><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+<head>
+<title>data.met.no</title>
+<link type='image/x-icon' rel='icon' href='/images/met_favicon.png'>
+<link type='image/x-icon' rel='shortcut icon' href='/images/met_favicon.ico'>
+
+<link rel='shortcut icon' type='image/x-icon' href='http://ontorule-project.eu/parrot/images/favicon.ico'>
+<link rel='stylesheet' type='text/css' media='screen,projection' href='/@current.configuration.getString("schema.dir")/css/jquery-ui.css'>
+<link rel='stylesheet' type='text/css' media='screen,projection' href='/@current.configuration.getString("schema.dir")/css/base.css'> 
+<link rel='stylesheet' type='text/css' media='screen,projection' href='/@current.configuration.getString("schema.dir")/css/custom.css'> 
+<link rel='stylesheet' type='text/css' media='screen,projection' href='/@current.configuration.getString("schema.dir")/css/SemEx.css'> 
+<link rel='stylesheet' type='text/css' media='screen,projection' href='/@current.configuration.getString("schema.dir")/css/jx.bar.css'> 
+<link rel='stylesheet' type='text/css' media='print' href='/@current.configuration.getString("schema.dir")/css/print.css'> 
+<!-- <-link rel='stylesheet' type='text/css' media='screen,projection' href='/@current.configuration.getString("schema.dir")/css/technical.css'> -->      
+
+<link href='/stylesheets/style_default_2013.css' rel='stylesheet' type='text/css'>
+<link href='/stylesheets/style_layout_2013.css' rel='stylesheet' type='text/css'>
+<link href='/stylesheets/style_menu_2013.css' rel='stylesheet' type='text/css'>
+<link href='/stylesheets/paginator.css' rel='stylesheet' type='text/css'>
+<link href='/stylesheets/dictionary.css' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+ <div id='wrapper' class='frontpage'>
+  <div id='header' class='clearfix'>
+   <div id='logo'>
+    <a href='http://met.no'><img src='/images/logo_2013_no.png' alt='met.no'></img></a>
+   </div>
+   <div id='help-links'>
+    <ul>
+     <li><a href='index.html#getting_started'>Getting Started</a> |</li>
+     <li><a href='/docs'>API Documentation</a> |</li>
+     <li><a href='/reference'>API Reference</a> |</li>
+     <li><a href='/schema'>API Schema</a> |</li>
+     <li><a href='http://met.no/English/Data_Policy_and_Data_Services/'>Licensing and Data Policy</a> |</li>
+    </ul>
+   </div>
+  </div>
+  <div id='top-line'>
+   <div class='top-menu'>
+    <ul>
+     <li><a href='https://data.met.no'>data.met.no</a></li>
+    </ul>
+   </div>
+  </div>
+  <div id='main-content' class='frontpage clearfix'>
+
+   <p>The data.met.no MET API specification is an XHTML/RDFa document that defines the classes and terms of the 
+   <a href='http://json-ld.org'>JSON-LD</a> format used by the API. This document has been generated using
+   <a href='https://bitbucket.org/fundacionctic/parrot' title='go to Parrot project home page'>Parrot</a>, a RIF and
+   OWL documentation service. The ontology is also described in a more succinct format using
+   <a href=''>DF/Turtle</a>. 
+  
+   <div id='content'>
+   
+<div id='toc' class='toc' style='border-radius: 10px;'>
+<h1>Table of contents</h1>
+<!-- The list of ontologies, classes, properties, individuals, rules and rule sets goes here --> 
+
+<p><span class='parrot-element-ref parrot-ontology-ref'>Ontologies (1):</span></p> 
+<p>
+    <a href='/@current.configuration.getString("schema.dir")#anchor1134576135'>The data.met.no MET API specification</a>
+  </p>
+
+
+<p><span class='parrot-element-ref parrot-class-ref'>Classes (19):</span></p>
+<p>
+    <a href='/@current.configuration.getString("schema.dir")#anchor-2072333522'>CfConvention</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1783057568'>Element</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-867738943'>ElementResponse</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1324567636'>Error</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor1475104525'>ErrorResponse</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1880818452'>Geometry</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor1040820393'>LegacyMetNoConventnion</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor323976927'>LineString</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1825795025'>Location</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor1798372496'>LocationResponse</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1330661007'>ObservationResponse</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-531450905'>ObservationSeries</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1633875979'>ObservationTimeSeriesResponse</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1314506956'>Point</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-517740130'>Polygon</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor227805371'>Response</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1300575609'>SensorPlatform</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-2008762539'>Source</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor631151030'>SourceResponse</a>
+  </p>
+
+
+<p><span class='parrot-element-ref parrot-property-ref'>Properties (48):</span></p>
+<p>
+    <a href='/@current.configuration.getString("schema.dir")#anchor686618360'>apiVersion</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor553995608'>category</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor1036233204'>cellMethods</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor2058313486'>cfConvention</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor2036372423'>code</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor1585365285'>codeTable</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1142850561'>coordinate</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-827042790'>country</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-973478785'>createdAt</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor1760393629'>currentItemCount</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor1881194263'>currentLink</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor2036389252'>data</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-444348928'>description</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor494132854'>elemCode</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1830367109'>elementId</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1295014964'>error</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor2036512027'>error help</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor1530886010'>feature</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-741660974'>fromDate</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1945462580'>geo</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1235868235'>id</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor1140073542'>itemsPerPage</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-785884983'>legacyMetNoConvention</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1288934072'>level</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor1066906658'>levelType</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor1066925676'>levelUnit</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1618116411'>license</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-829948789'>message</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor2036686949'>name</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor1927646695'>nextLink</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor529148065'>observations</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1215903827'>offset</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-86145429'>previousLink</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor719883664'>qualitycode</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor916239097'>queryTime</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1131088546'>reason</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-785267332'>referenceTime</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-2045155600'>sourceId</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-695967294'>standardName</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1088605428'>status</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1065476125'>toDate</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor1990050546'>totalItemCount</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor2036907870'>unit</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1553627109'>valid time</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor1612526858'>validFrom</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1279827147'>value</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor-1019936708'>values</a>
+  ,     <a href='/@current.configuration.getString("schema.dir")#anchor1020581542'>wmoIdentifier</a>
+  </p>
+
+
+
+
+
+
+
+
+
+
+
+<hr>
+
+
+</div>  
+
+
+  <div class='toc' id='ontologies' style='border-radius: 10px;'> 
+  <h2>Ontologies</h2>
+  <p>
+            <a href='/@current.configuration.getString("schema.dir")#anchor1134576135'>The data.met.no MET API specification</a>
+            </p>
+  </div>
+  
+      <div class='details ontologies' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-fed743f7f31fbb7471309828d3944b30' about='https://data.met.no/schema'>
+
+
+
+   <h3 id='anchor1134576135'><span class='parrot-element-title parrot-ontology-title'>The data.met.no MET API specification</span>
+   <span rel='rdf:type' href='http://www.w3.org/2002/07/owl#Ontology'>(Ontology)</span>
+      
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+  
+  
+
+      <p class='description'>
+      The data.met.no MET API specification is an ontology that provides definitions of the main concepts and
+      properties required to describe a meteorological, hydrological or oceanographic observation as delivered
+      by the MET API
+    </p>
+  
+  <div> 
+
+          
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          
+        <dt>Version</dt>
+    <dd>draft</dd>
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        <dt>License</dt>
+    <dd><a href='http://creativecommons.org/licenses/by/3.0/' class='external-link'>http://creativecommons.org/licenses/by/3.0/</a></dd>
+        
+    </dl> 
+    </div>
+    
+    
+      
+  
+        <div class='ti' style='border-radius: 10px; display: block;'> 
+    <h4>Definition</h4> 
+    
+        <p>The <strong>URI</strong> of this ontology is <span><code>https://data.met.no/schema</code></span></p>
+    <hr>
+  
+      </div>
+  
+  
+    
+  
+  </div>
+</div></div>
+  
+
+  <div class='toc' id='classes' style='border-radius: 10px;'>
+  <h2>Classes</h2>
+  <p>
+            <a href='/@current.configuration.getString("schema.dir")#anchor-2072333522'>CfConvention</a>
+  ,             <a href='/@current.configuration.getString("schema.dir")#anchor-1783057568'>Element</a>
+  ,             <a href='/@current.configuration.getString("schema.dir")#anchor-867738943'>ElementResponse</a>
+  ,             <a href='/@current.configuration.getString("schema.dir")#anchor-1324567636'>Error</a>
+  ,             <a href='/@current.configuration.getString("schema.dir")#anchor1475104525'>ErrorResponse</a>
+  ,             <a href='/@current.configuration.getString("schema.dir")#anchor-1880818452'>Geometry</a>
+  ,             <a href='/@current.configuration.getString("schema.dir")#anchor1040820393'>LegacyMetNoConventnion</a>
+  ,             <a href='/@current.configuration.getString("schema.dir")#anchor323976927'>LineString</a>
+  ,             <a href='/@current.configuration.getString("schema.dir")#anchor-1825795025'>Location</a>
+  ,             <a href='/@current.configuration.getString("schema.dir")#anchor1798372496'>LocationResponse</a>
+  ,             <a href='/@current.configuration.getString("schema.dir")#anchor-1330661007'>ObservationResponse</a>
+  ,             <a href='/@current.configuration.getString("schema.dir")#anchor-531450905'>ObservationSeries</a>
+  ,             <a href='/@current.configuration.getString("schema.dir")#anchor-1633875979'>ObservationTimeSeriesResponse</a>
+  ,             <a href='/@current.configuration.getString("schema.dir")#anchor-1314506956'>Point</a>
+  ,             <a href='/@current.configuration.getString("schema.dir")#anchor-517740130'>Polygon</a>
+  ,             <a href='/@current.configuration.getString("schema.dir")#anchor227805371'>Response</a>
+  ,             <a href='/@current.configuration.getString("schema.dir")#anchor-1300575609'>SensorPlatform</a>
+  ,             <a href='/@current.configuration.getString("schema.dir")#anchor-2008762539'>Source</a>
+  ,             <a href='/@current.configuration.getString("schema.dir")#anchor631151030'>SourceResponse</a>
+        </p>
+  </div>
+  
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-c8c45b25321cf498058065697f4af79e' about='https://data.met.no/schema#CfConvention'>
+
+
+  <h3 id='anchor-2072333522'> <a id='CfConvention'></a><span class='parrot-element-title parrot-class-title'>CfConvention</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>     <span class='inuse-menu' style='border-radius: 10px;'>In use</span>         </span> 
+  </h3>
+  
+  
+
+      <p class='description'>
+      The CF standard definition of the element.
+    </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#CfConvention</code></span></p>
+    <hr>
+  
+        
+  </div>
+  
+    <div class='inuse' style='border-radius: 10px;'>
+  <h4>In use</h4>
+        
+        <table>
+            <tbody><tr>
+      <td>This class is used in</td>
+      <td>    
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#cellMethods'> cellMethods</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#standardName'> standardName</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#status'> status</a>
+      </span>
+            </td>
+      </tr>
+        
+          <tr>
+      <td>This class has individuals such as</td>
+      <td>    
+            <span class='parrot-element-ref parrot-individual-ref'>             <a href='/@current.configuration.getString("schema.dir")#cfConvention'> cfConvention</a>
+      </span>
+            </td>
+      </tr>
+      
+      </tbody></table>
+    </div>
+    
+    
+  </div>
+</div> 
+  </div>
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-86cc20638c7c676b66616b51909e3138' about='https://data.met.no/schema#Element'>
+
+
+  <h3 id='anchor-1783057568'> <a id='Element'></a><span class='parrot-element-title parrot-class-title'>Element</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>     <span class='inuse-menu' style='border-radius: 10px;'>In use</span>         </span> 
+  </h3>
+  
+  
+
+      <p class='description'>
+      A meteorological, hydrological, oceanographic or climatological parameter that is defined in the data.met.no MET API system. These
+      can be measured, calculated, or statistical values. To retrieve the full list of all elements defined on data.met.no, see
+      https://data.met.no/elements/v0.jsonld; for a specific element id, use https://data.met.no/elements/{id}/v0.jsonld
+    </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#Element</code></span></p>
+    <hr>
+  
+        
+  </div>
+  
+    <div class='inuse' style='border-radius: 10px;'>
+  <h4>In use</h4>
+        
+        <table>
+            <tbody><tr>
+      <td>This class is used in</td>
+      <td>    
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#cfConvention'> cfConvention</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#description'> description</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#legacyMetNoConvention'> legacyMetNoConvention</a>
+      </span>
+            </td>
+      </tr>
+        
+      
+      </tbody></table>
+    </div>
+    
+    
+  </div>
+</div> 
+  </div>
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-2551f561d3e2404df03fcc61bc500bb2' about='https://data.met.no/schema#ElementResponse'>
+
+
+  <h3 id='anchor-867738943'> <a id='ElementResponse'></a><span class='parrot-element-title parrot-class-title'>ElementResponse</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>         <span class='otherinfo-menu' style='border-radius: 10px;'>Documentation</span>     </span> 
+  </h3>
+  
+  
+
+      <p class='description'>A response from the data.met.no MET API that contains metadata for a set of elements defined using the Element class.</p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#ElementResponse</code></span></p>
+    <hr>
+  
+    <table>
+      <tbody><tr>
+    <td>This class is a sub class of</td>
+    <td> 
+        <span class='parrot-element-ref parrot-class-ref' rel='rdfs:subClassOf' href='https://data.met.no/schema#Response'>             <a href='/@current.configuration.getString("schema.dir")#Response'> Response</a>
+      </span>
+        </td>
+    </tr>
+  
+    
+    
+    </tbody></table>
+        
+  </div>
+  
+    
+      
+
+<div class='otherinfo' style='border-radius: 10px;'>
+  <h4>Documentation</h4> 
+
+  
+            
+
+<!-- <h4>Related document</h4> -->
+<div class='related-document' style='display: block;'> 
+  <div class='block'>
+          
+                                <a href='https://data.met.no/schema#Element'><img class='related-document-icon' src='./The data.met.no MET API specification - Report generated by Parrot_files/hyperlink-icon.png' alt='hyperlink icon'></a>
+     
+     
+          
+          
+            <p class='relatedDocumentUrl'><a href='https://data.met.no/schema#Element'>https://data.met.no/schema#Element</a></p>
+     
+  </div>
+</div>
+
+      </div>
+    
+  </div>
+</div> 
+  </div>
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-d06f2ba75268abcaa0980f5492984585' about='https://data.met.no/schema#Error'>
+
+
+  <h3 id='anchor-1324567636'> <a id='Error'></a><span class='parrot-element-title parrot-class-title'>Error</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>     <span class='inuse-menu' style='border-radius: 10px;'>In use</span>         </span> 
+  </h3>
+  
+  
+
+      <p class='description'>
+      An error object returned by the data.met.no MET API. The error object contains a code, message and possible some
+      help text describing how to handle the error.
+    </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#Error</code></span></p>
+    <hr>
+  
+        
+  </div>
+  
+    <div class='inuse' style='border-radius: 10px;'>
+  <h4>In use</h4>
+        
+        <table>
+            <tbody><tr>
+      <td>This class is used in</td>
+      <td>    
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#code'> code</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#help'> error help</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#message'> message</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#reason'> reason</a>
+      </span>
+            </td>
+      </tr>
+        
+      
+      </tbody></table>
+    </div>
+    
+    
+  </div>
+</div> 
+  </div>
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-94753e2cdb11d4ea1d16d48d2eb5bf42' about='https://data.met.no/schema#ErrorResponse'>
+
+
+  <h3 id='anchor1475104525'> <a id='ErrorResponse'></a><span class='parrot-element-title parrot-class-title'>ErrorResponse</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>     <span class='inuse-menu' style='border-radius: 10px;'>In use</span>         </span> 
+  </h3>
+  
+  
+
+      <p class='description'>
+      An error response from the data.met.no MET API. All standard error responses from the MET API are of this class.
+    </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#ErrorResponse</code></span></p>
+    <hr>
+  
+    <table>
+      <tbody><tr>
+    <td>This class is a sub class of</td>
+    <td> 
+        <span class='parrot-element-ref parrot-undefined-ref' rel='rdfs:subClassOf' href='http://schema.org/CreativeWork'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=http%3A%2F%2Fschema.org%2FCreativeWork#anchor2068319045'>schema:CreativeWork</a>
+      </span>
+        </td>
+    </tr>
+  
+    
+    
+    </tbody></table>
+        
+  </div>
+  
+    <div class='inuse' style='border-radius: 10px;'>
+  <h4>In use</h4>
+        
+        <table>
+            <tbody><tr>
+      <td>This class is used in</td>
+      <td>    
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#error'> error</a>
+      </span>
+            </td>
+      </tr>
+        
+      
+      </tbody></table>
+    </div>
+    
+    
+  </div>
+</div> 
+  </div>
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-1fb57286b438cfbc23b0b0aa96223c0e' about='https://data.met.no/schema#Geometry'>
+
+
+  <h3 id='anchor-1880818452'> <a id='Geometry'></a><span class='parrot-element-title parrot-class-title'>Geometry</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>     <span class='inuse-menu' style='border-radius: 10px;'>In use</span>         </span> 
+  </h3>
+  
+  
+
+      <p class='description'>
+      A GeoJSON geometry object. In the case of the data.met.no MET API, a geometry must be one of POINT, LINESTRING,
+      or POLYGON.
+    </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#Geometry</code></span></p>
+    <hr>
+  
+    <table>
+  
+      <tbody><tr>
+    <td>This class is a super class of</td>
+    <td>    
+        <span class='parrot-element-ref parrot-class-ref' rev='rdfs:subClassOf' href='https://data.met.no/schema#LineString'>             <a href='/@current.configuration.getString("schema.dir")#LineString'> LineString</a>
+      </span>
+        <span class='parrot-element-ref parrot-class-ref' rev='rdfs:subClassOf' href='https://data.met.no/schema#Point'>              <a href='/@current.configuration.getString("schema.dir")#Point'> Point</a>
+      </span>
+        <span class='parrot-element-ref parrot-class-ref' rev='rdfs:subClassOf' href='https://data.met.no/schema#Polygon'>              <a href='/@current.configuration.getString("schema.dir")#Polygon'> Polygon</a>
+      </span>
+        </td>
+    </tr>
+    
+    
+    </tbody></table>
+        
+  </div>
+  
+    <div class='inuse' style='border-radius: 10px;'>
+  <h4>In use</h4>
+        
+        <table>
+            <tbody><tr>
+      <td>This class is used in</td>
+      <td>    
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#coordinates'> coordinate</a>
+      </span>
+            </td>
+      </tr>
+        
+      
+      </tbody></table>
+    </div>
+    
+    
+  </div>
+</div> 
+  </div>
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-eb6272fcb438ea27199097b8e610690' about='https://data.met.no/schema#LegacyMetNoConvention'>
+
+
+  <h3 id='anchor1040820393'> <a id='LegacyMetNoConvention'></a><span class='parrot-element-title parrot-class-title'>LegacyMetNoConventnion</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>     <span class='inuse-menu' style='border-radius: 10px;'>In use</span>         </span> 
+  </h3>
+  
+  
+
+      <p class='description'>
+      Description of the legacy MET Norway form of the Element.
+    </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#LegacyMetNoConvention</code></span></p>
+    <hr>
+  
+        
+  </div>
+  
+    <div class='inuse' style='border-radius: 10px;'>
+  <h4>In use</h4>
+        
+        <table>
+            <tbody><tr>
+      <td>This class is used in</td>
+      <td>    
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#category'> category</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#elemCode'> elemCode</a>
+      </span>
+            </td>
+      </tr>
+        
+          <tr>
+      <td>This class has individuals such as</td>
+      <td>    
+            <span class='parrot-element-ref parrot-individual-ref'>             <a href='/@current.configuration.getString("schema.dir")#legacyMetNoConvention'> legacyMetNoConvention</a>
+      </span>
+            </td>
+      </tr>
+      
+      </tbody></table>
+    </div>
+    
+    
+  </div>
+</div> 
+  </div>
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-4768f861b2c862cb04f7248e4b80884' about='https://data.met.no/schema#LineString'>
+
+
+  <h3 id='anchor323976927'> <a id='LineString'></a><span class='parrot-element-title parrot-class-title'>LineString</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span> 
+  </h3>
+  
+  
+
+      <p class='description'>
+      A set of coordinates that constitute a line. For a LineString, the coordinates property must be an array of at
+      least two positions.
+    </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#LineString</code></span></p>
+    <hr>
+  
+    <table>
+      <tbody><tr>
+    <td>This class is a sub class of</td>
+    <td> 
+        <span class='parrot-element-ref parrot-class-ref' rel='rdfs:subClassOf' href='https://data.met.no/schema#Geometry'>             <a href='/@current.configuration.getString("schema.dir")#Geometry'> Geometry</a>
+      </span>
+        </td>
+    </tr>
+  
+    
+    
+    </tbody></table>
+        
+  </div>
+  
+    
+    
+  </div>
+</div> 
+  </div>
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-417de1e314e19849151560eee619be0' about='https://data.met.no/schema#Location'>
+
+
+  <h3 id='anchor-1825795025'> <a id='Location'></a><span class='parrot-element-title parrot-class-title'>Location</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>     <span class='inuse-menu' style='border-radius: 10px;'>In use</span>         </span> 
+  </h3>
+  
+  
+
+      <p class='description'>
+      A geographical location or place , such as a city, town, lake, or range of hills. A location identifies
+      a point or an area on the Earth's surface using WGS84 coordinates. To retrieve metadata for a specific
+      location name, see https://data.met.no/locations/{id}/v0.jsonld
+    </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#Location</code></span></p>
+    <hr>
+  
+        
+  </div>
+  
+    <div class='inuse' style='border-radius: 10px;'>
+  <h4>In use</h4>
+        
+        <table>
+            <tbody><tr>
+      <td>This class is used in</td>
+      <td>    
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#feature'> feature</a>
+      </span>
+            </td>
+      </tr>
+        
+      
+      </tbody></table>
+    </div>
+    
+    
+  </div>
+</div> 
+  </div>
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-b4eac673e0b40e17e60e69383c3a5588' about='https://data.met.no/schema#LocationResponse'>
+
+
+  <h3 id='anchor1798372496'> <a id='LocationResponse'></a><span class='parrot-element-title parrot-class-title'>LocationResponse</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>         <span class='otherinfo-menu' style='border-radius: 10px;'>Documentation</span>     </span> 
+  </h3>
+  
+  
+
+      <p class='description'>
+      A response from the data.met.no MET API that contains metadata for a set of locations defined using the
+      Location class.
+    </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#LocationResponse</code></span></p>
+    <hr>
+  
+    <table>
+      <tbody><tr>
+    <td>This class is a sub class of</td>
+    <td> 
+        <span class='parrot-element-ref parrot-class-ref' rel='rdfs:subClassOf' href='https://data.met.no/schema#Response'>             <a href='/@current.configuration.getString("schema.dir")#Response'> Response</a>
+      </span>
+        </td>
+    </tr>
+  
+    
+    
+    </tbody></table>
+        
+  </div>
+  
+    
+      
+
+<div class='otherinfo' style='border-radius: 10px;'>
+  <h4>Documentation</h4> 
+
+  
+            
+
+<!-- <h4>Related document</h4> -->
+<div class='related-document' style='display: block;'> 
+  <div class='block'>
+          
+                                <a href='https://data.met.no/schema#Location'><img class='related-document-icon' src='./The data.met.no MET API specification - Report generated by Parrot_files/hyperlink-icon.png' alt='hyperlink icon'></a>
+     
+     
+          
+          
+            <p class='relatedDocumentUrl'><a href='https://data.met.no/schema#Location'>https://data.met.no/schema#Location</a></p>
+     
+  </div>
+</div>
+
+      </div>
+    
+  </div>
+</div> 
+  </div>
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-7282b29a8c4c2c833c03242876af8db4' about='https://data.met.no/schema#ObservationResponse'>
+
+
+  <h3 id='anchor-1330661007'> <a id='ObservationResponse'></a><span class='parrot-element-title parrot-class-title'>ObservationResponse</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span> 
+  </h3>
+  
+  
+
+      <p class='description'>
+      A response from the data.met.no MET API that contains a set of observation data of the Observation class. The
+      data property of an ObservationResponse contains a set of ObservationSeries.
+    </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#ObservationResponse</code></span></p>
+    <hr>
+  
+    <table>
+      <tbody><tr>
+    <td>This class is a sub class of</td>
+    <td> 
+        <span class='parrot-element-ref parrot-class-ref' rel='rdfs:subClassOf' href='https://data.met.no/schema#Response'>             <a href='/@current.configuration.getString("schema.dir")#Response'> Response</a>
+      </span>
+        </td>
+    </tr>
+  
+    
+    
+    </tbody></table>
+        
+  </div>
+  
+    
+    
+  </div>
+</div> 
+  </div>
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-222acd204da7dab395a84e87898af510' about='https://data.met.no/schema#ObservationSeries'>
+
+
+  <h3 id='anchor-531450905'> <a id='ObservationSeries'></a><span class='parrot-element-title parrot-class-title'>ObservationSeries</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>     <span class='inuse-menu' style='border-radius: 10px;'>In use</span>         </span> 
+  </h3>
+  
+  
+
+      <p class='description'>
+      A series of observations for the source specied by the sourceId property of the data. The observations property
+      contains a set of Observations (i.e., data for a given time and place).
+    </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#ObservationSeries</code></span></p>
+    <hr>
+  
+        
+  </div>
+  
+    <div class='inuse' style='border-radius: 10px;'>
+  <h4>In use</h4>
+        
+        <table>
+            <tbody><tr>
+      <td>This class is used in</td>
+      <td>    
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#observations'> observations</a>
+      </span>
+            </td>
+      </tr>
+        
+      
+      </tbody></table>
+    </div>
+    
+    
+  </div>
+</div> 
+  </div>
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-150bfb8d7d2c63b607997f9f5d91d570' about='https://data.met.no/schema#ObservationTimeSeriesResponse'>
+
+
+  <h3 id='anchor-1633875979'> <a id='ObservationTimeSeriesResponse'></a><span class='parrot-element-title parrot-class-title'>ObservationTimeSeriesResponse</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span> 
+  </h3>
+  
+  
+
+      <p class='description'>
+      A response from the data.met.no MET API that contains a set of observation time series information of the 
+      ObservationTimeSeries class.
+    </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#ObservationTimeSeriesResponse</code></span></p>
+    <hr>
+  
+    <table>
+      <tbody><tr>
+    <td>This class is a sub class of</td>
+    <td> 
+        <span class='parrot-element-ref parrot-class-ref' rel='rdfs:subClassOf' href='https://data.met.no/schema#Response'>             <a href='/@current.configuration.getString("schema.dir")#Response'> Response</a>
+      </span>
+        </td>
+    </tr>
+  
+    
+    
+    </tbody></table>
+        
+  </div>
+  
+    
+    
+  </div>
+</div> 
+  </div>
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-3e2696ecdf3ddf50a369a4719066e734' about='https://data.met.no/schema#Point'>
+
+
+  <h3 id='anchor-1314506956'> <a id='Point'></a><span class='parrot-element-title parrot-class-title'>Point</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span> 
+  </h3>
+  
+  
+
+      <p class='description'>
+      A single point. For a Point, the coordinates must be a single position.
+    </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#Point</code></span></p>
+    <hr>
+  
+    <table>
+      <tbody><tr>
+    <td>This class is a sub class of</td>
+    <td> 
+        <span class='parrot-element-ref parrot-class-ref' rel='rdfs:subClassOf' href='https://data.met.no/schema#Geometry'>             <a href='/@current.configuration.getString("schema.dir")#Geometry'> Geometry</a>
+      </span>
+        </td>
+    </tr>
+  
+    
+    
+    </tbody></table>
+        
+  </div>
+  
+    
+    
+  </div>
+</div> 
+  </div>
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-53c9b74ebac1db1c2395962b9c13b33a' about='https://data.met.no/schema#Polygon'>
+
+
+  <h3 id='anchor-517740130'> <a id='Polygon'></a><span class='parrot-element-title parrot-class-title'>Polygon</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span> 
+  </h3>
+  
+  
+
+      <p class='description'>
+      A set of coordinates that define a polygon. For a Polygon, the coordinates must be an array of closed LineString
+      coordinates.
+    </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#Polygon</code></span></p>
+    <hr>
+  
+    <table>
+      <tbody><tr>
+    <td>This class is a sub class of</td>
+    <td> 
+        <span class='parrot-element-ref parrot-class-ref' rel='rdfs:subClassOf' href='https://data.met.no/schema#Geometry'>             <a href='/@current.configuration.getString("schema.dir")#Geometry'> Geometry</a>
+      </span>
+        </td>
+    </tr>
+  
+    
+    
+    </tbody></table>
+        
+  </div>
+  
+    
+    
+  </div>
+</div> 
+  </div>
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-ec8c51f1bf2d1dc69e7f011b759ab3e4' about='https://data.met.no/schema#Response'>
+
+
+  <h3 id='anchor227805371'> <a id='Response'></a><span class='parrot-element-title parrot-class-title'>Response</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>     <span class='inuse-menu' style='border-radius: 10px;'>In use</span>         </span> 
+  </h3>
+  
+  
+
+      <p class='description'>
+      A response from the data.met.no MET API. All data responses from the MET API inherit a common set of properties.
+    </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#Response</code></span></p>
+    <hr>
+  
+    <table>
+      <tbody><tr>
+    <td>This class is a sub class of</td>
+    <td> 
+        <span class='parrot-element-ref parrot-undefined-ref' rel='rdfs:subClassOf' href='http://schema.org/CreativeWork'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=http%3A%2F%2Fschema.org%2FCreativeWork#anchor2068319045'>schema:CreativeWork</a>
+      </span>
+        </td>
+    </tr>
+  
+      <tr>
+    <td>This class is a super class of</td>
+    <td>    
+        <span class='parrot-element-ref parrot-class-ref' rev='rdfs:subClassOf' href='https://data.met.no/schema#ElementResponse'>              <a href='/@current.configuration.getString("schema.dir")#ElementResponse'> ElementResponse</a>
+      </span>
+        <span class='parrot-element-ref parrot-class-ref' rev='rdfs:subClassOf' href='https://data.met.no/schema#LocationResponse'>             <a href='/@current.configuration.getString("schema.dir")#LocationResponse'> LocationResponse</a>
+      </span>
+        <span class='parrot-element-ref parrot-class-ref' rev='rdfs:subClassOf' href='https://data.met.no/schema#ObservationResponse'>              <a href='/@current.configuration.getString("schema.dir")#ObservationResponse'> ObservationResponse</a>
+      </span>
+        <span class='parrot-element-ref parrot-class-ref' rev='rdfs:subClassOf' href='https://data.met.no/schema#ObservationTimeSeriesResponse'>              <a href='/@current.configuration.getString("schema.dir")#ObservationTimeSeriesResponse'> ObservationTimeSeriesResponse</a>
+      </span>
+        <span class='parrot-element-ref parrot-class-ref' rev='rdfs:subClassOf' href='https://data.met.no/schema#SourceResponse'>             <a href='/@current.configuration.getString("schema.dir")#SourceResponse'> SourceResponse</a>
+      </span>
+        </td>
+    </tr>
+    
+    
+    </tbody></table>
+        
+  </div>
+  
+    <div class='inuse' style='border-radius: 10px;'>
+  <h4>In use</h4>
+        
+        <table>
+            <tbody><tr>
+      <td>This class is used in</td>
+      <td>    
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#apiVersion'> apiVersion</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#createdAt'> createdAt</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#currentItemCount'> currentItemCount</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#currentLink'> currentLink</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#itemsPerPage'> itemsPerPage</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#license'> license</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#nextLink'> nextLink</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#offset'> offset</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#previousLink'> previousLink</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#queryTime'> queryTime</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#totalItemCount'> totalItemCount</a>
+      </span>
+            </td>
+      </tr>
+        
+      
+      </tbody></table>
+    </div>
+    
+    
+  </div>
+</div> 
+  </div>
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-cd0472b7829aa132823527ca614d7155' about='https://data.met.no/schema#SensorPlatform'>
+
+
+  <h3 id='anchor-1300575609'> <a id='SensorPlatform'></a><span class='parrot-element-title parrot-class-title'>SensorPlatform</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>     <span class='inuse-menu' style='border-radius: 10px;'>In use</span>         </span> 
+  </h3>
+  
+  
+
+      <p class='description'>
+      An Entity to which other Entities can be attached - particuarly Sensors but also including other Platforms.
+      For example, a post might act as the Platform, a bouy might act as a Platform, or a fish might act as a
+      Platform for an attached sensor. On the data.met.no MET API, the most common form of platform is a
+      meteorological observation station.
+    </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#SensorPlatform</code></span></p>
+    <hr>
+  
+    <table>
+      <tbody><tr>
+    <td>This class is a sub class of</td>
+    <td> 
+        <span class='parrot-element-ref parrot-class-ref' rel='rdfs:subClassOf' href='https://data.met.no/schema#Source'>             <a href='/@current.configuration.getString("schema.dir")#Source'> Source</a>
+      </span>
+        </td>
+    </tr>
+  
+    
+    
+    </tbody></table>
+        
+  </div>
+  
+    <div class='inuse' style='border-radius: 10px;'>
+  <h4>In use</h4>
+        
+        <table>
+            <tbody><tr>
+      <td>This class is used in</td>
+      <td>    
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#wmoIdentifier'> wmoIdentifier</a>
+      </span>
+            </td>
+      </tr>
+        
+      
+      </tbody></table>
+    </div>
+    
+    
+  </div>
+</div> 
+  </div>
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-a5c5a5e1e8cce7741b6b65976dbeeb99' about='https://data.met.no/schema#Source'>
+
+
+  <h3 id='anchor-2008762539'> <a id='Source'></a><span class='parrot-element-title parrot-class-title'>Source</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>     <span class='inuse-menu' style='border-radius: 10px;'>In use</span>     <span class='otherinfo-menu' style='border-radius: 10px;'>Documentation</span>     </span> 
+  </h3>
+  
+  
+
+      <p class='description'>
+      An entity which is a source of data values in the data.met.no MET API. A source can many different things;
+      for example, a Sensorplatform such as a meteorological observation station, a Person, or an Algorithm such as
+      a forecast or climate model. To retrieve metadata for specific source identifiers, see 
+      https://data.met.no/sources/{id}/v0.jsonld
+    </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#Source</code></span></p>
+    <hr>
+  
+    <table>
+  
+      <tbody><tr>
+    <td>This class is a super class of</td>
+    <td>    
+        <span class='parrot-element-ref parrot-class-ref' rev='rdfs:subClassOf' href='https://data.met.no/schema#SensorPlatform'>             <a href='/@current.configuration.getString("schema.dir")#SensorPlatform'> SensorPlatform</a>
+      </span>
+        </td>
+    </tr>
+    
+    
+    </tbody></table>
+        
+  </div>
+  
+    <div class='inuse' style='border-radius: 10px;'>
+  <h4>In use</h4>
+        
+        <table>
+            <tbody><tr>
+      <td>This class is used in</td>
+      <td>    
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#country'> country</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#level'> level</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#levelType'> levelType</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#levelUnit'> levelUnit</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#validTo'> valid time</a>
+      </span>
+            <span class='parrot-element-ref parrot-property-ref'>             <a href='/@current.configuration.getString("schema.dir")#validFrom'> validFrom</a>
+      </span>
+            </td>
+      </tr>
+        
+      
+      </tbody></table>
+    </div>
+    
+      
+
+<div class='otherinfo' style='border-radius: 10px;'>
+  <h4>Documentation</h4> 
+
+  
+            
+
+<!-- <h4>Related document</h4> -->
+<div class='related-document' style='display: block;'> 
+  <div class='block'>
+          
+                                <a href='https://data.met.no/schema#SensorPlatform'><img class='related-document-icon' src='./The data.met.no MET API specification - Report generated by Parrot_files/hyperlink-icon.png' alt='hyperlink icon'></a>
+     
+     
+          
+          
+            <p class='relatedDocumentUrl'><a href='https://data.met.no/schema#SensorPlatform'>https://data.met.no/schema#SensorPlatform</a></p>
+     
+  </div>
+</div>
+
+      </div>
+    
+  </div>
+</div> 
+  </div>
+      <div class='details classes' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-28ec50e24d46722f6a7bd5b3036d2bf9' about='https://data.met.no/schema#SourceResponse'>
+
+
+  <h3 id='anchor631151030'> <a id='SourceResponse'></a><span class='parrot-element-title parrot-class-title'>SourceResponse</span>
+
+        <span rel='rdf:type' href='http://www.w3.org/2000/01/rdf-schema#Class'>(RDFS Class)</span>
+  
+    
+  
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>         <span class='otherinfo-menu' style='border-radius: 10px;'>Documentation</span>     </span> 
+  </h3>
+  
+  
+
+      <p class='description'>A response from the data.met.no MET API that contains data for a set of sources defined using the Source class.</p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+      <p>The <strong>URI</strong> of this class is <span><code>https://data.met.no/schema#SourceResponse</code></span></p>
+    <hr>
+  
+    <table>
+      <tbody><tr>
+    <td>This class is a sub class of</td>
+    <td> 
+        <span class='parrot-element-ref parrot-class-ref' rel='rdfs:subClassOf' href='https://data.met.no/schema#Response'>             <a href='/@current.configuration.getString("schema.dir")#Response'> Response</a>
+      </span>
+        </td>
+    </tr>
+  
+    
+    
+    </tbody></table>
+        
+  </div>
+  
+    
+      
+
+<div class='otherinfo' style='border-radius: 10px;'>
+  <h4>Documentation</h4> 
+
+  
+            
+
+<!-- <h4>Related document</h4> -->
+<div class='related-document' style='display: block;'> 
+  <div class='block'>
+          
+                                <a href='https://data.met.no/schema#Source'><img class='related-document-icon' src='./The data.met.no MET API specification - Report generated by Parrot_files/hyperlink-icon.png' alt='hyperlink icon'></a>
+     
+     
+          
+          
+            <p class='relatedDocumentUrl'><a href='https://data.met.no/schema#Source'>https://data.met.no/schema#Source</a></p>
+     
+  </div>
+</div>
+
+      </div>
+    
+  </div>
+</div> 
+  </div>
+  
+  <div class='toc' id='properties' style='border-radius: 10px;'>
+  <h2>Properties</h2>
+  <p>
+          <a href='/@current.configuration.getString("schema.dir")#anchor686618360'>apiVersion</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor553995608'>category</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor1036233204'>cellMethods</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor2058313486'>cfConvention</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor2036372423'>code</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor1585365285'>codeTable</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-1142850561'>coordinate</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-827042790'>country</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-973478785'>createdAt</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor1760393629'>currentItemCount</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor1881194263'>currentLink</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor2036389252'>data</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-444348928'>description</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor494132854'>elemCode</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-1830367109'>elementId</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-1295014964'>error</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor2036512027'>error help</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor1530886010'>feature</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-741660974'>fromDate</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-1945462580'>geo</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-1235868235'>id</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor1140073542'>itemsPerPage</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-785884983'>legacyMetNoConvention</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-1288934072'>level</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor1066906658'>levelType</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor1066925676'>levelUnit</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-1618116411'>license</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-829948789'>message</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor2036686949'>name</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor1927646695'>nextLink</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor529148065'>observations</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-1215903827'>offset</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-86145429'>previousLink</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor719883664'>qualitycode</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor916239097'>queryTime</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-1131088546'>reason</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-785267332'>referenceTime</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-2045155600'>sourceId</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-695967294'>standardName</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-1088605428'>status</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-1065476125'>toDate</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor1990050546'>totalItemCount</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor2036907870'>unit</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-1553627109'>valid time</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor1612526858'>validFrom</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-1279827147'>value</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor-1019936708'>values</a>
+  ,           <a href='/@current.configuration.getString("schema.dir")#anchor1020581542'>wmoIdentifier</a>
+        </p>
+  </div>
+  
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-10128a075baa7e3452681de41747506a' about='https://data.met.no/schema#apiVersion'>
+
+
+  <h3 id='anchor686618360'> <a id='apiVersion'></a><span class='parrot-element-title parrot-property-title'>apiVersion</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>The version of the data.met.no MET API that served this response.</p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#apiVersion</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Response'>             <a href='/@current.configuration.getString("schema.dir")#Response'> Response</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-ff1479045359425bc746075e93a69558' about='https://data.met.no/schema#category'>
+
+
+  <h3 id='anchor553995608'> <a id='category'></a><span class='parrot-element-title parrot-property-title'>category</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The category of the Element object in legacy systems at MET Norway.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#category</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#LegacyMetNoConvention'>              <a href='/@current.configuration.getString("schema.dir")#LegacyMetNoConvention'> LegacyMetNoConventnion</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-428d782071dbfb0819c1ebc42879c9af' about='https://data.met.no/schema#cellMethods'>
+
+
+  <h3 id='anchor1036233204'> <a id='cellMethods'></a><span class='parrot-element-title parrot-property-title'>cellMethods</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The methods applied to the data value comprising a list of blank-separated words of the form 'name: method'. Each
+    'name: method' pair indicates that for an axis identified by name, the values in the object have been determined
+    or derived by the specified method.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#cellMethods</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#CfConvention'>             <a href='/@current.configuration.getString("schema.dir")#CfConvention'> CfConvention</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-db8cb71478a6b80c3da88eaca3a53e1e' about='https://data.met.no/schema#cfConvention'>
+
+
+  <h3 id='anchor2058313486'> <a id='cfConvention'></a><span class='parrot-element-title parrot-property-title'>cfConvention</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The Element as it would be specified using the CF convention.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#cfConvention</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Element'>              <a href='/@current.configuration.getString("schema.dir")#Element'> Element</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-17de0cb2ff7fc06d2af701e8722acab8' about='https://data.met.no/schema#code'>
+
+
+  <h3 id='anchor2036372423'> <a id='code'></a><span class='parrot-element-title parrot-property-title'>code</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    Represents the code for this error. This property value will usually represent the HTTP response code. If there
+    are multiple errors, errorCode will be the code for the first error.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#code</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Error'>              <a href='/@current.configuration.getString("schema.dir")#Error'> Error</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-3aa16afe70bea92c7c678e1281d9a677' about='https://data.met.no/schema#codeTable'>
+
+
+  <h3 id='anchor1585365285'> <a id='codeTable'></a><span class='parrot-element-title parrot-property-title'>codeTable</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The reference to code table used by the data value, if the unit is a code.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#codeTable</code></span></p>
+     
+    
+        <table>
+    
+ 
+      
+
+          <tbody><tr>
+      <td>The complex domain of this property is the <strong>union of</strong></td>
+    <td>
+            <span class='parrot-element-ref parrot-class-ref'>              <a href='/@current.configuration.getString("schema.dir")#Element'> Element</a>
+      </span>
+            <span class='parrot-element-ref parrot-class-ref'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=https%3A%2F%2Fdata.met.no%2Fschema%23ObservedElement#anchor1882370680'>https://data.met.no/schema#ObservedElement</a>
+      </span>
+          </td>
+      </tr>
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-939b18bf50e6f23d4c3314e2b22833fc' about='https://data.met.no/schema#coordinates'>
+
+
+  <h3 id='anchor-1142850561'> <a id='coordinates'></a><span class='parrot-element-title parrot-property-title'>coordinate</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    An array containing the coordinates that define the given geometry. This may be an array containing x and y
+    coordinates, or an array of arrays of such. The notation follows the GeoJSON open standard format for representing
+    simple geographic features.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#coordinates</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Geometry'>             <a href='/@current.configuration.getString("schema.dir")#Geometry'> Geometry</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-750b34f11aaf07d576043e74c451eb16' about='https://data.met.no/schema#country'>
+
+
+  <h3 id='anchor-827042790'> <a id='country'></a><span class='parrot-element-title parrot-property-title'>country</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The country to which the object is affiliated. 
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#country</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Source'>             <a href='/@current.configuration.getString("schema.dir")#Source'> Source</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-9da2192aa477c2d05a5c05b31b64a1ff' about='https://data.met.no/schema#createdAt'>
+
+
+  <h3 id='anchor-973478785'> <a id='createdAt'></a><span class='parrot-element-title parrot-property-title'>createdAt</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>The time at which this document was created.</p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#createdAt</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Response'>             <a href='/@current.configuration.getString("schema.dir")#Response'> Response</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+          <tr>
+             <td>The range of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:range' href='http://schema.org/DateTime'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=http%3A%2F%2Fschema.org%2FDateTime#anchor283169408'>schema:DateTime</a>
+      </span>
+          </td>
+      </tr>
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-7a6d04b20a7aeb0aa7a203d41693b8f9' about='https://data.met.no/schema#currentItemCount'>
+
+
+  <h3 id='anchor1760393629'> <a id='currentItemCount'></a><span class='parrot-element-title parrot-property-title'>currentItemCount</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The current number of items in this result set. This will generally be equivalent to data.length, and is
+    provided as a convenience property. For example, suppose a developer requests a set of items, with a limit of 50
+    items per page. If the total set has 92 items in total, then the first page will have both currentItemCount and
+    itemsPerPage equal to 50; for the second page, itemsPerPage will still be 50, but currentItemCount will be
+    42.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#currentItemCount</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Response'>             <a href='/@current.configuration.getString("schema.dir")#Response'> Response</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-5253e0ec3db3623e8fe9cd5befe6a23f' about='https://data.met.no/schema#currentLink'>
+
+
+  <h3 id='anchor1881194263'> <a id='currentLink'></a><span class='parrot-element-title parrot-property-title'>currentLink</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The current link indicates the URI that was used to generate the current API response. It is primarily useful
+    for debugging purposes. 
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#currentLink</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Response'>             <a href='/@current.configuration.getString("schema.dir")#Response'> Response</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-af56b5f877cf1be353d12c3a94f8c1bb' about='https://data.met.no/schema#data'>
+
+
+  <h3 id='anchor2036389252'> <a id='data'></a><span class='parrot-element-title parrot-property-title'>data</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    Container for all the data returned by a response. The specific type of item returned depends on the class of the
+    response.    
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#data</code></span></p>
+     
+    
+        <table>
+    
+ 
+      
+
+          <tbody><tr>
+      <td>The complex domain of this property is the <strong>union of</strong></td>
+    <td>
+            <span class='parrot-element-ref parrot-class-ref'>              <a href='/@current.configuration.getString("schema.dir")#ElementResponse'> ElementResponse</a>
+      </span>
+            <span class='parrot-element-ref parrot-class-ref'>              <a href='/@current.configuration.getString("schema.dir")#LocationResponse'> LocationResponse</a>
+      </span>
+            <span class='parrot-element-ref parrot-class-ref'>              <a href='/@current.configuration.getString("schema.dir")#ObservationResponse'> ObservationResponse</a>
+      </span>
+            <span class='parrot-element-ref parrot-class-ref'>              <a href='/@current.configuration.getString("schema.dir")#ObservationTimeSeriesResponse'> ObservationTimeSeriesResponse</a>
+      </span>
+            <span class='parrot-element-ref parrot-class-ref'>              <a href='/@current.configuration.getString("schema.dir")#SourceResponse'> SourceResponse</a>
+      </span>
+          </td>
+      </tr>
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-f05c6e74b828dd78066b62a8fbc8ed7a' about='https://data.met.no/schema#description'>
+
+
+  <h3 id='anchor-444348928'> <a id='description'></a><span class='parrot-element-title parrot-property-title'>description</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    A description of the object.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#description</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Element'>              <a href='/@current.configuration.getString("schema.dir")#Element'> Element</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-9527d25eece9fef956e759c4908930ed' about='https://data.met.no/schema#elemCode'>
+
+
+  <h3 id='anchor494132854'> <a id='elemCode'></a><span class='parrot-element-title parrot-property-title'>elemCode</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The element code of the Element object in legacy systems at MET Norway.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#elemCode</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#LegacyMetNoConvention'>              <a href='/@current.configuration.getString("schema.dir")#LegacyMetNoConvention'> LegacyMetNoConventnion</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-8d42408a014f2b8912d6366d1e346163' about='https://data.met.no/schema#elementId'>
+
+
+  <h3 id='anchor-1830367109'> <a id='elementId'></a><span class='parrot-element-title parrot-property-title'>elementId</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>         <span class='otherinfo-menu' style='border-radius: 10px;'>Documentation</span>     </span>   </h3>
+
+  
+
+      <p class='description'>
+    The data.met.no MET API id of the element being measured/observed/calculated.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#elementId</code></span></p>
+     
+    
+        <table>
+    
+ 
+      
+
+          <tbody><tr>
+      <td>The complex domain of this property is the <strong>union of</strong></td>
+    <td>
+            <span class='parrot-element-ref parrot-class-ref'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=https%3A%2F%2Fdata.met.no%2Fschema%23ObservationTimeSeries#anchor-1747397484'>https://data.met.no/schema#ObservationTimeSeries</a>
+      </span>
+            <span class='parrot-element-ref parrot-class-ref'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=https%3A%2F%2Fdata.met.no%2Fschema%23ObservedElement#anchor1882370680'>https://data.met.no/schema#ObservedElement</a>
+      </span>
+          </td>
+      </tr>
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+      
+
+<div class='otherinfo' style='border-radius: 10px;'>
+  <h4>Documentation</h4> 
+
+  
+            
+
+<!-- <h4>Related document</h4> -->
+<div class='related-document' style='display: block;'> 
+  <div class='block'>
+          
+                                <a href='https://data.met.no/schema#Element'><img class='related-document-icon' src='./The data.met.no MET API specification - Report generated by Parrot_files/hyperlink-icon.png' alt='hyperlink icon'></a>
+     
+     
+          
+          
+            <p class='relatedDocumentUrl'><a href='https://data.met.no/schema#Element'>https://data.met.no/schema#Element</a></p>
+     
+  </div>
+</div>
+
+      </div>
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-b0f6e2cef27da51f75679e4719b0b366' about='https://data.met.no/schema#error'>
+
+
+  <h3 id='anchor-1295014964'> <a id='error'></a><span class='parrot-element-title parrot-property-title'>error</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>         <span class='otherinfo-menu' style='border-radius: 10px;'>Documentation</span>     </span>   </h3>
+
+  
+
+      <p class='description'>
+    The error object that describes the error that has created this response.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#error</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#ErrorResponse'>              <a href='/@current.configuration.getString("schema.dir")#ErrorResponse'> ErrorResponse</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+      
+
+<div class='otherinfo' style='border-radius: 10px;'>
+  <h4>Documentation</h4> 
+
+  
+            
+
+<!-- <h4>Related document</h4> -->
+<div class='related-document' style='display: block;'> 
+  <div class='block'>
+          
+                                <a href='https://data.met.no/schema#Error'><img class='related-document-icon' src='./The data.met.no MET API specification - Report generated by Parrot_files/hyperlink-icon.png' alt='hyperlink icon'></a>
+     
+     
+          
+          
+            <p class='relatedDocumentUrl'><a href='https://data.met.no/schema#Error'>https://data.met.no/schema#Error</a></p>
+     
+  </div>
+</div>
+
+      </div>
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-a71e9d152348936603e9d7acfd8bb8fd' about='https://data.met.no/schema#help'>
+
+
+  <h3 id='anchor2036512027'> <a id='help'></a><span class='parrot-element-title parrot-property-title'>error help</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    A human readable optional text that describes how the developer may fix the problem.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#help</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Error'>              <a href='/@current.configuration.getString("schema.dir")#Error'> Error</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-eb407b0fbd627522d48113e131236034' about='https://data.met.no/schema#feature'>
+
+
+  <h3 id='anchor1530886010'> <a id='feature'></a><span class='parrot-element-title parrot-property-title'>feature</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The type of the named geographic feature described by a Location object.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#feature</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Location'>             <a href='/@current.configuration.getString("schema.dir")#Location'> Location</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-36ef29504c106d587064510fdcabebc4' about='https://data.met.no/schema#fromDate'>
+
+
+  <h3 id='anchor-741660974'> <a id='fromDate'></a><span class='parrot-element-title parrot-property-title'>fromDate</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The date from which data exists in this time series (in ISO-8601 format).
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#fromDate</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#ObservationTimeSeries'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=https%3A%2F%2Fdata.met.no%2Fschema%23ObservationTimeSeries#anchor-1747397484'>https://data.met.no/schema#ObservationTimeSeries</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+          <tr>
+             <td>The range of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:range' href='http://schema.org/Date'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=http%3A%2F%2Fschema.org%2FDate#anchor-1756306029'>schema:Date</a>
+      </span>
+          </td>
+      </tr>
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-5ce01ed902aa82c7079c82b97b64220d' about='https://data.met.no/schema#geometry'>
+
+
+  <h3 id='anchor-1945462580'> <a id='geometry'></a><span class='parrot-element-title parrot-property-title'>geo</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>The spatial location of the object, described using a GeoJson geometry object in WGS84.</p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#geometry</code></span></p>
+     
+    
+        <table>
+    
+ 
+      
+
+          <tbody><tr>
+      <td>The complex domain of this property is the <strong>union of</strong></td>
+    <td>
+            <span class='parrot-element-ref parrot-class-ref'>              <a href='/@current.configuration.getString("schema.dir")#Location'> Location</a>
+      </span>
+            <span class='parrot-element-ref parrot-class-ref'>              <a href='/@current.configuration.getString("schema.dir")#Source'> Source</a>
+      </span>
+          </td>
+      </tr>
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-9e10d85e51843f8a90bc7468571d9861' about='https://data.met.no/schema#id'>
+
+
+  <h3 id='anchor-1235868235'> <a id='id'></a><span class='parrot-element-title parrot-property-title'>id</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>         <span class='otherinfo-menu' style='border-radius: 10px;'>Documentation</span>     </span>   </h3>
+
+  
+
+      <p class='description'>
+    The identifier of the object defined by this data structure. 
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#id</code></span></p>
+     
+    
+        <table>
+    
+ 
+      
+
+          <tbody><tr>
+      <td>The complex domain of this property is the <strong>union of</strong></td>
+    <td>
+            <span class='parrot-element-ref parrot-class-ref'>              <a href='/@current.configuration.getString("schema.dir")#Element'> Element</a>
+      </span>
+            <span class='parrot-element-ref parrot-class-ref'>              <a href='/@current.configuration.getString("schema.dir")#Location'> Location</a>
+      </span>
+            <span class='parrot-element-ref parrot-class-ref'>              <a href='/@current.configuration.getString("schema.dir")#Source'> Source</a>
+      </span>
+          </td>
+      </tr>
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+      
+
+<div class='otherinfo' style='border-radius: 10px;'>
+  <h4>Documentation</h4> 
+
+  
+            
+
+<!-- <h4>Related document</h4> -->
+<div class='related-document' style='display: block;'> 
+  <div class='block'>
+          
+                                <a href='https://data.met.no/schema#locationId'><img class='related-document-icon' src='./The data.met.no MET API specification - Report generated by Parrot_files/hyperlink-icon.png' alt='hyperlink icon'></a>
+     
+     
+          
+          
+            <p class='relatedDocumentUrl'><a href='https://data.met.no/schema#locationId'>https://data.met.no/schema#locationId</a></p>
+     
+  </div>
+</div>
+
+          
+
+<!-- <h4>Related document</h4> -->
+<div class='related-document' style='display: block;'> 
+  <div class='block'>
+          
+                                <a href='https://data.met.no/schema#sourceId'><img class='related-document-icon' src='./The data.met.no MET API specification - Report generated by Parrot_files/hyperlink-icon.png' alt='hyperlink icon'></a>
+     
+     
+          
+          
+            <p class='relatedDocumentUrl'><a href='https://data.met.no/schema#sourceId'>https://data.met.no/schema#sourceId</a></p>
+     
+  </div>
+</div>
+
+          
+
+<!-- <h4>Related document</h4> -->
+<div class='related-document' style='display: block;'> 
+  <div class='block'>
+          
+                                <a href='https://data.met.no/schema#elementId'><img class='related-document-icon' src='./The data.met.no MET API specification - Report generated by Parrot_files/hyperlink-icon.png' alt='hyperlink icon'></a>
+     
+     
+          
+          
+            <p class='relatedDocumentUrl'><a href='https://data.met.no/schema#elementId'>https://data.met.no/schema#elementId</a></p>
+     
+  </div>
+</div>
+
+      </div>
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-676d17da0a43141b085200316dc689e1' about='https://data.met.no/schema#itemsPerPage'>
+
+
+  <h3 id='anchor1140073542'> <a id='itemsPerPage'></a><span class='parrot-element-title parrot-property-title'>itemsPerPage</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The number of items in a result set. This is not necessarily the size of the data.items array; if we are viewing
+    the last page of items, the size of data.items may be less than itemsPerPage. However the size of data.items
+    should not exceed itemsPerPage.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#itemsPerPage</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Response'>             <a href='/@current.configuration.getString("schema.dir")#Response'> Response</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-b1653b52776beae3208a6a3b86024963' about='https://data.met.no/schema#legacyMetNoConvention'>
+
+
+  <h3 id='anchor-785884983'> <a id='legacyMetNoConvention'></a><span class='parrot-element-title parrot-property-title'>legacyMetNoConvention</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The legacy form of the Element, as used in legacy systems at MET Norway.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#legacyMetNoConvention</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Element'>              <a href='/@current.configuration.getString("schema.dir")#Element'> Element</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-5744efb870558ba4d1fb3df964793c6' about='https://data.met.no/schema#level'>
+
+
+  <h3 id='anchor-1288934072'> <a id='level'></a><span class='parrot-element-title parrot-property-title'>level</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>         <span class='otherinfo-menu' style='border-radius: 10px;'>Documentation</span>     </span>   </h3>
+
+  
+
+      <p class='description'>
+    The spatial level of the object. The type of the level (height, depth, etc) is given by the levelType property.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#level</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Source'>             <a href='/@current.configuration.getString("schema.dir")#Source'> Source</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+      
+
+<div class='otherinfo' style='border-radius: 10px;'>
+  <h4>Documentation</h4> 
+
+  
+            
+
+<!-- <h4>Related document</h4> -->
+<div class='related-document' style='display: block;'> 
+  <div class='block'>
+          
+                                <a href='https://data.met.no/schema#levelUnit'><img class='related-document-icon' src='./The data.met.no MET API specification - Report generated by Parrot_files/hyperlink-icon.png' alt='hyperlink icon'></a>
+     
+     
+          
+          
+            <p class='relatedDocumentUrl'><a href='https://data.met.no/schema#levelUnit'>https://data.met.no/schema#levelUnit</a></p>
+     
+  </div>
+</div>
+
+          
+
+<!-- <h4>Related document</h4> -->
+<div class='related-document' style='display: block;'> 
+  <div class='block'>
+          
+                                <a href='https://data.met.no/schema#levelType'><img class='related-document-icon' src='./The data.met.no MET API specification - Report generated by Parrot_files/hyperlink-icon.png' alt='hyperlink icon'></a>
+     
+     
+          
+          
+            <p class='relatedDocumentUrl'><a href='https://data.met.no/schema#levelType'>https://data.met.no/schema#levelType</a></p>
+     
+  </div>
+</div>
+
+      </div>
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-db02623d36f35ad2a4cf0b2278b983d1' about='https://data.met.no/schema#levelType'>
+
+
+  <h3 id='anchor1066906658'> <a id='levelType'></a><span class='parrot-element-title parrot-property-title'>levelType</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>         <span class='otherinfo-menu' style='border-radius: 10px;'>Documentation</span>     </span>   </h3>
+
+  
+
+      <p class='description'>
+    The type of the level of the object, described as a data.met.no Element.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#levelType</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Source'>             <a href='/@current.configuration.getString("schema.dir")#Source'> Source</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+      
+
+<div class='otherinfo' style='border-radius: 10px;'>
+  <h4>Documentation</h4> 
+
+  
+            
+
+<!-- <h4>Related document</h4> -->
+<div class='related-document' style='display: block;'> 
+  <div class='block'>
+          
+                                <a href='https://data.met.no/schema#Element'><img class='related-document-icon' src='./The data.met.no MET API specification - Report generated by Parrot_files/hyperlink-icon.png' alt='hyperlink icon'></a>
+     
+     
+          
+          
+            <p class='relatedDocumentUrl'><a href='https://data.met.no/schema#Element'>https://data.met.no/schema#Element</a></p>
+     
+  </div>
+</div>
+
+      </div>
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-d09f86fd61472f70d8f407b8e2fc9488' about='https://data.met.no/schema#levelUnit'>
+
+
+  <h3 id='anchor1066925676'> <a id='levelUnit'></a><span class='parrot-element-title parrot-property-title'>levelUnit</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The unit of measure of the level of the object.'
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#levelUnit</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Source'>             <a href='/@current.configuration.getString("schema.dir")#Source'> Source</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-fc4f79b83d83588408012f9863089acc' about='https://data.met.no/schema#license'>
+
+
+  <h3 id='anchor-1618116411'> <a id='license'></a><span class='parrot-element-title parrot-property-title'>license</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>The license that applies to this content, typically indicated by URL.</p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#license</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Response'>             <a href='/@current.configuration.getString("schema.dir")#Response'> Response</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-dfb5bd7eb6bc1c3a891863cafe067e27' about='https://data.met.no/schema#message'>
+
+
+  <h3 id='anchor-829948789'> <a id='message'></a><span class='parrot-element-title parrot-property-title'>message</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    A human readable message that describes the error. If there are multiple errors, this will be the message
+    pertaining to the first error.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#message</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Error'>              <a href='/@current.configuration.getString("schema.dir")#Error'> Error</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-e9b205245f9f760f36cd1bf9cfb6fd4f' about='https://data.met.no/schema#name'>
+
+
+  <h3 id='anchor2036686949'> <a id='name'></a><span class='parrot-element-title parrot-property-title'>name</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The name of the object.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#name</code></span></p>
+     
+    
+        <table>
+    
+ 
+      
+
+          <tbody><tr>
+      <td>The complex domain of this property is the <strong>union of</strong></td>
+    <td>
+            <span class='parrot-element-ref parrot-class-ref'>              <a href='/@current.configuration.getString("schema.dir")#Element'> Element</a>
+      </span>
+            <span class='parrot-element-ref parrot-class-ref'>              <a href='/@current.configuration.getString("schema.dir")#Location'> Location</a>
+      </span>
+            <span class='parrot-element-ref parrot-class-ref'>              <a href='/@current.configuration.getString("schema.dir")#Source'> Source</a>
+      </span>
+          </td>
+      </tr>
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-c19ede5987bca219e83efdcfe9c2fb52' about='https://data.met.no/schema#nextLink'>
+
+
+  <h3 id='anchor1927646695'> <a id='nextLink'></a><span class='parrot-element-title parrot-property-title'>nextLink</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The next link indicates how more data can be retrieved. It points to the URI to load the next set of data. It
+    can be used in conjunction with currentItemCount, startOffet, and totalItemCount to page through the data in a
+    result set. 
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#nextLink</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Response'>             <a href='/@current.configuration.getString("schema.dir")#Response'> Response</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-edf3ff6a15fd7b8a2a5c560d784ee2aa' about='https://data.met.no/schema#observations'>
+
+
+  <h3 id='anchor529148065'> <a id='observations'></a><span class='parrot-element-title parrot-property-title'>observations</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>         <span class='otherinfo-menu' style='border-radius: 10px;'>Documentation</span>     </span>   </h3>
+
+  
+
+      <p class='description'>
+    The list of observations in an observation series for a given source ID. The items in the list are of the
+    Observation class.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#observations</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#ObservationSeries'>              <a href='/@current.configuration.getString("schema.dir")#ObservationSeries'> ObservationSeries</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+      
+
+<div class='otherinfo' style='border-radius: 10px;'>
+  <h4>Documentation</h4> 
+
+  
+            
+
+<!-- <h4>Related document</h4> -->
+<div class='related-document' style='display: block;'> 
+  <div class='block'>
+          
+                                <a href='https://data.met.no/schema#Observation'><img class='related-document-icon' src='./The data.met.no MET API specification - Report generated by Parrot_files/hyperlink-icon.png' alt='hyperlink icon'></a>
+     
+     
+          
+          
+            <p class='relatedDocumentUrl'><a href='https://data.met.no/schema#Observation'>https://data.met.no/schema#Observation</a></p>
+     
+  </div>
+</div>
+
+      </div>
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-9212e31766b4105f2a77d77fd6d92273' about='https://data.met.no/schema#offset'>
+
+
+  <h3 id='anchor-1215903827'> <a id='offset'></a><span class='parrot-element-title parrot-property-title'>offset</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The offset of the first item in the data response. For consistency, the offset is 0-based.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#offset</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Response'>             <a href='/@current.configuration.getString("schema.dir")#Response'> Response</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-f6f3362399bf13e0b4ecdb79cd61df8e' about='https://data.met.no/schema#previousLink'>
+
+
+  <h3 id='anchor-86145429'> <a id='previousLink'></a><span class='parrot-element-title parrot-property-title'>previousLink</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The previous link indicates how more data can be retrieved. It points to the URI to load the previous set of data.
+    It can be used in conjunction with currentItemCount, startOffet, and totalItemCount to page through the data in a
+    result set. 
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#previousLink</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Response'>             <a href='/@current.configuration.getString("schema.dir")#Response'> Response</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-db79e4bb0eed5d287964e791dd96d4d5' about='https://data.met.no/schema#qualityCode'>
+
+
+  <h3 id='anchor719883664'> <a id='qualityCode'></a><span class='parrot-element-title parrot-property-title'>qualitycode</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    A code which indicates confidence of the issuing authority in the quality of the data value.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#qualityCode</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#ObservedElement'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=https%3A%2F%2Fdata.met.no%2Fschema%23ObservedElement#anchor1882370680'>https://data.met.no/schema#ObservedElement</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+          <tr>
+             <td>The range of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:range' href='http://schema.org/integer'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=http%3A%2F%2Fschema.org%2Finteger#anchor-1972054537'>schema:integer</a>
+      </span>
+          </td>
+      </tr>
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-ebbaa69f78ad725f88c2328263cd3167' about='https://data.met.no/schema#queryTime'>
+
+
+  <h3 id='anchor916239097'> <a id='queryTime'></a><span class='parrot-element-title parrot-property-title'>queryTime</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>The time, in seconds, that this document took to generate, as measured in the source code.</p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#queryTime</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Response'>             <a href='/@current.configuration.getString("schema.dir")#Response'> Response</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-25719ad32e2f88cc7700aaf89cc0dbb3' about='https://data.met.no/schema#reason'>
+
+
+  <h3 id='anchor-1131088546'> <a id='reason'></a><span class='parrot-element-title parrot-property-title'>reason</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    A more detailed optional text that describes the reason for the error (where message describes the kind of
+    error).
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#reason</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Error'>              <a href='/@current.configuration.getString("schema.dir")#Error'> Error</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-44662c98ed5f92c78859709bf731ca69' about='https://data.met.no/schema#referenceTime'>
+
+
+  <h3 id='anchor-785267332'> <a id='referenceTime'></a><span class='parrot-element-title parrot-property-title'>referenceTime</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The time of reference; for observations this is the time at which the measurement or statistic is officially
+    observed and/or generated. 
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#referenceTime</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Observation'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=https%3A%2F%2Fdata.met.no%2Fschema%23Observation#anchor-1224556016'>https://data.met.no/schema#Observation</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-68010908b6d346c151c84bd9792fd61' about='https://data.met.no/schema#sourceId'>
+
+
+  <h3 id='anchor-2045155600'> <a id='sourceId'></a><span class='parrot-element-title parrot-property-title'>sourceId</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The id of the source at which these values were observed/measured.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#sourceId</code></span></p>
+     
+    
+        <table>
+    
+ 
+      
+
+          <tbody><tr>
+      <td>The complex domain of this property is the <strong>union of</strong></td>
+    <td>
+            <span class='parrot-element-ref parrot-class-ref'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=https%3A%2F%2Fdata.met.no%2Fschema%23ObservationTimeSeries#anchor-1747397484'>https://data.met.no/schema#ObservationTimeSeries</a>
+      </span>
+            <span class='parrot-element-ref parrot-class-ref'>              <a href='/@current.configuration.getString("schema.dir")#ObservationSeries'> ObservationSeries</a>
+      </span>
+          </td>
+      </tr>
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-ebbb96fd137a51097bd13df0747d5bff' about='https://data.met.no/schema#standardName'>
+
+
+  <h3 id='anchor-695967294'> <a id='standardName'></a><span class='parrot-element-title parrot-property-title'>standardName</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The CF standard name of the Element object in the CF convention. For netcdf files generated at MET Norway, this
+    is the CF standard name that would be used for the element.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#standardName</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#CfConvention'>             <a href='/@current.configuration.getString("schema.dir")#CfConvention'> CfConvention</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-e21f98d4c0e857de8baf59494c0742ac' about='https://data.met.no/schema#status'>
+
+
+  <h3 id='anchor-1088605428'> <a id='status'></a><span class='parrot-element-title parrot-property-title'>status</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The status of the object. For the CFConvention, this is a reference to the CF version, Met Norway local standard
+    or test (indicating the test status of the Element).
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#status</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#CfConvention'>             <a href='/@current.configuration.getString("schema.dir")#CfConvention'> CfConvention</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-1ba000d164bad5f19aafa45e930e463d' about='https://data.met.no/schema#toDate'>
+
+
+  <h3 id='anchor-1065476125'> <a id='toDate'></a><span class='parrot-element-title parrot-property-title'>toDate</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The date to which data exists in this time series (in ISO-8601 format). If this is absent, then data is still
+    being added to the time series.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#toDate</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#ObservationTimeSeries'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=https%3A%2F%2Fdata.met.no%2Fschema%23ObservationTimeSeries#anchor-1747397484'>https://data.met.no/schema#ObservationTimeSeries</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-8c0a30118bc96927b44ef782b8af1772' about='https://data.met.no/schema#totalItemCount'>
+
+
+  <h3 id='anchor1990050546'> <a id='totalItemCount'></a><span class='parrot-element-title parrot-property-title'>totalItemCount</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The total number of items in this result set. For example, if a station has 1000 observations, the
+    response may only contain 100 observations, but the totalItemcount would be 100.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#totalItemCount</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Response'>             <a href='/@current.configuration.getString("schema.dir")#Response'> Response</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-fa4b6637f3daff695d106dd41a64865a' about='https://data.met.no/schema#unit'>
+
+
+  <h3 id='anchor2036907870'> <a id='unit'></a><span class='parrot-element-title parrot-property-title'>unit</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>         <span class='otherinfo-menu' style='border-radius: 10px;'>Documentation</span>     </span>   </h3>
+
+  
+
+      <p class='description'>
+    The unit of measure of the object. If the value is a code, the unit of measure is set to 'code', and the
+    codeTable property will contain a reference to the relevant code table.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#unit</code></span></p>
+     
+    
+        <table>
+    
+ 
+      
+
+          <tbody><tr>
+      <td>The complex domain of this property is the <strong>union of</strong></td>
+    <td>
+            <span class='parrot-element-ref parrot-class-ref'>              <a href='/@current.configuration.getString("schema.dir")#Element'> Element</a>
+      </span>
+            <span class='parrot-element-ref parrot-class-ref'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=https%3A%2F%2Fdata.met.no%2Fschema%23CFConvention#anchor-404464882'>https://data.met.no/schema#CFConvention</a>
+      </span>
+            <span class='parrot-element-ref parrot-class-ref'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=https%3A%2F%2Fdata.met.no%2Fschema%23ObservedElement#anchor1882370680'>https://data.met.no/schema#ObservedElement</a>
+      </span>
+            <span class='parrot-element-ref parrot-class-ref'>              <a href='/@current.configuration.getString("schema.dir")#LegacyMetNoConvention'> LegacyMetNoConventnion</a>
+      </span>
+          </td>
+      </tr>
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+      
+
+<div class='otherinfo' style='border-radius: 10px;'>
+  <h4>Documentation</h4> 
+
+  
+            
+
+<!-- <h4>Related document</h4> -->
+<div class='related-document' style='display: block;'> 
+  <div class='block'>
+          
+                                <a href='https://data.met.no/schema#codeTable'><img class='related-document-icon' src='./The data.met.no MET API specification - Report generated by Parrot_files/hyperlink-icon.png' alt='hyperlink icon'></a>
+     
+     
+          
+          
+            <p class='relatedDocumentUrl'><a href='https://data.met.no/schema#codeTable'>https://data.met.no/schema#codeTable</a></p>
+     
+  </div>
+</div>
+
+      </div>
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-facd6293278aa04bceed70f87bd666cd' about='https://data.met.no/schema#validTo'>
+
+
+  <h3 id='anchor-1553627109'> <a id='validTo'></a><span class='parrot-element-title parrot-property-title'>valid time</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The point in time to which the data is valid (exclusive), in ISO-8601 format. If no validTo property is given,
+    it is because the value continues to be valid at the current time. 
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#validTo</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Source'>             <a href='/@current.configuration.getString("schema.dir")#Source'> Source</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+          <tr>
+             <td>The range of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:range' href='http://schema.org/DateTime'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=http%3A%2F%2Fschema.org%2FDateTime#anchor283169408'>schema:DateTime</a>
+      </span>
+          </td>
+      </tr>
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-7757c344d21f6bb60f58bdfb76ab6120' about='https://data.met.no/schema#validFrom'>
+
+
+  <h3 id='anchor1612526858'> <a id='validFrom'></a><span class='parrot-element-title parrot-property-title'>validFrom</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The point in time from which the object is valid (inclusive), in ISO-8601 format.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#validFrom</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Source'>             <a href='/@current.configuration.getString("schema.dir")#Source'> Source</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+          <tr>
+             <td>The range of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:range' href='http://schema.org/DateTime'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=http%3A%2F%2Fschema.org%2FDateTime#anchor283169408'>schema:DateTime</a>
+      </span>
+          </td>
+      </tr>
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-e6eb38a800840a793efbbb1b093aac12' about='https://data.met.no/schema#value'>
+
+
+  <h3 id='anchor-1279827147'> <a id='value'></a><span class='parrot-element-title parrot-property-title'>value</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The actual value of the measured/observed/calculated data.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#value</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#ObservedElement'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=https%3A%2F%2Fdata.met.no%2Fschema%23ObservedElement#anchor1882370680'>https://data.met.no/schema#ObservedElement</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-44e8ab6647e277082b14e3a721a1c1dd' about='https://data.met.no/schema#values'>
+
+
+  <h3 id='anchor-1019936708'> <a id='values'></a><span class='parrot-element-title parrot-property-title'>values</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The values observed at the given source and reference time defined by the Observation object. This is a list of 
+    ObservedElement objects.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#values</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#Observation'>              <a class='parrot-link' href='http://ontorule-project.eu/parrot/parrot?documentUri=https%3A%2F%2Fdata.met.no%2Fschema%23Observation#anchor-1224556016'>https://data.met.no/schema#Observation</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+    <div class='details properties' style='border-radius: 10px;'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='term' id='md5-995ca1fc9a0e0fcf8897a75fe455afd3' about='https://data.met.no/schema#wmoIdentifier'>
+
+
+  <h3 id='anchor1020581542'> <a id='wmoIdentifier'></a><span class='parrot-element-title parrot-property-title'>wmoIdentifier</span> (Property)
+          
+      
+      
+        
+            
+    
+
+    <span class='menu'> 
+    <span class='vci-menu' style='border-radius: 10px;'>VC</span>     <span class='ti-menu active' style='border-radius: 10px;'>Definition</span>             </span>   </h3>
+
+  
+
+      <p class='description'>
+    The five digit numeric code character issued by the WMO that is used to identify land weather stations.
+  </p>
+    
+  <div>
+  
+      
+
+    <div class='vci' style='border-radius: 10px;'> 
+    <h4>Version Control information</h4> 
+    <dl> 
+          <dt>Status</dt>
+    <dd>testing</dd>
+        
+    
+    
+    
+        
+        
+    
+            
+        
+        
+        
+        
+        
+    </dl> 
+    </div>
+    
+    
+  
+    <div class='ti' style='border-radius: 10px; display: block;'> 
+  <h4>Definition</h4> 
+
+      <p>The <strong>URI</strong> of this property is <span><code>https://data.met.no/schema#wmoIdentifier</code></span></p>
+     
+    
+        <table>
+    
+ 
+           <tbody><tr>
+            <td>The domain of this property is</td>
+          <td>
+            <span class='parrot-element-ref parrot-class-ref' rel='rdfs:domain' href='https://data.met.no/schema#SensorPlatform'>             <a href='/@current.configuration.getString("schema.dir")#SensorPlatform'> SensorPlatform</a>
+      </span>
+          </td>
+      </tr>
+     
+
+    
+        
+        
+   
+    
+       
+    
+        </tbody></table>
+       </div>
+    
+    
+    
+    
+  </div>
+</div>   </div>
+  
+  <script type='text/javascript' async='' src='/@current.configuration.getString("schema.dir")/lib/ga.js'></script><script type='text/javascript' src='/@current.configuration.getString("schema.dir")/lib/jquery.min.js'></script> 
+  <script type='text/javascript' src='/@current.configuration.getString("schema.dir")/lib/jquery-ui.min.js'></script> 
+  <script type='text/javascript' src='/@current.configuration.getString("schema.dir")/lib/feedback.jQuery.js'></script>
+  
+  <script type='text/javascript' src='/@current.configuration.getString("schema.dir")/lib/jquery.corner.js'></script> 
+  <script type='text/javascript' src='/@current.configuration.getString("schema.dir")/lib/jquery.jixedbar.min.js'></script> 
+  <script type='text/javascript' src='/@current.configuration.getString("schema.dir")/lib/jquery.qtip-1.0.js'></script> 
+  <script type='text/javascript' src='/@current.configuration.getString("schema.dir")/lib/javascript.js'></script> 
+
+    <script type='text/javascript' src='/@current.configuration.getString("schema.dir")/lib/technical.js'></script> 
+  
+  <script type='text/javascript'>
+  /* <![CDATA[ */
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8820144-1']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  /* ]]> */
+  </script>
+  
+
+<div id='jx-menu-con-id'></div><div id='jx-uhid-con-id' class='jx-show jx-bar-rounded-tl jx-bar-rounded-tr jx-bar-button jx-bar-button-rounded' style='overflow: hidden; position: fixed; margin-left: 1616px; bottom: 0px; display: none;'><ul id='jx-uhid-itm-id'><li alt='Show toolbar'><a id='jx-uhid-btn-id' class='jx-show-button'></a></li></ul></div><div id='jx-ttip-con-id' style='height: auto; margin-left: 0px; width: 100%; overflow: hidden; position: fixed; margin-bottom: 36px; bottom: 0px;'></div><div class='ui-dialog ui-widget ui-widget-content ui-corner-all ' tabindex='-1' role='dialog' aria-labelledby='ui-dialog-title-feedback-dialog' style='display: none; z-index: 1000; outline: 0px;'><div class='ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix'><span class='ui-dialog-title' id='ui-dialog-title-feedback-dialog'>Give us some feedback</span><a href='/@current.configuration.getString("schema.dir")#' class='ui-dialog-titlebar-close ui-corner-all' role='button'><span class='ui-icon ui-icon-closethick'>close</span></a></div><div id='feedback-dialog' class='ui-dialog-content ui-widget-content'>
+    <p><img src='/@current.configuration.getString("schema.dir")/lib/bug.png' alt='bug'> <a href='https://bitbucket.org/fundacionctic/parrot/issues/'>Report a bug </a></p>
+    <p><img src='/@current.configuration.getString("schema.dir")/lib/heart.png' alt='request'> <a href='https://bitbucket.org/fundacionctic/parrot/issues/'>Request a feature</a></p>
+    <p><img src='/@current.configuration.getString("schema.dir")/lib/contact.png' alt='contact'> <a href='https://bitbucket.org/fundacionctic/parrot/wiki/Home#!contact'>Contact us</a></p>
+  </div></div></body></html>

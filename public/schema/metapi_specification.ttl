@@ -1,0 +1,810 @@
+@prefix met: <https://data.met.no/schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix sml: <http://schemas.opengis.net/sensorML/2.0/> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix un: <http://www.w3.org/2007/ont/unit#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix weather: <http://purl.org/ns/Meteo#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+
+############################################################################
+# General description of the vocabulary
+############################################################################
+
+<https://data.met.no/schema>
+    a owl:Ontology ;
+    rdfs:label "The data.met.no MET API specification" ;
+    rdfs:comment """
+      The data.met.no MET API specification is an ontology that provides definitions of the main concepts and
+      properties required to describe a meteorological, hydrological or oceanographic observation as delivered
+      by the MET API
+    """ ;
+    cc:license <http://creativecommons.org/licenses/by/3.0/> ;
+    owl:versionInfo "draft" .
+
+
+############################################################################
+# Classes
+############################################################################
+
+met:Response
+    a rdfs:Class ;
+    rdfs:label "Response" ;
+    rdfs:comment """
+      A response from the data.met.no MET API. All data responses from the MET API inherit a common set of properties.
+    """ ;
+    rdfs:subClassOf schema:CreativeWork ;
+    vs:term_status "testing" . 
+    
+
+# Error
+
+met:ErrorResponse
+    a rdfs:Class ;
+    rdfs:label "ErrorResponse" ;
+    rdfs:comment """
+      An error response from the data.met.no MET API. All standard error responses from the MET API are of this class.
+    """ ;
+    rdfs:subClassOf schema:CreativeWork ;
+    vs:term_status "testing" . 
+    
+
+met:Error
+    a rdfs:Class ;
+    rdfs:label "Error" ;
+    rdfs:comment """
+      An error object returned by the data.met.no MET API. The error object contains a code, message and possible some
+      help text describing how to handle the error.
+    """ ;
+    vs:term_status "testing" . 
+    
+
+# Observations
+
+met:ObservationResponse
+    a rdfs:Class ;
+    rdfs:label "ObservationResponse" ;
+    rdfs:comment """
+      A response from the data.met.no MET API that contains a set of observation data of the Observation class. The
+      data property of an ObservationResponse contains a set of ObservationSeries.
+    """ ;
+    rdfs:subClassOf met:Response ;
+    vs:term_status "testing" . 
+    
+
+met:ObservationSeries
+    a rdfs:Class ;
+    rdfs:label "ObservationSeries" ;
+    rdfs:comment """
+      A series of observations for the source specied by the sourceId property of the data. The observations property
+      contains a set of Observations (i.e., data for a given time and place).
+    """ ;
+    vs:term_status "testing" . 
+    
+
+met:ObservationTimeSeriesResponse
+    a rdfs:Class ;
+    rdfs:label "ObservationTimeSeriesResponse" ;
+    rdfs:comment """
+      A response from the data.met.no MET API that contains a set of observation time series information of the 
+      ObservationTimeSeries class.
+    """ ;
+    rdfs:subClassOf met:Response ;
+    vs:term_status "testing" . 
+    
+
+met:SourceResponse
+    a rdfs:Class ;
+    rdfs:label "SourceResponse" ;
+    rdfs:comment "A response from the data.met.no MET API that contains data for a set of sources defined using the Source class." ;
+    rdfs:subClassOf met:Response ;
+    rdfs:seeAlso met:Source ;
+    vs:term_status "testing" . 
+    
+
+met:Source
+    a rdfs:Class ;
+    rdfs:label "Source" ;
+    rdfs:comment """
+      An entity which is a source of data values in the data.met.no MET API. A source can many different things;
+      for example, a Sensorplatform such as a meteorological observation station, a Person, or an Algorithm such as
+      a forecast or climate model. To retrieve metadata for specific source identifiers, see 
+      https://data.met.no/sources/{id}/v0.jsonld
+    """ ;
+    rdfs:seeAlso met:SensorPlatform ;
+    vs:term_status "testing" . 
+    
+
+met:SensorPlatform
+    a rdfs:Class, sml:platform ;
+    rdfs:label "SensorPlatform" ;
+    rdfs:comment """
+      An Entity to which other Entities can be attached - particuarly Sensors but also including other Platforms.
+      For example, a post might act as the Platform, a bouy might act as a Platform, or a fish might act as a
+      Platform for an attached sensor. On the data.met.no MET API, the most common form of platform is a
+      meteorological observation station.
+    """ ;
+    rdfs:subClassOf met:Source ;
+    vs:term_status "testing" . 
+    
+
+met:LocationResponse
+    a rdfs:Class ;
+    rdfs:label "LocationResponse" ;
+    rdfs:comment """
+      A response from the data.met.no MET API that contains metadata for a set of locations defined using the
+      Location class.
+    """ ;
+    rdfs:subClassOf met:Response ;
+    rdfs:seeAlso met:Location ;
+    vs:term_status "testing" . 
+    
+
+met:Location
+    a rdfs:Class ;
+    rdfs:label "Location" ;
+    rdfs:comment """
+      A geographical location or place , such as a city, town, lake, or range of hills. A location identifies
+      a point or an area on the Earth's surface using WGS84 coordinates. To retrieve metadata for a specific
+      location name, see https://data.met.no/locations/{id}/v0.jsonld
+    """ ;
+    vs:term_status "testing" . 
+    
+
+met:ElementResponse
+    a rdfs:Class ;
+    rdfs:label "ElementResponse" ;
+    rdfs:comment "A response from the data.met.no MET API that contains metadata for a set of elements defined using the Element class." ;
+    rdfs:subClassOf met:Response ;
+    rdfs:seeAlso met:Element ;
+    vs:term_status "testing" . 
+    
+
+met:Element
+    a rdfs:Class ;
+    rdfs:label "Element" ;
+    rdfs:comment """
+      A meteorological, hydrological, oceanographic or climatological parameter that is defined in the data.met.no MET API system. These
+      can be measured, calculated, or statistical values. To retrieve the full list of all elements defined on data.met.no, see
+      https://data.met.no/elements/v0.jsonld; for a specific element id, use https://data.met.no/elements/{id}/v0.jsonld
+    """ ;
+    vs:term_status "testing" . 
+    
+
+met:LegacyMetNoConvention
+    a rdfs:Class ;
+    rdfs:label "LegacyMetNoConventnion" ;
+    rdfs:comment """
+      Description of the legacy MET Norway form of the Element.
+    """ ;
+    vs:term_status "testing" . 
+    
+
+met:CfConvention
+    a rdfs:Class ;
+    rdfs:label "CfConvention" ;
+    rdfs:comment """
+      The CF standard definition of the element.
+    """ ;
+    vs:term_status "testing" . 
+    
+
+met:Geometry
+    a rdfs:Class ;
+    rdfs:label "Geometry" ;
+    rdfs:comment """
+      A GeoJSON geometry object. In the case of the data.met.no MET API, a geometry must be one of POINT, LINESTRING,
+      or POLYGON.
+    """ ;
+    vs:term_status "testing" . 
+    
+
+met:Point
+    a rdfs:Class ;
+    rdfs:label "Point" ;
+    rdfs:comment """
+      A single point. For a Point, the coordinates must be a single position.
+    """ ;
+    rdfs:subClassOf met:Geometry ;
+    vs:term_status "testing" . 
+    
+
+met:LineString
+    a rdfs:Class ;
+    rdfs:label "LineString" ;
+    rdfs:comment """
+      A set of coordinates that constitute a line. For a LineString, the coordinates property must be an array of at
+      least two positions.
+    """ ;
+    rdfs:subClassOf met:Geometry ;
+    vs:term_status "testing" . 
+    
+
+met:Polygon
+    a rdfs:Class ;
+    rdfs:label "Polygon" ;
+    rdfs:comment """
+      A set of coordinates that define a polygon. For a Polygon, the coordinates must be an array of closed LineString
+      coordinates.
+    """ ;
+    rdfs:subClassOf met:Geometry ;
+    vs:term_status "testing" . 
+    
+
+
+############################################################################
+# Response Properties
+############################################################################
+
+met:apiVersion
+  a rdf:Property ;
+  rdfs:label "apiVersion" ;
+  rdfs:comment "The version of the data.met.no MET API that served this response." ;
+  rdfs:domain met:Response ;
+  vs:term_status "testing" . 
+  
+
+met:license
+  a rdf:Property, schema:license ;
+  rdfs:label "license" ;
+  rdfs:comment "The license that applies to this content, typically indicated by URL." ;
+  rdfs:domain met:Response ;
+  vs:term_status "testing" . 
+  
+
+met:createdAt
+  a rdf:Property ;
+  rdfs:label "createdAt" ;
+  rdfs:comment "The time at which this document was created." ;
+  rdfs:domain met:Response ;
+  rdfs:range schema:DateTime ;
+  vs:term_status "testing" . 
+  
+
+met:queryTime
+  a rdf:Property ;
+  rdfs:label "queryTime" ;
+  rdfs:comment "The time, in seconds, that this document took to generate, as measured in the source code." ;
+  rdfs:domain met:Response ;
+  vs:term_status "testing" . 
+  
+
+met:currentItemCount
+  a rdf:Property ;
+  rdfs:label "currentItemCount" ;
+  rdfs:comment """
+    The current number of items in this result set. This will generally be equivalent to data.length, and is
+    provided as a convenience property. For example, suppose a developer requests a set of items, with a limit of 50
+    items per page. If the total set has 92 items in total, then the first page will have both currentItemCount and
+    itemsPerPage equal to 50; for the second page, itemsPerPage will still be 50, but currentItemCount will be
+    42.
+  """ ;
+  rdfs:domain met:Response ;
+  vs:term_status "testing" . 
+  
+
+met:itemsPerPage
+  a rdf:Property ;
+  rdfs:label "itemsPerPage" ;
+  rdfs:comment """
+    The number of items in a result set. This is not necessarily the size of the data.items array; if we are viewing
+    the last page of items, the size of data.items may be less than itemsPerPage. However the size of data.items
+    should not exceed itemsPerPage.
+  """ ;
+  rdfs:domain met:Response ;
+  vs:term_status "testing" . 
+  
+
+met:offset
+  a rdf:Property ;
+  rdfs:label "offset" ;
+  rdfs:comment """
+    The offset of the first item in the data response. For consistency, the offset is 0-based.
+  """ ;
+  rdfs:domain met:Response ;
+  vs:term_status "testing" . 
+  
+
+met:totalItemCount
+  a rdf:Property ;
+  rdfs:label "totalItemCount" ;
+  rdfs:comment """
+    The total number of items in this result set. For example, if a station has 1000 observations, the
+    response may only contain 100 observations, but the totalItemcount would be 100.
+  """ ;
+  rdfs:domain met:Response ;
+  vs:term_status "testing" . 
+  
+
+met:nextLink
+  a rdf:Property ;
+  rdfs:label "nextLink" ;
+  rdfs:comment """
+    The next link indicates how more data can be retrieved. It points to the URI to load the next set of data. It
+    can be used in conjunction with currentItemCount, startOffet, and totalItemCount to page through the data in a
+    result set. 
+  """ ;
+  rdfs:domain met:Response ;
+  vs:term_status "testing" . 
+  
+
+met:previousLink
+  a rdf:Property ;
+  rdfs:label "previousLink" ;
+  rdfs:comment """
+    The previous link indicates how more data can be retrieved. It points to the URI to load the previous set of data.
+    It can be used in conjunction with currentItemCount, startOffet, and totalItemCount to page through the data in a
+    result set. 
+  """ ;
+  rdfs:domain met:Response ;
+  vs:term_status "testing" . 
+  
+
+met:currentLink
+  a rdf:Property ;
+  rdfs:label "currentLink" ;
+  rdfs:comment """
+    The current link indicates the URI that was used to generate the current API response. It is primarily useful
+    for debugging purposes. 
+  """ ;
+  rdfs:domain met:Response ;
+  vs:term_status "testing" . 
+  
+
+met:data
+  a rdf:Property ;
+  rdfs:label "data" ;
+  rdfs:comment """
+    Container for all the data returned by a response. The specific type of item returned depends on the class of the
+    response.    
+  """ ;
+  rdfs:domain [
+    owl:unionOf ( met:ObservationResponse met:ObservationTimeSeriesResponse met:SourceResponse met:LocationResponse met:ElementResponse )
+  ] ;
+  vs:term_status "testing" . 
+  
+
+met:error
+  a rdf:Property ;
+  rdfs:label "error" ;
+  rdfs:comment """
+    The error object that describes the error that has created this response.
+  """ ;
+  rdfs:domain met:ErrorResponse ;
+  rdfs:seeAlso met:Error ;
+  vs:term_status "testing" . 
+  
+
+
+
+
+############################################################################
+# Error Properties
+############################################################################
+
+met:code
+  a rdf:Property ;
+  rdfs:label "code" ;
+  rdfs:comment """
+    Represents the code for this error. This property value will usually represent the HTTP response code. If there
+    are multiple errors, errorCode will be the code for the first error.
+  """ ;
+  rdfs:domain met:Error ;
+  vs:term_status "testing" . 
+  
+
+met:message
+  a rdf:Property ;
+  rdfs:label "message" ;
+  rdfs:comment """
+    A human readable message that describes the error. If there are multiple errors, this will be the message
+    pertaining to the first error.
+  """ ;
+  rdfs:domain met:Error ;
+  vs:term_status "testing" . 
+  
+
+met:reason
+  a rdf:Property ;
+  rdfs:label "reason" ;
+  rdfs:comment """
+    A more detailed optional text that describes the reason for the error (where message describes the kind of
+    error).
+  """ ;
+  rdfs:domain met:Error ;
+  vs:term_status "testing" . 
+  
+
+met:help
+  a rdf:Property ;
+  rdfs:label "error help" ;
+  rdfs:comment """
+    A human readable optional text that describes how the developer may fix the problem.
+  """ ;
+  rdfs:domain met:Error ;
+  vs:term_status "testing" . 
+  
+
+
+############################################################################
+# Data Collection Properties
+############################################################################
+
+met:id
+  a rdf:Property ;
+  rdfs:label "id" ;
+  rdfs:comment """
+    The identifier of the object defined by this data structure. 
+  """ ;
+  rdfs:domain [
+    owl:unionOf ( met:Source met:Location met:Element )
+  ] ;
+  rdfs:seeAlso met:sourceId, met:locationId, met:elementId ;
+  vs:term_status "testing" . 
+  
+
+met:sourceId
+  a rdf:Property ;
+  rdfs:label "sourceId" ;
+  rdfs:comment """
+    The id of the source at which these values were observed/measured.
+  """ ;
+  rdfs:domain [
+    owl:unionOf ( met:ObservationSeries met:ObservationTimeSeries ) 
+  ] ;
+  vs:term_status "testing" . 
+  
+
+met:observations
+  a rdf:Property ;
+  rdfs:label "observations" ;
+  rdfs:comment """
+    The list of observations in an observation series for a given source ID. The items in the list are of the
+    Observation class.
+  """ ;
+  rdfs:domain met:ObservationSeries ;
+  rdfs:seeAlso met:Observation ;
+  vs:term_status "testing" . 
+  
+
+met:referenceTime
+  a rdf:Property ;
+  rdfs:label "referenceTime" ;
+  rdfs:comment """
+    The time of reference; for observations this is the time at which the measurement or statistic is officially
+    observed and/or generated. 
+  """ ;
+  rdfs:domain met:Observation ;
+  vs:term_status "testing" . 
+  
+
+met:values
+  a rdf:Property ;
+  rdfs:label "values" ;
+  rdfs:comment """
+    The values observed at the given source and reference time defined by the Observation object. This is a list of 
+    ObservedElement objects.
+  """ ;
+  rdfs:domain met:Observation ;
+  vs:term_status "testing" . 
+  
+
+met:elementId
+  a rdf:Property ;
+  rdfs:label "elementId" ;
+  rdfs:comment """
+    The data.met.no MET API id of the element being measured/observed/calculated.
+  """ ;
+  rdfs:domain [
+    owl:unionOf ( met:ObservedElement met:ObservationTimeSeries )
+  ] ;
+  rdfs:seeAlso met:Element ;
+  vs:term_status "testing" . 
+  
+
+met:value
+  a rdf:Property ;
+  rdfs:label "value" ;
+  rdfs:comment """
+    The actual value of the measured/observed/calculated data.
+  """ ;
+  rdfs:domain met:ObservedElement ;
+  vs:term_status "testing" . 
+  
+
+met:unit
+  a rdf:Property ;
+  rdfs:label "unit" ;
+  rdfs:comment """
+    The unit of measure of the object. If the value is a code, the unit of measure is set to 'code', and the
+    codeTable property will contain a reference to the relevant code table.
+  """ ;
+  rdfs:domain [
+    owl:unionOf ( met:ObservedElement  met:Element met:LegacyMetNoConvention met:CFConvention )
+  ] ;
+  rdfs:seeAlso met:codeTable ;
+  vs:term_status "testing" . 
+  
+
+met:codeTable
+  a rdf:Property ;
+  rdfs:label "codeTable" ;
+  rdfs:comment """
+    The reference to code table used by the data value, if the unit is a code.
+  """ ;
+  rdfs:domain [
+    owl:unionOf ( met:ObservedElement met:Element )
+  ] ;
+  vs:term_status "testing" . 
+  
+
+met:qualityCode
+  a rdf:Property ;
+  rdfs:label "qualitycode" ;
+  rdfs:comment """
+    A code which indicates confidence of the issuing authority in the quality of the data value.
+  """ ;
+  rdfs:domain met:ObservedElement ;
+  rdfs:range schema:integer ;
+  vs:term_status "testing" . 
+  
+
+met:fromDate
+  a rdf:Property ;
+  rdfs:label "fromDate" ;
+  rdfs:comment """
+    The date from which data exists in this time series (in ISO-8601 format).
+  """ ;
+  rdfs:domain met:ObservationTimeSeries ;
+  rdfs:range schema:Date ;
+  vs:term_status "testing" . 
+  
+
+met:toDate
+  a rdf:Property ;
+  rdfs:label "toDate" ;
+  rdfs:comment """
+    The date to which data exists in this time series (in ISO-8601 format). If this is absent, then data is still
+    being added to the time series.
+  """ ;
+  rdfs:domain met:ObservationTimeSeries ;
+  rdf:type schema:Date ;
+  vs:term_status "testing" . 
+  
+
+# sensorNumber
+
+# observationTimespan
+
+# timeOffset
+
+met:name
+  a rdf:Property ;
+  rdfs:label "name" ;
+  rdfs:comment """
+    The name of the object.
+  """ ;
+  rdfs:domain [
+    owl:unionOf ( met:Source met:Location met:Element )
+  ] ;
+  rdf:type schema:Text ;
+  vs:term_status "testing" . 
+  
+
+met:country
+  a rdf:Property ;
+  rdfs:label "country" ;
+  rdfs:comment """
+    The country to which the object is affiliated. 
+  """ ;
+  rdfs:domain met:Source ;
+  vs:term_status "testing" . 
+  
+  
+# country should be given with the two-letter ISO 3166-1 alpha-2 country code.
+
+met:wmoIdentifier
+  a rdf:Property ;
+  rdfs:label "wmoIdentifier" ;
+  rdfs:comment """
+    The five digit numeric code character issued by the WMO that is used to identify land weather stations.
+  """ ;
+  rdfs:domain met:SensorPlatform ;
+  vs:term_status "testing" . 
+  
+
+met:geometry
+  a rdf:Property ;
+  rdfs:label "geo" ;
+  rdfs:comment "The spatial location of the object, described using a GeoJson geometry object in WGS84." ;
+  rdfs:domain [
+    owl:unionOf ( met:Source met:Location )
+  ] ;
+  vs:term_status "testing" . 
+  
+
+met:level
+  a rdf:Property ;
+  rdfs:label "level" ;
+  rdfs:comment """
+    The spatial level of the object. The type of the level (height, depth, etc) is given by the levelType property.
+  """ ;
+  rdfs:domain met:Source ;
+  rdfs:seeAlso met:levelUnit, met:levelType ;
+  vs:term_status "testing" . 
+  
+
+met:levelUnit
+  a rdf:Property ;
+  rdfs:label "levelUnit" ;
+  rdfs:comment """
+    The unit of measure of the level of the object."
+  """ ;
+  rdfs:domain met:Source ;
+  vs:term_status "testing" . 
+  
+
+met:levelType
+  a rdf:Property ;
+  rdfs:label "levelType" ;
+  rdfs:comment """
+    The type of the level of the object, described as a data.met.no Element.
+  """ ;
+  rdfs:domain met:Source ;
+  rdfs:seeAlso met:Element ;
+  vs:term_status "testing" . 
+  
+
+met:validFrom
+  a rdf:Property ;
+  rdfs:label "validFrom" ;
+  rdfs:comment """
+    The point in time from which the object is valid (inclusive), in ISO-8601 format.
+  """ ;
+  rdfs:domain met:Source ;
+  rdfs:range schema:DateTime ;
+  vs:term_status "testing" . 
+  
+
+met:validTo
+  a rdf:Property ;
+  rdfs:label "valid time" ;
+  rdfs:comment """
+    The point in time to which the data is valid (exclusive), in ISO-8601 format. If no validTo property is given,
+    it is because the value continues to be valid at the current time. 
+  """ ;
+  rdfs:domain met:Source ;
+  rdfs:range schema:DateTime ;
+  vs:term_status "testing" . 
+  
+
+met:validTo
+  a rdf:Property ;
+  rdfs:label "valid time" ;
+  rdfs:comment """
+    The point in time to which the data is valid (exclusive), in ISO-8601 format. If no validTo property is given,
+    it is because the value continues to be valid at the current time. 
+  """ ;
+  rdfs:domain met:Source ;
+  rdfs:range schema:DateTime ;
+  vs:term_status "testing" . 
+  
+
+met:feature
+  a rdf:Property ;
+  rdfs:label "feature" ;
+  rdfs:comment """
+    The type of the named geographic feature described by a Location object.
+  """ ;
+  rdfs:domain met:Location ;
+  vs:term_status "testing" . 
+  
+
+met:description
+  a rdf:Property ;
+  rdfs:label "description" ;
+  rdfs:comment """
+    A description of the object.
+  """ ;
+  rdf:type schema:Text ;
+  rdfs:domain met:Element ;
+  vs:term_status "testing" . 
+  
+
+met:legacyMetNoConvention
+  a rdf:Property ;
+  rdfs:label "legacyMetNoConvention" ;
+  rdfs:comment """
+    The legacy form of the Element, as used in legacy systems at MET Norway.
+  """ ;
+  rdf:type met:LegacyMetNoConvention ;
+  rdfs:domain met:Element ;
+  vs:term_status "testing" . 
+  
+
+met:cfConvention
+  a rdf:Property ;
+  rdfs:label "cfConvention" ;
+  rdfs:comment """
+    The Element as it would be specified using the CF convention.
+  """ ;
+  rdf:type met:CfConvention ;
+  rdfs:domain met:Element ;
+  vs:term_status "testing" . 
+  
+
+met:elemCode
+  a rdf:Property ;
+  rdfs:label "elemCode" ;
+  rdfs:comment """
+    The element code of the Element object in legacy systems at MET Norway.
+  """ ;
+  rdf:type schema:Text ;
+  rdfs:domain met:LegacyMetNoConvention ;
+  vs:term_status "testing" . 
+  
+
+met:category
+  a rdf:Property ;
+  rdfs:label "category" ;
+  rdfs:comment """
+    The category of the Element object in legacy systems at MET Norway.
+  """ ;
+  rdf:type schema:Text ;
+  rdfs:domain met:LegacyMetNoConvention ;
+  vs:term_status "testing" . 
+  
+
+met:standardName
+  a rdf:Property ;
+  rdfs:label "standardName" ;
+  rdfs:comment """
+    The CF standard name of the Element object in the CF convention. For netcdf files generated at MET Norway, this
+    is the CF standard name that would be used for the element.
+  """ ;
+  rdf:type schema:Text ;
+  rdfs:domain met:CfConvention ;
+  vs:term_status "testing" . 
+  
+
+met:cellMethods
+  a rdf:Property ;
+  rdfs:label "cellMethods" ;
+  rdfs:comment """
+    The methods applied to the data value comprising a list of blank-separated words of the form 'name: method'. Each
+    'name: method' pair indicates that for an axis identified by name, the values in the object have been determined
+    or derived by the specified method.
+  """ ;
+  rdf:type schema:Text ;
+  rdfs:domain met:CfConvention ;
+  vs:term_status "testing" . 
+  
+
+met:status
+  a rdf:Property ;
+  rdfs:label "status" ;
+  rdfs:comment """
+    The status of the object. For the CFConvention, this is a reference to the CF version, Met Norway local standard
+    or test (indicating the test status of the Element).
+  """ ;
+  rdf:type schema:Text ;
+  rdfs:domain met:CfConvention ;
+  vs:term_status "testing" . 
+  
+
+met:coordinates
+  a rdf:Property ;
+  rdfs:label "coordinate" ;
+  rdfs:comment """
+    An array containing the coordinates that define the given geometry. This may be an array containing x and y
+    coordinates, or an array of arrays of such. The notation follows the GeoJSON open standard format for representing
+    simple geographic features.
+  """ ;
+  rdfs:domain met:Geometry ;
+  vs:term_status "testing" . 
+  
