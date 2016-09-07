@@ -22,7 +22,7 @@
     rdfs:comment """
       The data.met.no MET API specification is an ontology that provides definitions of the main concepts and
       properties required to describe a meteorological, hydrological or oceanographic observation as delivered
-      by the MET API
+      by the MET API.
     """ ;
     cc:license <http://creativecommons.org/licenses/by/3.0/> ;
     owl:versionInfo "draft" .
@@ -234,7 +234,16 @@ met:Polygon
     """ ;
     rdfs:subClassOf met:Geometry ;
     vs:term_status "testing" . 
-    
+
+
+met:Level
+    a rdfs:Class ;
+    rdfs:label "Level" ;
+    rdfs:comment """
+      A description of a level. A level is given by a value, the unit of measure for the level, and the type of the level.
+    """ ;
+    vs:term_status "testing" . 
+
 
 
 ############################################################################
@@ -378,8 +387,6 @@ met:error
   rdfs:domain met:ErrorResponse ;
   rdfs:seeAlso met:Error ;
   vs:term_status "testing" . 
-  
-
 
 
 
@@ -422,7 +429,7 @@ met:reason
 
 met:help
   a rdf:Property ;
-  rdfs:label "error help" ;
+  rdfs:label "help" ;
   rdfs:comment """
     A human readable optional text that describes how the developer may fix the problem.
   """ ;
@@ -513,7 +520,9 @@ met:value
   rdfs:comment """
     The actual value of the measured/observed/calculated data.
   """ ;
-  rdfs:domain met:ObservedElement ;
+  rdfs:domain [
+    owl:unionOf ( met:ObservedElement  met:Level )
+  ] ;
   vs:term_status "testing" . 
   
 
@@ -525,7 +534,7 @@ met:unit
     codeTable property will contain a reference to the relevant code table.
   """ ;
   rdfs:domain [
-    owl:unionOf ( met:ObservedElement  met:Element met:LegacyMetNoConvention met:CFConvention )
+    owl:unionOf ( met:ObservedElement met:ObservationTimeSeries met:Element met:LegacyMetNoConvention met:CFConvention met:Level )
   ] ;
   rdfs:seeAlso met:codeTable ;
   vs:term_status "testing" . 
@@ -538,7 +547,7 @@ met:codeTable
     The reference to code table used by the data value, if the unit is a code.
   """ ;
   rdfs:domain [
-    owl:unionOf ( met:ObservedElement met:Element )
+    owl:unionOf ( met:ObservedElement met:ObservationTimeSeries met:Element met:Level )
   ] ;
   vs:term_status "testing" . 
   
@@ -554,34 +563,59 @@ met:qualityCode
   vs:term_status "testing" . 
   
 
-met:fromDate
+met:timeOffset
   a rdf:Property ;
-  rdfs:label "fromDate" ;
+  rdfs:label "timeOffset" ;
   rdfs:comment """
-    The date from which data exists in this time series (in ISO-8601 format).
+    The offset from the validFrom datetime. Add the offset to validFrom to get the referenceTime of the first
+    observation in the timeseries.
   """ ;
   rdfs:domain met:ObservationTimeSeries ;
-  rdfs:range schema:Date ;
+  rdfs:range schema:Duration ;
   vs:term_status "testing" . 
-  
 
-met:toDate
+
+met:resultTimeInterval
   a rdf:Property ;
-  rdfs:label "toDate" ;
+  rdfs:label "resultTimeInterval" ;
   rdfs:comment """
-    The date to which data exists in this time series (in ISO-8601 format). If this is absent, then data is still
-    being added to the time series.
+    The interval between results in the timeseries. Given the reference time of an observation, add the 
+    resultTimeInterval to get the next observation in the timeseries.
   """ ;
   rdfs:domain met:ObservationTimeSeries ;
-  rdf:type schema:Date ;
+  rdfs:range schema:Duration ;
   vs:term_status "testing" . 
-  
 
-# sensorNumber
 
-# observationTimespan
+met:sensorNumber
+  a rdf:Property ;
+  rdfs:label "sensorNumber" ;
+  rdfs:comment """
+    The sensor number.
+  """ ;
+  rdfs:domain met:ObservationTimeSeries ;
+  vs:term_status "testing" . 
 
-# timeOffset
+
+met:performanceCategory
+  a rdf:Property ;
+  rdfs:label "performanceCategory" ;
+  rdfs:comment """
+    The sensor number.
+  """ ;
+  rdfs:domain met:ObservationTimeSeries ;
+  vs:term_status "testing" . 
+
+
+met:status
+  a rdf:Property ;
+  rdfs:label "status" ;
+  rdfs:comment """
+    The status of the object.
+  """ ;
+  rdfs:domain met:ObservationTimeSeries ;
+  vs:term_status "testing" . 
+
 
 met:name
   a rdf:Property ;
@@ -664,9 +698,11 @@ met:validFrom
   a rdf:Property ;
   rdfs:label "validFrom" ;
   rdfs:comment """
-    The point in time from which the object is valid (inclusive), in ISO-8601 format.
+    The point in time from which the object is valid (inclusive), as an ISO-8601 DateTime.
   """ ;
-  rdfs:domain met:Source ;
+  rdfs:domain [ 
+    owl:unionOf ( met:Source met:ObservationTimeSeries ) 
+  ] ;
   rdfs:range schema:DateTime ;
   vs:term_status "testing" . 
   
@@ -675,22 +711,12 @@ met:validTo
   a rdf:Property ;
   rdfs:label "valid time" ;
   rdfs:comment """
-    The point in time to which the data is valid (exclusive), in ISO-8601 format. If no validTo property is given,
-    it is because the value continues to be valid at the current time. 
+    The point in time to which the object is valid (exclusive), as an ISO-8601 DateTime. If no validTo property is given,
+    it is because the object continues to be valid at the current time. 
   """ ;
-  rdfs:domain met:Source ;
-  rdfs:range schema:DateTime ;
-  vs:term_status "testing" . 
-  
-
-met:validTo
-  a rdf:Property ;
-  rdfs:label "valid time" ;
-  rdfs:comment """
-    The point in time to which the data is valid (exclusive), in ISO-8601 format. If no validTo property is given,
-    it is because the value continues to be valid at the current time. 
-  """ ;
-  rdfs:domain met:Source ;
+  rdfs:domain [ 
+    owl:unionOf ( met:Source met:ObservationTimeSeries ) 
+  ] ;
   rdfs:range schema:DateTime ;
   vs:term_status "testing" . 
   

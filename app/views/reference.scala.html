@@ -37,13 +37,52 @@
   </div>
   <div id="main-content" class="frontpage clearfix">
 
-   <p>The data.met.no API is intended to provide free access to MET Norway's archive of historical weather and climate data, in addition to station history
-    information. This page contains useful reference documentation related to usage of the API. Contact us if you have more detailed questions about the 
-    application you are looking to build.</p>
-
-   <ol>
-    <li><a href="#time_specification">Time Specification</a>.</li>
-   </ol>
+  <p>The data.met.no API is intended to provide free access to MET Norway's archive of historical weather and climate data, in addition to station history
+   information. This page contains useful reference documentation related to usage of the API. Contact us if you have more detailed questions about the 
+   application you are looking to build.</p>
+  
+  <ol>
+   <li><a href="#geometry_specification">Geometry Specification</a>.</li>
+   <li><a href="#time_specification">Time Specification</a>.</li>
+  </ol>
+  
+  <h2>
+   <a id="geometry_specification" class="anchor">Time Specification</a>
+  </h2>
+  
+  <p>The place (geographic location) of a data item is the position of the item on the earth in a 2D space. In 
+  data.met.no MET API, the geographic location is specified using longitude and latitude in a WGS84 coordinate
+  system. The geographic dimension is specified using a geometry object and can be either a point or a polygon.
+  </p>
+  
+  <p>Geometry objects in the JSON format are specified in the <a href="http://geojson.org/">GeoJson</a> format, as
+  specified in <a href="https://tools.ietf.org/html/rfc7946">IETF RFC 7946</a>. When querying, however,  we specify
+  the geometry using Well-known text (WKT). WKT is a text markup language for representing vector geometry in a spatial
+  reference system. The current standard definition is in the ISO/IEC 13249-3:2016 standard. In addition to the
+  geometry object, one can also specify an interpolation function to refine/expand the query.</p>
+  
+  <p>Using WKT, we can specify the following distinct locations:
+  
+  <table>
+    <caption>Geometry specification</caption>
+    <tr>
+     <th>Specification</th>
+     <th>Description</th>
+    </tr>
+    <tr>
+     <td><code>POINT (30 10)</code></td>
+     <td>Retrieve the exact point given by the geometry object with longitude 30 and latitude 10 in WGS84 projection.</td>
+    </tr>
+    <tr>
+     <td><code>POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))</code></td>
+     <td>Retrieve the points contained within the geometry object given by the coordinates. Note that, currently polygons
+     with holes are <strong>not</strong> supported by the MET API.</td>
+    </tr>
+    <tr>
+     <td><code>nearest(POINT (30 10))</code></td>
+     <td>Retrieve the point in the data set that is nearest to the geometry object given by the point.</td>
+    </tr>
+  </table>
 
    <h2>
     <a id="time_specification" class="anchor">Time Specification</a>
