@@ -29,6 +29,7 @@ import play.api.inject.guice._
 import com.google.inject.AbstractModule
 import com.typesafe.config.ConfigFactory
 import services.elements._
+import services.frequencies._
 import services.locations._
 import services.observations._
 import services.sources._
@@ -43,6 +44,8 @@ class ProdModule extends AbstractModule {
     bind(classOf[LocationAccess]).to(classOf[DbLocationAccess])
     // elements
     bind(classOf[ElementAccess]).to(classOf[DbElementAccess])
+    // frequencies
+    bind(classOf[FrequencyAccess]).to(classOf[DbFrequencyAccess])
     // observations
     bind(classOf[ElementTranslator]).to(classOf[KdvhElementTranslator])
     bind(classOf[DatabaseAccess]).to(classOf[KdvhDatabaseAccess])
@@ -61,6 +64,8 @@ class DevModule extends AbstractModule {
     bind(classOf[LocationAccess]).to(classOf[MockLocationAccess])
     // elements
     bind(classOf[ElementAccess]).to(classOf[MockElementAccess])
+    // frequencies
+    bind(classOf[FrequencyAccess]).to(classOf[MockFrequencyAccess])
     // observations
     bind(classOf[ElementTranslator]).to(classOf[MockElementTranslator])
     bind(classOf[DatabaseAccess]).to(classOf[MockDatabaseAccess])
