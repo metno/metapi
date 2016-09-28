@@ -32,7 +32,7 @@ libraryDependencies ++= Seq(
  "com.typesafe.play" %% "anorm" % "2.4.0",
  "org.postgresql" % "postgresql" % "9.4-1201-jdbc41",
  "io.swagger" %% "swagger-play2" % "1.5.2",
- "com.github.nscala-time" %% "nscala-time" % "2.12.0",
+ "com.github.nscala-time" %% "nscala-time" % "2.14.0",
  "no.met.data" %% "util" % "0.3-SNAPSHOT",
  "no.met.data" %% "auth" % "0.3-SNAPSHOT",
  "no.met.data" %% "observations" % "0.3-SNAPSHOT",
