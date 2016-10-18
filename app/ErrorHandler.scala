@@ -34,44 +34,22 @@ import com.github.nscala_time.time.Imports._
 import scala.concurrent._
 import scala.language.postfixOps
 import no.met.data._
-import no.met.json._
-
-// $COVERAGE-OFF$ Legacy: Global object seems to not be available in tests
-//scalastyle:off public.methods.have.type
 
 @Singleton
 class ErrorHandler @Inject() (env: Environment, config: Configuration, sourceMapper: OptionalSourceMapper, router: Provider[Router] )
     extends DefaultHttpErrorHandler(env, config, sourceMapper, router) {
 
-  private def formatOf(request: RequestHeader): String = {
-    val elements = request.path.split('.')
-    elements(elements.length - 1)
-  }
-
-  private def showError(code: Int, msg: String, help: Option[String], request: RequestHeader): Result = {
-    val output = formatOf(request) match {
-      case "jsonld" => new ErrorJsonFormat().error(DateTime.now(DateTimeZone.UTC), code, Some(msg), help)(request)
-      case "csv" => msg
-      case _ => msg
-    }
-    val status = new Results.Status(code)
-    status(output)
-  }
-
-  /**
-   * Invoked when the client makes a bad request
-   */
-  override def onBadRequest(request: RequestHeader, error: String) = {
+  override def onBadRequest(request: RequestHeader, msg: String): Future[Result] = {
     Future.successful(
-      showError(BAD_REQUEST, error, None, request)
+      Error.error(BAD_REQUEST, Some(msg), None)(request)
     )
   }
 
-  override def onDevServerError(request: RequestHeader, exception: UsefulException) = {
+  override def onDevServerError(request: RequestHeader, exception: UsefulException): Future[Result] = {
     Future.successful(
       exception.getCause match {
         case x: BadRequestException => {
-          val response = showError(x code, x getLocalizedMessage, x help, request)
+          val response = Error.error(x code, Option(x getLocalizedMessage), x help)(request)
           if (x.headers.isEmpty) {
             response
           } else {
@@ -86,17 +64,17 @@ class ErrorHandler @Inject() (env: Environment, config: Configuration, sourceMap
     )
   }
 
-  override def onForbidden(request: RequestHeader, error: String) = {
+  override def onForbidden(request: RequestHeader, msg: String): Future[Result] = {
     Future.successful(
-      showError(FORBIDDEN, error, None, request) // scalastyle:ignore magic.number
+      Error.error(FORBIDDEN, Option(msg), None)(request)
     )
   }
 
-  override def onProdServerError(request: RequestHeader, exception: UsefulException) = {
+  override def onProdServerError(request: RequestHeader, exception: UsefulException): Future[Result] = {
     Future.successful(
       exception.getCause match {
         case x: BadRequestException => {
-          val response = showError(x code, x getLocalizedMessage, x help, request)
+          val response = Error.error(x code, Option(x getLocalizedMessage), x help)(request)
           if (x.headers.isEmpty) {
             response
           } else {
@@ -106,17 +84,18 @@ class ErrorHandler @Inject() (env: Environment, config: Configuration, sourceMap
         case x => {
           val userKey = request.headers.get("Authorization").getOrElse("none")
           Logger.error(s"Error on request ${request.uri} from user with credentials <$userKey>", x)
-          showError(INTERNAL_SERVER_ERROR,
-              "The server encountered an internal error",
-              Some("Try again later, or report this to met.no"),
-              request)
+          Error.error(INTERNAL_SERVER_ERROR,
+              Some("The server encountered an internal error"),
+              Some("Try again later, or report this to met.no"))(request)
         }
       }
     )
   }
 
+  override def onClientError(request: RequestHeader, statusCode: Int, message: String): Future[Result] = {
+    Future.successful(
+      Error.error(statusCode, Some(message), None)(request)
+    )
+  }
 
 }
-
-//scalastyle:on
-// $COVERAGE-ON$
