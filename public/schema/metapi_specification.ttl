@@ -50,7 +50,7 @@ met:ErrorResponse
     rdfs:comment """
       An error response from the data.met.no MET API. All standard error responses from the MET API are of this class.
     """ ;
-    rdfs:subClassOf schema:CreativeWork ;
+    rdfs:subClassOf met:Response ;
     vs:term_status "testing" . 
     
 
@@ -74,18 +74,30 @@ met:ObservationResponse
       data property of an ObservationResponse contains a set of ObservationSeries.
     """ ;
     rdfs:subClassOf met:Response ;
+    rdfs:seeAlso met:ObservationSeries ;
     vs:term_status "testing" . 
-    
+
 
 met:ObservationSeries
     a rdfs:Class ;
     rdfs:label "ObservationSeries" ;
     rdfs:comment """
-      A series of observations for the source specied by the sourceId property of the data. The observations property
-      contains a set of Observations (i.e., data for a given time and place).
+      A series of observations for the referencetime and source specified by the sourceId property of the data. The
+      observations property contains a set of Observations (i.e., data for a given time and place).
     """ ;
+    rdfs:seeAlso met:Observation ;
     vs:term_status "testing" . 
-    
+
+
+met:Observation
+    a rdfs:Class ;
+    rdfs:label "Observation" ;
+    rdfs:comment """
+      An observation for an element, for a source, location, time, and level given by the ObservationSeries that the
+      Observation belongs to.
+    """ ;
+    vs:term_status "testing" .
+
 
 met:ObservationTimeSeriesResponse
     a rdfs:Class ;
@@ -95,8 +107,69 @@ met:ObservationTimeSeriesResponse
       ObservationTimeSeries class.
     """ ;
     rdfs:subClassOf met:Response ;
+    rdfs:seeAlso met:ObservationTimeSeries ;
     vs:term_status "testing" . 
-    
+
+
+met:ObservationTimeSeries
+    a rdfs:Class ;
+    rdfs:label "ObservationTimeSeries" ;
+    rdfs:comment """
+      A series of observations for the referencetime and source specified by the sourceId property of the data. The
+      observations property contains a set of Observations (i.e., data for a given time and place).
+    """ ;
+    vs:term_status "testing" .
+
+
+met:RainfallIDFResponse
+    a rdfs:Class ;
+    rdfs:label "RainfallIDFResponse" ;
+    rdfs:comment """
+      A response from the data.met.no MET API that contains a set of rainfall intensity-duration-frequency data.
+    """ ;
+    rdfs:subClassOf met:Response ;
+    rdfs:seeAlso met:RainfallIDF ;
+    vs:term_status "testing" .
+
+
+met:RainfallIDF
+    a rdfs:Class ;
+    rdfs:label "ObservationTimeSeries" ;
+    rdfs:comment """
+      A series of rainfall IDF values, for a given sourceId and location.
+    """ ;
+    rdfs:seeAlso met:IDFValue ;
+    vs:term_status "testing" .
+
+
+met:RainfallIDFSourcesResponse
+    a rdfs:Class ;
+    rdfs:label "RainfallIDFSourcesResponse" ;
+    rdfs:comment """
+      A response from the data.met.no MET API that contains metadata about the set of available sources with IDF data.
+    """ ;
+    rdfs:subClassOf met:Response ;
+    vs:term_status "testing" .
+
+
+met:RainfallIDFSource
+    a rdfs:Class ;
+    rdfs:label "RainfallIDFSource" ;
+    rdfs:comment """
+      Metadata about the IDF values that exist for a single source.
+    """ ;
+    rdfs:seeAlso met:IDFValue ;
+    vs:term_status "testing" .
+
+
+met:IDFValue
+    a rdfs:Class ;
+    rdfs:label "IDFValue" ;
+    rdfs:comment """
+      A single IDF (intensity, duration, frequency) value.
+    """ ;
+    vs:term_status "testing" .
+
 
 met:SourceResponse
     a rdfs:Class ;
@@ -373,7 +446,7 @@ met:data
     response.    
   """ ;
   rdfs:domain [
-    owl:unionOf ( met:ObservationResponse met:ObservationTimeSeriesResponse met:SourceResponse met:LocationResponse met:ElementResponse )
+    owl:unionOf ( met:ObservationResponse met:ObservationTimeSeriesResponse met:RainfallIDFResponse met:RainfallIDFSourcesResponse met:SourceResponse met:LocationResponse met:ElementResponse )
   ] ;
   vs:term_status "testing" . 
   
@@ -462,7 +535,7 @@ met:sourceId
     The id of the source at which these values were observed/measured.
   """ ;
   rdfs:domain [
-    owl:unionOf ( met:ObservationSeries met:ObservationTimeSeries ) 
+    owl:unionOf ( met:ObservationSeries met:ObservationTimeSeries met:RainfallIDF met:RainfallIDFSource )
   ] ;
   vs:term_status "testing" . 
   
@@ -477,29 +550,40 @@ met:observations
   rdfs:domain met:ObservationSeries ;
   rdfs:seeAlso met:Observation ;
   vs:term_status "testing" . 
-  
+
 
 met:referenceTime
   a rdf:Property ;
   rdfs:label "referenceTime" ;
   rdfs:comment """
     The time of reference; for observations this is the time at which the measurement or statistic is officially
-    observed and/or generated. 
+    observed and/or generated, as an ISO-8601 DateTime.
   """ ;
   rdfs:domain met:Observation ;
   vs:term_status "testing" . 
-  
 
-met:values
+
+met:numberOfSeasons
   a rdf:Property ;
-  rdfs:label "values" ;
+  rdfs:label "numberOfSeasons" ;
   rdfs:comment """
-    The values observed at the given source and reference time defined by the Observation object. This is a list of 
-    ObservedElement objects.
+    The number of seasons that the defined data source has been operational.
   """ ;
-  rdfs:domain met:Observation ;
+  rdfs:domain [
+    owl:unionOf ( met:RainfallIDF met:RainfallIDFSource )
+  ] ;
   vs:term_status "testing" . 
-  
+
+
+met:operatingPeriods
+  a rdf:Property ;
+  rdfs:label "operatingPeriods" ;
+  rdfs:comment """
+    The periods of time during which the source has been operations, expressed as an array (set) of time specifications.
+  """ ;
+  rdfs:domain met:RainfallIDF ;
+  vs:term_status "testing" .
+
 
 met:elementId
   a rdf:Property ;
@@ -508,11 +592,11 @@ met:elementId
     The data.met.no MET API id of the element being measured/observed/calculated.
   """ ;
   rdfs:domain [
-    owl:unionOf ( met:ObservedElement met:ObservationTimeSeries )
+    owl:unionOf ( met:Observation met:ObservationTimeSeries )
   ] ;
   rdfs:seeAlso met:Element ;
   vs:term_status "testing" . 
-  
+
 
 met:value
   a rdf:Property ;
@@ -521,10 +605,20 @@ met:value
     The actual value of the measured/observed/calculated data.
   """ ;
   rdfs:domain [
-    owl:unionOf ( met:ObservedElement  met:Level )
+    owl:unionOf ( met:Observation  met:Level )
   ] ;
   vs:term_status "testing" . 
-  
+
+
+met:values
+  a rdf:Property ;
+  rdfs:label "values" ;
+  rdfs:comment """
+    A set of values for the given source, location, and time specification.
+  """ ;
+  rdfs:domain met:RainfallIDF ;
+  vs:term_status "testing" .
+
 
 met:unit
   a rdf:Property ;
@@ -534,7 +628,7 @@ met:unit
     codeTable property will contain a reference to the relevant code table.
   """ ;
   rdfs:domain [
-    owl:unionOf ( met:ObservedElement met:ObservationTimeSeries met:Element met:LegacyMetNoConvention met:CFConvention met:Level )
+    owl:unionOf ( met:Observation met:ObservationTimeSeries met:Element met:LegacyMetNoConvention met:CFConvention met:Level met:RainfallIDF met:Level )
   ] ;
   rdfs:seeAlso met:codeTable ;
   vs:term_status "testing" . 
@@ -547,7 +641,7 @@ met:codeTable
     The reference to code table used by the data value, if the unit is a code.
   """ ;
   rdfs:domain [
-    owl:unionOf ( met:ObservedElement met:ObservationTimeSeries met:Element met:Level )
+    owl:unionOf ( met:Observation met:ObservationTimeSeries met:Element met:Level )
   ] ;
   vs:term_status "testing" . 
   
@@ -556,12 +650,36 @@ met:qualityCode
   a rdf:Property ;
   rdfs:label "qualitycode" ;
   rdfs:comment """
-    A code which indicates confidence of the issuing authority in the quality of the data value.
+    A generated code which indicates confidence of the issuing authority in the quality of the data value.
   """ ;
-  rdfs:domain met:ObservedElement ;
+  rdfs:domain met:Observation ;
   rdfs:range schema:integer ;
   vs:term_status "testing" . 
-  
+
+
+met:performanceCategory
+  a rdf:Property ;
+  rdfs:label "performanceCategory" ;
+  rdfs:comment """
+    The performance category of the data for the specified data source.
+  """ ;
+  rdfs:domain [
+    owl:unionOf ( met:Observation met:ObservationTimeSeries )
+  ] ;
+  vs:term_status "testing" .
+
+
+met:exposureCategory
+  a rdf:Property ;
+  rdfs:label "exposureCategory" ;
+  rdfs:comment """
+    The exposure category of the data for the specified data source.
+  """ ;
+  rdfs:domain [
+    owl:unionOf ( met:Observation met:ObservationTimeSeries )
+  ] ;
+  vs:term_status "testing" .
+
 
 met:timeOffset
   a rdf:Property ;
@@ -587,26 +705,6 @@ met:resultTimeInterval
   vs:term_status "testing" . 
 
 
-met:sensorNumber
-  a rdf:Property ;
-  rdfs:label "sensorNumber" ;
-  rdfs:comment """
-    The sensor number.
-  """ ;
-  rdfs:domain met:ObservationTimeSeries ;
-  vs:term_status "testing" . 
-
-
-met:performanceCategory
-  a rdf:Property ;
-  rdfs:label "performanceCategory" ;
-  rdfs:comment """
-    The sensor number.
-  """ ;
-  rdfs:domain met:ObservationTimeSeries ;
-  vs:term_status "testing" . 
-
-
 met:status
   a rdf:Property ;
   rdfs:label "status" ;
@@ -614,6 +712,46 @@ met:status
     The status of the object.
   """ ;
   rdfs:domain met:ObservationTimeSeries ;
+  vs:term_status "testing" . 
+
+
+met:uri
+  a rdf:Property ;
+  rdfs:label "uri" ;
+  rdfs:comment """
+    The suggested URI to retrieve the data defined by this ObservationTimeSeries.
+  """ ;
+  rdfs:domain met:ObservationTimeSeries ;
+  vs:term_status "testing" . 
+
+
+met:intensity
+  a rdf:Property ;
+  rdfs:label "intensity" ;
+  rdfs:comment """
+    The intensity value.
+  """ ;
+  rdfs:domain met:IDFValue ;
+  vs:term_status "testing" .
+
+
+met:duration
+  a rdf:Property ;
+  rdfs:label "duration" ;
+  rdfs:comment """
+    The duration value in minutes.
+  """ ;
+  rdfs:domain met:IDFValue ;
+  vs:term_status "testing" .
+
+
+met:frequency
+  a rdf:Property ;
+  rdfs:label "frequency" ;
+  rdfs:comment """
+    The frequency value in years.
+  """ ;
+  rdfs:domain met:IDFValue ;
   vs:term_status "testing" . 
 
 
@@ -657,8 +795,22 @@ met:geometry
   rdfs:label "geo" ;
   rdfs:comment "The spatial location of the object, described using a GeoJson geometry object in WGS84." ;
   rdfs:domain [
-    owl:unionOf ( met:Source met:Location )
+    owl:unionOf ( met:Source met:Location met:RainfallIDF met:ObservationSeries met:ObservationTimeSeries )
   ] ;
+  vs:term_status "testing" . 
+  
+
+met:levels
+  a rdf:Property ;
+  rdfs:label "levels" ;
+  rdfs:comment """
+    The spatial level of the data when it was observed (if known). Represented as an array of Level objects
+    to handle the possibility of multiple level definitions.
+  """ ;
+  rdfs:domain [
+    owl:unionOf ( met:ObservationSeries met:ObservationTimeSeries )
+  ] ;
+  rdfs:seeAlso met:level ;
   vs:term_status "testing" . 
   
 
@@ -670,16 +822,6 @@ met:level
   """ ;
   rdfs:domain met:Source ;
   rdfs:seeAlso met:levelUnit, met:levelType ;
-  vs:term_status "testing" . 
-  
-
-met:levelUnit
-  a rdf:Property ;
-  rdfs:label "levelUnit" ;
-  rdfs:comment """
-    The unit of measure of the level of the object."
-  """ ;
-  rdfs:domain met:Source ;
   vs:term_status "testing" . 
   
 
@@ -701,7 +843,7 @@ met:validFrom
     The point in time from which the object is valid (inclusive), as an ISO-8601 DateTime.
   """ ;
   rdfs:domain [ 
-    owl:unionOf ( met:Source met:ObservationTimeSeries ) 
+    owl:unionOf ( met:Source met:ObservationTimeSeries met:RainfallIDFSource )
   ] ;
   rdfs:range schema:DateTime ;
   vs:term_status "testing" . 
@@ -715,11 +857,11 @@ met:validTo
     it is because the object continues to be valid at the current time. 
   """ ;
   rdfs:domain [ 
-    owl:unionOf ( met:Source met:ObservationTimeSeries ) 
+    owl:unionOf ( met:Source met:ObservationTimeSeries met:RainfallIDFSource )
   ] ;
   rdfs:range schema:DateTime ;
   vs:term_status "testing" . 
-  
+
 
 met:feature
   a rdf:Property ;
@@ -816,12 +958,15 @@ met:status
   rdfs:label "status" ;
   rdfs:comment """
     The status of the object. For the CFConvention, this is a reference to the CF version, Met Norway local standard
-    or test (indicating the test status of the Element).
+    or test (indicating the test status of the Element).For ObservationTimeSeries, this is about the current status
+    of the time series.
   """ ;
   rdf:type schema:Text ;
-  rdfs:domain met:CfConvention ;
+  rdfs:domain [
+    owl:unionOf ( met:CfConvention met:ObservationTimeSeries )
+  ] ;
   vs:term_status "testing" . 
-  
+
 
 met:coordinates
   a rdf:Property ;
@@ -833,4 +978,3 @@ met:coordinates
   """ ;
   rdfs:domain met:Geometry ;
   vs:term_status "testing" . 
-  

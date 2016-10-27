@@ -36,7 +36,7 @@ GET     /stylesheets/*file          controllers.Assets.at(path="/public/styleshe
 # ~~~~
 
 # Authorization
-->       /auth                      authorization.Routes
+->      /auth                       authorization.Routes
 
 # Observations
 ->      /observations               observations.Routes
