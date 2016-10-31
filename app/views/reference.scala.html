@@ -125,7 +125,7 @@
   </h2>
   
   <p>The following is a list of query examples, showing how to construct URIs on the MET API for some common query types. These are similar to the 
-  example queries <a href="http://eklima.met.no/wsKlima/standard/sDataEx_no.html">defined here</p> for the wsKlima API.</p> 
+  example queries <a href="http://eklima.met.no/wsKlima/standard/sDataEx_no.html">defined here</a> for the wsKlima API.</p> 
   
   <p>0. The following query retrieves data from the climate stations identified by climate numbers 18700 and 50540 for august
   and september only, for three years (2004 - 2006).<br>
@@ -140,52 +140,44 @@
   </a>
   </p>
 
-<!-- 
+
   <p>2. The following query gives observations for the 0, 6, 12, and 18 hours UTC for the given period.<br>
-  <a href="https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&referencetime=R124/2006-01-01T00:00/2006-01-01T00:00/P6H&elements=max(air_temperature T1H)">
-  https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&referencetime=R124/2006-01-01T00:00/2006-01-01T00:00/P6H&elements=max(air_temperature T1H)
+  <a href="https://data.met.no/observations/v0.jsonld?sources=SN18700:0&referencetime=R186/2006-01-01T00:00:00.000Z/2006-01-01T00:00:00.000Z/PT6H&elements=mean(air_temperature T1H),max(air_temperature T1H)">
+  https://data.met.no/observations/v0.jsonld?sources=SN18700:0&referencetime=R186/2006-01-01T00:00:00.000Z/2006-01-01T00:00:00.000Z/PT6H&elements=mean(air_temperature T1H),max(air_temperature T1H)
   </a>
   <br>
-  Doesn't work currently.
   </p>
- -->
  
-  <p>3. Monthly means over a 30 year period.<br>
+  <p>3. Monthly means (not normals) over a 30 year period.<br>
   <a href="https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&referencetime=1961-01-01T00:00/P30Y&elements=mean(air_temperature 1M)">
   https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&referencetime=1961-01-01T00:00/P30Y&elements=mean(air_temperature 1M)
   </a>
   </p>
 
 <!-- 
-  <p>4. Daily means over a 30 year period.<br>
-  <a href="https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&referencetime=1961-01-01T00:00/P30Y&elements=mean(air_temperature 1M)">
-  https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&referencetime=1961-01-01T00:00/P30Y&elements=mean(air_temperature T24H)
-  </a>
-  </p>
+  Normals still needs to be implemented correctly.
+  3 = Månedsnormaler :  
+getMetData("3","","","","18700,50540","rr,tam","","","")
+For default normalperiode [1961-01-01->1990-12-31] kan inputparametrene 'from' og 'to' settes blanke. En annen normalperiode [1931-01-01->1960-12-31] er også tilgjengelig. I output for dato 'from' viser år=(start normalperiode) og (måned og dag)=(starten på aktuell måned). For dato 'to' viser år=(slutt normalperiode) og (måned og dag)=(slutten på aktuell måned). 
 
-  <p>5. Daily extremes for data over a period of 30 years.<br>
-  <a href="https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&referencetime=1961-01-01T00:00/P30Y&elements=time_of_event_of_max(air_temperature%201M),time_of_event_of_max(sum(precipitation_amount%20T24H)%201M)">
-  https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&referencetime=1961-01-01T00:00/P30Y&elements=time_of_event_of_max(air_temperature 1M),time_of_event_of_max(sum(precipitation_amount T24H) 1M)
-  </a>
-  </p>
+  4 = Døgnnormaler:  
+getMetData("4","","","","18700,50540","tam","","","")
+Inputparametrene 'from' og 'to' kan settes blanke fordi det er bare en normalperiode [1961-01-01->1990-12-31](default). Metoden gir døgnnormaler for normalperioden. I output for dato 'from' viser år=(start normalperiode) og (måned og dag)=(starten på aktuell dag). For dato 'to' viser år=(slutt normalperiode) og (måned og dag)=(slutten på aktuell dag). 
+
   5 = Døgnekstremer:  
 getMetData("5","","","","18700","rr,tax","","","") 
 Gir døgnekstremer for alle dager i året. For dato 'from' og 'to' viser år=ekstremåret og (måned og dag)=(dagen det gjelder). 
 -->
 
-  <!-- 
-  <p>7. Homogenized monthly values over a period<br>
-  <a href="https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&referencetime=1961-01-01T00:00/P30Y&elements=time_of_event_of_max(air_temperature%201M),time_of_event_of_max(sum(precipitation_amount%20T24H)%201M)">
+  <p>7. Homogenized monthly values for mean air_temperature over a period of a year (July 2005-2006). Needs to be revised.<br>
+  <a href="https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&referencetime=2005-07-01T00:00/2006-07-01T00:00&elements=homogenized(mean(air_temperature 1M) 1M)">
   https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&referencetime=2005-07-01T00:00/2006-07-01T00:00&elements=homogenized(mean(air_temperature 1M) 1M)
   </a>
   </p>
-  7 = Homogeniserte månedsverdier:  
-getMetData("7","","2005-07-01","2006-07-01","18700","tam","","","")
-Gir homogeniserte månedsverdier for alle månedene fra juli 2005 til juli 2006. 
+  
+  <!-- Above needs to use another element ID. -->
 
-   -->
-
-  <p>8. Metar data for min and max temperatures observed from Gardermoen airport (SN4780)<br>
+  <p>8. Data for min and max temperatures observed from Gardermoen airport (SN4780). Metar data is not available yet.<br>
   <a href="https://staging-data.met.no/observations/v0.jsonld?sources=SN4780:0&referencetime=2008-09-01T00:00:00.000Z/2008-10-01T00:00:00.000Z&elements=min(air_temperature T12H),max(air_temperature T12H)">
   https://staging-data.met.no/observations/v0.jsonld?sources=SN4780:0&referencetime=2008-09-01T00:00:00.000Z/2008-10-01T00:00:00.000Z&elements=min(air_temperature T12H),max(air_temperature T12H)
   </a>
@@ -223,6 +215,7 @@ Gir datadekning for element 'tan' hver måned i tidsintervallet. I output viser '
   https://data.met.no/observations/v0.jsonld?sources=SN18700:0&referencetime=R31/2016-05-01T12:00:00.000Z/2016-05-01T12:00:00.000Z/PT24H&elements=sum(precipitation_amount T10M)
   </a>
   </p>
+ <!-- Does matches the text but not the query example in wsklima. -->
 
   <p>All of the 10-minute precipitation observations at climate station Blindern for the month of may, 2016<br/>
   <a href="https://data.met.no/observations/v0.jsonld?sources=SN18700:0&referencetime=2016-05-01T00:00:00.000Z/2016-06-01T00:00:00.000Z&elements=sum(precipitation_amount T10M)">
@@ -247,6 +240,7 @@ Gir datadekning for element 'tan' hver måned i tidsintervallet. I output viser '
   https://data.met.no/frequencies/rainfallIDFs/v0.jsonld?sources=SN18701
   </a>
   </p>
+  
 <!-- 
 18 = Utenlandske observasjoner:  
 getMetData("18","","","","279000","ta","8","","")
