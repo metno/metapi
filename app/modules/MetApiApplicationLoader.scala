@@ -33,6 +33,7 @@ import services.frequencies._
 import services.locations._
 import services.observations._
 import services.sources._
+import com.kenshoo.play.metrics.{Metrics, MetricsImpl}
 
 // $COVERAGE-OFF$ Can't test the production binding in Test mode
 class ProdModule extends AbstractModule {
@@ -49,6 +50,8 @@ class ProdModule extends AbstractModule {
     // observations
     bind(classOf[ElementTranslator]).to(classOf[KdvhElementTranslator])
     bind(classOf[DatabaseAccess]).to(classOf[KdvhDatabaseAccess])
+
+    bind(classOf[Metrics]).to(classOf[MetricsImpl])
   }
 
 }
@@ -69,6 +72,8 @@ class DevModule extends AbstractModule {
     // observations
     bind(classOf[ElementTranslator]).to(classOf[MockElementTranslator])
     bind(classOf[DatabaseAccess]).to(classOf[MockDatabaseAccess])
+
+    bind(classOf[Metrics]).to(classOf[MetricsImpl])
   }
 
 }
