@@ -38,6 +38,7 @@ import play.api.Logger
 import play.api.Play.current
 import javax.inject.{Singleton, Inject}
 
+// $COVERAGE-OFF$ Tricky to coverage test this code without implementing a mock InfluxDB service that simulates various error conditions etc.
 
 // This class manages communication with an InfluxDB database server.
 // The behavior of the database connection is defined through a set of configuration parameters (matching "influxdb.*" in the config file).
@@ -341,3 +342,5 @@ class IDB @Inject() (applicationLifecycle: ApplicationLifecycle) {
     Future.successful(cleanup())
   }
 }
+
+// $COVERAGE-ON$
