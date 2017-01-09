@@ -137,15 +137,14 @@ class ApplicationSpec extends Specification {
       contentAsString(secret) must contain("Hello to you too, securely!")
     }
 
-// ### TEMPORARILY COMMENTED OUT, AWAITING FIX
-//    "return 'secureHello' response for oauth2" in running(TestUtil.app) {
-//      val userToken = getAccessToken()
-//      val headers = FakeHeaders(List("Authorization" -> s"Bearer $userToken"))
-//      val secret = route(FakeRequest(GET, "/tests/secureHello", headers, "")).get
-//      status(secret) must equalTo(OK)
-//      contentType(secret) must beSome.which(_ == "text/plain")
-//      contentAsString(secret) must contain("Hello to you too, very securely!")
-//    }
+    "return 'secureHello' response for oauth2" in running(TestUtil.app) {
+      val userToken = getAccessToken()
+      val headers = FakeHeaders(List("Authorization" -> s"Bearer $userToken"))
+      val secret = route(FakeRequest(GET, "/tests/secureHello", headers, "")).get
+      status(secret) must equalTo(OK)
+      contentType(secret) must beSome.which(_ == "text/plain")
+      contentAsString(secret) must contain("Hello to you too, very securely!")
+    }.pendingUntilFixed("fails because 32-byte keys are no longer supported for AES for some reason; might be related to this: " + "http://stackoverflow.com/questions/10831801/getting-exception-java-security-invalidkeyexception-invalid-aes-key-length-29")
 
   }
 
