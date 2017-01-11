@@ -144,7 +144,7 @@ class ApplicationSpec extends Specification {
       status(secret) must equalTo(OK)
       contentType(secret) must beSome.which(_ == "text/plain")
       contentAsString(secret) must contain("Hello to you too, very securely!")
-    }.pendingUntilFixed("fails because 32-byte keys are no longer supported for AES for some reason; might be related to this: " + "http://stackoverflow.com/questions/10831801/getting-exception-java-security-invalidkeyexception-invalid-aes-key-length-29")
+    }
 
   }
 
