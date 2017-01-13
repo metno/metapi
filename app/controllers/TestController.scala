@@ -57,9 +57,7 @@ class TestController extends Controller {
       {
         val authHeader = req.headers.get("Authorization")
         if (authHeader.get.startsWith("Bearer ")) {
-          // $COVERAGE-OFF$ awaiting fix of test in ApplicationSpec.scala
           Ok("Hello to you too, very securely!\n")
-          // $COVERAGE-ON$
         } else {
           Ok("Hello to you too, securely!\n")
         }
