@@ -31,6 +31,7 @@ libraryDependencies ++= Seq(
   ws,
  "com.typesafe.play" %% "anorm" % "2.4.0",
  "org.postgresql" % "postgresql" % "9.4-1201-jdbc41",
+ "org.seleniumhq.selenium" % "selenium-htmlunit-driver" % "2.52.0",
  "io.swagger" %% "swagger-play2" % "1.5.2",
  "com.github.nscala-time" %% "nscala-time" % "2.14.0",
  "com.kenshoo" %% "metrics-play" % "2.4.0_0.4.1",
@@ -45,9 +46,11 @@ libraryDependencies ++= Seq(
   specs2 % Test
 )
 
+
 resolvers ++= Seq(
   "OJO Artifactory" at "http://oss.jfrog.org/artifactory/oss-snapshot-local",
-  "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
+  "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases",
+  "unidata" at "http://artifacts.unidata.ucar.edu/content/repositories/unidata-releases/"
 )
 
 // Publish Settings
