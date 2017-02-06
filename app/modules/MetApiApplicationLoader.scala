@@ -46,7 +46,7 @@ class ProdModule extends AbstractModule {
     // elements
     bind(classOf[ElementAccess]).to(classOf[DbElementAccess])
     // frequencies
-    bind(classOf[FrequencyAccess]).to(classOf[DbFrequencyAccess])
+    bind(classOf[IDFAccess]).to(classOf[ProdIDFAccess])
     // observations
     bind(classOf[ElementTranslator]).to(classOf[KdvhElementTranslator])
     bind(classOf[DatabaseAccess]).to(classOf[KdvhDatabaseAccess])
@@ -68,7 +68,7 @@ class DevModule extends AbstractModule {
     // elements
     bind(classOf[ElementAccess]).to(classOf[MockElementAccess])
     // frequencies
-    bind(classOf[FrequencyAccess]).to(classOf[MockFrequencyAccess])
+    bind(classOf[IDFAccess]).to(classOf[MockIDFAccess])
     // observations
     bind(classOf[ElementTranslator]).to(classOf[MockElementTranslator])
     bind(classOf[DatabaseAccess]).to(classOf[MockDatabaseAccess])
