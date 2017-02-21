@@ -34,8 +34,6 @@ libraryDependencies ++= Seq(
  "org.seleniumhq.selenium" % "selenium-htmlunit-driver" % "2.52.0",
  "io.swagger" %% "swagger-play2" % "1.5.2",
  "com.github.nscala-time" %% "nscala-time" % "2.14.0",
- "com.kenshoo" %% "metrics-play" % "2.4.0_0.4.1",
- "com.paulgoldbaum" %% "scala-influxdb-client" % "0.5.1",
  "no.met.data" %% "util" % "0.3-SNAPSHOT",
  "no.met.data" %% "auth" % "0.3-SNAPSHOT",
  "no.met.data" %% "observations" % "0.3-SNAPSHOT",
