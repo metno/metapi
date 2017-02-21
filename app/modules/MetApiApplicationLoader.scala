@@ -40,7 +40,7 @@ class ProdModule extends AbstractModule {
 
   def configure() {
     // sources
-    bind(classOf[SourceAccess]).to(classOf[StinfosysAccess])
+    bind(classOf[SourceAccess]).to(classOf[ProdSourceAccess])
     // locations
     bind(classOf[LocationAccess]).to(classOf[DbLocationAccess])
     // elements
