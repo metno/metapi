@@ -1,0 +1,107 @@
+@import play.api.Play.current
+@import util._
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>data.met.no</title>
+  <link type="image/x-icon" rel="icon" href="/images/met_favicon.png">
+  <link type="image/x-icon" rel="shortcut icon" href="/images/met_favicon.ico">
+  <link href="/stylesheets/style_default_2013.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/style_layout_2013.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/style_menu_2013.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/paginator.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/dictionary.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="wrapper" class="frontpage">
+  <div id="header" class="clearfix">
+    <div id="logo">
+      <a href="http://met.no"><img src="/images/logo_2013_no.png" alt="met.no"></img></a>
+    </div>
+    @util.navbar()
+  </div>
+  <div id="top-line">
+    <div class="top-menu">
+      <ul>
+        <li><a href="https://data.met.no">data.met.no</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="main-content" class="frontpage clearfix">
+
+    <h1>
+      <a id="termsofuse" class="anchor">Terms Of Use</a>
+    </h1>
+
+    In the following you will find guidelines for using the service data.met.no.
+    The service has good capacity and can handle relatively large volumes of requests, but the capacity is not unlimited.
+    We encourage all users to respect the guidelines so that the service will be stable.
+    If we see that there are situations that threaten the operation of our environment,
+    we would consider blocking out the users / services that give bad high load / traffic patterns.
+    If you set up your service in accordance with our policy it will increase the probability that the service is not blocked.
+
+    <!-- ================================================================================================================================================ -->
+    <br/><br/>
+    <h2>Cache</h2>
+    Use the information found in any cache headers. See <a href="http://www.ietf.org/rfc/rfc2616.txt">RFC 2616</a>.
+    For example, use If-Modified-Since requests if the Last-Modified header exists.
+
+    <!-- ================================================================================================================================================ -->
+    <br/><br/>
+    <h2>Proxy</h2>
+    Use a proxy if possible. This is especially important for "slow clients" such as mobile devices.
+
+    <!-- ================================================================================================================================================ -->
+    <br/><br/>
+    <h2>Updates</h2>
+    Do not ask too often. Avoid continuous updating of mobile devices. Applications on mobile devices should download data when explicitly requested
+    by the end user (by pushing a "refresh" button, for example).
+
+    <!-- ================================================================================================================================================ -->
+    <br/><br/>
+    <h2>Local Caching</h2>
+    You should save the information on your own server if you have heavy traffic. Heavy traffic means more than 20 requests from the API per second.
+    Please contact us if you find that your service generates more traffic than this and you do not have reduced the amount of requests
+    by taking into account our guidelines.
+
+    <!-- ================================================================================================================================================ -->
+    <br/><br/>
+    <h2>Large Requests</h2>
+    If your request is too large, you will get a timeout error. Please split your request into smaller subrequests. For example, a request that specifies data
+    from 1000 weather stations can be split into 10 requests, each specifying 100 stations. Likewise, a long timeseries of observations can be split into
+    requests for N time subranges.
+
+    <!-- ================================================================================================================================================ -->
+    <br/><br/>
+    <h2>Identification</h2>
+    The API requires a unique client ID for identification. Each client ID must be associated with a valid email address.
+    It is possible to register multiple client IDs for each email address.
+
+    <!-- ================================================================================================================================================ -->
+    <br/><br/>
+    <h2>Conditions For Data Use</h2>
+    Data from data.met.no are licensed and the license is found in every response. Read more about licensing and crediting
+    <a href="https://www.met.no/en/free-meteorological-data/Licensing-and-crediting">here</a>.
+
+    <!-- ================================================================================================================================================ -->
+    <br/><br/>
+    <h2>General Information About The Service</h2>
+    All weather data available on the API are continually updated. New data will be made ​​available in the service continuously.
+    Other products have varying length of their phase-out period depending on what we consider to be reasonable.
+    There are no guarantees of delivery regarding this service.
+
+    <!-- ================================================================================================================================================ -->
+    <br/><br/>
+    <h2>Versioning</h2>
+    The version is specified both in the URL and in the response of each endpoint (service).
+    Whenever the API is changed in a way that is not backwards compatible, the version number will be incremented.
+
+
+  </div>
+
+</div>
+
+</body>
+</html>

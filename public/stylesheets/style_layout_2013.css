@@ -1,10 +1,10 @@
 #wrapper{background:#FFFFFF;padding:0 46px 10px;margin:0px auto;width:940px;}
 #wrapper.small{width:690px;}
 #header{height:219px;position:relative;}
-#header #help-links{position:absolute;top:85px;right:0px;color:#0090A8;}
-#header #help-links UL{list-style:none;padding:0px;margin:0px;}
-#header #help-links UL LI{white-space:nowrap;display:inline;}
-#header #help-links UL LI A{font-size:12px;padding:0 5px;font-weight:bold;}
+#header #navbar{position:absolute;top:85px;right:0px;color:#0090A8;}
+#header #navbar UL{list-style:none;padding:0px;margin:0px;}
+#header #navbar UL LI{white-space:nowrap;display:inline;}
+#header #navbar UL LI A{font-size:12px;padding:0 5px;font-weight:bold;}
 #header #contact-info{position:absolute;top:43px;right:0px;}
 #header #contact-info .contact-info{color:#938F88;}
 #header #contact-info .contact-info A{color:#938F88;}

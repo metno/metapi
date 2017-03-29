@@ -13,19 +13,30 @@ GET     /swagger.json               controllers.ApiHelpController.getResources
 GET     /tests/hello                controllers.TestController.hello
 GET     /tests/secureHello          controllers.TestController.secureHello
 
+
 # Map static resources from the /app/public folder to the /public path
-GET     /docs                       controllers.Application.docs
-GET     /docs/index.html            controllers.Application.docs
-GET     /docs/*file                 controllers.Assets.at(path="/public/swagger-ui", file)
+
+# API Concepts
+GET     /concepts                   controllers.Application.concepts
+GET     /concepts/index.html        controllers.Application.concepts
 
 # API Reference
 GET     /reference                  controllers.Application.reference
 GET     /reference/index.html       controllers.Application.reference
+GET     /reference/*file            controllers.Assets.at(path="/public/swagger-ui", file)
 
 # API Schema
 GET     /schema                     controllers.Application.schema
 GET     /schema/index.html          controllers.Application.schema
 GET     /schema/*file               controllers.Assets.at(path="/public/schema", file)
+
+# Terms Of Use
+GET     /termsofuse                 controllers.Application.termsofuse
+GET     /termsofuse/index.html      controllers.Application.termsofuse
+
+# Examples
+GET     /examples                   controllers.Application.examples
+GET     /examples/index.html        controllers.Application.examples
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /images/*file               controllers.Assets.at(path="/public/images", file)
@@ -40,19 +51,19 @@ GET     /stylesheets/*file          controllers.Assets.at(path="/public/styleshe
 
 # Observations
 ->      /observations               observations.Routes
-#GET     /api-docs/observations      pl.matisoft.swagger.ApiHelpController.getResource(path = "/observations")
+#GET     /reference/observations      pl.matisoft.swagger.ApiHelpController.getResource(path = "/observations")
 
 # Frequencies
 ->      /frequencies                frequencies.Routes
 
 # Sources
 ->      /sources                    sources.Routes
-#GET     /api-docs/sources           pl.matisoft.swagger.ApiHelpController.getResource(path = "/sources")
+#GET     /reference/sources           pl.matisoft.swagger.ApiHelpController.getResource(path = "/sources")
 
 # Locations
 ->      /locations                  locations.Routes
-#GET     /api-docs/locations          pl.matisoft.swagger.ApiHelpController.getResource(path = "/locations")
+#GET     /reference/locations          pl.matisoft.swagger.ApiHelpController.getResource(path = "/locations")
 
 # Elements
 ->      /elements                   elements.Routes
-#GET     /api-docs/elements          pl.matisoft.swagger.ApiHelpController.getResource(path = "/elements")
+#GET     /reference/elements          pl.matisoft.swagger.ApiHelpController.getResource(path = "/elements")

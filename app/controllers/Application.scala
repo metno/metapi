@@ -34,9 +34,9 @@ class Application extends Controller {
       Ok(views.html.index())
   }
 
-  val docs = Action {
+  val concepts = Action {
     request =>
-      Ok(views.html.docs())
+      Ok(views.html.concepts())
   }
 
   val reference = Action {
@@ -48,5 +48,14 @@ class Application extends Controller {
     request =>
       Ok(views.html.schema())
   }
-  
+
+  val examples = Action {
+    request =>
+      Ok(views.html.examples())
+  }
+
+  val termsofuse = Action {
+    request =>
+      Ok(views.html.termsofuse())
+  }
 }
