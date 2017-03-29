@@ -75,6 +75,20 @@ class ApplicationSpec extends Specification {
       contentAsString(ret) must contain("data.met.no")
     }
 
+    "render concepts" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/concepts")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
+    "render concepts/index.html" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/concepts/index.html")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
     "render swagger JSON" in running(TestUtil.app) {
       val ret = route(FakeRequest(GET, "/swagger.json")).get
 
@@ -84,7 +98,7 @@ class ApplicationSpec extends Specification {
     }
 
     "render swagger-UI" in running(TestUtil.app) {
-      val ret = route(FakeRequest(GET, "/docs")).get
+      val ret = route(FakeRequest(GET, "/reference")).get
 
       status(ret) must equalTo(OK)
       contentType(ret) must beSome.which(_ == "text/html")
@@ -113,6 +127,34 @@ class ApplicationSpec extends Specification {
 
     "render schema/index.html" in running(TestUtil.app) {
       val ret = route(FakeRequest(GET, "/schema/index.html")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
+    "render termsofuse" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/termsofuse")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
+    "render termsofuse/index.html" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/termsofuse/index.html")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
+    "render examples" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/examples")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
+    "render examples/index.html" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/examples/index.html")).get
 
       status(ret) must equalTo(OK)
       contentType(ret) must beSome.which(_ == "text/html")

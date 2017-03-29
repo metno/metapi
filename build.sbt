@@ -86,9 +86,12 @@ coverageExcludedPackages := """
   <empty>;
   util.HttpStatus;
   views.html.index.*;
-  views.html.docs.*;
+  views.html.concepts.*;
   views.html.reference.*;
   views.html.schema.*;
+  views.html.examples.*;
+  views.html.termsofuse.*;
+  views.html.util.navbar.*;
   value.ApiResponse;
   ReverseApplication;
   ReverseAssets;
