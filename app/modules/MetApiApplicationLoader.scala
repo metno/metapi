@@ -71,7 +71,7 @@ class DevModule extends AbstractModule {
     // frequencies
     bind(classOf[IDFAccess]).to(classOf[MockIDFAccess])
     // climate normals
-    bind(classOf[MockClimateNormalsAccess]).to(classOf[MockClimateNormalsAccess])
+    bind(classOf[ClimateNormalsAccess]).to(classOf[MockClimateNormalsAccess])
     // observations
     bind(classOf[ElementTranslator]).to(classOf[MockElementTranslator])
     bind(classOf[DatabaseAccess]).to(classOf[MockDatabaseAccess])
