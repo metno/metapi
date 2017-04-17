@@ -56,6 +56,9 @@ GET     /stylesheets/*file          controllers.Assets.at(path="/public/styleshe
 # Frequencies
 ->      /frequencies                frequencies.Routes
 
+# Climate normals
+->      /climatenormals             climatenormals.Routes
+
 # Sources
 ->      /sources                    sources.Routes
 #GET     /reference/sources           pl.matisoft.swagger.ApiHelpController.getResource(path = "/sources")

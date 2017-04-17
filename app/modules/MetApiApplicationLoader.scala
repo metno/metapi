@@ -30,6 +30,7 @@ import com.google.inject.AbstractModule
 import com.typesafe.config.ConfigFactory
 import services.elements._
 import services.frequencies._
+import services.climatenormals._
 import services.locations._
 import services.observations._
 import services.sources._
@@ -47,6 +48,8 @@ class ProdModule extends AbstractModule {
     bind(classOf[ElementAccess]).to(classOf[DbElementAccess])
     // frequencies
     bind(classOf[IDFAccess]).to(classOf[ProdIDFAccess])
+    // climate normals
+    bind(classOf[ClimateNormalsAccess]).to(classOf[ProdClimateNormalsAccess])
     // observations
     bind(classOf[ElementTranslator]).to(classOf[KdvhElementTranslator])
     bind(classOf[DatabaseAccess]).to(classOf[KdvhDatabaseAccess])
@@ -67,6 +70,8 @@ class DevModule extends AbstractModule {
     bind(classOf[ElementAccess]).to(classOf[MockElementAccess])
     // frequencies
     bind(classOf[IDFAccess]).to(classOf[MockIDFAccess])
+    // climate normals
+    bind(classOf[MockClimateNormalsAccess]).to(classOf[MockClimateNormalsAccess])
     // observations
     bind(classOf[ElementTranslator]).to(classOf[MockElementTranslator])
     bind(classOf[DatabaseAccess]).to(classOf[MockDatabaseAccess])
