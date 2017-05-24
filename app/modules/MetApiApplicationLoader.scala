@@ -31,6 +31,7 @@ import com.typesafe.config.ConfigFactory
 import services.elements._
 import services.frequencies._
 import services.climatenormals._
+import services.records._
 import services.locations._
 import services.observations._
 import services.sources._
@@ -50,6 +51,8 @@ class ProdModule extends AbstractModule {
     bind(classOf[IDFAccess]).to(classOf[ProdIDFAccess])
     // climate normals
     bind(classOf[ClimateNormalsAccess]).to(classOf[ProdClimateNormalsAccess])
+    // records
+    bind(classOf[RecordsAccess]).to(classOf[ProdRecordsAccess])
     // observations
     bind(classOf[ElementTranslator]).to(classOf[KdvhElementTranslator])
     bind(classOf[DatabaseAccess]).to(classOf[KdvhDatabaseAccess])
@@ -72,6 +75,8 @@ class DevModule extends AbstractModule {
     bind(classOf[IDFAccess]).to(classOf[MockIDFAccess])
     // climate normals
     bind(classOf[ClimateNormalsAccess]).to(classOf[MockClimateNormalsAccess])
+    // records
+    bind(classOf[RecordsAccess]).to(classOf[MockRecordsAccess])
     // observations
     bind(classOf[ElementTranslator]).to(classOf[MockElementTranslator])
     bind(classOf[DatabaseAccess]).to(classOf[MockDatabaseAccess])

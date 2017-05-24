@@ -39,6 +39,7 @@ libraryDependencies ++= Seq(
  "no.met.data" %% "observations" % "0.3-SNAPSHOT",
  "no.met.data" %% "frequencies" % "0.3-SNAPSHOT",
  "no.met.data" %% "climatenormals" % "0.3-SNAPSHOT",
+ "no.met.data" %% "records" % "0.3-SNAPSHOT",
  "no.met.data" %% "sources" % "0.3-SNAPSHOT",
  "no.met.data" %% "locations" % "0.3-SNAPSHOT",
  "no.met.data" %% "elements" % "0.3-SNAPSHOT",
