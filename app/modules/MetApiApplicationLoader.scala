@@ -46,7 +46,7 @@ class ProdModule extends AbstractModule {
     // locations
     bind(classOf[LocationAccess]).to(classOf[DbLocationAccess])
     // elements
-    bind(classOf[ElementAccess]).to(classOf[DbElementAccess])
+    bind(classOf[ElementsAccess]).to(classOf[DbElementsAccess])
     // frequencies
     bind(classOf[IDFAccess]).to(classOf[ProdIDFAccess])
     // climate normals
@@ -70,7 +70,7 @@ class DevModule extends AbstractModule {
     // locations
     bind(classOf[LocationAccess]).to(classOf[MockLocationAccess])
     // elements
-    bind(classOf[ElementAccess]).to(classOf[MockElementAccess])
+    bind(classOf[ElementsAccess]).to(classOf[MockElementsAccess])
     // frequencies
     bind(classOf[IDFAccess]).to(classOf[MockIDFAccess])
     // climate normals
