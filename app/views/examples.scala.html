@@ -36,33 +36,32 @@
     </h1>
 
     <ol>
-      <li><a href="#example_queries">Example Queries</a>.</li>
+      <li><a href="#example_requests">Example Requests</a>.</li>
       <li><a href="#examples_for_R">Examples For The R Language</a>.</li>
     </ol>
 
 
     <!-- --------------------------------------------------------------------------------------------------------------------------->
     <h2>
-      <a id="example_queries" class="anchor">Example Queries</a>
+      <a id="example_requests" class="anchor">Example Requests</a>
     </h2>
 
-    <p>The following is a list of example URIs for a few common query types. These are similar to the
-      <a href="http://eklima.met.no/wsKlima/standard/sDataEx_no.html">example queries</a> for the wsKlima API.</p>
+    <p>The following are URIs for a few common requests. These are similar to the
+      <a href="http://eklima.met.no/wsKlima/standard/sDataEx_no.html">example requests</a> for the wsKlima API.</p>
 
-    <p>1. The following query retrieves data from the climate stations identified by climate numbers 18700 and 50540 for august
-      and september only, for three years (2004 - 2006).<br>
+    <p>1. Data from the climate stations identified by climate numbers 18700 and 50540 for august and september only, for three years (2004 - 2006).<br>
       <a href="https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&referencetime=R3/2004-08-01T00:00/2004-10-01T00:00/P1Y&elements=max(air_temperature P1M),min(air_temperature P1M),sum(precipitation_amount P1M)">
         https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&referencetime=R3/2004-08-01T00:00/2004-10-01T00:00/P1Y&elements=max(air_temperature P1M),min(air_temperature P1M),sum(precipitation_amount P1M)
       </a>
     </p>
 
-    <p>2. The following query retrieves monthly means for max and min temperatures as well as accumulated precipitation for all months from July 2005 to July 2006.<br>
+    <p>2. Monthly means for max and min temperatures as well as accumulated precipitation for all months from July 2005 to July 2006.<br>
       <a href="https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&referencetime=2005-07-01T00:00/2006-07-01T00:00&elements=max(air_temperature P1M),min(air_temperature P1M),sum(precipitation_amount P1M)">
         https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&referencetime=2005-07-01T00:00/2006-07-01T00:00&elements=max(air_temperature P1M),min(air_temperature P1M),sum(precipitation_amount P1M)
       </a>
     </p>
 
-    <p>3. The following query gives observations for the 0, 6, 12, and 18 hours UTC for the given period.<br>
+    <p>3. Observations for the 0, 6, 12, and 18 hours UTC for the given period.<br>
       <a href="https://data.met.no/observations/v0.jsonld?sources=SN18700:0&referencetime=R186/2006-01-01T00:00:00.000Z/2006-01-01T00:00:00.000Z/PT6H&elements=mean(air_temperature PT1H),max(air_temperature PT1H)">
         https://data.met.no/observations/v0.jsonld?sources=SN18700:0&referencetime=R186/2006-01-01T00:00:00.000Z/2006-01-01T00:00:00.000Z/PT6H&elements=mean(air_temperature PT1H),max(air_temperature PT1H)
       </a>
@@ -101,13 +100,13 @@
 
     <!-- Above needs to use another element ID. -->
 
-    <p>5. Data for min and max temperatures observed from Gardermoen airport (SN4780). Metar data is not available yet.<br>
+    <p>5. Min and max temperatures observed from Gardermoen airport (SN4780). Metar data is not available yet.<br>
       <a href="https://data.met.no/observations/v0.jsonld?sources=SN4780:0&referencetime=2008-09-01T00:00:00.000Z/2008-10-01T00:00:00.000Z&elements=min(air_temperature PT12H),max(air_temperature PT12H)">
         https://staging-data.met.no/observations/v0.jsonld?sources=SN4780:0&referencetime=2008-09-01T00:00:00.000Z/2008-10-01T00:00:00.000Z&elements=min(air_temperature PT12H),max(air_temperature PT12H)
       </a>
     </p>
 
-    <p>6. As above, but retrieve only the 06:00 observations<br>
+    <p>6. As above, but the 06:00 observations only<br>
       <a href="https://data.met.no/observations/v0.jsonld?sources=SN4780:0&referencetime=R30/2008-09-01T06:00:00.000Z/2008-09-01T06:00:00.000Z/PT24H&elements=min(air_temperature PT12H),max(air_temperature PT24H)">
         https://staging-data.met.no/observations/v0.jsonld?sources=SN4780:0&referencetime=R30/2008-09-01T06:00:00.000Z/2008-09-01T06:00:00.000Z/PT24H&elements=min(air_temperature PT12H),max(air_temperature PT12H)
       </a>
@@ -139,7 +138,7 @@
         https://data.met.no/observations/v0.jsonld?sources=SN18700:0&referencetime=R31/2016-05-01T12:00:00.000Z/2016-05-01T12:00:00.000Z/PT24H&elements=sum(precipitation_amount PT10M)
       </a>
     </p>
-    <!-- Does matches the text but not the query example in wsklima. -->
+    <!-- Does matches the text but not the request example in wsklima. -->
 
     <p>9. All of the 10-minute precipitation observations at climate station Blindern for the month of may, 2016<br/>
       <a href="https://data.met.no/observations/v0.jsonld?sources=SN18700:0&referencetime=2016-05-01T00:00:00.000Z/2016-06-01T00:00:00.000Z&elements=sum(precipitation_amount PT10M)">
@@ -147,19 +146,19 @@
       </a>
     </p>
 
-    <p>10. Looking up all of the observations from Ekofisk with the source ID SN76920:<br/>
+    <p>10. All available time series from Ekofisk (SN76920) (not the actual observations):<br/>
       <a href="https://data.met.no/observations/availableTimeSeries/v0.jsonld?sources=SN76920">
         https://data.met.no/observations/availableTimeSeries/v0.jsonld?sources=SN76920
       </a>
     </p>
 
-    <p>11. Retrieving all of the 10-minute observations (max wind speed of gust) from Ekofisk:<br>
+    <p>11. All values of max wind speed of gust observed at 10-minute intervals at Ekofisk during a certain time period:<br>
       <a href="https://data.met.no/observations/v0.jsonld?sources=SN76920:0&referencetime=2007-01-26T06:00:00.000Z/2013-11-30T13:00:00.000Z&elements=max(wind_speed_of_gust PT10M)">
         https://data.met.no/observations/v0.jsonld?sources=SN76920:0&referencetime=2007-01-26T06:00:00.000Z/2013-11-30T13:00:00.000Z&elements=max(wind_speed_of_gust PT10M)
       </a>
     </p>
 
-    <p>12. Retrieving IDF data for Oslo Blindern:<br>
+    <p>12. IDF data for Oslo Blindern:<br>
       <a href="https://data.met.no/frequencies/rainfall/v0.jsonld?sources=SN18701">
         https://data.met.no/frequencies/rainfall/v0.jsonld?sources=SN18701
       </a>
