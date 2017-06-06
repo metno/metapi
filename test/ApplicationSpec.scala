@@ -160,6 +160,62 @@ class ApplicationSpec extends Specification {
       contentType(ret) must beSome.which(_ == "text/html")
     }
 
+    "render examplerequests" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/examplerequests")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
+    "render examplerequests/index.html" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/examplerequests/index.html")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
+    "render langexamples" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/langexamples")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
+    "render langexamples/index.html" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/langexamples/index.html")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
+    "render langex_python" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/langex_python")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
+    "render langex_python/index.html" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/langex_python/index.html")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
+    "render langex_r" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/langex_r")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
+    "render langex_r/index.html" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/langex_r/index.html")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
     "return 'hello' response" in running(TestUtil.app) {
       val home = route(FakeRequest(GET, "/tests/hello")).get
 
