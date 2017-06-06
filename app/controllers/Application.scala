@@ -54,6 +54,26 @@ class Application extends Controller {
       Ok(views.html.examples())
   }
 
+  val examplerequests = Action {
+    request =>
+      Ok(views.html.examplerequests())
+  }
+
+  val langexamples = Action {
+    request =>
+      Ok(views.html.langexamples())
+  }
+
+  val langex_python = Action {
+    request =>
+      Ok(views.html.langex_python())
+  }
+
+  val langex_r = Action {
+    request =>
+      Ok(views.html.langex_r())
+  }
+
   val termsofuse = Action {
     request =>
       Ok(views.html.termsofuse())

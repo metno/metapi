@@ -1,0 +1,139 @@
+@import play.api.Play.current
+@import util._
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>data.met.no</title>
+  <link type="image/x-icon" rel="icon" href="/images/met_favicon.png">
+  <link type="image/x-icon" rel="shortcut icon" href="/images/met_favicon.ico">
+  <link href="/stylesheets/style_default_2013.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/style_layout_2013.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/style_menu_2013.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/paginator.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/dictionary.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="wrapper" class="frontpage">
+  <div id="header" class="clearfix">
+    <div id="logo">
+      <a href="http://met.no"><img src="/images/logo_2013_no.png" alt="met.no"></img></a>
+    </div>
+    @util.navbar()
+  </div>
+  <div id="top-line">
+    <div class="top-menu">
+      <ul>
+        <li><a href="https://data.met.no">data.met.no</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div id="main-content" class="frontpage clearfix">
+
+    <h1>Python Examples</h1>
+
+    <!-- --------------------------------------------------------------------------------------------------------------------------->
+
+    <h2>Example 1</h2>
+
+    The following <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a> program demonstrates both how to issue
+    an HTTP request to the data.met.no service and how to parse the JSON response. The code is based on the
+    <a href="https://en.wikipedia.org/wiki/Requests_(software)">Requests</a> package which greatly simplifies handling of HTTP requests.
+
+    <pre>
+#!/usr/bin/python
+
+"""
+
+This program shows how to retrieve info for a single source from the data.met.no service.
+
+The HTTP request essentially consists of the following components:
+  - the endpoint, data.met.no/sources
+  - the source ID to get information for
+  - the client ID used for authentication
+
+The source ID is read from a command-line argument, while the client ID is read from
+the environment variable CLIENTID.
+
+Run the program e.g. like this:
+
+  $ CLIENTID=8e6378f7-b3-ae4fe-683f-0db1eb31b24ec ./example-2.7.12.py SN18700
+
+or like this to get info for sources matching a pattern:
+
+  $ CLIENTID=8e6378f7-b3-ae4fe-683f-0db1eb31b24ec ./example-2.7.12.py SN187*
+
+(Note: the client ID used in the example should be replaced with a real one)
+
+The program has been tested on the following platforms:
+  - Python 2.7.3 on Ubuntu 12.04 Precise
+  - Python 2.7.12 and 3.5.2 on Ubuntu 16.04 Xenial
+
+"""
+
+import sys, os
+import requests # See http://docs.python-requests.org/
+
+if __name__ == "__main__":
+
+    # extract command-line argument
+    if len(sys.argv) != 2:
+       sys.stderr.write('usage: ' + sys.argv[0] + ' <source ID>\n')
+       sys.exit(1)
+    source_id = sys.argv[1]
+
+    # extract environment variable
+    if not 'CLIENTID' in os.environ:
+        sys.stderr.write('error: CLIENTID not found in environment\n')
+        sys.exit(1)
+    client_id = os.environ['CLIENTID']
+
+    # issue an HTTP GET request
+    r = requests.get(
+        'https://data.met.no/sources/v0.jsonld',
+        {'ids': source_id},
+        auth=(client_id, '')
+    )
+
+    def codec_utf8(s):
+        #return s.encode('utf-8').decode('utf-8') # should be used for Python 3
+        return s.encode('utf-8') # should be used for Python 2
+
+    # extract some data from the response
+    if r.status_code == 200:
+        for item in r.json()['data']:
+            sys.stdout.write('ID: {}\n'.format(item['id']))
+            sys.stdout.write('Name: {}\n'.format(codec_utf8(item['name'])))
+            if 'geometry' in item:
+                sys.stdout.write('longitude: {}\n'.format(item['geometry']['coordinates'][0]))
+                sys.stdout.write('latitude: {}\n'.format(item['geometry']['coordinates'][1]))
+            if 'municipality' in item:
+                sys.stdout.write('Municipality: {}\n'.format(codec_utf8(item['municipality'])))
+            if 'county' in item:
+                sys.stdout.write('County: {}\n'.format(codec_utf8(item['county'])))
+            sys.stdout.write('Country: {}\n'.format(codec_utf8(item['country'])))
+            if 'externalIds' in item:
+                for ext_id in item['externalIds']:
+                    sys.stdout.write('external ID: {}\n'.format(ext_id))
+            else:
+                sys.stdout.write('no external IDs found\n')
+    else:
+        sys.stdout.write('error:\n')
+        sys.stdout.write('\tstatus code: {}\n'.format(r.status_code))
+        if 'error' in r.json():
+            assert(r.json()['error']['code'] == r.status_code)
+            sys.stdout.write('\tmessage: {}\n'.format(r.json()['error']['message']))
+            sys.stdout.write('\treason: {}\n'.format(r.json()['error']['reason']))
+        else:
+            sys.stdout.write('\tother error\n')
+    </pre>
+
+  </div>
+
+</div>
+
+</body>
+</html>

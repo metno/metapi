@@ -38,6 +38,22 @@ GET     /termsofuse/index.html      controllers.Application.termsofuse
 GET     /examples                   controllers.Application.examples
 GET     /examples/index.html        controllers.Application.examples
 
+# Example Requests
+GET     /examplerequests            controllers.Application.examplerequests
+GET     /examplerequests/index.html controllers.Application.examplerequests
+
+# Language Examples
+GET     /langexamples               controllers.Application.langexamples
+GET     /langexamples/index.html    controllers.Application.langexamples
+
+# Python Examples
+GET     /langex_python              controllers.Application.langex_python
+GET     /langex_python/index.html   controllers.Application.langex_python
+
+# R Examples
+GET     /langex_r                   controllers.Application.langex_r
+GET     /langex_r/index.html        controllers.Application.langex_r
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /images/*file               controllers.Assets.at(path="/public/images", file)
 GET     /stylesheets/*file          controllers.Assets.at(path="/public/stylesheets", file)
