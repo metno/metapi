@@ -35,7 +35,7 @@
 
     <h1>Python Examples</h1>
 
-    The following <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a> programs demonstrate both how to issue
+    The following <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a> programs demonstrate how to issue
     an HTTP request to the data.met.no service and how to parse the JSON response. The code is based on the
     <a href="https://en.wikipedia.org/wiki/Requests_(software)">Requests</a> package which greatly simplifies handling of HTTP requests.
 
@@ -84,7 +84,7 @@ if __name__ == "__main__":
 
     # extract command-line argument
     if len(sys.argv) != 2:
-       sys.stderr.write('usage: ' + sys.argv[0] + ' <source ID>\n')
+       sys.stderr.write('usage: ' + sys.argv[0] + ' &lt;source ID&gt;\n')
        sys.exit(1)
     source_id = sys.argv[1]
 
@@ -154,9 +154,9 @@ time range: 2010-04-01 .. 2010-05-31
 
 The time series is written to standard output as lines of the form:
 
-  <observation time as date/time in ISO 8601 format> \
-  <observation time as seconds since 1970-01-01T00:00:00> \
-  <observed value>
+  &lt;observation time as date/time in ISO 8601 format&gt; \
+  &lt;observation time as seconds since 1970-01-01T00:00:00&gt; \
+  &lt;observed value&gt;
 
 Save the program to a file example.py, make it executable (chmod 755 example.py),
 and run it e.g. like this:
