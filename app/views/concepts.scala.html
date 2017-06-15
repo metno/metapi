@@ -12,6 +12,16 @@
   <link href="/stylesheets/style_menu_2013.css" rel="stylesheet" type="text/css">
   <link href="/stylesheets/paginator.css" rel="stylesheet" type="text/css">
   <link href="/stylesheets/dictionary.css" rel="stylesheet" type="text/css">
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+      padding: 5px;
+    }
+  </style>
 </head>
 
 <body>
@@ -47,6 +57,7 @@
       <li><a href="#geometry_specification">Geometry Specification</a>.</li>
       <li><a href="#time_specification">Time Specification</a>.</li>
       <li><a href="#searchfilter">Search Filter</a>.</li>
+      <li><a href="#calculationmethod">Calculation Method</a>.</li>
       <li><a href="#mailing_list">Mailing List</a>.</li>
     </ol>
 
@@ -155,8 +166,8 @@ curl -H "Authorization: Bearer YOUR-ACCESS-TOKEN" "https://data.met.no/tests/sec
     <table>
       <thead>
       <tr>
-        <th>verb</th>
-        <th>description</th>
+        <th>Verb</th>
+        <th>Description</th>
       </tr>
       </thead>
       <tbody>
@@ -298,6 +309,46 @@ curl -H "Authorization: Bearer YOUR-ACCESS-TOKEN" "https://data.met.no/tests/sec
 
     <p>The standard search filter is case-insensitive and supports asterisks ('*') to represent zero or more characters.</p>
     <p>For example, 'f*n*d' matches 'Finland'.</p>
+
+
+    <!-- --------------------------------------------------------------------------------------------------------------------------->
+    <br/><br/>
+    <h2>
+      <a id="calculationmethod" class="anchor">Calculation Method</a>
+    </h2>
+
+    <p>A calculation method defines how a particular element is derived, typically by applying one or more statistical functions over certain periods.</p>
+    <p>It has the following general form:</p>
+    <br/>
+    <p>[&lt;<em>function2</em>&gt;]([&lt;<em>function1</em>&gt;](&lt;<em>base&nbsp;name</em>&gt;&nbsp;[&lt;<em>secondary&nbsp;base&nbsp;name</em>&gt;]&nbsp;[&lt;<em>period1</em>&gt;])&nbsp;[&lt;<em>period2</em>&gt;]&nbsp;[&lt;<em>threshold2</em>&gt;])</p>
+    <br/>
+    where the components are defined as follows:
+    <br/><br/>
+    <table>
+      <tr><th>Component</th><th>Description</th></tr>
+      <tr><td>base&nbsp;name</td><td>The name of the primary quantity. Normally this is a base physical quantity like air temperature.</td></tr>
+      <tr><td>secondary&nbsp;base&nbsp;name</td><td>The name of the secondary quantity. This typically used as a sub-category of the primary quantity.</td></tr>
+      <tr><td>function1</td><td>The innermost function, i.e. the one applied directly to the primary quantity.</td></tr>
+      <tr><td>period1</td><td>The period over which function1 is applied.</td></tr>
+      <tr><td>function2</td><td>The outermost function, i.e. the one applied to the result of applying function1.</td></tr>
+      <tr><td>period2</td><td>The period over which function2 is applied.</td></tr>
+      <tr><td>threshold2</td><td>A threshold applicable to function2.</td></tr>
+    </table>
+    <br/>
+    The following combinations are currently available:
+    <br/><br/>
+    <table>
+      <tr><th>Combination</th><th>Example</th></tr>
+      <tr><td>&lt;<em>base&nbsp;name</em>&gt;</td><td><code>air_temperature</code></tr>
+      <tr><td>&lt;<em>function1</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;)</td><td><code>from_direction_of_peak(sea_surface_primary_wave)</code></tr>
+      <tr><td>&lt;<em>function1</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;<em>period1</em>&gt;)</td><td><code>best_estimate_sum(precipitation_amount&nbsp;P1M)</code></tr>
+      <tr><td>&lt;<em>function1</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;<em>secondary&nbsp;base&nbsp;name</em>&gt;&nbsp;&lt;<em>period1</em>&gt;)</td><td><code>weather_symbol(instant_weather_type&nbsp;cloud_area_fraction&nbsp;PT6H)</code></tr>
+      <tr><td>&lt;<em>function2</em>&gt;(&lt;<em>function1</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;<em>period1</em>&gt;)&nbsp;&lt;<em>period2</em>&gt;)</td><td><code>mean(max(wind_speed&nbsp;P1D)&nbsp;P1M)</code></tr>
+      <tr><td>&lt;<em>function2</em>&gt;(&lt;<em>function1</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;<em>period1</em>&gt;)&nbsp;&lt;<em>period2</em>&gt;&nbsp;&lt;<em>threshold2</em>&gt;)</td><td><code>integral_of_excess(mean(air_temperature&nbsp;P1D)&nbsp;P1M&nbsp;17.0)</code></tr>
+    </table>
+
+    <br/>
+    <p>A more detailed description of the various cell methods is available directly from the <a href="/reference#!/elements/getElements">elements endpoint</a>.</p>
 
 
     <!-- --------------------------------------------------------------------------------------------------------------------------->
