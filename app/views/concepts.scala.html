@@ -317,38 +317,37 @@ curl -H "Authorization: Bearer YOUR-ACCESS-TOKEN" "https://data.met.no/tests/sec
       <a id="calculationmethod" class="anchor">Calculation Method</a>
     </h2>
 
-    <p>A calculation method defines how a particular element is derived, typically by applying one or more statistical functions over certain periods.</p>
-    <p>It has the following general form:</p>
-    <br/>
-    <p>[&lt;<em>function2</em>&gt;]([&lt;<em>function1</em>&gt;](&lt;<em>base&nbsp;name</em>&gt;&nbsp;[&lt;<em>secondary&nbsp;base&nbsp;name</em>&gt;]&nbsp;[&lt;<em>period1</em>&gt;])&nbsp;[&lt;<em>period2</em>&gt;]&nbsp;[&lt;<em>threshold2</em>&gt;])</p>
-    <br/>
-    where the components are defined as follows:
-    <br/><br/>
-    <table>
-      <tr><th>Component</th><th>Description</th></tr>
-      <tr><td>base&nbsp;name</td><td>The primary quantity. Normally this is a basic physical quantity like air temperature.</td></tr>
-      <tr><td>secondary&nbsp;base&nbsp;name</td><td>The secondary quantity. This typically used as a sub-category of the primary quantity.</td></tr>
-      <tr><td>function1</td><td>The innermost function, i.e. the one applied directly to the primary quantity.</td></tr>
-      <tr><td>period1</td><td>The period over which function1 is applied. This is an <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601 duration</a> such as P1D (one day) or P1M (one month).</td></tr>
-      <tr><td>function2</td><td>The outermost function, i.e. the one applied to the result of applying function1.</td></tr>
-      <tr><td>period2</td><td>The period over which function2 is applied. An ISO 8601 duration, like period1.</td></tr>
-      <tr><td>threshold2</td><td>A threshold applicable to function2.</td></tr>
-    </table>
-    <br/>
+    <p>A calculation method defines in detail how a particular element is derived, typically by combining statistical functions in different ways.</p>
     The following combinations are currently available:
     <br/><br/>
     <table>
       <tr><th>Combination</th><th>Example</th></tr>
       <tr><td>&lt;<em>base&nbsp;name</em>&gt;</td><td><code>air_temperature</code></tr>
-      <tr><td>&lt;<em>function1</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;)</td><td><code>from_direction_of_peak(sea_surface_primary_wave)</code></tr>
-      <tr><td>&lt;<em>function1</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;<em>period1</em>&gt;)</td><td><code>best_estimate_sum(precipitation_amount&nbsp;P1M)</code></tr>
-      <tr><td>&lt;<em>function1</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;<em>secondary&nbsp;base&nbsp;name</em>&gt;&nbsp;&lt;<em>period1</em>&gt;)</td><td><code>weather_symbol(instant_weather_type&nbsp;cloud_area_fraction&nbsp;PT6H)</code></tr>
-      <tr><td>&lt;<em>function2</em>&gt;(&lt;<em>function1</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;<em>period1</em>&gt;)&nbsp;&lt;<em>period2</em>&gt;)</td><td><code>mean(max(wind_speed&nbsp;P1D)&nbsp;P1M)</code></tr>
-      <tr><td>&lt;<em>function2</em>&gt;(&lt;<em>function1</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;<em>period1</em>&gt;)&nbsp;&lt;<em>period2</em>&gt;&nbsp;&lt;<em>threshold2</em>&gt;)</td><td><code>integral_of_excess(mean(air_temperature&nbsp;P1D)&nbsp;P1M&nbsp;17.0)</code></tr>
+      <tr><td>&lt;<em>method</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;)</td><td><code>from_direction_of_peak(sea_surface_primary_wave)</code></tr>
+      <tr><td>&lt;<em>method</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;<em>period</em>&gt;)</td><td><code>best_estimate_sum(precipitation_amount&nbsp;P1M)</code></tr>
+      <tr><td>&lt;<em>method</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;<em>secondary&nbsp;base&nbsp;name</em>&gt;&nbsp;&lt;<em>period</em>&gt;)</td><td><code>weather_symbol(instant_weather_type&nbsp;cloud_area_fraction&nbsp;PT6H)</code></tr>
+      <tr><td>&lt;<em>method</em>&gt;(&lt;<em>inner&nbsp;method</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;<em>inner&nbsp;period</em>&gt;)&nbsp;&lt;<em>period</em>&gt;)</td><td><code>mean(max(wind_speed&nbsp;P1D)&nbsp;P1M)</code></tr>
+      <tr><td>&lt;<em>method</em>&gt;(&lt;<em>inner&nbsp;method</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;<em>inner&nbsp;period</em>&gt;)&nbsp;&lt;<em>period</em>&gt;&nbsp;&lt;<em>threshold</em>&gt;)</td><td><code>integral_of_excess(mean(air_temperature&nbsp;P1D)&nbsp;P1M&nbsp;17.0)</code></tr>
     </table>
+    <br/>
+    where the components are defined as follows:
+    <br/><br/>
+    <table>
+      <tr><th>Component</th><th>Description</th></tr>
+      <tr><td>base&nbsp;name</td><td>The primary quantity. Normally this is a basic physical quantity.</td></tr>
+      <tr><td>secondary&nbsp;base&nbsp;name</td><td>The secondary quantity. This is typically used as a sub-category of the primary quantity.</td></tr>
+      <tr><td>method</td><td>The main function, applied either directly to the primary quantity or to an inner function of the primary quantity.</td></tr>
+      <tr><td>inner&nbsp;method</td><td>The inner function, applied directly to the primary quantity and used as argument to the main function.</td></tr>
+      <tr><td>period</td><td>The period over which the main function is applied.
+        This is an <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601 duration</a> such as P1D (one day) or P1M (one month).</td></tr>
+      <tr><td>inner&nbsp;period</td><td>The period over which the main function is applied. Also an ISO 8601 duration.</td></tr>
+      <tr><td>threshold</td><td>A threshold applicable to the main function.</td></tr>
+    </table>
+    <br/>
 
     <br/>
-    <p>A more detailed description of the various cell methods is available directly from the <a href="/reference#!/elements/getElements">elements endpoint</a>.</p>
+    <p>A more detailed description of the various calculation methods is available directly from
+      the <a href="/reference#!/elements/getElements">elements endpoint</a>.</p>
 
 
     <!-- --------------------------------------------------------------------------------------------------------------------------->
