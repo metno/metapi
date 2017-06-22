@@ -325,7 +325,6 @@ curl -H "Authorization: Bearer YOUR-ACCESS-TOKEN" "https://data.met.no/tests/sec
       <tr><td>&lt;<em>base&nbsp;name</em>&gt;</td><td><code>air_temperature</code></tr>
       <tr><td>&lt;<em>method</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;)</td><td><code>from_direction_of_peak(sea_surface_primary_wave)</code></tr>
       <tr><td>&lt;<em>method</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;<em>period</em>&gt;)</td><td><code>best_estimate_sum(precipitation_amount&nbsp;P1M)</code></tr>
-      <tr><td>&lt;<em>method</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;<em>secondary&nbsp;base&nbsp;name</em>&gt;&nbsp;&lt;<em>period</em>&gt;)</td><td><code>weather_symbol(instant_weather_type&nbsp;cloud_area_fraction&nbsp;PT6H)</code></tr>
       <tr><td>&lt;<em>method</em>&gt;(&lt;<em>inner&nbsp;method</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;<em>inner&nbsp;period</em>&gt;)&nbsp;&lt;<em>period</em>&gt;)</td><td><code>mean(max(wind_speed&nbsp;P1D)&nbsp;P1M)</code></tr>
       <tr><td>&lt;<em>method</em>&gt;(&lt;<em>inner&nbsp;method</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;<em>inner&nbsp;period</em>&gt;)&nbsp;&lt;<em>period</em>&gt;&nbsp;&lt;<em>threshold</em>&gt;)</td><td><code>integral_of_excess(mean(air_temperature&nbsp;P1D)&nbsp;P1M&nbsp;17.0)</code></tr>
     </table>
@@ -334,14 +333,13 @@ curl -H "Authorization: Bearer YOUR-ACCESS-TOKEN" "https://data.met.no/tests/sec
     <br/><br/>
     <table>
       <tr><th>Component</th><th>Description</th></tr>
-      <tr><td>base&nbsp;name</td><td>The primary quantity. Normally this is a basic physical quantity.</td></tr>
-      <tr><td>secondary&nbsp;base&nbsp;name</td><td>The secondary quantity. This is typically used as a sub-category of the primary quantity.</td></tr>
-      <tr><td>method</td><td>The main function, applied either directly to the primary quantity or to an inner function of the primary quantity.</td></tr>
-      <tr><td>inner&nbsp;method</td><td>The inner function, applied directly to the primary quantity and used as argument to the main function.</td></tr>
-      <tr><td>period</td><td>The period over which the main function is applied.
+      <tr><td>base&nbsp;name</td><td>The primary quantity. Normally this is a basic physical quantity. It is normally in accordance with the CF standard name table or CF guidelines for construction of standard names.</td></tr>
+      <tr><td>method</td><td>The main method (function), applied either directly to the primary quantity or indirectly via an inner method.</td></tr>
+      <tr><td>inner&nbsp;method</td><td>The inner method (function), applied directly to the primary quantity and used as argument to the main method.</td></tr>
+      <tr><td>period</td><td>The period over which the main method is applied.
         This is an <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601 duration</a> such as P1D (one day) or P1M (one month).</td></tr>
-      <tr><td>inner&nbsp;period</td><td>The period over which the main function is applied. Also an ISO 8601 duration.</td></tr>
-      <tr><td>threshold</td><td>A threshold applicable to the main function.</td></tr>
+      <tr><td>inner&nbsp;period</td><td>The period over which the main method is applied. Also an <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601 duration</a>.</td></tr>
+      <tr><td>threshold</td><td>A threshold applicable to the main method.</td></tr>
     </table>
     <br/>
 
