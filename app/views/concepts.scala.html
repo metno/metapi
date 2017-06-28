@@ -57,6 +57,7 @@
       <li><a href="#geometry_specification">Geometry Specification</a>.</li>
       <li><a href="#time_specification">Time Specification</a>.</li>
       <li><a href="#searchfilter">Search Filter</a>.</li>
+      <li><a href="#jsonfilter">JSON Filter</a>.</li>
       <li><a href="#calculationmethod">Calculation Method</a>.</li>
       <li><a href="#mailing_list">Mailing List</a>.</li>
     </ol>
@@ -309,6 +310,17 @@ curl -H "Authorization: Bearer YOUR-ACCESS-TOKEN" "https://data.met.no/tests/sec
 
     <p>The standard search filter is case-insensitive and supports asterisks ('*') to represent zero or more characters.</p>
     <p>For example, 'f*n*d' matches 'Finland'.</p>
+
+
+    <!-- --------------------------------------------------------------------------------------------------------------------------->
+    <br/><br/>
+    <h2>
+      <a id="jsonfilter" class="anchor">JSON Filter</a>
+    </h2>
+
+    <p>A JSON filter is a special type of JSON object that consists of zero or more key-value pairs: "&lt;key1&gt;": "&lt;value1&gt;",
+      "&lt;key2&gt;": "&lt;value2&gt;", ... The braces around the object may be omitted, like in this case. Each value is a comma-separated list of
+      <a href="#searchfilter">search filters</a>.
 
 
     <!-- --------------------------------------------------------------------------------------------------------------------------->
