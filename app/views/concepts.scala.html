@@ -50,16 +50,19 @@
       <li><a href="#api_version">API Version</a></li>
       <li><a href="#authentication">Authentication</a></li>
       <li><a href="#authorization">Authorization</a></li>
+
+      <li><a href="#elementids">Weather and Climate Element Identifiers</a></li>
+      <li><a href="#calculationmethod">Calculation Method</a></li>
+      <li><a href="#time_specification">Time Specification</a></li>
+      <li><a href="#geometry_specification">Geometry Specification</a></li>
+      <li><a href="#searchfilter">Search Filter</a></li>
+      <li><a href="#jsonfilter">JSON Filter</a></li>
+
       <li><a href="#resources">Resources, Schema, Parameters, Verbs</a></li>
       <li><a href="#hypermedia">Hypermedia</a></li>
       <li><a href="#cors">CORS</a></li>
       <li><a href="#localization">Localization</a></li>
-      <li><a href="#geometry_specification">Geometry Specification</a>.</li>
-      <li><a href="#time_specification">Time Specification</a>.</li>
-      <li><a href="#searchfilter">Search Filter</a>.</li>
-      <li><a href="#jsonfilter">JSON Filter</a>.</li>
-      <li><a href="#calculationmethod">Calculation Method</a>.</li>
-      <li><a href="#mailing_list">Mailing List</a>.</li>
+      <li><a href="#mailing_list">Mailing List</a></li>
     </ol>
 
 
@@ -150,6 +153,168 @@ curl -H "Authorization: Bearer YOUR-ACCESS-TOKEN" "https://data.met.no/tests/sec
     <!-- --------------------------------------------------------------------------------------------------------------------------->
     <br/><br/>
     <h2>
+      <a id="elementids" class="anchor">Weather and Climate Element Identifiers</a>
+    </h2>
+
+    <p>
+      See an overview of the available element identifiers (IDs) in the <a href="/elementtable">Table of Weather and Climate Elements
+      (<span style="color:red">experimental!</span>)</a>.
+      The IDs are defined for use in MET API and are, as far as possible, based on <a href="http://cfconventions.org">CF standard names</a>
+      and structured as a <a href="#calculationmethod">Calculation Method</a>.
+    </p>
+
+
+    <!-- --------------------------------------------------------------------------------------------------------------------------->
+    <br/><br/>
+    <h3>
+      <a id="calculationmethod" class="anchor">Calculation Method</a>
+    </h3>
+
+    <p>A calculation method defines in detail how a particular element is derived, typically by combining statistical functions in different ways.</p>
+    The following combinations are currently available:
+    <br/><br/>
+    <table>
+      <tr><th>Combination</th><th>Example</th></tr>
+      <tr><td>&lt;<em>base&nbsp;name</em>&gt;</td><td><code>air_temperature</code></tr>
+      <tr><td>&lt;<em>method</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;)</td><td><code>from_direction_of_peak(sea_surface_primary_wave)</code></tr>
+      <tr><td>&lt;<em>method</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;<em>period</em>&gt;)</td>
+        <td><code>best_estimate_sum(precipitation_amount&nbsp;P1M)</code></tr>
+      <tr><td>&lt;<em>method</em>&gt;(&lt;<em>inner&nbsp;method</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;
+        <em>inner&nbsp;period</em>&gt;)&nbsp;&lt;<em>period</em>&gt;)</td><td><code>mean(max(wind_speed&nbsp;P1D)&nbsp;P1M)</code></tr>
+      <tr><td>&lt;<em>method</em>&gt;(&lt;<em>inner&nbsp;method</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;
+        <em>inner&nbsp;period</em>&gt;)&nbsp;&lt;<em>period</em>&gt;&nbsp;&lt;<em>threshold</em>&gt;)</td>
+        <td><code>integral_of_excess(mean(air_temperature&nbsp;P1D)&nbsp;P1M&nbsp;17.0)</code></tr>
+    </table>
+    <br/>
+    where the components are defined as follows:
+    <br/><br/>
+    <table>
+      <tr><th>Component</th><th>Description</th></tr>
+      <tr><td>base&nbsp;name</td><td>The primary quantity. Normally this is a basic physical quantity. It is normally in accordance with the
+        <a href="http://cfconventions.org/standard-names.html">CF standard name table</a> or
+        <a href="http://cfconventions.org/Data/cf-standard-names/docs/guidelines.html">CF guidelines</a> for construction of standard names.</td></tr>
+      <tr><td>method</td><td>The main method (function), applied either directly to the primary quantity or indirectly via an inner method.</td></tr>
+      <tr><td>inner&nbsp;method</td><td>The inner method (function), applied directly to the primary quantity and used as argument to the main method.</td></tr>
+      <tr><td>period</td><td>The period over which the main method is applied.
+        This is an <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601 duration</a> such as P1D (one day) or P1M (one month).</td></tr>
+      <tr><td>inner&nbsp;period</td><td>The period over which the main method is applied.
+        Also an <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601 duration</a>.</td></tr>
+      <tr><td>threshold</td><td>A threshold applicable to the main method.</td></tr>
+    </table>
+    <br/>
+
+    <br/>
+    <p>A more detailed description of the various calculation methods is available directly from
+      the <a href="/reference#!/elements/getElements">elements endpoint</a>.</p>
+
+    <p>Methods and time periods correspond to cell methods and time bounds in the <a href="http://cfconventions.org">CF convention</a>.</p>
+
+
+    <!-- --------------------------------------------------------------------------------------------------------------------------->
+    <br/><br/>
+    <h2>
+      <a id="time_specification" class="anchor">Time Specification</a>
+    </h2>
+
+    <p>Our time specification is based on ISO-8601, extended with repeating intervals which do not exist in the ISO standard.</p>
+
+    <ul>
+      <li>Date: YYYY-MM-DD</li>
+      <li>Time: hh:mm:ss</li>
+      <li>Date Time: &lt;date&gt;T&lt;time&gt;</li>
+      <li>Duration: PnYnMnDTnHnMnSTime</li>
+      <li>Interval: &lt;start&gt;/&lt;end&gt;</li>
+      <li>Time Interval: &lt;start&gt;/&lt;duration&gt;</li>
+      <li>Repeating Time Points: R[n]/&lt;interval&gt;</li>
+      <li>Repeating Intervals: R[n]/&lt;interval&gt;/&lt;Duration&gt;</li>
+    </ul>
+
+    <p>It is important to note that intervals follow standard inclusive/exclusive semantics; i.e., [0,1) representing a value that is equal to or greater than 0, and
+      less than 1.</p>
+
+    <p>As per the ISO standard, repeating time points are repeated immediately after each other. So, for example:</p>
+    <p><code>R4/2005-07-01T00:00/2005-07-01T06:00</code></p>
+    <p>Represents the four consecutive time intervals:</p>
+    <p><code>2005-07-01T00:00/2005-07-01T06:00</code></p>
+    <p><code>2005-07-01T06:00/2005-07-01T12:00</code></p>
+    <p><code>2005-07-01T12:00/2005-07-01T18:00</code></p>
+    <p><code>2005-07-01T18:00/2005-07-02T00:00</code></p>
+    <p>For repeating intervals, we add a duration that represents the time between the start points of the interval. So for example:</p>
+    <p><code>R4/2005-07-01T00:00/2005-07-01T06:00/P1D</code></p>
+    <p>Represents the four time intervals (separated by a duration of 1 day):</p>
+    <p><code>2005-07-01T00:00/2005-07-01T06:00</code></p>
+    <p><code>2005-07-02T00:00/2005-07-02T06:00</code></p>
+    <p><code>2005-07-03T00:00/2005-07-03T06:00</code></p>
+    <p><code>2005-07-04T00:00/2005-07-04T06:00</code></p>
+
+
+    <!-- --------------------------------------------------------------------------------------------------------------------------->
+    <br/><br/>
+    <h2>
+      <a id="geometry_specification" class="anchor">Geometry Specification</a>
+    </h2>
+
+    <p>The place (geographic location) of a data item is the position of the item on the earth in a 2D space. In
+      data.met.no MET API, the geographic location is specified using longitude and latitude in a WGS84 coordinate
+      system. The geographic dimension is specified using a geometry object and can be either a point or a polygon.
+    </p>
+
+    <p>Geometry objects in the JSON format are specified in the <a href="http://geojson.org/">GeoJson</a> format, as
+      specified in <a href="https://tools.ietf.org/html/rfc7946">IETF RFC 7946</a>. When querying, however,  we specify
+      the geometry using Well-known text (WKT). WKT is a text markup language for representing vector geometry in a spatial
+      reference system. The current standard definition is in the ISO/IEC 13249-3:2016 standard. In addition to the
+      geometry object, one can also specify an interpolation function to refine/expand the query.</p>
+
+    <p>Using WKT, we can specify the following distinct locations:
+
+    <table>
+      <caption>Geometry specification</caption>
+      <tr>
+        <th>Specification</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td><code>POINT (30 10)</code></td>
+        <td>Retrieve the exact point given by the geometry object with longitude 30 and latitude 10 in WGS84 projection.</td>
+      </tr>
+      <tr>
+        <td><code>POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))</code></td>
+        <td>Retrieve the points contained within the geometry object given by the coordinates. Note that, currently polygons
+          with holes are <strong>not</strong> supported by the MET API.</td>
+      </tr>
+      <tr>
+        <td><code>nearest(POINT (30 10))</code></td>
+        <td>Retrieve the point in the data set that is nearest to the geometry object given by the point.</td>
+      </tr>
+    </table>
+
+
+    <!-- --------------------------------------------------------------------------------------------------------------------------->
+    <br/><br/>
+    <h2>
+      <a id="searchfilter" class="anchor">Search Filter</a>
+    </h2>
+
+    <p>The standard search filter is case-insensitive and supports asterisks ('*') to represent zero or more characters.</p>
+    <p>For example, 'f*n*d' matches 'Finland'.</p>
+
+
+    <!-- --------------------------------------------------------------------------------------------------------------------------->
+    <br/><br/>
+    <h2>
+      <a id="jsonfilter" class="anchor">JSON Filter</a>
+    </h2>
+
+    <p>A JSON filter is a special type of JSON object that consists of zero or more key-value pairs: "&lt;key1&gt;": "&lt;value1&gt;",
+      "&lt;key2&gt;": "&lt;value2&gt;", ... The braces around the object may be omitted, like in this case. Each value is a comma-separated list of
+      <a href="#searchfilter">search filters</a>.
+
+
+
+
+      <!-- --------------------------------------------------------------------------------------------------------------------------->
+    <br/><br/>
+    <h2>
       <a id="resources" class="anchor">Resources</a>
     </h2>
 
@@ -221,150 +386,6 @@ curl -H "Authorization: Bearer YOUR-ACCESS-TOKEN" "https://data.met.no/tests/sec
     </h2>
 
     <p>Currently not enabled.</p>
-
-
-    <!-- --------------------------------------------------------------------------------------------------------------------------->
-    <br/><br/>
-    <h2>
-      <a id="geometry_specification" class="anchor">Geometry Specification</a>
-    </h2>
-
-    <p>The place (geographic location) of a data item is the position of the item on the earth in a 2D space. In
-      data.met.no MET API, the geographic location is specified using longitude and latitude in a WGS84 coordinate
-      system. The geographic dimension is specified using a geometry object and can be either a point or a polygon.
-    </p>
-
-    <p>Geometry objects in the JSON format are specified in the <a href="http://geojson.org/">GeoJson</a> format, as
-      specified in <a href="https://tools.ietf.org/html/rfc7946">IETF RFC 7946</a>. When querying, however,  we specify
-      the geometry using Well-known text (WKT). WKT is a text markup language for representing vector geometry in a spatial
-      reference system. The current standard definition is in the ISO/IEC 13249-3:2016 standard. In addition to the
-      geometry object, one can also specify an interpolation function to refine/expand the query.</p>
-
-    <p>Using WKT, we can specify the following distinct locations:
-
-    <table>
-      <caption>Geometry specification</caption>
-      <tr>
-        <th>Specification</th>
-        <th>Description</th>
-      </tr>
-      <tr>
-        <td><code>POINT (30 10)</code></td>
-        <td>Retrieve the exact point given by the geometry object with longitude 30 and latitude 10 in WGS84 projection.</td>
-      </tr>
-      <tr>
-        <td><code>POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))</code></td>
-        <td>Retrieve the points contained within the geometry object given by the coordinates. Note that, currently polygons
-          with holes are <strong>not</strong> supported by the MET API.</td>
-      </tr>
-      <tr>
-        <td><code>nearest(POINT (30 10))</code></td>
-        <td>Retrieve the point in the data set that is nearest to the geometry object given by the point.</td>
-      </tr>
-    </table>
-
-
-    <!-- --------------------------------------------------------------------------------------------------------------------------->
-    <br/><br/>
-    <h2>
-      <a id="time_specification" class="anchor">Time Specification</a>
-    </h2>
-
-    <p>Our time specification is based on ISO-8601, extended with repeating intervals which do not exist in the ISO standard.</p>
-
-    <ul>
-      <li>Date: YYYY-MM-DD</li>
-      <li>Time: hh:mm:ss</li>
-      <li>Date Time: &lt;date&gt;T&lt;time&gt;</li>
-      <li>Duration: PnYnMnDTnHnMnSTime</li>
-      <li>Interval: &lt;start&gt;/&lt;end&gt;</li>
-      <li>Time Interval: &lt;start&gt;/&lt;duration&gt;</li>
-      <li>Repeating Time Points: R[n]/&lt;interval&gt;</li>
-      <li>Repeating Intervals: R[n]/&lt;interval&gt;/&lt;Duration&gt;</li>
-    </ul>
-
-    <p>It is important to note that intervals follow standard inclusive/exclusive semantics; i.e., [0,1) representing a value that is equal to or greater than 0, and
-      less than 1.</p>
-
-    <p>As per the ISO standard, repeating time points are repeated immediately after each other. So, for example:</p>
-    <p><code>R4/2005-07-01T00:00/2005-07-01T06:00</code></p>
-    <p>Represents the four consecutive time intervals:</p>
-    <p><code>2005-07-01T00:00/2005-07-01T06:00</code></p>
-    <p><code>2005-07-01T06:00/2005-07-01T12:00</code></p>
-    <p><code>2005-07-01T12:00/2005-07-01T18:00</code></p>
-    <p><code>2005-07-01T18:00/2005-07-02T00:00</code></p>
-    <p>For repeating intervals, we add a duration that represents the time between the start points of the interval. So for example:</p>
-    <p><code>R4/2005-07-01T00:00/2005-07-01T06:00/P1D</code></p>
-    <p>Represents the four time intervals (separated by a duration of 1 day):</p>
-    <p><code>2005-07-01T00:00/2005-07-01T06:00</code></p>
-    <p><code>2005-07-02T00:00/2005-07-02T06:00</code></p>
-    <p><code>2005-07-03T00:00/2005-07-03T06:00</code></p>
-    <p><code>2005-07-04T00:00/2005-07-04T06:00</code></p>
-
-
-    <!-- --------------------------------------------------------------------------------------------------------------------------->
-    <br/><br/>
-    <h2>
-      <a id="searchfilter" class="anchor">Search Filter</a>
-    </h2>
-
-    <p>The standard search filter is case-insensitive and supports asterisks ('*') to represent zero or more characters.</p>
-    <p>For example, 'f*n*d' matches 'Finland'.</p>
-
-
-    <!-- --------------------------------------------------------------------------------------------------------------------------->
-    <br/><br/>
-    <h2>
-      <a id="jsonfilter" class="anchor">JSON Filter</a>
-    </h2>
-
-    <p>A JSON filter is a special type of JSON object that consists of zero or more key-value pairs: "&lt;key1&gt;": "&lt;value1&gt;",
-      "&lt;key2&gt;": "&lt;value2&gt;", ... The braces around the object may be omitted, like in this case. Each value is a comma-separated list of
-      <a href="#searchfilter">search filters</a>.
-
-
-    <!-- --------------------------------------------------------------------------------------------------------------------------->
-    <br/><br/>
-    <h2>
-      <a id="calculationmethod" class="anchor">Calculation Method</a>
-    </h2>
-
-    <p>A calculation method defines in detail how a particular element is derived, typically by combining statistical functions in different ways.</p>
-    The following combinations are currently available:
-    <br/><br/>
-    <table>
-      <tr><th>Combination</th><th>Example</th></tr>
-      <tr><td>&lt;<em>base&nbsp;name</em>&gt;</td><td><code>air_temperature</code></tr>
-      <tr><td>&lt;<em>method</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;)</td><td><code>from_direction_of_peak(sea_surface_primary_wave)</code></tr>
-      <tr><td>&lt;<em>method</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;<em>period</em>&gt;)</td>
-        <td><code>best_estimate_sum(precipitation_amount&nbsp;P1M)</code></tr>
-      <tr><td>&lt;<em>method</em>&gt;(&lt;<em>inner&nbsp;method</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;
-        <em>inner&nbsp;period</em>&gt;)&nbsp;&lt;<em>period</em>&gt;)</td><td><code>mean(max(wind_speed&nbsp;P1D)&nbsp;P1M)</code></tr>
-      <tr><td>&lt;<em>method</em>&gt;(&lt;<em>inner&nbsp;method</em>&gt;(&lt;<em>base&nbsp;name</em>&gt;&nbsp;&lt;
-        <em>inner&nbsp;period</em>&gt;)&nbsp;&lt;<em>period</em>&gt;&nbsp;&lt;<em>threshold</em>&gt;)</td>
-        <td><code>integral_of_excess(mean(air_temperature&nbsp;P1D)&nbsp;P1M&nbsp;17.0)</code></tr>
-    </table>
-    <br/>
-    where the components are defined as follows:
-    <br/><br/>
-    <table>
-      <tr><th>Component</th><th>Description</th></tr>
-      <tr><td>base&nbsp;name</td><td>The primary quantity. Normally this is a basic physical quantity. It is normally in accordance with the
-        <a href="http://cfconventions.org/standard-names.html">CF standard name table</a> or
-        <a href="http://cfconventions.org/Data/cf-standard-names/docs/guidelines.html">CF guidelines</a> for construction of standard names.</td></tr>
-      <tr><td>method</td><td>The main method (function), applied either directly to the primary quantity or indirectly via an inner method.</td></tr>
-      <tr><td>inner&nbsp;method</td><td>The inner method (function), applied directly to the primary quantity and used as argument to the main method.</td></tr>
-      <tr><td>period</td><td>The period over which the main method is applied.
-        This is an <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601 duration</a> such as P1D (one day) or P1M (one month).</td></tr>
-      <tr><td>inner&nbsp;period</td><td>The period over which the main method is applied.
-        Also an <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601 duration</a>.</td></tr>
-      <tr><td>threshold</td><td>A threshold applicable to the main method.</td></tr>
-    </table>
-    <br/>
-
-    <br/>
-    <p>A more detailed description of the various calculation methods is available directly from
-      the <a href="/reference#!/elements/getElements">elements endpoint</a>.</p>
 
 
     <!-- --------------------------------------------------------------------------------------------------------------------------->

@@ -78,4 +78,9 @@ class Application extends Controller {
     request =>
       Ok(views.html.termsofuse())
   }
+
+  val elementtable = Action {
+    request =>
+      Ok(views.html.elementtable())
+  }
 }

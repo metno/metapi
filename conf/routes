@@ -54,7 +54,11 @@ GET     /langex_python/index.html   controllers.Application.langex_python
 GET     /langex_r                   controllers.Application.langex_r
 GET     /langex_r/index.html        controllers.Application.langex_r
 
-# Map static resources from the /public folder to the /assets URL path
+# Element Table
+GET     /elementtable               controllers.Application.elementtable
+GET     /elementtable/index.html    controllers.Application.elementtable
+
+# Map static resources from the /public folder to their respective URL paths
 GET     /images/*file               controllers.Assets.at(path="/public/images", file)
 GET     /stylesheets/*file          controllers.Assets.at(path="/public/stylesheets", file)
 
