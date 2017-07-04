@@ -216,6 +216,20 @@ class ApplicationSpec extends Specification {
       contentType(ret) must beSome.which(_ == "text/html")
     }
 
+    "render elementtable" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/elementtable")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
+    "render elementtable/index.html" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/elementtable/index.html")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
     "return 'hello' response" in running(TestUtil.app) {
       val home = route(FakeRequest(GET, "/tests/hello")).get
 
