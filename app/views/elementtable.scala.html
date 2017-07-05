@@ -82,8 +82,9 @@
   }
 </style>
 
-<span style="background-color:#ffffb3; font-size:80%"><b>(NOTE:</b> The input to the below table is the response from
-<a href="https://data.met.no/elements/v0.jsonld?fields=legacyElementCodes,id,name,description,unit,status,category&lang=en-US">this request</a>.)</span>
+<span style="background-color:#eeeeee; font-size:80%"><b>(NOTE:</b> The input to the below table is the response from
+<a href="https://data.met.no/elements/v0.jsonld?fields=id,legacyElementCodes,category,name,description,unit,sensorLevelType,sensorLevelUnit,sensorLevelDefaultValue,sensorLevelValues,cmMethod,cmMethodDescription,cmInnerMethod,cmInnerMethodDescription,status&lang=en-US">
+  this request</a>.)</span>
 <br/><br/>
 
 
@@ -126,15 +127,17 @@
             'Authorization': 'Basic NjU5OTVjZDYtMTE0NS00MDdmLTllNjUtOWMzMTU5ODg5NDk2'
          }
       });
+
       $.getJSON(
         "/elements/v0.jsonld",
         {
-          "fields": "legacyElementCodes,id,name,description,unit,status,category",
+          "fields": "id,legacyElementCodes,category,name,description,unit" +
+            ",sensorLevelType,sensorLevelUnit,sensorLevelDefaultValue,sensorLevelValues" +
+            ",cmMethod,cmMethodDescription,cmInnerMethod,cmInnerMethodDescription" +
+            ",status",
           "lang": "en-US"
         })
-
       .done(function(data) {
-
       $.each(data, function(i, item) {
       if($.isArray(item)) {
         $.each(item, function(i2, item2) {
