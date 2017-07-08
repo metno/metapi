@@ -54,7 +54,7 @@ class ProdModule extends AbstractModule {
     // records
     bind(classOf[RecordsAccess]).to(classOf[ProdRecordsAccess])
     // observations
-    bind(classOf[ElementTranslator]).to(classOf[KdvhElementTranslator])
+    bind(classOf[ElementInfoGetter]).to(classOf[ProdElementInfoGetter])
     bind(classOf[DatabaseAccess]).to(classOf[KdvhDatabaseAccess])
   }
 
@@ -78,7 +78,7 @@ class DevModule extends AbstractModule {
     // records
     bind(classOf[RecordsAccess]).to(classOf[MockRecordsAccess])
     // observations
-    bind(classOf[ElementTranslator]).to(classOf[MockElementTranslator])
+    bind(classOf[ElementInfoGetter]).to(classOf[MockElementInfoGetter])
     bind(classOf[DatabaseAccess]).to(classOf[MockDatabaseAccess])
   }
 
