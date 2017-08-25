@@ -83,7 +83,7 @@
 </style>
 
 <span style="background-color:#eeeeee; font-size:80%"><b>(NOTE:</b> The input to the below table is the response from
-<a href="https://data.met.no/elements/v0.jsonld?fields=id,legacyElementCodes,category,name,description,unit,sensorLevelType,sensorLevelUnit,sensorLevelDefaultValue,sensorLevelValues,cmMethod,cmMethodDescription,cmInnerMethod,cmInnerMethodDescription,status&lang=en-US">
+<a href="https://data.met.no/elements/v0.jsonld?fields=id,oldElementCodes,category,name,description,unit,sensorLevelType,sensorLevelUnit,sensorLevelDefaultValue,sensorLevelValues,cmMethod,cmMethodDescription,cmInnerMethod,cmInnerMethodDescription,status&lang=en-US">
   this request</a>.)</span>
 <br/><br/>
 
@@ -92,7 +92,7 @@
   <thead>
   <tr>
     <th>id</th>
-    <th>elementCodes</th>>
+    <th>oldElementCodes</th>>
     <th>category</th>
     <th>name</th>
     <th>description</th>
@@ -104,7 +104,7 @@
   <tfoot>
   <tr>
     <th>id</th>
-    <th>elementCodes</th>>
+    <th>oldElementCodes</th>>
     <th>category</th>
     <th>name</th>
     <th>description</th>
@@ -131,7 +131,7 @@
       $.getJSON(
         "/elements/v0.jsonld",
         {
-          "fields": "id,legacyElementCodes,category,name,description,unit" +
+          "fields": "id,oldElementCodes,category,name,description,unit" +
             ",sensorLevelType,sensorLevelUnit,sensorLevelDefaultValue,sensorLevelValues" +
             ",cmMethod,cmMethodDescription,cmInnerMethod,cmInnerMethodDescription" +
             ",status",
@@ -144,10 +144,10 @@
         var $cons = $('<td>').text("")
         var $levels = $('<td>').text("")
         var $calcs = $('<td>').text("")
-      	if ($(item2.legacyConvention).length) {
-	if($.isArray(item2.legacyConvention.elementCodes)) {
+        if ($(item2.oldConvention).length) {
+        if($.isArray(item2.oldConvention.elementCodes)) {
         $cons = $('<td>')
-      	$.each(item2.legacyConvention.elementCodes, function(i3, item3) {
+        $.each(item2.oldConvention.elementCodes, function(i3, item3) {
 	if(i3>0) {$cons.append(", ")}
       	    $cons.append(item3)
       });
