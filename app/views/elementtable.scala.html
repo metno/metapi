@@ -87,12 +87,17 @@
   this request</a>.)</span>
 <br/><br/>
 
+<select id="langSelect" onchange="location.reload()">
+  <option value="nb-NO">Norwegian (bokmål)</option>
+  <option value="nn-NO">Norwegian (nynorsk)</option>
+  <option value="en-US">English</option>
+</select>
 
 <table id="mainTable" class="display" cellspacing="0" width="100%">
   <thead>
   <tr>
     <th>id</th>
-    <th>oldElementCodes</th>>
+    <th>oldElementCodes</th>
     <th>category</th>
     <th>name</th>
     <th>description</th>
@@ -104,7 +109,7 @@
   <tfoot>
   <tr>
     <th>id</th>
-    <th>oldElementCodes</th>>
+    <th>oldElementCodes</th>
     <th>category</th>
     <th>name</th>
     <th>description</th>
@@ -135,7 +140,7 @@
             ",sensorLevelType,sensorLevelUnit,sensorLevelDefaultValue,sensorLevelValues" +
             ",cmMethod,cmMethodDescription,cmInnerMethod,cmInnerMethodDescription" +
             ",status",
-          "lang": "en-US"
+          "lang": $("#langSelect").val()
         })
       .done(function(data) {
       $.each(data, function(i, item) {
