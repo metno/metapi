@@ -1,0 +1,280 @@
+@import play.api.Play.current
+@import util._
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>data.met.no</title>
+      <link type="image/x-icon" rel="icon" href="/images/met_favicon.png">
+      <link type="image/x-icon" rel="shortcut icon" href="/images/met_favicon.ico">
+      <link href="/stylesheets/style_default_2013.css" rel="stylesheet" type="text/css">
+      <link href="/stylesheets/style_layout_2013.css" rel="stylesheet" type="text/css">
+      <link href="/stylesheets/style_menu_2013.css" rel="stylesheet" type="text/css">
+      <link href="/stylesheets/paginator.css" rel="stylesheet" type="text/css">
+      <link href="/stylesheets/dictionary.css" rel="stylesheet" type="text/css">
+   </head>
+   <body>
+      <div id="wrapper" class="frontpage">
+         <div id="header" class="clearfix">
+            <div id="logo">
+               <a href="http://met.no"><img src="/images/logo_2013_no.png" alt="met.no"></img></a>
+            </div>
+            @util.navbar()
+         </div>
+         <div id="top-line">
+            <div class="top-menu">
+               <ul>
+                  <li><a href="https://data.met.no">data.met.no</a></li>
+               </ul>
+            </div>
+         </div>
+         <div id="main-content" class="frontpage clearfix">
+            <h2>User question</h2>
+            <p>SOURCES (stations)</p>
+            <p>As a user I want information about stations:</p>
+            <ul>
+               <li>I have a list of station numbers, how can I get information
+                  about these stations?<br>
+                  <a href="https://data.met.no/sources/v0.jsonld?ids=SN18700,SN50500,SN100&amp;types=SensorSystem">
+                  https://data.met.no/sources/v0.jsonld?ids=SN18700,SN50500,SN100&amp;types=SensorSystem</a>
+               </li>
+               <li>I want information about which stations that have been
+                  operating in a certain period<br>
+                  <a href="https://data.met.no/sources/v0.jsonld?types=SensorSystem&amp;validtime=1900-01-01/1905-01-01">
+                  https://data.met.no/sources/v0.jsonld?types=SensorSystem&amp;validtime=1900-01-01/1905-01-01</a>&nbsp;
+               </li>
+               <ul>
+                  <li>Use the TimeSpecification: <a href="https://data.met.no/concepts/index.html#time_specification">
+                     https://data.met.no/concepts/index.html#time_specification</a>&nbsp;
+                  </li>
+               </ul>
+               <li>I want information about stations within a polygon<br>
+                  <a href="https://data.met.no/sources/v0.jsonld?types=SensorSystem&amp;geometry=POLYGON
+                     ((10 60,10 65, 11 65, 10 60))">
+                  https://data.met.no/sources/v0.jsonld?types=SensorSystem&amp;geometry=POLYGON
+                  ((10 60,10 65, 11 65, 10 60))</a>&nbsp;
+               </li>
+               <ul>
+                  <li>Use the geometry specification: <a href="https://data.met.no/concepts/index.html#geometry_specification">
+                     https://data.met.no/concepts/index.html#geometry_specification</a>&nbsp;
+                  </li>
+               </ul>
+               <li>I want stations for a certain country<br>
+                  <a href="https://data.met.no/sources/v0.jsonld?types=SensorSystem&amp;country=SE">
+                  https://data.met.no/sources/v0.jsonld?types=SensorSystem&amp;country=SE</a>&nbsp;
+               </li>
+               <li>I do not know exactly the name of the station, but I want to
+                  find out if there are stations which contains some of this name<br>
+                  <a href="https://data.met.no/sources/v0.jsonld?types=SensorSystem&amp;name=Sval*">
+                  https://data.met.no/sources/v0.jsonld?types=SensorSystem&amp;name=Sval*</a>&nbsp;
+               </li>
+               <li>I do not need all attributes in the output, how can I get less
+                 output? Specify the fields you need in the output in the &quot;fields&quot;
+                  parameter:<br>
+                  <a href="https://data.met.no/sources/v0.jsonld?types=SensorSystem&amp;country=SE&amp;fields=name,geometry">
+                  https://data.met.no/sources/v0.jsonld?types=SensorSystem&amp;country=SE&amp;fields=name,geometry</a>&nbsp;<br>
+                  "Supported fields: name, countyid, countyname, country,
+                  wmoidentifier, municipalityname, validto, validfrom,
+                  municipalityid, stationholder, countrycode, geometry, level"
+               </li>
+               <li>I want to know about the stations owned by a certain
+                  stationholder:<br>
+                  <a href="https://data.met.no/sources/v0.jsonld?types=SensorSystem&amp;stationholder=STATENS VEGVESEN">
+                  https://data.met.no/sources/v0.jsonld?types=SensorSystem&amp;stationholder=STATENS VEGVESEN</a>&nbsp;
+               </li>
+            </ul>
+            <h3>ELEMENTS</h3>
+            <p>As a user I want information about weather elements (parameters,
+               variables):
+            </p>
+            <ul>
+               <li>I want to retrieve all information about some elements:
+                  <a href="https://data.met.no/elements/v0.jsonld?ids=air_temperature,surface_air_pressure&amp;lang=en-US">
+                  https://data.met.no/elements/v0.jsonld?ids=air_temperature,surface_air_pressure&amp;lang=en-US</a>&nbsp;
+               </li>
+               <li>I only know the name of the old parameter that I used to use
+                  before. What is the new name?<br>
+                  <a href="https://data.met.no/elements/v0.jsonld?oldElementCodes=TAM,TAN,TAX,UU,UUM&amp;lang=en-US">
+                  https://data.met.no/elements/v0.jsonld?oldElementCodes=TAM,TAN,TAX,UU,UUM&amp;lang=en-US</a>&nbsp;
+               </li>
+               <li>I already have data from another source using the
+                  CF-convention(<a href="http://cfconventions.org/Data/cf-standard-names/43/build/cf-standard-name-table.html">http://cfconventions.org/Data/cf-standard-names/43/build/cf-standard-name-table.html</a>&nbsp;)
+                  &nbsp;standard name and wonder if this is available from
+                  data.met.no:<br>
+                  <a href="https://data.met.no/elements/v0.jsonld?cfStandardNames=air_pressure_at_sea_level&amp;lang=en-US">
+                  https://data.met.no/elements/v0.jsonld?cfStandardNames=air_pressure_at_sea_level&amp;lang=en-US</a>&nbsp;
+               </li>
+               <li>I want the information about the element in Norwegian
+                  (nynorsk)<br>
+                  <a href="https://data.met.no/elements/v0.jsonld?cfStandardNames=air_pressure_at_sea_level&amp;lang=nn-NO">
+                  https://data.met.no/elements/v0.jsonld?cfStandardNames=air_pressure_at_sea_level&amp;lang=nn-NO</a>&nbsp;<br>
+                  Bokm&aring;l: <a href="https://data.met.no/elements/v0.jsonld?cfStandardNames=air_pressure_at_sea_level&amp;lang=nb-NO">
+                  https://data.met.no/elements/v0.jsonld?cfStandardNames=air_pressure_at_sea_level&amp;lang=nb-NO</a>&nbsp;
+               </li>
+               <li>I do not need all the information in the output, only id, name
+                  and unit:<br>
+                  <a href="https://data.met.no/elements/v0.jsonld?ids=surface_air_pressure,air_temperature,mean(air_temperature P1M)&amp;fields=id,name,unit&amp;lang=en-US">
+                  https://data.met.no/elements/v0.jsonld?ids=surface_air_pressure,air_temperature,mean(air_temperature P1M)&amp;fields=id,name,unit&amp;lang=en-US</a>&nbsp;<br>
+                  Supported fields: name, cfconvention, description,
+                  legacymetnoconvention, id, codetable, unit
+               </li>
+            </ul>
+            <h3>OBSERVATIONS</h3>
+            <p>What data can I get? (Find available timeseries)</p>
+            <ul>
+               <li>I need observations of 10 minutes precipitation. Which stations
+                  observe this element?<br>
+                  <a href="https://data.met.no/observations/availableTimeSeries/v0.jsonld?referencetime=2017-01-01&amp;elements=sum(precipitation_amount PT10M)">
+                  https://data.met.no/observations/availableTimeSeries/v0.jsonld?referencetime=2017-01-01&amp;elements=sum(precipitation_amount PT10M)</a>&nbsp;
+               </li>
+               <li>I need data from Bergen. What data can I get from this
+                  station?<br>
+                  <a href="https://data.met.no/observations/availableTimeSeries/v0.jsonld?sources=SN50540&amp;referencetime=2017-01-01">
+                  https://data.met.no/observations/availableTimeSeries/v0.jsonld?sources=SN50540&amp;referencetime=2017-01-01</a>&nbsp;
+               </li>
+               <li>I want to know which stations that have
+                  performancecategory=C<br>
+                  <a href="https://data.met.no/observations/availableTimeSeries/v0.jsonld?referencetime=2017-01-01&amp;performancecategory=C">
+                  https://data.met.no/observations/availableTimeSeries/v0.jsonld?referencetime=2017-01-01&amp;performancecategory=C</a>&nbsp;
+               </li>
+               <li>I need data from the summer 1945, what data for monthly mean
+                  air temperature were available back then? <a href="https://data.met.no/observations/availableTimeSeries/v0.jsonld?referencetime=1945-01-01/1950-01-01&amp;elements=mean(air_temperature P1M)">
+                  https://data.met.no/observations/availableTimeSeries/v0.jsonld?referencetime=1945-01-01/1950-01-01&amp;elements=mean(air_temperature P1M)</a>&nbsp;
+               </li>
+            </ul>
+            <h4>Get the observation data:</h4>
+            <ul>
+               <li>.... and then I want to get data for the two most interesting
+                  stations:<br>
+                  <a href="https://data.met.no/observations/v0.jsonld?referencetime=1945-01-01/1950-01-01&amp;elements=mean(air_temperature P1M)&amp;sources=SN8240,SN7650">
+                  https://data.met.no/observations/v0.jsonld?referencetime=1945-01-01/1950-01-01&amp;elements=mean(air_temperature P1M)&amp;sources=SN8240,SN7650</a>&nbsp;
+               </li>
+            </ul>
+            <ul>
+               <li>I want data only every third hour:<br>
+                  <a href="https://data.met.no/observations/v0.jsonld?sources=SN18700&amp;referencetime=R6/2017-01-02T00:00:00.000/2017-01-02T12:00:00.000/PT3H&amp;elements=air_temperature">
+                  https://data.met.no/observations/v0.jsonld?sources=SN18700&amp;referencetime=R6/2017-01-02T00:00:00.000/2017-01-02T12:00:00.000/PT3H&amp;elements=air_temperature</a>&nbsp;
+               </li>
+            </ul>
+            <h4 id="h.cysv7lcued2">Give me more information about quality
+               flags
+            </h4>
+            <p>I want information about the quality and flag of the
+               observations data:
+            </p>
+            <ul>
+               <li>I want to know what a certain flag means:<br>
+                  <a href="https://data.met.no/observations/quality/v0.jsonld?flags=70000&amp;lang=no-NO&amp;fields=details,flag,summarized">
+                  https://data.met.no/observations/quality/v0.jsonld?flags=70000&amp;lang=no-NO&amp;fields=details,flag,summarized</a>&nbsp;
+               </li>
+               <li>I want to know about all available QualityCodes (qualitylevels,
+                  the summarized code, and the flag combination of digits)<br>
+                  <a href=
+                     "https://data.met.no/observations/availableQualityCodes/v0.jsonld?lang=nb-NO">
+                  https://data.met.no/observations/availableQualityCodes/v0.jsonld?lang=nb-NO</a>&nbsp;
+               </li>
+            </ul>
+            <ul>
+               <li>Only the summarized (qualityLevels that summarize the flag
+                  information: <a href="https://data.met.no/observations/availableQualityCodes/v0.jsonld?lang=nb-NO&amp;fields=summarized">
+                  https://data.met.no/observations/availableQualityCodes/v0.jsonld?lang=nb-NO&amp;fields=summarized</a>&nbsp;<br>
+               </li>
+            </ul>
+            <h3>FREQUENCIES</h3>
+            <h4>Rainfall: Intensity - duration - frequency
+               (IDF)
+            </h4>
+            <ul>
+               <li>Which stations have calculated frequencies of rainfall
+                  intensity?<br>
+                  <a href="https://data.met.no/frequencies/rainfall/availableSources/v0.jsonld">
+                  https://data.met.no/frequencies/rainfall/availableSources/v0.jsonld</a>&nbsp;
+               </li>
+               <li>And what are the data for one station?<br>
+                  <a href="https://data.met.no/frequencies/rainfall/v0.jsonld?sources=SN18701">
+                  https://data.met.no/frequencies/rainfall/v0.jsonld?sources=SN18701</a>&nbsp;gives
+                  all combinations of returnperiod(frequency), duration (in minutes)
+                  and values (intensity in ls/Ha)
+               </li>
+               <li>I want only 100 years return period for 10 minutes interval in
+                  mm:<br>
+                  <a href="https://data.met.no/frequencies/rainfall/v0.jsonld?sources=SN18701&amp;durations=10&amp;frequencies=100&amp;unit=mm">
+                  https://data.met.no/frequencies/rainfall/v0.jsonld?sources=SN18701&amp;durations=10&amp;frequencies=100&amp;unit=mm</a>&nbsp;
+               </li>
+               <li>I want IDF values for a place where there is no station, is it
+                  possible? If you use the source called idf_bma1km_v1 you can give
+                  in a location<br>
+                  <a href="https://data.met.no/frequencies/rainfall/v0.jsonld?sources=idf_bma1km&amp;location=POINT(9.5 59.1)&amp;durations=10,30,60&amp;frequencies=100&amp;unit=mm">
+                  https://data.met.no/frequencies/rainfall/v0.jsonld?sources=idf_bma1km&amp;location=POINT(9.5 59.1)&amp;durations=10,30,60&amp;frequencies=100&amp;unit=mm</a>&nbsp;
+               </li>
+            </ul>
+            <ul>
+               <li>See information about this source:<br>
+                  <a href="https://data.met.no/sources/v0.jsonld?ids=idf_bma1km&amp;types=InterpolatedDataset&amp;validtime=2000-01-01">
+                  https://data.met.no/sources/v0.jsonld?ids=idf_bma1km&amp;types=InterpolatedDataset&amp;validtime=2000-01-01</a>&nbsp;
+               </li>
+            </ul>
+            <h3>CLIMATE NORMALS</h3>
+            <p>Climate normals are values for a period of 30 years, decided by
+               WMO. Available periods are 1931-1960 and 1961-1990 for some
+               elements and sources on monthly and daily basis.
+            </p>
+            <ul>
+               <li>What kind of normal values can I get? <a href="https://data.met.no/climatenormals/available/v0.jsonld?">
+                  https://data.met.no/climatenormals/available/v0.jsonld?</a>
+               </li>
+               <li>Which stations have normal values for mean temperature?
+                  <a href="https://data.met.no/climatenormals/available/v0.jsonld?elements=mean(air_temperature P1M)">
+                  https://data.met.no/climatenormals/available/v0.jsonld?elements=mean(air_temperature P1M)</a>&nbsp;
+               </li>
+               <li>Which elements and normal periods are available for a certain
+                  station? <a href="https://data.met.no/climatenormals/available/v0.jsonld?sources=SN18500">
+                  https://data.met.no/climatenormals/available/v0.jsonld?sources=SN18500</a>&nbsp;
+               </li>
+               <li>Which stations do have normal values for the 1931/1960 normal
+                  period? <a href="https://data.met.no/climatenormals/available/v0.jsonld?periods=1931/1960">
+                  https://data.met.no/climatenormals/available/v0.jsonld?periods=1931/1960</a>&nbsp;
+               </li>
+               <li>How can I get the monthly normal values for some stations e.g.
+                  mean temperature? <a href="https://data.met.no/climatenormals/v0.jsonld?sources=SN100,SN180&amp;elements=mean(air_temperature P1M)">
+                  https://data.met.no/climatenormals/v0.jsonld?sources=SN100,SN180&amp;elements=mean(air_temperature P1M)</a>&nbsp;
+               </li>
+            </ul>
+            <h3>RECORDS</h3>
+            <p>This endpoint gives the &quot;day record&quot; for some elements (min and
+               max temperature) for every month and every county.
+            </p>
+            <ul>
+               <li>How can I get the records for all counties in Norway? <a href="https://data.met.no/records/countyExtremes/v0.jsonld">
+                  https://data.met.no/records/countyExtremes/v0.jsonld</a>&nbsp;
+               </li>
+            </ul>
+            <ul>
+               <li>What is the maximum temperature for Vestfold county?<br>
+                  <a href="https://data.met.no/records/countyExtremes/v0.jsonld?counties=vestfold&amp;elements=*max*">
+                  https://data.met.no/records/countyExtremes/v0.jsonld?counties=vestfold&amp;elements=*max*</a>&nbsp;
+               </li>
+               <li>What has been the maximum temperature in Vestfold in January,
+                  July,August.<br>
+                  <a href="https://data.met.no/records/countyExtremes">
+                  https://data.met.no/records/countyExtremes</a>
+               </li>
+               <li><a href="https://data.met.no/records/countyExtremes/v0.jsonld?counties=vestfold&amp;elements=*max*&amp;months=1,7,8">
+                  /v0.jsonld?counties=vestfold&amp;elements=*max*&amp;months=1,7,8</a>
+               </li>
+               <li>In which municipalities exist records in Vestfold (independent
+                  of element):<br>
+                  <a href="https://data.met.no/records/countyExtremes/v0.jsonld?counties=vestfold&amp;fields=municipality">
+                  https://data.met.no/records/countyExtremes/v0.jsonld?counties=vestfold&amp;fields=municipality</a>&nbsp;
+               </li>
+               <li> ... for minimum values:<br>
+                  <a href="https://data.met.no/records/countyExtremes/v0.jsonld?counties=vestfold&amp;elements=*min*&amp;fields=municipality">
+                  https://data.met.no/records/countyExtremes/v0.jsonld?counties=vestfold&amp;elements=*min*&amp;fields=municipality</a>&nbsp;
+               </li>
+               <li>For which elements do records exist? <a href="https://data.met.no/records/countyExtremes/v0.jsonld?fields=elementid">
+                  https://data.met.no/records/countyExtremes/v0.jsonld?fields=elementid</a>&nbsp;
+               </li>
+            </ul>
+         </div>
+      </div>
+   </body>
+</html>
