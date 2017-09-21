@@ -1,0 +1,1023 @@
+
+@import play.api.Play.current
+@import util._
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>data.met.no</title>
+      <link type="image/x-icon" rel="icon" href="/images/met_favicon.png">
+      <link type="image/x-icon" rel="shortcut icon" href="/images/met_favicon.ico">
+      <link href="/stylesheets/style_default_2013.css" rel="stylesheet" type="text/css">
+      <link href="/stylesheets/style_layout_2013.css" rel="stylesheet" type="text/css">
+      <link href="/stylesheets/style_menu_2013.css" rel="stylesheet" type="text/css">
+      <link href="/stylesheets/paginator.css" rel="stylesheet" type="text/css">
+      <link href="/stylesheets/dictionary.css" rel="stylesheet" type="text/css">
+   </head>
+   <body>
+      <div id="wrapper" class="frontpage">
+         <div id="header" class="clearfix">
+            <div id="logo">
+               <a href="http://met.no"><img src="/images/logo_2013_no.png" alt="met.no"></img></a>
+            </div>
+            @util.navbar()
+         </div>
+         <div id="top-line">
+            <div class="top-menu">
+               <ul>
+                  <li><a href="https://data.met.no">data.met.no</a></li>
+               </ul>
+            </div>
+         </div>
+         <div id="main-content" class="frontpage clearfix">
+            <H1>Porting guide for wsklima users</H1>
+            <p>This porting guide is for users that have experience with use of
+               wsKlima and plan to use data.met.no instead. <a href=
+                  "http://data.met.no">
+               http://data.met.no</a>&nbsp;is a new api for observations and
+               climate data from &nbsp;Norwegian Meteorological Institute.
+            </p>
+            <p>wsKlima will be supported to 15.01.2018.</p>
+            <p>In the left column you can find example of use of data.met.no
+               corresponding to functionality in wsKlima examples in right
+               column.
+            </p>
+            <table class="bordered-user-table">
+               <tbody>
+                  <tr>
+                     <th>Use of data.met.no</th>
+                     <th>Use of wsKlima</th>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>A JSON api.</p>
+                        <p>The data.met.no MET API specification is an XHTML/RDFa document
+                           that defines the classes and terms of the JSON-LD format used by
+                           the API. <a href="https://data.met.no/schema">https://data.met.no/schema</a>
+                        </p>
+                        <p>Overview of what endpoints and variables and corresponding
+                           attributtes that are available in this JSON api is: <a href=
+                              "https://data.met.no/swagger.json">
+                           https://data.met.no/swagger.json</a>&nbsp;
+                        </p>
+                        <p>The documentation is in swagger after<a href=
+                           "https://en.wikipedia.org/wiki/OpenAPI_Specification">&nbsp;</a><a href="https://en.wikipedia.org/wiki/OpenAPI_Specification">https://en.wikipedia.org/wiki/OpenAPI_Specification</a></p>
+                        <p>If an input variable is not given, all possibilities will be
+                           given as default.
+                        </p>
+                     </td>
+                     <td>
+                        <p>A SOAP based api, but also possible to use like a rest&quot;alike&quot;
+                           api. Read more about the three services that are available:<a href=
+                              "http://eklima.met.no/wsKlima/start/start_no.html">&nbsp;</a><a href="http://eklima.met.no/wsKlima/start/start_no.html">http://eklima.met.no/wsKlima/start/start_no.html</a>
+                        </p>
+                        <p>Reference description: <a href=
+                           "http://eklima.met.no/metdata/MetDataService?WSDL">
+                           http://eklima.met.no/metdata/MetDataService?WSDL</a>&nbsp;
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <th>
+                        METADATA
+                     </th>
+                     <th>
+                        METADATA
+                     </th>
+                  </tr>
+                  <tr>
+                     <td>
+                        <b>New naming convention</b>
+                     </td>
+                     <td>
+                        <b>Timeserietypes</b>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>Data.met.no has applied a new naming convention for the
+                           observations and the derived statistics. The naming convention
+                           follows (as much as possible) the CF-standard. Both the methods and
+                           time-resolution involved in the element_id&apos;s make the use of the
+                           timeserie-concept unnecessary.
+                        </p>
+                     </td>
+                     <td>
+                        <p>The concept timeserietype divide the the different types of data
+                           into timeseries. A timeserie is to example data that comes from
+                           airports, or data with a special timeresolution as daily data or
+                           monthly data.<a href=
+                              "http://eklima.met.no/metdata/MetDataService?invoke=getTimeserieTypesProperties&language=%26timeserieTypes=">http://eklima.met.no/metdata/MetDataService?invoke=getTimeserieTypesProperties&amp;language=&amp;timeserieTypes=</a>
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <b>Elements</b>
+                     </td>
+                     <td>
+                        <b>ElementProperties</b>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p><a href=
+                           "https://data.met.no/elements/v0.jsonld?lang=en-US">
+                           https://data.met.no/elements/v0.jsonld?lang=en-US</a>&nbsp;gives
+                           all elements with name and description and information.
+                        </p>
+                        <p>It is possible to limit the request, searching for specific
+                           element_id&apos;s or legacy element codes. Use an asterix * to filter
+                           the request.
+                        </p>
+                        <p>The output gives also information about the connection to the
+                           legacy naming Convention at Met Norway, and to the
+                           CF-convention.
+                        </p>
+                        <p>Backwards compatibilty gives the possibility to request on the
+                           old element code, e.g: <a href=
+                              "https://data.met.no/elements/v0.jsonld?legacyElementCodes=TAN&lang=en-US">
+                           https://data.met.no/elements/v0.jsonld?legacyElementCodes=TAN&amp;lang=en-US</a>&nbsp;
+                        </p>
+                        <p>But it is the corresponding new elementID that is used in the
+                           request for data.
+                        </p>
+                     </td>
+                     <td>
+                        <p><a href=
+                           "http://eklima.met.no/metdata/MetDataService?invoke=getElementsProperties&language=&elem_codes=">
+                           http://eklima.met.no/metdata/MetDataService?invoke=getElementsProperties&amp;language=&amp;elem_codes=</a>
+                        </p>
+                        <p>gives all elements:</p>
+                        <em>elemNo</em> - number of element (used in the data flow)<br>
+                        <em>elemCode</em> - short name code for element, used for
+                        identification<br>
+                        <em>name</em> - name of element<br>
+                        <em>description</em> - description of element<br>
+                        <em>unit</em> - unit for element<br>
+                        <em>fromdate</em> - observed from this date for a given station<br>
+                        <em>todate</em> - observed until this date for a given station<br>
+                        <em>language</em> - language in which element information is shown.<br><br>
+                        <p>Or give information about one element:</p>
+                        <p><a href=
+                           "http://eklima.met.no/metdata/MetDataService?invoke=getElementsProperties&language=&elem_codes=TAN">
+                           http://eklima.met.no/metdata/MetDataService?invoke=getElementsProperties&amp;language=&amp;elem_codes=TAN</a>
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <b>Available timeseries (source, element and period with data)</b>
+                     </td>
+                     <td>
+                        <b>Information about elements for a station:</b>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>To see what elements a source/station observes; use the
+                           possibility to find which timeseries that are available, using the
+                           /observations/availableTimeSeries
+                        </p>
+                        <p>eg:</p>
+                        <p><a href=
+                           "https://data.met.no/observations/availableTimeSeries/v0.jsonld?sources=SN18700&referencetime=2017-01-01">
+                           https://data.met.no/observations/availableTimeSeries/v0.jsonld?sources=SN18700&amp;referencetime=2017-01-01</a>&nbsp;
+                        </p>
+                        <ul>
+                           <li>source (optional)</li>
+                           <li>referencetime (required)</li>
+                           <li>element (optional)</li>
+                        </ul>
+                        <p>Returns information about the source, the element and in which
+                           period that this combination contains data.
+                        </p>
+                        <p>That means that you have to use the /elements endpoint to get
+                           the details about the elements from the output above, as for the
+                           example:
+                        </p>
+                        <p><a href=
+                           "https://data.met.no/elements/v0.jsonld?ids=mean(air_temperature P1M)&lang=en-US">
+                           https://data.met.no/elements/v0.jsonld?ids=mean(air_temperature%20P1M)&amp;lang=en-US</a>&nbsp;
+                        </p>
+                     </td>
+                     <td>
+                        <p>Returns all elements (with information and observational period)
+                           for a given station and timeseries types.
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/metdata/MetDataService?invoke=getElementsFromTimeserieTypeStation&timeserietypeID=2&stnr=18700">
+                           http://eklima.met.no/metdata/MetDataService?invoke=getElementsFromTimeserieTypeStation&amp;timeserietypeID=2&amp;stnr=18700</a>&nbsp;
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <b>Information about sources (stations)</b>
+                     </td>
+                     <td>
+                        <b>Station Properties</b>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>/sources</p>
+                        <p>Retrieves stations information if type=SensorSystem</p>
+                        <p><a href=
+                           "https://data.met.no/sources/v0.jsonld?types=SensorSystem">
+                           https://data.met.no/sources/v0.jsonld?types=SensorSystem</a>&nbsp;
+                        </p>
+                        <p>It is possible to filter the request on many parameters. More
+                           examples here: <a href=
+                              "https://docs.google.com/document/d/1vMN3cnnRGA9JGTSFe_ixXwqeuM8FDWzqa3sDQRnIMug/edit%23heading=h.1uxxctyej314&amp;sa=D&amp;ust=1505418693894000&amp;usg=AFQjCNG-6Z-DbSlDpA5QOHj2qmjhKMS9Gw">
+                           https://docs.google.com/document/d/1vMN3cnnRGA9JGTSFe_ixXwqeuM8FDWzqa3sDQRnIMug/edit#heading=h.1uxxctyej314</a>&nbsp;
+                        </p>
+                        <p>Get stations filtered by geometry:</p>
+                        <p><a href=
+                           "https://data.met.no/concepts/index.html%23geometry_specificatio">
+                           https://data.met.no/concepts/index.html#geometry_specification</a>
+                        </p>
+                        <p>&nbsp;</p>
+                        <p>Remark that data.met.no does not give you utm coordinates.</p>
+                     </td>
+                     <td>
+                        <p><a href=
+                           "http://eklima.met.no/metdata/MetDataService?operation=getStationsProperties">
+                           getStationsProperties</a>&nbsp;
+                        </p>
+                        <p>Retrieves station information.</p>
+                        <em>name</em> - official name of station<br>
+                        <em>stnr</em> - Norwegian station number, depending on location of
+                        major rivers.<br>
+                        <em>wmoNo</em> - WMO's station number, if the station is a SYNOP
+                        station, otherwise 0.<br>
+                        <em>fromDay, fromMonth, fromYear</em> - stations/elements operational time is available from this date. If 0, date is not specified.<br>
+                        <em>toDay, toMonth, toYear</em> - stations/elements operational time is
+                        available until this date. If 0, date is not specified. If toYear
+                        is 0, station is still operational.<br>
+                        <em>amsl (average meter above sea level)</em> - height above sea level
+                        for station<br>
+                        <em>municipalityNo</em> - municipality number<br>
+                        <em>department</em> - administrative region or country if other than
+                        Norway.<br>
+                        <em>latDec, lonDec, latLonFmt</em> - breddegrader, lengdegrader og
+                        format (desimalgrader)<br>
+                        <em>utm_n, utm_e, utm_zone</em> - utm kordinater<br>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <b>Available timeseries (source, element and period with data)</b>
+                     </td>
+                     <td>
+                        <b>Available stations with constraint on timeserietype, element and
+                        station</b>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>To see what sources that have data; use the possibility to find
+                           which timeseries that are available, using the
+                           /observations/availabaleTimeSeries
+                        </p>
+                        <ul>
+                           <li>source</li>
+                           <li>referencetime (required)</li>
+                           <li>element (It should be possible to search with * That means that
+                              you can search for e.g. *P1D* to get elements as daily values. Or
+                              filter on element names as *temperature*
+                           </li>
+                        </ul>
+                        <p>e.g:</p>
+                        <p><a href=
+                           "https://data.met.no/observations/availableTimeSeries/v0.jsonld?sources=SN4460&referencetime=2017-03-01">
+                           https://data.met.no/observations/availableTimeSeries/v0.jsonld?sources=SN4460&amp;referencetime=2017-03-01</a>
+                        </p>
+                        <p>Returns information about the source, the element and in which
+                           period that this combination contains data.
+                        </p>
+                     </td>
+                     <td>
+                        <p><a href=
+                           "http://eklima.met.no/metdata/MetDataService?operation=getStationsFromTimeserieType">
+                           getStationsFromTimeserieType</a>
+                        </p>
+                        <p>Returns all stations with data for the specified time serie
+                           types.
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/metdata/MetDataService?operation=getStationsFromTimeserieTypeElemCodes">
+                           getStationsFromTimeserieTypeElemCodes</a>&nbsp;
+                        </p>
+                        <p>Returns all stations with data for given type of timeserie types
+                           and at least one of the elements. Operational time are from the
+                           elements (minimum fromdate -&gt; maximum todate). &nbsp;<a href=
+                              "http://eklima.met.no/metdata/MetDataService?operation=getStationsFromTimeserieTypeStationsElemCode">getStationsFromTimeserieTypeStationsElemCode</a>&nbsp;
+                        </p>
+                        <p>Returns all stations with data for given timeserie type,
+                           stations and element code. Operational time is for the element but
+                           the station can live longer. A station can provide more
+                           informationset because different sensors have observed the
+                           element.
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <b>Qualityinformation</b>
+                     </td>
+                     <td>
+                        <b>FlagProperties</b>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>In addition to the qualitylevel(code) you can get information
+                           about which quality flags that are possible:
+                        </p>
+                        <p><a href=
+                           "https://data.met.no/observations/availableQualityCodes/v0.jsonld?lang=en-US">
+                           https://data.met.no/observations/availableQualityCodes/v0.jsonld?lang=en-US</a>
+                        </p>
+                        <p>To get information only about the summarized flags (flaglevels)
+                           use filtering on fields: <a href=
+                              "https://data.met.no/observations/availableQualityCodes/v0.jsonld?lang=en-US&fields=summarized">
+                           https://data.met.no/observations/availableQualityCodes/v0.jsonld?lang=en-US&amp;fields=summarized</a>&nbsp;
+                        </p>
+                        <p>In additional it is possible to check the meaning behind a
+                           qualityFlag, eg. 70000: <a href=
+                              "https://data.met.no/observations/quality/v0.jsonld?flags=70000&lang=en-US">
+                           https://data.met.no/observations/quality/v0.jsonld?flags=70000&amp;lang=en-US</a>
+                        </p>
+                     </td>
+                     <td>
+                        <p><a href=
+                           "http://eklima.met.no/metdata/MetDataService?invoke=getFlagProperties&language=&flagsId=">
+                           http://eklima.met.no/metdata/MetDataService?invoke=getFlagProperties&amp;language=&amp;flagsId=</a>
+                        </p>
+                        <em>flagID</em> - number, used for identification<br>
+                        <em>flagCode</em> - short name for the flag<br>
+                        <em>flagName</em> - the name used for<br>
+                        <em>flagDescription</em> - description of quality flag<br>
+                        <em>language</em> - language that they are shown in.<br>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <b>Language</b>
+                     </td>
+                     <td>
+                        <b>Language</b>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>Language is specified in the requestParameter “lang” in all
+                           endPoints that contain text in the output. Available languages
+                           are:
+                        </p>
+                        <ul>
+                           <li>en-US (english, default)</li>
+                           <li>nb-NO (bokm&aring;l Norwegian primary official language)</li>
+                           <li>nn-NO (nynorsk Norwegian secondary official language)</li>
+                        </ul>
+                     </td>
+                     <td>
+                        <p>&nbsp;<a href=
+                           "http://eklima.met.no/metdata/MetDataService?invoke=getValidLanguages&amp;sa=D">http://eklima.met.no/metdata/MetDataService?invoke=getValidLanguages</a></p>
+                        <ul>
+                           <li>en (english)</li>
+                           <li>no &nbsp;(default, bokmm&aring;l Norwegian primary official
+                              language)
+                           </li>
+                           <li>ny (nynorsk Norwegian secondary official language)</li>
+                        </ul>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <b>WeatherCodes (code values in general)</b>
+                     </td>
+                     <td>
+                        <b>WeatherCode</b>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>This functionality is not implemented yet, but is planned
+                           to be a service to provide description and additional info for all
+                           elements which observes in codes. code tables are included in the
+                           output from elements e.g, the weather observations from manned
+                           stations:
+                        </p>
+                        <p><a href=
+                           "https://data.met.no/elements/v0.jsonld?legacyElementCodes=WW&lang=en-US">
+                           https://data.met.no/elements/v0.jsonld?legacyElementCodes=WW&amp;lang=en-US</a>&nbsp;
+                        </p>
+                        <p>gives you the elementId=weather_type with corresponding
+                           codeTable=present_weather_manned
+                        </p>
+                        <p>The content of this codetable can be found from the endpoint
+                           /elements/codeTables:
+                           https://data.met.no/elements/codeTables/v0.jsonld?ids=present_weather_manned&amp;lang=en-US
+                           So this is the lookup table for what the values mean when you get
+                           them from observations, e.g:
+                        </p>
+                        <p><a href=
+                           "https://data.met.no/observations/v0.jsonld?sources=SN18700&referencetime=2017-01-01%252F2017-02-01&elements=weather_type">
+                           https://data.met.no/observations/v0.jsonld?sources=SN18700&amp;referencetime=2017-01-01%2F2017-02-01&amp;elements=weather_type</a>&nbsp;
+                        </p>
+                     </td>
+                     <td>
+                        <p>Provides description of number codes of precipitation type
+                           (element=SLAG/V4/V5/V6).
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/metdata/MetDataService?invoke=getPrecipitationTypes&language=&precipitationTypesId=">
+                           http://eklima.met.no/metdata/MetDataService?invoke=getPrecipitationTypes&amp;language=&amp;precipitationTypesId=</a>&nbsp;
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <b>DateFormat</b>
+                     </td>
+                     <td>
+                        <b>Period</b>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>Timespesification follows ISO-8601 with some extentions (if
+                           needed)
+                        </p>
+                        <p><a href=
+                           "https://data.met.no/reference/index.html%23time_specification">
+                           https://data.met.no/reference/index.html#time_specification</a>
+                        </p>
+                     </td>
+                     <td>
+                        <p><a href=
+                           "http://eklima.met.no/metdata/MetDataService?invoke=getDateFormat">
+                           http://eklima.met.no/metdata/MetDataService?invoke=getDateFormat</a>
+                        </p>
+                        <p>yyyy-MM-dd</p>
+                        <p>&nbsp;</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <b>Location</b>
+                     </td>
+                     <td>
+                        <b>County</b>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>The location endpoint will be developed to contain more
+                           information about locations, as a service for the location based
+                           data provided from the api.
+                        </p>
+                        <p>&nbsp;</p>
+                        <p>CountyId and countyName are included in the /sources
+                           endpoint.
+                        </p>
+                     </td>
+                     <td>
+                        <p>Information about id and name of counties referred to in
+                           wsKlima.
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/metdata/MetDataService?invoke=getCountyTypes&language=&countiesId=">
+                           http://eklima.met.no/metdata/MetDataService?invoke=getCountyTypes&amp;language=&amp;countiesId=</a>
+                        </p>
+                     </td>
+                  </tr>
+                  <!--</tbody>
+                     </table>
+                     <hr style="page-break-before:always;display:none;">
+                     <table class="bordered-user-table">
+                     <tbody>-->
+                  <tr>
+                     <th>
+                        DATA
+                     </th>
+                     <th>
+                        DATA
+                     </th>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>All observations are now found using /observations
+                           specifying:
+                        </p>
+                        <ul>
+                           <li>sources</li>
+                           <li>referenceTime</li>
+                           <li>elements</li>
+                           <li>performanceCategory (optional)</li>
+                           <li>sensorLevel (#to be implemented)</li>
+                        </ul>
+                        <p>In this /observations you will find data for the elements
+                           (corresponding to timeseies from wsKlima).
+                        </p>
+                        <p>output:</p>
+                        <ul>
+                           <li>source</li>
+                           <li>level</li>
+                           <li>referenceTime</li>
+                           <li>observations: element, value, flag, codeTable</li>
+                        </ul>
+                     </td>
+                     <td>
+                        <p>The timeseries (observations) method from wsKlima getMetData
+                           :
+                        </p>
+                        <em>timeserietypeID*</em> - is given as a number. Timeserie types
+                        can be retrieved from method getTimeSerietypesProperties("","")<br><br>
+                        format, from and to is used only for timeserietypeID: 0, 1, 2,
+                        7, 8, 9, 11, 13, 14, 15 and 16<br>
+                        <em>format</em> - for date (see java SimpleDateFormat). Blank ("")
+                        uses the default format: yyyy-MM-dd<br>
+                        <em>from</em> - from start of date is given in date format. Blank
+                        ("") gives today&apos;s date.<br>
+                        <em>to</em> - to end of date is given in date format. Blank ("")
+                        gives today's date.<br><br>
+                        <em>stations*</em> - is given as a comma-separated list of station
+                        numbers. Stations can be retrieved from
+                        getStationsFromTimeserieType("","")<br>
+                        <em>elements*</em> - is given as a comma-separated list of
+                        character-based element codes. Elements can be retrieved from
+                        method getElementFromTimeserieType(""). Elements from a timeserie
+                        type can be retrieved from method
+                        getElementsFromTimeserieType(timeserie type).<br><br>
+                        hours* is only used for timeserietypeID=2, 8, 9, 13, 14, 15 and
+                        16(hours data)<br>
+                        <em>hours</em> - [0,..,23] are given as a comma-separated list. hours are in UTC-time.
+                        s<br><br>
+                        months can be used by all timeserie types. Blank ("") returns
+                        all months in a time intervall.<br>
+                        <em>months</em> - [1,..,12] is given as a comma-separated list .<br>
+                        <em>username</em> - is left blank (null or "") for ordinary users. For
+                        some external station owners, brukernavn(username) can be used. In
+                        this case, the user name is the same as in <a href=
+                           "http://eklima.met.no">
+                        eKlima</a>.</p>
+                        <p>Output is timestamp - location-element- value and quality</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>0 - diurnal values</p>
+                        <p><a href=
+                           "https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&referencetime=R3/2004-08-01T00:00/2004-10-01T00:00/P1Y&elements=max(air_temperature P1D),min(air_temperature P1D),sum(precipitation_amount P1D)">
+                           https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&amp;referencetime=R3/2004-08-01T00:00/2004-10-01T00:00/P1Y&amp;elements=max(air_temperature
+                           P1D),min(air_temperature P1D),sum(precipitation_amount P1D)</a>
+                        </p>
+                     </td>
+                     <td>
+                        <p>0 - diurnal values</p>
+                        <p>
+                           getMetData("0","","2004-07-01","2006-12-31","18700,50540","rr,tan,tax","","8,9","")<br>
+                           Returns daily values for August and September in the specified
+                           period. In the output only year, month and day are current in
+                           'from'=date of daily values (time set to 0).
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=0&format=&from=2004-07-01&to=2006-12-31&stations=18700,50540&elements=rr,tan,tax&hours=&months=8,9&username=">
+                           http://eklima.met.no/met/MetService?invoke=getMetData&amp;timeserietypeID=0&amp;format=&amp;from=2004-07-01&amp;to=2006-12-31&amp;stations=18700,50540&amp;elements=rr,tan,tax&amp;hours=&amp;months=8,9&amp;username=</a>
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>1 - monthly values</p>
+                        <p><a href=
+                           "https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&referencetime=R1/2005-07-01T00:00/2006-07-01T00:00/P1Y&elements=max(air_temperature P1M),min(air_temperature P1M),sum(precipitation_amount P1M)">
+                           https://data.met.no/observations/v0.jsonld?sources=SN18700,SN50540&amp;referencetime=R1/2005-07-01T00:00/2006-07-01T00:00/P1Y&amp;elements=max(air_temperature
+                           P1M),min(air_temperature P1M),sum(precipitation_amount P1M)</a>
+                        </p>
+                     </td>
+                     <td>
+                        <p><br>
+                           1 - monthly values
+                        </p>
+                        <p>
+                           getMetData("1","","2005-07-01","2006-07-01","18700,50540","rr,tan,tax","","","")
+                        </p>
+                        <p>Returns monthly values for all months from July 2005 to July
+                           2006. In the output only year and month are current in 'from'=date
+                           of daily values (time set to 0).
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=1&format=&from=2005-07-01&to=2006-07-01&stations=18700,50540&elements=rr,tan,tax&hours=&months=&username=">
+                           http://eklima.met.no/met/MetService?invoke=getMetData&amp;timeserietypeID=1&amp;format=&amp;from=2005-07-01&amp;to=2006-07-01&amp;stations=18700,50540&amp;elements=rr,tan,tax&amp;hours=&amp;months=&amp;username=</a>
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>7 - homogenous monthly values</p>
+                        <p><a href=
+                           "https://data.met.no/observations/v0.jsonld?sources=SN18700&referencetime=R1/2005-07-01T00:00/2006-07-01T00:00/P1Y&elements=best_estimate_mean(air_temperature P1M">
+                           https://data.met.no/observations/v0.jsonld?sources=SN18700&amp;referencetime=R1/2005-07-01T00:00/2006-07-01T00:00/P1Y&amp;elements=best_estimate_mean(air_temperature
+                           P1M)</a>
+                        </p>
+                        <p>Using the method best_estimate_* on the elements we indicate the
+                           homogenisation method applied on the data. Both monthly, seasonal,
+                           yearly and some diurnal data are available.
+                        </p>
+                     </td>
+                     <td>
+                        <p>7 - homogenous monthly values</p>
+                        <p>getMetData("7","","","","18700","tam","","","")</p>
+                        <p>Returns homogeneous monthly values for all months from July 2005
+                           to July 2006.
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=1&format=&from=2005-07-01&to=2006-07-01&stations=18700,50540&elements=rr,tan,tax&hours=&months=&username=">
+                           http://eklima.met.no/met/MetService?invoke=getMetData&amp;timeserietypeID=1&amp;format=&amp;from=2005-07-01&amp;to=2006-07-01&amp;stations=18700,50540&amp;elements=rr,tan,tax&amp;hours=&amp;months=&amp;username=</a><br>
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>2 - observations</p>
+                        <p><a href=
+                           "https://data.met.no/observations/v0.jsonld?sources=SN18700:0&referencetime=R124/2006-01-01T00:00:00.000Z/2006-01-01T00:00:00.000Z/PT6H&elements=mean(air_temperature PT1H),max(air_temperature PT1H)">
+                           https://data.met.no/observations/v0.jsonld?sources=SN18700:0&amp;referencetime=R124/2006-01-01T00:00:00.000Z/2006-01-01T00:00:00.000Z/PT6H&amp;elements=mean(air_temperature
+                           PT1H),max(air_temperature PT1H)</a>
+                        </p>
+                        <p>These elements are the now values on the measurements stations,
+                           nowadays most of them are automatic, reporting data every hour.
+                        </p>
+                        <p><a href=
+                           "https://data.met.no//auth/observations/v0.jsonld?sources=SN18700:1&referencetime=2006-12-17T00:00:00.000Z/2006-12-31T23:59:59Z&elements=air_temperature">
+                           https://data.met.no//auth/observations/v0.jsonld?sources=SN18700:1&amp;referencetime=2006-12-17T00:00:00.000Z/2006-12-31T23:59:59Z&amp;elements=air_temperature</a>
+                        </p>
+                        <p>SN18700: 1 is sensor number 1, ie of old type of parameter
+                           starting with X1, eg: X1TA
+                        </p>
+                        <p>The default sensor is 0. It is the same as if you are writing
+                           SN18700 or SN18700: 0 .
+                        </p>
+                     </td>
+                     <td>
+                        <p>2 - observations</p>
+                        <p>
+                           getMetData("2","","2006-01-01","2006-02-01","18700,50540","ra,tam,tax","0,6,12,18","","")
+                        </p>
+                        <p>Returns observations for the times 0,6,12 and 18 UTC in the
+                           specified period. In output for time, Z means UTC-time.
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=2&format=&from=2006-01-01&to=2006-02-01&stations=18700,50540&elements=ra,tam,tax&hours=0,6,12,18&months=&username=">
+                           http://eklima.met.no/met/MetService?invoke=getMetData&amp;timeserietypeID=2&amp;format=&amp;from=2006-01-01&amp;to=2006-02-01&amp;stations=18700,50540&amp;elements=ra,tam,tax&amp;hours=0,6,12,18&amp;months=&amp;username=</a>
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=2&format=&from=2006-12-17&to=2006-12-31&stations=18700&elements=X1TA&hours=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,21,23&months=&username=">
+                           http://eklima.met.no/met/MetService?invoke=getMetData&amp;timeserietypeID=2&amp;format=&amp;from=2006-12-17&amp;to=2006-12-31&amp;stations=18700&amp;elements=X1TA&amp;hours=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,21,23&amp;months=&amp;username=</a>
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>14- ten minutes values</p>
+                        <p><a href=
+                           "https://data.met.no/observations/v0.jsonld?sources=SN25112&referencetime=R31/2015-01-15T12:00:00.000Z/2015-01-15T12:00:00.000Z/PT24H&elements=(wind_from_direction PT10M),(wind_speed PT10M)&amp;sa=D&amp;ust=1505418693921000">
+                           https://data.met.no/observations/v0.jsonld?sources=SN25112&amp;referencetime=R31/2015-01-15T12:00:00.000Z/2015-01-15T12:00:00.000Z/PT24H&amp;elements=(wind_from_direction
+                           PT10M),(wind_speed PT10M)</a>
+                        </p>
+                     </td>
+                     <td>
+                        <p>14- ten minutes values</p>
+                        <p>
+                           getMetData("14","","2015-01-15","2015-02-15","25112","dd,ff","12","","")
+                        </p>
+                        <p>Returns observations for the times 12 UTC in the specified
+                           period. In output for time, Z means UTC-time.
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=14&format=&from=2015-01-15&to=2015-02-15&stations=25112&elements=dd,ff&hours=12&months=&username=">
+                           http://eklima.met.no/met/MetService?invoke=getMetData&amp;timeserietypeID=14&amp;format=&amp;from=2015-01-15&amp;to=2015-02-15&amp;stations=25112&amp;elements=dd,ff&amp;hours=12&amp;months=&amp;username=</a>
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>9 - environmental data from platforms</p>
+                        <p><a href=
+                           "https://data.met.no/observations/v0.jsonld?sources=SN76920:0&referencetime=R31/2008-09-01T12:00:00.000Z/2008-09-01T12:00:00.000Z/PT24H&elements=air_temperature">
+                           https://data.met.no/observations/v0.jsonld?sources=SN76920:0&amp;referencetime=R31/2008-09-01T12:00:00.000Z/2008-09-01T12:00:00.000Z/PT24H&amp;elements=air_temperature</a>
+                        </p>
+                        <p>These data come from a set of station numbers and contain
+                           observations e.g. for sea surface elements.
+                        </p>
+                     </td>
+                     <td>
+                        <p>9 - environmental data from platforms</p>
+                        <p>
+                           getMetData("8","","2008-09-01","2008-10-01","76920","ta","12","","")
+                        </p>
+                        <p>Gives environmental data for 12 UTC in the given period. The
+                           output of the time stamp indicates that Z is UTC time.
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=9&format=&from=2008-09-01&to=2008-10-01&stations=76920&elements=ta&hours=12&months=&username=">
+                           http://eklima.met.no/met/MetService?invoke=getMetData&amp;timeserietypeID=9&amp;format=&amp;from=2008-09-01&amp;to=2008-10-01&amp;stations=76920&amp;elements=ta&amp;hours=12&amp;months=&amp;username=</a>
+                        </p>
+                        <p>The data are quality controlled manually, so the data are
+                           somewhat delayed.
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>15 - ten minutes values from environmental
+                           stations/platforms
+                        </p>
+                        <p><a href=
+                           "https://data.met.no/observations/v0.jsonld?sources=SN76920:0&referencetime=R29/2013-10-03T12:00:00.000Z/2013-10-03T12:00:00.000Z/PT24H&elements=air_temperature">
+                           https://data.met.no/observations/v0.jsonld?sources=SN76920:0&amp;referencetime=R29/2013-10-03T12:00:00.000Z/2013-10-03T12:00:00.000Z/PT24H&amp;elements=air_temperature</a>
+                        </p>
+                        <p>These data come from a set of station numbers and contain
+                           observations e.g. for sea surface elements. The data are
+                           automatically controlled.
+                        </p>
+                     </td>
+                     <td>
+                        <p>15 - ten minutes values from environmental
+                           stations/platforms
+                        </p>
+                        <p>
+                           getMetData("15","","2013-10-03","2013-11-01","76920","ta","12","","")
+                        </p>
+                        <p>Returns observations for the times 12 UTC in the specified
+                           period. In output for time, Z means UTC-time.
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=15&format=&from=2013-10-03&to=2013-11-01&stations=76920&elements=ta&hours=12&months=&username=">
+                           http://eklima.met.no/met/MetService?invoke=getMetData&amp;timeserietypeID=15&amp;format=&amp;from=2013-10-03&amp;to=2013-11-01&amp;stations=76920&amp;elements=ta&amp;hours=12&amp;months=&amp;username=</a>
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>13 - Data from the road agency, as performancecategory=C</p>
+                        <p><a href=
+                           "https://data.met.no/observations/v0.jsonld?sources=SN11790&referencetime=R6/2016-03-01T12:00:00.000Z/2016-03-01T12:00:00.000Z/PT24H&elements=air_temperature">
+                           https://data.met.no/observations/v0.jsonld?sources=SN5495&amp;referencetime=R6/2016-03-01T12:00:00.000Z/2016-03-01T12:00:00.000Z/PT24H&amp;elements=air_temperature</a>
+                        </p>
+                        <p>These data come from stations which does not perform after the
+                           WMO (and Met Norway) standard as performanceCategory A. But the
+                           &nbsp;measurements are freely available, but are flagged as
+                           performanceCategory=C.
+                        </p>
+                        <p>The available timeseries for this timeserietype can therefore be
+                           found from: <a href=
+                              "https://data.met.no/observations/availableTimeSeries/v0.jsonld?performancecategory=C">
+                           https://data.met.no/observations/availableTimeSeries/v0.jsonld?performancecategory=C</a>
+                        </p>
+                        <p>The controlInfo method is not yet implemented.</p>
+                     </td>
+                     <td>
+                        <p>13 - Data from the road agency</p>
+                        <p>
+                           http://wsklima/met/MetService?invoke=getMetData&amp;timeserietypeID=13&amp;format=&amp;from=2016-03-01&amp;to=2016-03-06&amp;stations=5495&amp;elements=ta&amp;hours=12&amp;months=&amp;username=useracces
+                        </p>
+                        <p>&nbsp; This timeserietype has been restricted to those users
+                           with a username with access to the data, in agreement with the data
+                           owner.
+                        </p>
+                        <p>getControlInfo - method for road agency to get detailed quality
+                           information about the measurements.
+                        </p>
+                        <p><br>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>5 - daily extremes &nbsp;</p>
+                        <p>Daily extremes are not in use (because of lack of datacoverage)
+                           and will therefore not be implemented at the time being.
+                        </p>
+                     </td>
+                     <td>
+                        5 - daily extremes &nbsp;- not in use</p>
+                        <p>Gives the extreme values in the station period, each day, for
+                           one station.
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>10 - extremes per county</p>
+                        <p>Extremes for counties can be found from the endpoint:</p>
+                        <p>/record/</p>
+                        <p><a href=
+                           "https://data.met.no/records/countyExtremes/v0.jsonld?counties=Oslo&elements=min(air_temperature">
+                           https://data.met.no/records/countyExtremes/v0.jsonld?counties=Oslo&amp;elements=min(air_temperature
+                           P1D)</a>
+                        </p>
+                     </td>
+                     <td>
+                        <p>10 - extremes per county</p>
+                        <p>getMetData("10","","","","3","tan","","","")</p>
+                        <p>Inputparameter stations are in the county types (countyID) that
+                           can be obtained from a method called getCountyTypes. In the output:
+                           'from' - the date that says what year and day records were set for
+                           each month, 'id' - stationnumber for which records were set and
+                           'type' - provides county type.
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=10&format=&from=&to=&stations=3&elements=tan&hours=&months=&username%3">
+                           http://eklima.met.no/met/MetService?invoke=getMetData&amp;timeserietypeID=10&amp;format=&amp;from=&amp;to=&amp;stations=3&amp;elements=tan&amp;hours=&amp;months=&amp;username=</a>
+                        </p>
+                        </td
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>8 - Metar data: (observed from aerodromes)</p>
+                        <p><a href=
+                           "https://data.met.no/observations/v0.jsonld?sources=SN4780:0&referencetime=R31/2008-09-01T00:00:00.000Z/2008-10-01T00:00:00.000Z/PT24H&elements=mean(air_temperature">
+                           https://data.met.no/observations/v0.jsonld?sources=SN4780:0&amp;referencetime=R31/2008-09-01T00:00:00.000Z/2008-10-01T00:00:00.000Z/PT24H&amp;elements=mean(air_temperature
+                           PT1H),max(air_temperature PT1H)</a>
+                        </p>
+                     </td>
+                     <td>
+                        <p>8 - Metar data: (observed from aerodromes)</p>
+                        <p>
+                           getMetData("8","","2008-09-01","2008-10-01","4780","ta","12","","")
+                        </p>
+                        <p>Provides metardata for 12 UTC in the given period. The output of
+                           the time stamp indicates that Z is UTC time.
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=8&format=&from=2008-09-01&to=2008-10-01&stations=4780&elements=ta&hours=12&months=&username=">
+                           http://eklima.met.no/met/MetService?invoke=getMetData&amp;timeserietypeID=8&amp;format=&amp;from=2008-09-01&amp;to=2008-10-01&amp;stations=4780&amp;elements=ta&amp;hours=12&amp;months=&amp;username=</a>
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>11 - Data coverage</p>
+                        <p>This datacoverage functionality will not be provided in the
+                           first version of data.met.no
+                        </p>
+                     </td>
+                     <td>
+                        <p>11 - Data coverage</p>
+                        <p>
+                           getMetData("8","","2008-09-01","2008-10-01","4780","ta","12","","")
+                        </p>
+                        <p>Provides metardata for 12 UTC in the given period. The output of
+                           the time stamp indicates that Z is UTC time.
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=11&format=&from=2011-01-01&to=2011-07-01&stations=18700&elements=tan&hours=&months=&username=">
+                           http://eklima.met.no/met/MetService?invoke=getMetData&amp;timeserietypeID=11&amp;format=&amp;from=2011-01-01&amp;to=2011-07-01&amp;stations=18700&amp;elements=tan&amp;hours=&amp;months=&amp;username=</a>
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>16=Projectdata. Special data from project stations(special
+                           parameters)<br>
+                           These data will be provided, but are not accessible right now.
+                        </p>
+                     </td>
+                     <td>
+                        <p>16=Projectdata. Special data from projekt stations(special
+                           parameters)
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <b>Frequencies</b>
+                     </td>
+                     <td>
+                        <b>Intensity-duration-frequency</b>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>The endpoint/frequencies/rainfall gives the intensity-duration
+                           and frequency data for stations.
+                        </p>
+                        <p><a href=
+                           "https://data.met.no/frequencies/rainfall/v0.jsonld?sources=SN18701">
+                           https://data.met.no/frequencies/rainfall/v0.jsonld?sources=SN18701</a>
+                        </p>
+                        <p>It is also possible to filter on durations, frequencies and
+                           unit
+                        </p>
+                        <p>See: <a href=
+                           "https://data.met.no/reference%23!/frequencies/getRainfallIDF">
+                           https://data.met.no/reference#!/frequencies/getRainfallIDF</a>&nbsp;
+                        </p>
+                        <p>It is also possible to get the IDF value for a certain location
+                           (from 1x1 km grid) e.g: <a href=
+                              "https://data.met.no/frequencies/rainfall/v0.jsonld?sources=idf_bma1km&location=point(10 60)">
+                           https://data.met.no/frequencies/rainfall/v0.jsonld?sources=idf_bma1km&amp;location=point(10%2060)</a>&nbsp;
+                        </p>
+                        <p>A visualisation of the data can be found at the Climate Service
+                           Center website:
+                        </p>
+                        <p><a href=
+                           "https://klimaservicesenter.no/faces/desktop/idf.xhtml">
+                           https://klimaservicesenter.no/faces/desktop/idf.xhtml</a>&nbsp;
+                        </p>
+                     </td>
+                     <td>
+                        <p>Timeserietype 17 = IDF-data:</p>
+                        <p><a href=
+                           "http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=17&format=&from=&to=&stations=18701&elements=&hours=&months=&username=">
+                           http://eklima.met.no/met/MetService?invoke=getMetData&amp;timeserietypeID=17&amp;format=&amp;from=&amp;to=&amp;stations=18701&amp;elements=&amp;hours=&amp;months=&amp;username=</a>
+                        </p>
+                        <p>wsKlima did also have a Graph service which gave a visualization
+                           of the IDF-data:
+                        </p>
+                        <p>Graph- &gt; idf</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <b>Climatology normals</b>
+                     </td>
+                     <td>
+                        <b>Climatology normals</b>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>3 - monthly normals</p>
+                        <p><a href=
+                           "https://data.met.no/climatenormals/v0.jsonld?sources=SN18700,SN50540&elements=mean(air_temperature">
+                           https://data.met.no/climatenormals/v0.jsonld?sources=SN18700,SN50540&amp;elements=mean(air_temperature
+                           P1M),sum(precipitation_amount P1M)&amp;period=1961/1990</a>
+                        </p>
+                        <p>4 - diurnal normals</p>
+                        <p><a href=
+                           "https://data.met.no/climatenormals/v0.jsonld?sources=SN18700,SN50540&elements=mean(air_temperature">
+                           https://data.met.no/climatenormals/v0.jsonld?sources=SN18700,SN50540&amp;elements=mean(air_temperature
+                           P1D)&amp;period=1961/1990</a>
+                        </p>
+                     </td>
+                     <td>
+                        <p>3 - monthly normals</p>
+                        <p>getMetData("3","","","","18700,50540","rr,tam","","","")</p>
+                        <p>For default normal period [1961-01-01 -&gt; 1990-12-31] can
+                           input parameters 'from' and 'two ' be blank. Another normal period
+                           [1931-01-01 -&gt; 1960-12-31] is also available. Method returns
+                           month normals. In the output for date 'from' shows year = (start
+                           normal period) and (month and day) = (start of the current month).
+                           Date 'to ' shows years = (end normal period) and (month and day) =
+                           (end of current month).
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=3&format=&from=&to=&stations=18700,50540&elements=rr,tam&hours=&months=&username=">
+                           http://eklima.met.no/met/MetService?invoke=getMetData&amp;timeserietypeID=3&amp;format=&amp;from=&amp;to=&amp;stations=18700%2C50540&amp;elements=rr%2Ctam&amp;hours=&amp;months=&amp;username=</a>
+                        </p>
+                        <p>4 - diurnal normals</p>
+                        <p>getMetData("4","","","","18700,50540","tam","","","")</p>
+                        <p>Input parameters 'from' and 'to ' can be blank because it's just
+                           one normal period [1961-01-01 -&gt; 1990-12-31] (default). The
+                           method returns daily normals for normal period. In the output for
+                           date 'from' shows year = (start normal period) and (month and day)
+                           = (start of the current day). Date 'to ' shows years = (end normal
+                           period) and (month and day) = (end of the current day).
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=4&format=&from=&to=&stations=18700,50540&elements=tam&hours=&months=&username=">
+                           http://eklima.met.no/met/MetService?invoke=getMetData&amp;timeserietypeID=4&amp;format=&amp;from=&amp;to=&amp;stations=18700%2C50540&amp;elements=tam&amp;hours=&amp;months=&amp;username=</a>
+                        </p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>This functionality is planned to be integrated in data.met.no in
+                           the autumn 2017.
+                        </p>
+                     </td>
+                     <td>
+                        <p>Region data&nbsp;- to get climate data information for a
+                           region.<br>
+                           As you can find from a distinct endpoint in &nbsp;wsKlima:
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/wsKlima/complete/cData_en.html">
+                           http://eklima.met.no/wsKlima/complete/cData_en.html</a>
+                        </p>
+                        <p><a href=
+                           "http://eklima.met.no/met/MetService?invoke=getRegionHistoryTrend&region_type=GR&region_no=1&element=tam&fromYear=1900&toYear=2017&month=4&language=">
+                           http://eklima.met.no/met/MetService?invoke=getRegionHistoryTrend&amp;region_type=GR&amp;region_no=1&amp;element=tam&amp;fromYear=1900&amp;toYear=2017&amp;month=4&amp;language=</a>
+                        </p>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </body>
+</html>
