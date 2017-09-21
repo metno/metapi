@@ -1,0 +1,204 @@
+@import play.api.Play.current
+@import util._
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>data.met.no</title>
+      <link type="image/x-icon" rel="icon" href="/images/met_favicon.png">
+      <link type="image/x-icon" rel="shortcut icon" href="/images/met_favicon.ico">
+      <link href="/stylesheets/style_default_2013.css" rel="stylesheet" type="text/css">
+      <link href="/stylesheets/style_layout_2013.css" rel="stylesheet" type="text/css">
+      <link href="/stylesheets/style_menu_2013.css" rel="stylesheet" type="text/css">
+      <link href="/stylesheets/paginator.css" rel="stylesheet" type="text/css">
+      <link href="/stylesheets/dictionary.css" rel="stylesheet" type="text/css">
+   </head>
+   <body>
+      <div id="wrapper" class="frontpage">
+         <div id="header" class="clearfix">
+            <div id="logo">
+               <a href="http://met.no"><img src="/images/logo_2013_no.png" alt="met.no"></img></a>
+            </div>
+            @util.navbar()
+         </div>
+         <div id="top-line">
+            <div class="top-menu">
+               <ul>
+                  <li><a href="https://data.met.no">data.met.no</a></li>
+               </ul>
+            </div>
+         </div>
+         <div id="main-content" class="frontpage clearfix">
+            <h3>Using API References to construct requests</h3>
+            <p>Example: Find the weather element identity (id)</p>
+            <p>The easiest way to find the element id is using the (1) online
+               element table. Alternatively you can use the (2) API Reference
+               forms:
+            </p>
+            <ol start="1">
+               <li>You can search for any term in the online element table with
+                  respect to element codes, element identities, names etc. Columns
+                  are also sortable.<br>
+                  <a href="https://data.met.no/elementtable">
+                  https://data.met.no/elementtable</a>&nbsp;<br>
+                  <br>
+                  Link to this table is found in the API&apos;s documentation from:
+                  <a href="https://data.met.no/concepts#elementids">
+                  https://data.met.no/concepts#elementids</a><br>
+               </li>
+               <li>
+                  If you know the old element code, e.g. GD17_I
+                  &nbsp;(interpolated heating degree days with base 17 &apos;C) you can
+                  alternatively &nbsp;find&nbsp;the new element identities (ids)
+                  using the API Reference form<br>
+                  <a href="https://data.met.no/reference#!/elements/getElements">
+                  https://data.met.no/reference#!/elements/getElements</a>&nbsp;<br>
+                  <br>
+                  Type "GD17_I" in the field "oldElementCodes"<br>
+                  <br>
+                  Use the button &quot;Try it out&quot; which generates the corresponding
+                  url-request: <a href="https://data.met.no/elements/v0.jsonld?oldElementCodes=GD17,GD17_I&amp;lang=en-US">
+                  https://data.met.no/elements/v0.jsonld?oldElementCodes=GD17,GD17_I&amp;lang=en-US</a>&nbsp;<br>
+                  <br>
+                  It retrieves data and display them in the field "Response body".
+                  The response has json format. The corresponding element ids to
+                  &quot;GD17_I&quot; is found in the variable &quot;id&quot;<br>
+                  <pre>
+  ...
+   "data" : [ &#123;
+    "id" : "integral_of_deficit_interpolated(mean(air_temperature P1D) P1M 17.0)",
+  ...
+    "id" : "integral_of_deficit_interpolated(mean(air_temperature P1D) P1Y 17.0)",
+  ...
+</pre>
+               </li>
+            </ol>
+            <p>NB: Some element ids may not have available time series yet.</p>
+            <p>Example: Check which and when stations have time series of a
+               specific weather element id
+            </p>
+            <p>Use the API Reference form<br>
+               <a href="https://data.met.no/reference#!/observations/timeSeries">
+               https://data.met.no/reference#!/observations/timeSeries</a>
+            </p>
+            <p>Type the element id in the field &quot;elements&quot;, e.g.
+               &nbsp;integral_of_deficit_interpolated(mean(air_temperature P1D)
+               P1M 17.0).&nbsp;Hit the button &quot;Try it out&quot; which generates the
+               url-request:
+            </p>
+            <p><a href="https://data.met.no/observations/availableTimeSeries/v0.jsonld?elements=integral_of_deficit_interpolated(mean(air_temperature P1D) P1M 17.0)">
+               https://data.met.no/observations/availableTimeSeries/v0.jsonld?elements=integral_of_deficit_interpolated(mean(air_temperature P1D) P1M 17.0)</a>&nbsp;
+            </p>
+            <p>It retrieves data and display them in the field "Response
+               body":
+            </p>
+            <pre>
+ ...
+  "data" : [ &#123;
+    "sourceId" : "SN180:0",
+    "validFrom" : "1961-01-01T00:00:00.000Z",
+    "validTo" : "2004-12-31T00:00:00.000Z",
+ ...
+ 
+  </pre>
+            <p>The times series are available from the stations with station
+               numbers given in the variable &quot;sourceId&quot;, for the time period given
+               in &quot;validFrom&quot;&nbsp;and &quot;validTo&quot;. The &quot;:0&quot; in &quot;&lt;sourceId&gt;:0&quot;
+               means default (main) sensor, while &quot;:1&quot;&nbsp;and &quot;:2&quot;&nbsp;mean
+               parallel sensor 1&nbsp;and 2.
+            </p>
+            <p>Example: Get real observation data of a given weather element id
+               for a certain time period
+            </p>
+            <p>Use the API Reference form<br>
+               <a href="https://data.met.no/reference#!/observations/observations">
+               https://data.met.no/reference#!/observations/observations</a>&nbsp;
+            </p>
+            <p>Insert station number, e.g. SN180, in the field sources,
+               reference time period e.g. 2004-12-31T00:00:00/2004-12-31T00:00:00,
+               and element id e.g.
+               integral_of_deficit_interpolated(mean(air_temperature P1D) P1M
+               17.0)
+            </p>
+            <p>Hit the button "Try it out" which generates the url-request:</p>
+            <p><a href="https://data.met.no/observations/v0.jsonld?sources=SN180&amp;referencetime=2004-01-01T00:00:00/2004-12-31T00:00:00&amp;elements=integral_of_deficit_interpolated(mean(air_temperature P1D) P1M 17.0)">
+               https://data.met.no/observations/v0.jsonld?sources=SN180&amp;referencetime=2004-01-01T00:00:00/2004-12-31T00:00:00&amp;elements=integral_of_deficit_interpolated(mean(air_temperature P1D) P1M 17.0)</a>&nbsp;
+            </p>
+            <p>It retrieves data and display it in the field &quot;Response
+               body&quot;
+            </p>
+            <pre>
+ ...
+"data": [ &#123;
+      "sourceId": "SN180:0",
+      "referenceTime": "2004-01-01T00:00:00.000Z",
+      "observations": [
+        &#123;
+          "elementId": "integral_of_deficit_interpolated(mean(air_temperature P1D) P1M 17.0)",
+          "value": 837.3,
+ ... 
+  </pre>
+            <p>Example: Check available climate normals</p>
+            <p>Use the API Reference form:<br>
+               <a href="https://data.met.no/reference#!/climatenormals/getAvailable">
+               https://data.met.no/reference#!/climatenormals/getAvailable</a>&nbsp;
+            </p>
+            <p>If you leave all fields empty, you get all available normals for
+               all stations. You can also use wild card search in the "elements"
+               field e.g. *integral_of_deficit*17*, or a specific element id.
+            </p>
+            <p>Request examples:<br>
+               <a href="https://data.met.no/climatenormals/available/v0.jsonld?elements=*integral_of_deficit*17*">
+               https://data.met.no/climatenormals/available/v0.jsonld?elements=*integral_of_deficit*17*</a>&nbsp;
+            </p>
+            <p><a href="https://data.met.no/climatenormals/available/v0.jsonld?elements=integral_of_deficit_interpolated(mean(air_temperature P1D) P1M 17.0)">
+               https://data.met.no/climatenormals/available/v0.jsonld?elements=integral_of_deficit_interpolated(mean(air_temperature P1D) P1M 17.0)</a>&nbsp;
+            </p>
+            <p>Example of response body field:</p>
+            <pre>
+ ...
+  "data" : [ &#123;
+    "sourceId" : "SN10000",
+    "elementId" : "integral_of_deficit_interpolated(mean(air_temperature P1D) P1M 17.0)",
+    "period" : "1961/1990"
+ ...
+
+
+</pre>
+            <p>Example: Retrieve data values of a climate normal element</p>
+            <p>Use the form<br>
+               <a href="https://data.met.no/reference#!/climatenormals/getClimateNormals">
+               https://data.met.no/reference#!/climatenormals/getClimateNormals</a>&nbsp;
+            </p>
+            <p>Include e.g. the field values from the response body of the
+               example above.
+            </p>
+            <p>This gives the request:<br>
+               <a href="https://data.met.no/climatenormals/v0.jsonld?sources=SN10000&amp;elements=integral_of_deficit_interpolated(mean(air_temperature P1D) P1M 17.0)&amp;period=1961/1990">
+               https://data.met.no/climatenormals/v0.jsonld?sources=SN10000&amp;elements=integral_of_deficit_interpolated(mean(air_temperature P1D) P1M 17.0)&amp;period=1961/1990</a>&nbsp;
+            </p>
+            <p>Output in the field &quot;Response body&quot;:</p>
+            <pre>
+ ...
+  "data" : [ &#123;
+    "sourceId" : "SN10000",
+    "elementId" : "integral_of_deficit_interpolated(mean(air_temperature P1D) P1M 17.0)",
+    "period" : "1961/1990",
+    "month" : 1,
+    "normal" : 896.7
+  &#125;, &#123;
+    "sourceId" : "SN10000",
+    "elementId" : "integral_of_deficit_interpolated(mean(air_temperature P1D) P1M 17.0)",
+    "period" : "1961/1990",
+    "month" : 2,
+    "normal" : 771.3
+ ...
+
+  </pre>
+         </div>
+      </div>
+   </body>
+</html>
+
+
+
+
