@@ -79,15 +79,15 @@
 
     <ol>
       <li><a href="/auth/requestCredentials.html">Request your client credentials</a>.</li>
-      <li>Play with and learn more about the resources available in <a href="/reference">API Reference</a> (copy your client_id into the appropriate form).
+      <li>Play with and learn more about the resources available in <a href="/reference">API Reference</a> (copy your client_id(username) into the appropriate form).
       </li>
-      <li>Begin developing your application. All calls must be <a href="#authentication">authenticated</a> with your client_id. To <a href="#authorization">authorize</a>
+      <li>Begin developing your application. All calls must be <a href="#authentication">authenticated</a> with your client_id(username). To <a href="#authorization">authorize</a>
         access to confidential resources and data, you require an access token acquired through the OAuth2 client credentials grant (as well as permission to
         access those resources). Note that the vast majority of data on this service is open, so the authorization flow is only rarely required.
       </li>
     </ol>
 
-    <p>Store your client_id and client_secret securely. The client_id is used to identify your application. There are currently no hard data retrieval limits
+    <p>Store your client_id(username) and client_secret(password) securely. The client_id is used to identify your application. There are currently no hard data retrieval limits
       on use of the API (these may come later), but client_ids which place undue strain on the server infrastructure during this period will be deleted without
       prior warning.
     </p>
@@ -108,7 +108,7 @@
       <a id="authentication" class="anchor">Authentication</a>
     </h2>
 
-    The data.met.no API requires all requests to include a client_id to authenticate. You pass the client_id to the API using basic authentication. Using curl,
+    The data.met.no API requires all requests to include a client_id(username) to authenticate. You pass the client_id to the API using basic authentication. Using curl,
     this can be done as follows:
 
   <pre><code>
@@ -138,7 +138,7 @@ curl -i --user YOUR-CLIENT-ID: "https://data.met.no/tests/secureHello"
     <p>First, use your client credentials to get an access token. This can be done using curl as follows:</p>
 
   <pre><code>
-curl -d'grant_type=client_credentials&client_id=YOUR-CLIENT-ID&client_secret=YOUR-CLIENT-SECRET' https://data.met.no/auth/requestAccessToken
+curl -d'grant_type=client_credentials&client_id=YOUR-CLIENT-ID(username)&client_secret=YOUR-CLIENT-SECRET(password)' https://data.met.no/auth/requestAccessToken
   </code></pre>
 
     <p>Use the access token to make requests.</p>

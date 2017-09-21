@@ -160,7 +160,7 @@ class ApplicationSpec extends Specification {
       contentType(ret) must beSome.which(_ == "text/html")
     }
 
-    "render examplerequests" in running(TestUtil.app) {
+ /*   "render examplerequests" in running(TestUtil.app) {
       val ret = route(FakeRequest(GET, "/examplerequests")).get
 
       status(ret) must equalTo(OK)
@@ -183,6 +183,49 @@ class ApplicationSpec extends Specification {
 
     "render langexamples/index.html" in running(TestUtil.app) {
       val ret = route(FakeRequest(GET, "/langexamples/index.html")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }*/
+
+    
+    "render ex_apireference" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/ex_apireference")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
+    "render ex_apireference/index.html" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/ex_apireference/index.html")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+    
+    "render ex_portingwsklima" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/ex_portingwsklima")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
+    "render ex_portingwsklima/index.html" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/ex_portingwsklima/index.html")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
+    "render ex_userquest" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/ex_userquest")).get
+
+      status(ret) must equalTo(OK)
+      contentType(ret) must beSome.which(_ == "text/html")
+    }
+
+    "render ex_userquest/index.html" in running(TestUtil.app) {
+      val ret = route(FakeRequest(GET, "/ex_userquest/index.html")).get
 
       status(ret) must equalTo(OK)
       contentType(ret) must beSome.which(_ == "text/html")

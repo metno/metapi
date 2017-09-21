@@ -56,8 +56,9 @@ TABLE.image-box.right-floated{margin:0px 0px 15px 10px;float:right;width:10px;}
 TABLE.image-box.none-floated{margin:15px 0px;float:none;display:block;}
 TABLE.user-table{font-size:100%;margin:10px 0px;}
 TABLE.user-table TR TD{vertical-align:top;padding:4px;}
-TABLE.bordered-user-table{font-size:100%;border:1px solid #E9E8E8;border-collapse:collapse;}
-TABLE.bordered-user-table TR TD{vertical-align:top;border:1px solid #E9E8E8;padding:0px;}
+TABLE.bordered-user-table{font-size:100%;border:1px solid black;border-collapse:collapse;}
+TABLE.bordered-user-table TR TD{vertical-align:top;border:1px solid black;padding:10px;}
+TABLE.bordered-user-table TR TH{vertical-align:top;text-align: left;border:1px solid black;padding:10px;background-color:#EEECE1;}
 DIV.user-box{background-color:#E4EDF2;padding:15px;margin:10px 10px 5px 0px;width:470px;}
 DIV.user-box.left-floated{margin:0px 15px 10px 0px;}
 DIV.user-box.right-floated{margin:0px 0px 10px 15px;}

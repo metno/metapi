@@ -33,14 +33,57 @@
 
   <div id="main-content" class="frontpage clearfix">
 
-    <h1>R Examples</h1>
+    <h1>R</h1>
 
     <!-- --------------------------------------------------------------------------------------------------------------------------->
 
-    <p>Here's a few examples of how to access data.met.no using the <a href="https://en.wikipedia.org/wiki/R_(programming_language)">R language</a>.
+    <p>How to access data.met.no using the <a href="https://en.wikipedia.org/wiki/R_(programming_language)">R language</a>.
     </p>
+ <pre>  
+The code extracts wind, but here you can change parameters and stations as you wish.
+The code builds up a url, extracts data for the period, and adds data to an R data.frame. The code that transfers the data to the frame must be updated if you retrieve another parameter.
 
-    <p><span style="background-color:#ffff00;color:#000000;">TO BE ADDED</span></p>
+
+rm (list = ls ())
+library ( "httr")
+
+# Authentication (Note: the client ID and client Secret  used in the example should be replaced with a real one)
+client_id <- "ca076a66-7ea1-4ca2-8ecf-f091899a9eba: f8413549-8f24-4de1-8154-e5a2c85e553c"
+
+# Parameters to be extracted
+Welements <- c ("wind_speed", "wind_from_direction")
+
+# Station, please enter more
+sources <- c ("SN4780")
+
+# Time range that you want observations for
+start_date <- "2015-01-01T00: 00"
+stop_date <- "2015-01-03T00: 00"
+
+# URL for collection is aggregated
+ url <- paste ("https: //", client_id, "&#64; data.met.no/ observations / v0.jsonld?",
+              "sources =", paste (sources, collapse = ","),
+              "& referencetime =", start_date, "/", stop_date,
+              "& elements =", paste (Welements, collapse = ","),
+              sep = "", collapse = "")
+ 
+ # Retrieves data via API and picks out the current fields from json continuously. Data is added to a table
+ system.time ({
+   xs <- scan (url, what = "")
+   print (object.size (x))
+   k <- grep ("referenceTime", xs)
+   e <- grep ("^ wind_speed $", xs) # This ensures that only the exact string
+   d <- grep ("^ wind_from_direction $", xs)
+   s <- grep ("sourceId", xs)
+   wsTable <- data.frame (Stnr = xs [s + 2], time = xs [k + 2],
+                       WD = as.numeric (gsub (",", "", xs [d + 4])), WS = as.numeric (gsub (",", "", xs [e + 4]))
+ })
+ 
+# The table is fine-tuned slightly
+datetime <- strxtime (x = as.character (wsTable $ time), format = "% Y-% m-% dT% H:% M:% S", tz = "UTC")
+ wsTable $ time <- datetime
+</pre>
+
 
     <p><b>Side note:</b> <a href="https://github.com/metno/esd">ESD</a> is an R-package for climate and weather analysis developed at MET Norway. Try it out!
     </p>

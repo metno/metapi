@@ -39,12 +39,25 @@ GET     /examples                   controllers.Application.examples
 GET     /examples/index.html        controllers.Application.examples
 
 # Example Requests
-GET     /examplerequests            controllers.Application.examplerequests
-GET     /examplerequests/index.html controllers.Application.examplerequests
+#GET     /examplerequests            controllers.Application.examplerequests
+#GET     /examplerequests/index.html controllers.Application.examplerequests
+
+# Example API reference
+GET     /ex_apireference             controllers.Application.ex_apireference
+GET     /ex_apireference/index.html  controllers.Application.ex_apireference
+
+# Example user request
+GET     /ex_userquest                controllers.Application.ex_userquest 
+GET     /ex_userquest/index.html     controllers.Application.ex_userquest 
+
+# Example porting from wsKlima
+GET     /ex_portingwsklima            controllers.Application.ex_portingwsklima 
+GET     /ex_portingwsklima/index.html controllers.Application.ex_portingwsklima 
+
 
 # Language Examples
-GET     /langexamples               controllers.Application.langexamples
-GET     /langexamples/index.html    controllers.Application.langexamples
+#GET     /langexamples               controllers.Application.langexamples
+#GET     /langexamples/index.html    controllers.Application.langexamples
 
 # Python Examples
 GET     /langex_python              controllers.Application.langex_python
