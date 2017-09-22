@@ -160,35 +160,6 @@ class ApplicationSpec extends Specification {
       contentType(ret) must beSome.which(_ == "text/html")
     }
 
- /*   "render examplerequests" in running(TestUtil.app) {
-      val ret = route(FakeRequest(GET, "/examplerequests")).get
-
-      status(ret) must equalTo(OK)
-      contentType(ret) must beSome.which(_ == "text/html")
-    }
-
-    "render examplerequests/index.html" in running(TestUtil.app) {
-      val ret = route(FakeRequest(GET, "/examplerequests/index.html")).get
-
-      status(ret) must equalTo(OK)
-      contentType(ret) must beSome.which(_ == "text/html")
-    }
-
-    "render langexamples" in running(TestUtil.app) {
-      val ret = route(FakeRequest(GET, "/langexamples")).get
-
-      status(ret) must equalTo(OK)
-      contentType(ret) must beSome.which(_ == "text/html")
-    }
-
-    "render langexamples/index.html" in running(TestUtil.app) {
-      val ret = route(FakeRequest(GET, "/langexamples/index.html")).get
-
-      status(ret) must equalTo(OK)
-      contentType(ret) must beSome.which(_ == "text/html")
-    }*/
-
-    
     "render ex_apireference" in running(TestUtil.app) {
       val ret = route(FakeRequest(GET, "/ex_apireference")).get
 
@@ -202,7 +173,7 @@ class ApplicationSpec extends Specification {
       status(ret) must equalTo(OK)
       contentType(ret) must beSome.which(_ == "text/html")
     }
-    
+
     "render ex_portingwsklima" in running(TestUtil.app) {
       val ret = route(FakeRequest(GET, "/ex_portingwsklima")).get
 
