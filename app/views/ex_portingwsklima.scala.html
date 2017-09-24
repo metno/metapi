@@ -135,8 +135,8 @@
                         </p>
                         <p>Backwards compatibilty gives the possibility to request on the
                            old element code, e.g: <a href=
-                              "https://data.met.no/elements/v0.jsonld?legacyElementCodes=TAN&lang=en-US">
-                           https://data.met.no/elements/v0.jsonld?legacyElementCodes=TAN&amp;lang=en-US</a>&nbsp;
+                              "https://data.met.no/elements/v0.jsonld?oldElementCodes=TAN&lang=en-US">
+                           https://data.met.no/elements/v0.jsonld?oldElementCodes=TAN&amp;lang=en-US</a>&nbsp;
                         </p>
                         <p>But it is the corresponding new elementID that is used in the
                            request for data.
@@ -197,7 +197,7 @@
                         </p>
                         <p><a href=
                            "https://data.met.no/elements/v0.jsonld?ids=mean(air_temperature P1M)&lang=en-US">
-                           https://data.met.no/elements/v0.jsonld?ids=mean(air_temperature%20P1M)&amp;lang=en-US</a>&nbsp;
+                           https://data.met.no/elements/v0.jsonld?ids=mean(air_temperature P1M)&amp;lang=en-US</a>&nbsp;
                         </p>
                      </td>
                      <td>
@@ -226,14 +226,14 @@
                            "https://data.met.no/sources/v0.jsonld?types=SensorSystem">
                            https://data.met.no/sources/v0.jsonld?types=SensorSystem</a>&nbsp;
                         </p>
-                        <p>It is possible to filter the request on many parameters. More
+                        <p>It is possible to filter the request on many parameters.<!-- More
                            examples here: <a href=
                               "https://docs.google.com/document/d/1vMN3cnnRGA9JGTSFe_ixXwqeuM8FDWzqa3sDQRnIMug/edit%23heading=h.1uxxctyej314&amp;sa=D&amp;ust=1505418693894000&amp;usg=AFQjCNG-6Z-DbSlDpA5QOHj2qmjhKMS9Gw">
-                           https://docs.google.com/document/d/1vMN3cnnRGA9JGTSFe_ixXwqeuM8FDWzqa3sDQRnIMug/edit#heading=h.1uxxctyej314</a>&nbsp;
+                           https://docs.google.com/document/d/1vMN3cnnRGA9JGTSFe_ixXwqeuM8FDWzqa3sDQRnIMug/edit#heading=h.1uxxctyej314</a>-->
                         </p>
                         <p>Get stations filtered by geometry:</p>
                         <p><a href=
-                           "https://data.met.no/concepts/index.html%23geometry_specificatio">
+                           "https://data.met.no/concepts/index.html#geometry_specification">
                            https://data.met.no/concepts/index.html#geometry_specification</a>
                         </p>
                         <p>&nbsp;</p>
@@ -410,8 +410,8 @@
                            stations:
                         </p>
                         <p><a href=
-                           "https://data.met.no/elements/v0.jsonld?legacyElementCodes=WW&lang=en-US">
-                           https://data.met.no/elements/v0.jsonld?legacyElementCodes=WW&amp;lang=en-US</a>&nbsp;
+                           "https://data.met.no/elements/v0.jsonld?oldElementCodes=WW&lang=en-US">
+                           https://data.met.no/elements/v0.jsonld?oldElementCodes=WW&amp;lang=en-US</a>&nbsp;
                         </p>
                         <p>gives you the elementId=weather_type with corresponding
                            codeTable=present_weather_manned
@@ -423,8 +423,8 @@
                            them from observations, e.g:
                         </p>
                         <p><a href=
-                           "https://data.met.no/observations/v0.jsonld?sources=SN18700&referencetime=2017-01-01%252F2017-02-01&elements=weather_type">
-                           https://data.met.no/observations/v0.jsonld?sources=SN18700&amp;referencetime=2017-01-01%2F2017-02-01&amp;elements=weather_type</a>&nbsp;
+                           "https://data.met.no/observations/v0.jsonld?sources=SN18700&referencetime=2017-01-01/2017-02-01&elements=weather_type">
+                           https://data.met.no/observations/v0.jsonld?sources=SN18700&amp;referencetime=2017-01-01/2017-02-01&amp;elements=weather_type</a>&nbsp;
                         </p>
                      </td>
                      <td>
@@ -451,7 +451,7 @@
                            needed)
                         </p>
                         <p><a href=
-                           "https://data.met.no/reference/index.html%23time_specification">
+                           "https://data.met.no/reference/index.html#time_specification">
                            https://data.met.no/reference/index.html#time_specification</a>
                         </p>
                      </td>
@@ -619,9 +619,8 @@
                      <td>
                         <p>7 - homogenous monthly values</p>
                         <p><a href=
-                           "https://data.met.no/observations/v0.jsonld?sources=SN18700&referencetime=R1/2005-07-01T00:00/2006-07-01T00:00/P1Y&elements=best_estimate_mean(air_temperature P1M">
-                           https://data.met.no/observations/v0.jsonld?sources=SN18700&amp;referencetime=R1/2005-07-01T00:00/2006-07-01T00:00/P1Y&amp;elements=best_estimate_mean(air_temperature
-                           P1M)</a>
+                           "https://data.met.no/observations/v0.jsonld?sources=SN18700&referencetime=R1/2005-07-01T00:00/2006-07-01T00:00/P1Y&elements=best_estimate_mean(air_temperature P1M)">
+                           https://data.met.no/observations/v0.jsonld?sources=SN18700&amp;referencetime=R1/2005-07-01T00:00/2006-07-01T00:00/P1Y&amp;elements=best_estimate_mean(air_temperature P1M)</a>
                         </p>
                         <p>Using the method best_estimate_* on the elements we indicate the
                            homogenisation method applied on the data. Both monthly, seasonal,
@@ -684,9 +683,8 @@
                      <td>
                         <p>14- ten minutes values</p>
                         <p><a href=
-                           "https://data.met.no/observations/v0.jsonld?sources=SN25112&referencetime=R31/2015-01-15T12:00:00.000Z/2015-01-15T12:00:00.000Z/PT24H&elements=(wind_from_direction PT10M),(wind_speed PT10M)&amp;sa=D&amp;ust=1505418693921000">
-                           https://data.met.no/observations/v0.jsonld?sources=SN25112&amp;referencetime=R31/2015-01-15T12:00:00.000Z/2015-01-15T12:00:00.000Z/PT24H&amp;elements=(wind_from_direction
-                           PT10M),(wind_speed PT10M)</a>
+                           "https://data.met.no/observations/v0.jsonld?sources=SN25112&referencetime=2015-01-15T00:00:00.000Z/2015-02-15T00:00:00.000Z&elements=wind_from_direction,wind_speed">
+                           https://data.met.no/observations/v0.jsonld?sources=SN25112&amp;referencetime=2015-01-15T00:00:00.000Z/2015-02-15T00:00:00.000Z&amp;elements=wind_from_direction,wind_speed</a>
                         </p>
                      </td>
                      <td>
@@ -765,8 +763,8 @@
                      <td>
                         <p>13 - Data from the road agency, as performancecategory=C</p>
                         <p><a href=
-                           "https://data.met.no/observations/v0.jsonld?sources=SN11790&referencetime=R6/2016-03-01T12:00:00.000Z/2016-03-01T12:00:00.000Z/PT24H&elements=air_temperature">
-                           https://data.met.no/observations/v0.jsonld?sources=SN5495&amp;referencetime=R6/2016-03-01T12:00:00.000Z/2016-03-01T12:00:00.000Z/PT24H&amp;elements=air_temperature</a>
+                           "https://data.met.no/observations/v0.jsonld?sources=SN27415:0&referencetime=2016-03-01T00:00:00.000Z/2016-03-06T00:00:00.000Z&elements=air_temperature&performancecategory=C">
+                           https://data.met.no/observations/v0.jsonld?sources=SN27415:0&amp;referencetime=2016-03-01T00:00:00.000Z/2016-03-06T12:00:00.000Z&amp;elements=air_temperature&amp;performancecategory=C</a>
                         </p>
                         <p>These data come from stations which does not perform after the
                            WMO (and Met Norway) standard as performanceCategory A. But the
@@ -797,16 +795,17 @@
                   </tr>
                   <tr>
                      <td>
-                        <p>5 - daily extremes &nbsp;</p>
+                        <p>5 - daily extremes</p>
                         <p>Daily extremes are not in use (because of lack of datacoverage)
                            and will therefore not be implemented at the time being.
                         </p>
                      </td>
                      <td>
-                        5 - daily extremes &nbsp;- not in use</p>
+                        5 - daily extremes </p>
                         <p>Gives the extreme values in the station period, each day, for
                            one station.
-                        </p>
+                        </p><a href=
+			  "http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=5&format=&from=&to=&stations=18700&elements=rr,tax&hours=&months=&username=">http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=5&format=&from=&to=&stations=18700&elements=rr,tax&hours=&months=&username</a>
                      </td>
                   </tr>
                   <tr>
@@ -815,9 +814,8 @@
                         <p>Extremes for counties can be found from the endpoint:</p>
                         <p>/record/</p>
                         <p><a href=
-                           "https://data.met.no/records/countyExtremes/v0.jsonld?counties=Oslo&elements=min(air_temperature">
-                           https://data.met.no/records/countyExtremes/v0.jsonld?counties=Oslo&amp;elements=min(air_temperature
-                           P1D)</a>
+                           "https://data.met.no/records/countyExtremes/v0.jsonld?counties=Oslo&elements=min(air_temperature P1D)">
+                           https://data.met.no/record/countyExtremes/v0.jsonld?counties=Oslo&amp;elements=min(air_temperature P1D)</a>
                         </p>
                      </td>
                      <td>
@@ -830,7 +828,7 @@
                            'type' - provides county type.
                         </p>
                         <p><a href=
-                           "http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=10&format=&from=&to=&stations=3&elements=tan&hours=&months=&username%3">
+                           "http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=10&format=&from=&to=&stations=3&elements=tan&hours=&months=&username=">
                            http://eklima.met.no/met/MetService?invoke=getMetData&amp;timeserietypeID=10&amp;format=&amp;from=&amp;to=&amp;stations=3&amp;elements=tan&amp;hours=&amp;months=&amp;username=</a>
                         </p>
                         </td
@@ -839,9 +837,8 @@
                      <td>
                         <p>8 - Metar data: (observed from aerodromes)</p>
                         <p><a href=
-                           "https://data.met.no/observations/v0.jsonld?sources=SN4780:0&referencetime=R31/2008-09-01T00:00:00.000Z/2008-10-01T00:00:00.000Z/PT24H&elements=mean(air_temperature">
-                           https://data.met.no/observations/v0.jsonld?sources=SN4780:0&amp;referencetime=R31/2008-09-01T00:00:00.000Z/2008-10-01T00:00:00.000Z/PT24H&amp;elements=mean(air_temperature
-                           PT1H),max(air_temperature PT1H)</a>
+                           "https://data.met.no/observations/v0.jsonld?sources=SN4780:0&referencetime=2008-09-01T00:00:00.000Z/2008-10-01T00:00:00.000Z&elements=air_temperature">
+                           https://data.met.no/observations/v0.jsonld?sources=SN4780:0&amp;referencetime=2008-09-01T00:00:00.000Z/2008-10-01T00:00:00.000Z&amp;elements=air_temperature</a>
                         </p>
                      </td>
                      <td>
@@ -888,7 +885,10 @@
                      </td>
                      <td>
                         <p>16=Projectdata. Special data from projekt stations(special
-                           parameters)
+                          parameters)
+			</p>
+			<p><a href=
+			  "http://eklima.met.no/met/MetService?invoke=getMetData&timeserietypeID=16&format=&from=2017-01-01&to=2017-01-01&stations=85560&elements=ta&hours=0,6,12,18&months=&username=">http://eklima.met.no/met/MetService?invoke=getMetData&amp;timeserietypeID=16&amp;format=&amp;from=2017-01-01&amp;to=2017-01-0&amp;1stations=85560&amp;elements=ta&amp;hours=0,6,12,18&amp;months=&amp;username=</a>
                         </p>
                      </td>
                   </tr>
@@ -913,7 +913,7 @@
                            unit
                         </p>
                         <p>See: <a href=
-                           "https://data.met.no/reference%23!/frequencies/getRainfallIDF">
+                           "https://data.met.no/reference#!/frequencies/getRainfallIDF">
                            https://data.met.no/reference#!/frequencies/getRainfallIDF</a>&nbsp;
                         </p>
                         <p>It is also possible to get the IDF value for a certain location
@@ -953,15 +953,13 @@
                      <td>
                         <p>3 - monthly normals</p>
                         <p><a href=
-                           "https://data.met.no/climatenormals/v0.jsonld?sources=SN18700,SN50540&elements=mean(air_temperature">
-                           https://data.met.no/climatenormals/v0.jsonld?sources=SN18700,SN50540&amp;elements=mean(air_temperature
-                           P1M),sum(precipitation_amount P1M)&amp;period=1961/1990</a>
+                           "https://data.met.no/climatenormals/v0.jsonld?sources=SN18700,SN50540&elements=mean(air_temperature P1M),sum(precipitation_amount P1M)&amp;period=1961/1990">
+                           https://data.met.no/climatenormals/v0.jsonld?sources=SN18700,SN50540&amp;elements=mean(air_temperature P1M),sum(precipitation_amount P1M)&amp;period=1961/1990</a>
                         </p>
                         <p>4 - diurnal normals</p>
                         <p><a href=
-                           "https://data.met.no/climatenormals/v0.jsonld?sources=SN18700,SN50540&elements=mean(air_temperature">
-                           https://data.met.no/climatenormals/v0.jsonld?sources=SN18700,SN50540&amp;elements=mean(air_temperature
-                           P1D)&amp;period=1961/1990</a>
+                           "https://data.met.no/climatenormals/v0.jsonld?sources=SN18700,SN50540&elements=mean(air_temperature P1D)&amp;period=1961/1990">
+                           https://data.met.no/climatenormals/v0.jsonld?sources=SN18700,SN50540&amp;elements=mean(air_temperature P1D)&amp;period=1961/1990</a>
                         </p>
                      </td>
                      <td>
